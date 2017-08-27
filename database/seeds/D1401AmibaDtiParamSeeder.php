@@ -1,0 +1,30 @@
+<?php
+use Gmf\Sys\Builder;
+use Gmf\Sys\Models;
+use Illuminate\Database\Seeder;
+
+class D1401AmibaDtiParamSeeder extends Seeder {
+	private $entId = '4f95c06028d511e7bb351569a8a51d7d';
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		Models\DtiParam::where('ent_id', $this->entId)->delete();
+
+		$categories = Models\DtiCategory::where('ent_id', $this->entId)->get();
+		foreach ($categories as $ik => $iv) {
+			Models\DtiParam::build(function (Builder $b) use ($iv) {
+				$b->ent_id($this->entId)->category($iv->code)->code('type')->name("类型")->type_enum('fixed')->value($iv->code);
+			});
+			Models\DtiParam::build(function (Builder $b) use ($iv) {
+				$b->ent_id($this->entId)->category($iv->code)->code('date')->name("日期")->type_enum('input')->value('date');
+			});
+		}
+
+		Models\DtiParam::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code('ent_code')->name("企业编码")->type_enum('fixed')->value('002');
+		});
+	}
+}

@@ -1,0 +1,142 @@
+<?php
+use Gmf\Sys\Builder;
+use Gmf\Sys\Models;
+use Illuminate\Database\Seeder;
+
+class D1402AmibaDtiSeeder extends Seeder {
+	private $entId = '4f95c06028d511e7bb351569a8a51d7d';
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		Models\Dti::where('ent_id', $this->entId)->delete();
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_ORG")->name("组织")
+				->local_path('api/cbo/orgs/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_CURRENCY")->name("币种")
+				->local_path('api/cbo/currencies/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_UOM")->name("计量单位")
+				->local_path('api/cbo/units/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_DEPT")->name("部门")
+				->local_path('api/cbo/depts/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_WORK")->name("工作中心")
+				->local_path('api/cbo/works/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_WH")->name("存储地点")
+				->local_path('api/cbo/whs/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_PERSON")->name("人员")
+				->local_path('api/cbo/persons/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_PROJECT_CATEGORY")->name("项目分类")
+				->local_path('api/cbo/project-categories/batch');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_PROJECT")->name("项目")
+				->local_path('api/cbo/projects/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_ITEM_CATEGORY")->name("物料分类")
+				->local_path('api/cbo/item-categories/batch');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_ITEM")->name("物料")
+				->local_path('api/cbo/items/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_TRADER_CATEGORY")->name("客商分类")
+				->local_path('api/cbo/trader-categories/batch');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_TRADER")->name("客商")
+				->local_path('api/cbo/traders/batch');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_CBO_DOC_TYPE")->name("单据类型")
+				->local_path('api/cbo/doc-types/batch');
+		});
+
+		//业务数据
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_MISCRCV")->name("业务-杂收")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_MISCSHIP")->name("业务-杂发")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_TRANSIN")->name("业务-库存调入")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_TRANSOUT")->name("业务-库存调出")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_MOCOMPLETE")->name("业务-生产完工")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_MOISSUE")->name("业务-生产领料")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_RCV")->name("业务-采购收货")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_RCVRTN")->name("业务-采购退货")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_SHIP")->name("业务-销售出货")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_SHIPRTN")->name("业务-销售退货")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_AP_APBILL")->name("业务-应付")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_ER_EXPENSEPLAN")->name("业务-费用预算")
+				->local_path('api/amiba/doc-bizs/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+
+		//财务数据
+		Models\Dti::build(function (Builder $b) {
+			$b->ent_id($this->entId)->category('u9')->code("P_ISV_TRANSDATA_TRADE_GL_VOUCHER")->name("财务-凭证")
+				->local_path('api/cbo/doc-fis/batch'); $b->body('{"FromDate":"${date}"}');
+		});
+	}
+}
