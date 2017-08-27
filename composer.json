@@ -1,7 +1,7 @@
 {
     "name": "absuite/suite-laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "galaster"],
+    "keywords": ["framework", "suite","amb"],
     "license": "MIT",
     "type": "project",
     "require": {
