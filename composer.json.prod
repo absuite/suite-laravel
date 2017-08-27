@@ -8,9 +8,9 @@
         "php": ">=5.6.4",
         "ggoop/gmf-sys": "dev-master",
         "ggoop/gmf-passport": "dev-master",
-        "absuite/suite-cbo": "dev-master",
-        "absuite/suite-amiba": "dev-master",
-        "absuite/suite-bec": "dev-master",
+        "absuite/suite-cbo": "^1.0",
+        "absuite/suite-amiba": "^1.0",
+        "absuite/suite-bec": "^1.0",
         "laravel/tinker": "~1.0"
     },
     "require-dev": {
