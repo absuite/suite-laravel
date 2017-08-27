@@ -32,7 +32,8 @@
             "Gmf\\Passport\\":"../../gmf/gmf-passport/src/",
             "Suite\\Cbo\\":"../suite-cbo/src/",
             "Suite\\Amiba\\":"../suite-amiba/src/",
-            "Suite\\Bec\\":"../suite-bec/src/"
+            "Suite\\Bec\\":"../suite-bec/src/",
+            "Suite\\Mobile\\":"../suite-mobile/src/"
         }
     },
     "autoload-dev": {

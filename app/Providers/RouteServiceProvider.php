@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Suite\Amiba\Amiba;
 use Suite\Bec\Bec;
 use Suite\Cbo\Cbo;
+use Suite\Mobile\Mobile;
 
 class RouteServiceProvider extends ServiceProvider {
 	/**
@@ -28,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider {
 		Cbo::routes();
 		Amiba::routes();
 		Bec::routes();
+		Mobile::routes();
 		parent::boot();
 	}
 

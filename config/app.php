@@ -190,6 +190,7 @@ return [
 		Suite\Cbo\ServiceProvider::class,
 		Suite\Amiba\ServiceProvider::class,
 		Suite\Bec\ServiceProvider::class,
+		Suite\Mobile\ServiceProvider::class,
 	],
 
 	/*

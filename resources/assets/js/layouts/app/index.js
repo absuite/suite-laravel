@@ -4,8 +4,6 @@ import mdAppFooter from './mdAppFooter.vue';
 import mdAppMenu from './mdAppMenu.vue';
 import mdAppToolbar from './mdAppToolbar.vue';
 
-
-
 export default function install(Vue) {
     Vue.component('app', mdApp);
     Vue.component('appContent', mdAppContent);
