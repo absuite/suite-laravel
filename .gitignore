@@ -12,3 +12,4 @@ Homestead.yaml
 *.lock
 test.*
 *.lock
+*.zip
