@@ -94,7 +94,7 @@ class HomeController extends Controller {
 			$tmp = SysModels\PeriodAccount::where('code', date('Ym'))->first();
 		}
 		if ($tmp) {
-			$item->id($tmp->id)->code($tmp->code)->name($tmp->name);
+			$item->id($tmp->id)->code($tmp->code)->name($tmp->name)->from_date($tmp->from_date)->to_date($tmp->to_date);
 		}
 		$config->period($item);
 
