@@ -21,6 +21,12 @@ class D1401AmibaDtiParamSeeder extends Seeder {
 			Models\DtiParam::build(function (Builder $b) use ($iv) {
 				$b->ent_id($this->entId)->category($iv->code)->code('date')->name("日期")->type_enum('input')->value('date');
 			});
+			Models\DtiParam::build(function (Builder $b) use ($iv) {
+				$b->ent_id($this->entId)->category($iv->code)->code('fm_date')->name("日期")->type_enum('input')->value('fm_date');
+			});
+			Models\DtiParam::build(function (Builder $b) use ($iv) {
+				$b->ent_id($this->entId)->category($iv->code)->code('to_date')->name("日期")->type_enum('input')->value('to_date');
+			});
 		}
 
 		Models\DtiParam::build(function (Builder $b) {
