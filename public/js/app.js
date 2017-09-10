@@ -7298,8 +7298,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -7405,6 +7403,13 @@ var transitionClass = 'md-transition-off';
         this.handleSingleSelection(this.checkbox);
         this.parentTable.emitSelection();
       }
+    },
+    getIndex: function getIndex() {
+      var ind = -1;
+      for (var i = 0; i < this.parentTable.data.length; i++) {
+        if (this.parentTable.data[i] == this.mdItem) ind = i;
+      }
+      return ind;
     }
   },
   mounted: function mounted() {
@@ -7422,6 +7427,20 @@ var transitionClass = 'md-transition-off';
 
       if (this.mdItem) {
         this.parentTable.data.push(this.mdItem);
+      }
+    }
+  },
+  destroyed: function destroyed() {
+    if (!this.headRow) {
+      var ind = this.getIndex();
+      if (ind >= 0) {
+        this.parentTable.data.splice(ind, 1);
+        this.parentTable.numberOfRows--;
+
+        if (this.parentTable.selectedRows[ind] != null) {
+          delete this.parentTable.selectedRows[ind];
+          --this.parentTable.numberOfSelected;
+        }
       }
     }
   }
@@ -12998,6 +13017,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_mixin_model__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/mixin/model.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gmf_sys_core_utils_common__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
 //
 //
 //
@@ -13117,6 +13137,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13210,7 +13231,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       this._.forEach(datas, function (v, k) {
-        _this3.model.main.lines.push({ data: v });
+        _this3.model.main.lines.push({ data: v, id: v.id });
       });
     },
     initParentGroupRef: function initParentGroupRef(options) {
@@ -30332,7 +30353,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("\n            " + _vm._s(column.comment || column.name) + "\n            ")]) : _vm._e()
   }))], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.refData), function(row, rowIndex) {
     return _c('md-table-row', {
-      key: rowIndex,
+      key: row.id,
       attrs: {
         "md-item": row,
         "md-auto-select": true,
@@ -32701,7 +32722,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('md-table-header', [_c('md-table-row', [_c('md-table-head', [_vm._v("构成")])], 1)], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.model.main.lines), function(row, rowIndex) {
     return _c('md-table-row', {
-      key: rowIndex,
+      key: row.id,
       attrs: {
         "md-item": row,
         "md-selection": ""
@@ -35626,7 +35647,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("\n        " + _vm._s(column.comment || column.name) + "\n        ")]) : _vm._e()
   }))], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.refData), function(row, rowIndex) {
     return _c('md-table-row', {
-      key: rowIndex,
+      key: row.id,
       attrs: {
         "md-item": row,
         "md-auto-select": _vm.mdAutoSelect,
@@ -43915,7 +43936,8 @@ var common = {
     trim: trim,
     spread: spread,
     fTime: fTime,
-    now: now
+    now: now,
+    uid: uniqueId
 };
 /* harmony default export */ __webpack_exports__["a"] = (common);
 
