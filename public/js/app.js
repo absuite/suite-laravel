@@ -13450,20 +13450,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13544,7 +13530,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         options.wheres.purpose = false;
       }
-    }
+    },
+    init_doc_type_ref: function init_doc_type_ref(options) {}
   },
   created: function created() {
     this.model.entity = 'suite.amiba.modeling';
@@ -17740,6 +17727,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_mixin_model__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/mixin/model.js");
+//
+//
+//
+//
 //
 //
 //
@@ -25930,7 +25921,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-enum', {
       attrs: {
-        "md-enum-id": "suite.amiba.biz.type.enum"
+        "md-enum-id": "suite.cbo.biz.type.enum"
       },
       model: {
         value: (row.biz_type_enum),
@@ -25939,7 +25930,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         },
         expression: "row.biz_type_enum"
       }
-    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.cbo.doc.type.ref"
+      },
+      on: {
+        "init": _vm.init_doc_type_ref
+      },
       model: {
         value: (row.doc_type),
         callback: function($$v) {
@@ -25947,7 +25944,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         },
         expression: "row.doc_type"
       }
-    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.cbo.item.category.ref"
+      },
       model: {
         value: (row.item_category),
         callback: function($$v) {
@@ -25957,21 +25957,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
       model: {
-        value: (row.project),
+        value: (row.project_code),
         callback: function($$v) {
-          row.project = $$v
+          row.project_code = $$v
         },
-        expression: "row.project"
+        expression: "row.project_code"
       }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
       model: {
-        value: (row.account),
+        value: (row.account_code),
         callback: function($$v) {
-          row.account = $$v
+          row.account_code = $$v
         },
-        expression: "row.account"
+        expression: "row.account_code"
       }
-    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.cbo.trader.ref"
+      },
       model: {
         value: (row.trader),
         callback: function($$v) {
@@ -25979,7 +25982,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         },
         expression: "row.trader"
       }
-    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.cbo.item.ref"
+      },
       model: {
         value: (row.item),
         callback: function($$v) {
@@ -31708,7 +31714,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("单据类型")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-content', [_c('md-input-container', [_c('label', [_vm._v("编码")]), _vm._v(" "), _c('md-input', {
+  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("单据类型")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-content', [_c('md-input-container', [_c('label', [_vm._v("类型")]), _vm._v(" "), _c('md-enum', {
+    attrs: {
+      "md-enum-id": "suite.cbo.biz.type.enum"
+    },
+    model: {
+      value: (_vm.model.main.biz_type_enum),
+      callback: function($$v) {
+        _vm.model.main.biz_type_enum = $$v
+      },
+      expression: "model.main.biz_type_enum"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("编码")]), _vm._v(" "), _c('md-input', {
     attrs: {
       "required": ""
     },
