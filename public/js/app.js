@@ -13471,6 +13471,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13488,7 +13506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     validate: function validate(notToast) {
-      var validator = this.$validate(this.model.main, { 'purpose': 'required' });
+      var validator = this.$validate(this.model.main, { 'purpose': 'required', 'group': 'required' });
       var fail = validator.fails();
       if (fail && !notToast) {
         this.$toast(validator.errors.all());
@@ -13534,7 +13552,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       this._.forEach(datas, function (v, k) {
-        _this3.model.main.lines.push({ 'element': v, 'biz_type_enum': '', 'value_type_enum': 'amt', adjust: '100' });
+        _this3.model.main.lines.push({ 'element': v, 'biz_type_enum': '', 'match_direction_enum': 'fm', 'src_element': null, 'src_group': null, 'value_type_enum': 'amt', adjust: '100' });
       });
     },
     init_group_ref: function init_group_ref(options) {
@@ -25835,6 +25853,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('md-input-container', [_c('label', [_vm._v("阿米巴")]), _vm._v(" "), _c('md-input-ref', {
     attrs: {
+      "required": "",
       "md-ref-id": "suite.amiba.group.ref"
     },
     on: {
@@ -25879,6 +25898,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "150px"
     }
+  }, [_vm._v("匹配方向")]), _vm._v(" "), _c('md-table-head', {
+    attrs: {
+      "width": "150px"
+    }
   }, [_vm._v("业务类型")]), _vm._v(" "), _c('md-table-head', {
     attrs: {
       "width": "150px"
@@ -25915,6 +25938,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "150px"
     }
+  }, [_vm._v("来源巴")]), _vm._v(" "), _c('md-table-head', {
+    attrs: {
+      "width": "150px"
+    }
+  }, [_vm._v("来源要素")]), _vm._v(" "), _c('md-table-head', {
+    attrs: {
+      "width": "150px"
+    }
   }, [_vm._v("取值类型")]), _vm._v(" "), _c('md-table-head', {
     attrs: {
       "md-tooltip": "100"
@@ -25939,6 +25970,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           row.element = $$v
         },
         expression: "row.element"
+      }
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-enum', {
+      attrs: {
+        "md-enum-id": "suite.amiba.modeling.match.direction.enum"
+      },
+      model: {
+        value: (row.match_direction_enum),
+        callback: function($$v) {
+          row.match_direction_enum = $$v
+        },
+        expression: "row.match_direction_enum"
       }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-enum', {
       attrs: {
@@ -26029,6 +26071,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           row.factor2 = $$v
         },
         expression: "row.factor2"
+      }
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.amiba.group.ref"
+      },
+      model: {
+        value: (row.src_group),
+        callback: function($$v) {
+          row.src_group = $$v
+        },
+        expression: "row.src_group"
+      }
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.amiba.element.ref"
+      },
+      model: {
+        value: (row.src_element),
+        callback: function($$v) {
+          row.src_element = $$v
+        },
+        expression: "row.src_element"
       }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-enum', {
       attrs: {
