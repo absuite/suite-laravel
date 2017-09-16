@@ -27387,6 +27387,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-ref-id": "suite.amiba.element.ref"
     },
     on: {
+      "init": _vm.init_element_ref,
       "close": _vm.lineRefClose
     }
   })], 1)
