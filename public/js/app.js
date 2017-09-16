@@ -10487,6 +10487,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     init_element_ref: function init_element_ref(options) {
+      options.wheres.leaf = { name: 'is_leaf', value: '1' };
       if (this.model.main.purpose) {
         options.wheres.purpose = { name: 'purpose_id', value: this.model.main.purpose.id };
       } else {
@@ -12731,6 +12732,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     },
     init_element_ref: function init_element_ref(options) {
+      options.wheres.leaf = { name: 'is_leaf', value: '1' };
       if (this.model.main.purpose) {
         options.wheres.purpose = { name: 'purpose_id', value: this.model.main.purpose.id };
       } else {
