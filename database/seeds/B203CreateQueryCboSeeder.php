@@ -20,23 +20,27 @@ class B203CreateQueryCboSeeder extends Seeder {
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.org.list')->entity('suite.cbo.org')
 					->fields(['id', 'code', 'name', 'manager.name', 'short_name']);
+				$builder->orders(['code' => 'asc', 'created_at' => 'desc']);
 			});
 			$id = "a84fbd10107f11e794d0f977720ae90b";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.dept.list')->entity('suite.cbo.dept')
 					->fields(['id', 'code', 'name', 'manager.name', 'org.name', 'type_enum']);
+				$builder->orders(['org.code' => 'asc', 'code' => 'asc', 'created_at' => 'desc']);
 			});
 
 			$id = "a84fbda0107f11e7b5c163c1cce808d9";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.work.list')->entity('suite.cbo.work')
 					->fields(['id', 'code', 'name', 'manager.name', 'org.name', 'dept.name']);
+				$builder->orders(['org.code' => 'asc', 'dept.code' => 'asc', 'code' => 'asc', 'created_at' => 'desc']);
 			});
 
 			$id = "a84fbdf0107f11e7a26421a08bab0d27";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.team.list')->entity('suite.cbo.team')
 					->fields(['id', 'code', 'name', 'manager.name', 'org.name', 'dept.name', 'work.name']);
+				$builder->orders(['org.code' => 'asc', 'dept.code' => 'asc', 'work.code' => 'asc', 'code' => 'asc', 'created_at' => 'desc']);
 			});
 		});
 
@@ -45,6 +49,7 @@ class B203CreateQueryCboSeeder extends Seeder {
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.area.list')->entity('suite.cbo.area')
 					->fields(['id', 'code' => '编码', 'name' => '名称']);
+				$builder->orders(['code' => 'asc', 'created_at' => 'desc']);
 			});
 			$id = "49ed18b010c411e7802ad5c33a0e07ec";
 			Models\Query::build(function (Builder $builder) use ($id) {
@@ -74,6 +79,8 @@ class B203CreateQueryCboSeeder extends Seeder {
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.item.list')->entity('suite.cbo.item')
 					->fields(['id', 'code' => '编码', 'name' => '名称']);
+
+				$builder->matchs('code;name');
 			});
 
 			$id = "49ed1b2010c411e7a45ae91875996f88";
@@ -163,6 +170,8 @@ class B203CreateQueryCboSeeder extends Seeder {
 			$id = "e1a9edc0483811e7861e3d18a403c8e5";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.doc.type.list')->entity('suite.cbo.doc.type');
+				$builder->fields(['id', 'biz_type_enum', 'code', 'name', 'is_effective']);
+				$builder->orders(['biz_type_enum' => 'asc', 'code' => 'asc', 'created_at' => 'desc']);
 			});
 		});
 	}

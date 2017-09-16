@@ -1,7 +1,7 @@
 <?php
-use Suite\Amiba\Models;
 use Gmf\Sys\Builder;
 use Illuminate\Database\Seeder;
+use Suite\Amiba\Models;
 
 class D145AmibaDataDocSeeder extends Seeder {
 	private $entId = '4f95c06028d511e7bb351569a8a51d7d';
@@ -13,7 +13,7 @@ class D145AmibaDataDocSeeder extends Seeder {
 	public function run() {
 
 		Models\DataDoc::where('ent_id', $this->entId)->delete();
-
+		return;
 		Models\DataDoc::build(function (Builder $b) {$b->ent_id($this->entId)->doc_no("khsj20170130001")->doc_date("2017.01.30")->purpose("ob01")->period("201701")->use_type_enum("direct")->fm_group("amb0101")->to_group("")->element("10101")->money("80000")->id("721320dc05e3411e7bec6b569345r46c");});
 		Models\DataDoc::build(function (Builder $b) {$b->ent_id($this->entId)->doc_no("khsj20170130002")->doc_date("2017.01.30")->purpose("ob01")->period("201701")->use_type_enum("direct")->fm_group("amb0101")->to_group("amb0102")->element("10102")->money("20000")->id("721320dc05e3411e7bec6b569345r47c");});
 		Models\DataDoc::build(function (Builder $b) {$b->ent_id($this->entId)->doc_no("khsj20170130003")->doc_date("2017.01.30")->purpose("ob01")->period("201701")->use_type_enum("direct")->fm_group("amb0101")->to_group("amb0103")->element("10102")->money("10000")->id("721320dc05e3411e7bec6b569345r48c");});

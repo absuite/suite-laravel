@@ -69,48 +69,48 @@ class A202CreateMenuSysSeeder extends Seeder {
 			});
 
 			//日志
-			$id = "225ab7a00a0111e7aa6b651fe5aa9d72";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.log')->name('日志')->parent('sys')
-					->sequence($this->sequence . '0600')->tag($this->tag);
-			});
-			$id = "225ab8a00a0111e7bab713d1c0e27d8e";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.log.login')->name('登录日志')->parent('sys.log')
-					->uri('sys.log.login.list')->sequence($this->sequence . '0601')->tag($this->tag);
-			});
-			$id = "225ab8f00a0111e7a1f9bba118b299df";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.log.action')->name('操作日志')->parent('sys.log')
-					->uri('sys.log.action.list')->sequence($this->sequence . '0602')->tag($this->tag);
-			});
-			$id = "225ab9500a0111e7b68083d568feadf5";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.log.error')->name('错误日志')->parent('sys.log')
-					->uri('sys.log.error.list')->sequence($this->sequence . '0603')->tag($this->tag);
-			});
+			// $id = "225ab7a00a0111e7aa6b651fe5aa9d72";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.log')->name('日志')->parent('sys')
+			// 		->sequence($this->sequence . '0600')->tag($this->tag);
+			// });
+			// $id = "225ab8a00a0111e7bab713d1c0e27d8e";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.log.login')->name('登录日志')->parent('sys.log')
+			// 		->uri('sys.log.login.list')->sequence($this->sequence . '0601')->tag($this->tag);
+			// });
+			// $id = "225ab8f00a0111e7a1f9bba118b299df";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.log.action')->name('操作日志')->parent('sys.log')
+			// 		->uri('sys.log.action.list')->sequence($this->sequence . '0602')->tag($this->tag);
+			// });
+			// $id = "225ab9500a0111e7b68083d568feadf5";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.log.error')->name('错误日志')->parent('sys.log')
+			// 		->uri('sys.log.error.list')->sequence($this->sequence . '0603')->tag($this->tag);
+			// });
 
 			//调度请求
-			$id = "d42debc00a0111e78c4f2b84de6b92f0";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.job')->name('调度请求')->parent('sys')
-					->sequence($this->sequence . '0700')->tag($this->tag);
-			});
-			$id = "d42dee400a0111e7ad6ab3f0b2404491";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.job.request')->name('请求管理')->parent('sys.job')
-					->uri('sys.job.request.list')->sequence($this->sequence . '0701')->tag($this->tag);
-			});
-			$id = "d42defa00a0111e786a9472ee3e95a55";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.job.schem')->name('请求方案')->parent('sys.job')
-					->uri('sys.job.schem.list')->sequence($this->sequence . '0702')->tag($this->tag);
-			});
-			$id = "d42def100a0111e79bdb176cf74d4e6d";
-			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.job.log')->name('请求日志')->parent('sys.job')
-					->uri('sys.job.log')->sequence($this->sequence . '0703')->tag($this->tag);
-			});
+			// $id = "d42debc00a0111e78c4f2b84de6b92f0";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.job')->name('调度请求')->parent('sys')
+			// 		->sequence($this->sequence . '0700')->tag($this->tag);
+			// });
+			// $id = "d42dee400a0111e7ad6ab3f0b2404491";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.job.request')->name('请求管理')->parent('sys.job')
+			// 		->uri('sys.job.request.list')->sequence($this->sequence . '0701')->tag($this->tag);
+			// });
+			// $id = "d42defa00a0111e786a9472ee3e95a55";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.job.schem')->name('请求方案')->parent('sys.job')
+			// 		->uri('sys.job.schem.list')->sequence($this->sequence . '0702')->tag($this->tag);
+			// });
+			// $id = "d42def100a0111e79bdb176cf74d4e6d";
+			// Menu::build(function (Builder $builder) use ($id) {
+			// 	$builder->id($id)->code('sys.job.log')->name('请求日志')->parent('sys.job')
+			// 		->uri('sys.job.log')->sequence($this->sequence . '0703')->tag($this->tag);
+			// });
 
 			//接口管理
 			$id = "5431fd400a0211e7ae0c318ab71dd38b";
@@ -121,28 +121,28 @@ class A202CreateMenuSysSeeder extends Seeder {
 			$id = "5431ff500a0211e7acf66b5205c6a513";
 			Menu::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->code('sys.dti.category')->name('接口分类')->parent('sys.dti')
-					->uri('sys.dti.category')
+					->uri('sys.dti.category.list')
 					->sequence($this->sequence . '0801')->tag($this->tag);
 			});
 			$id = "5431ffe00a0211e793d7af8c60f451f5";
 			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.dti.context')->name('接口上下文')->parent('sys.dti')
-					->uri('sys.dti.context')->sequence($this->sequence . '0801')->tag($this->tag);
+				$builder->id($id)->code('sys.dti.param')->name('接口参数')->parent('sys.dti')
+					->uri('sys.dti.param.list')->sequence($this->sequence . '0801')->tag($this->tag);
 			});
 			$id = "543200a00a0211e78407c1a122980e01";
 			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.dti.data')->name('数据接口')->parent('sys.dti')
-					->uri('sys.dti.data')->sequence($this->sequence . '0802')->tag($this->tag);
+				$builder->id($id)->code('sys.dti.item')->name('接口定义')->parent('sys.dti')
+					->uri('sys.dti.item.list')->sequence($this->sequence . '0802')->tag($this->tag);
 			});
 			$id = "543201500a0211e7bbeeb328879248db";
 			Menu::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->code('sys.dti.run')->name('接口执行')->parent('sys.dti')
-					->uri('sys.dti.run')->sequence($this->sequence . '0804')->tag($this->tag);
+					->uri('sys.dti.run.list')->sequence($this->sequence . '0804')->tag($this->tag);
 			});
 			$id = "543202000a0211e798a3b93bad0d1f8f";
 			Menu::build(function (Builder $builder) use ($id) {
-				$builder->id($id)->code('sys.dti.result')->name('接口执行结果')->parent('sys.dti')
-					->uri('sys.dti.result')->sequence($this->sequence . '0805')->tag($this->tag);
+				$builder->id($id)->code('sys.dti.log')->name('接口日志')->parent('sys.dti')
+					->uri('sys.dti.log.list')->sequence($this->sequence . '0805')->tag($this->tag);
 			});
 		});
 	}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use Gmf\Sys\Builder;
+use Gmf\Sys\Libs\InputHelper;
 use Illuminate\Http\Request;
 use Suite\Amiba\Models as AmibaModels;
 use Suite\Cbo\Models as SysModels;
@@ -17,6 +18,14 @@ class HomeController extends Controller {
 		$this->middleware('auth')->except('test');
 	}
 	public function test(Request $request) {
+		$names = [];
+		$names = InputHelper::fillEntity($names, $request, [
+			'p1' => 'Suite\Cbo\Models\Org',
+			'p2',
+			'p3' => ['type' => 'Suite\Cbo\Models\Org', 'matchs' => ['code', 'ent_id' => '${ent_id}']]],
+			['ent_id' => '123']);
+		dd($names);
+
 		$paramsStr = '{"aa":"12"}';
 		$paramsObj = false;
 

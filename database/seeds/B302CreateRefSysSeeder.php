@@ -20,41 +20,48 @@ class B302CreateRefSysSeeder extends Seeder {
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.language.ref')->entity('gmf.sys.language')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 			$id = "d0ff8d4063b311e78facf704b370d18b";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.ent.ref')->entity('gmf.sys.ent')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff8e5063b311e798c5671dd1c0dabd";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.profile.ref')->entity('gmf.sys.profile')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff8f2063b311e79321632fc50f04a4";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.user.ref')->entity('gmf.sys.user')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff900063b311e7b62433eee05701ba";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.role.ref')->entity('gmf.sys.role')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff907063b311e7af991d9a1697ca99";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.permit.ref')->entity('gmf.sys.permit')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff90d063b311e7b2bf4ff8d8ec2648";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.menu.ref')->entity('gmf.sys.menu')
 					->fields(['id', 'code' => '编码', 'name' => '名称', 'memo' => '备注']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff914063b311e7892a7951a6863a58";
@@ -73,18 +80,28 @@ class B302CreateRefSysSeeder extends Seeder {
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.query.ref')->entity('gmf.sys.query')
 					->fields(['id', 'code' => '编码', 'name' => '名称']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff92a063b311e7be5eb721b51c7cd2";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.dti.category.ref')->entity('gmf.sys.dti.category')
 					->fields(['id', 'code', 'name']);
+				$builder->orders(['code', 'created_at' => 'desc']);
+			});
+
+			$id = "52e41aa09ab911e78ba3a54271f08887";
+			Models\Query::build(function (Builder $builder) use ($id) {
+				$builder->id($id)->name('gmf.sys.dti.param.ref')->entity('gmf.sys.dti.param')
+					->fields(['id', 'code', 'name', 'type_enum', 'value']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff930063b311e7a13213da5f61b954";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.dti.ref')->entity('gmf.sys.dti')
-					->fields(['id', 'code', 'name', 'memo']);
+					->fields(['id', 'category.name', 'code', 'name']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "d0ff938063b311e7a27ff9a87f126443";
