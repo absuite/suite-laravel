@@ -169,6 +169,13 @@ class B204CreateQueryAmibaSeeder extends Seeder {
 			$id = "82eede50209611e7937ae36283ac4a86";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.amiba.doc.biz.list')->entity('suite.amiba.doc.biz');
+				$builder->fields(['id', 'biz_type', 'doc_type', 'doc_no', 'doc_date',
+					'fm_org', 'fm_dept', 'fm_wh', 'to_org', 'to_dept', 'to_wh',
+					'direction', 'item', 'uom', 'qty', 'price', 'money', 'tax', 'org', 'person',
+					'fm_work', 'fm_team', 'fm_person', 'to_work', 'to_team', 'to_person',
+					'trader', 'item_category', 'project', 'mfc',
+					'factor1', 'factor2', 'factor3', 'factor4', 'factor5', 'data_src_identity',
+				]);
 				$builder->orders(['biz_type', 'doc_date' => 'desc', 'doc_no' => 'desc', 'item', 'created_at' => 'desc']);
 			});
 
