@@ -115,8 +115,8 @@ class B303CreateRefCboSeeder extends Seeder {
 			$id = "83f7dfc010c511e789d2973826f91ccf";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('suite.cbo.period.account.ref')->entity('suite.cbo.period.account')->matchs('year;month')
-					->fields(['id', 'code' => '编码', 'name' => '名称', 'from_date', 'to_date']);
-				$builder->orders(['code', 'created_at' => 'desc']);
+					->fields(['id', 'code' => '编码', 'name' => '名称', 'from_date', 'to_date', 'calendar.name']);
+				$builder->orders(['calendar.code', 'code', 'created_at' => 'desc']);
 			});
 
 			$id = "a3596c8010c511e7806a81eb32dceda5";

@@ -18940,6 +18940,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -19055,8 +19059,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_mixin_model__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/mixin/model.js");
-//
-//
 //
 //
 //
@@ -24632,29 +24634,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.area"
     }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("类型")]), _vm._v(" "), _c('md-enum', {
+    attrs: {
+      "md-enum-id": "suite.cbo.trader.type.enum"
+    },
+    model: {
+      value: (_vm.model.main.type_enum),
+      callback: function($$v) {
+        _vm.model.main.type_enum = $$v
+      },
+      expression: "model.main.type_enum"
+    }
   })], 1), _vm._v(" "), _c('md-input-container', [_c('md-checkbox', {
-    attrs: {
-      "required": ""
-    },
-    model: {
-      value: (_vm.model.main.is_supplier),
-      callback: function($$v) {
-        _vm.model.main.is_supplier = $$v
-      },
-      expression: "model.main.is_supplier"
-    }
-  }, [_vm._v("供应商")])], 1), _vm._v(" "), _c('md-input-container', [_c('md-checkbox', {
-    attrs: {
-      "required": ""
-    },
-    model: {
-      value: (_vm.model.main.is_customer),
-      callback: function($$v) {
-        _vm.model.main.is_customer = $$v
-      },
-      expression: "model.main.is_customer"
-    }
-  }, [_vm._v("客户")])], 1), _vm._v(" "), _c('md-input-container', [_c('md-checkbox', {
     attrs: {
       "required": ""
     },
@@ -32618,6 +32609,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.model.main.name = $$v
       },
       expression: "model.main.name"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("类型")]), _vm._v(" "), _c('md-enum', {
+    attrs: {
+      "md-enum-id": "suite.cbo.trader.type.enum"
+    },
+    model: {
+      value: (_vm.model.main.type_enum),
+      callback: function($$v) {
+        _vm.model.main.type_enum = $$v
+      },
+      expression: "model.main.type_enum"
     }
   })], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
