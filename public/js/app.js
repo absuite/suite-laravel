@@ -4568,7 +4568,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mdPageSize: {
       type: [Number, String],
-      default: '10'
+      default: '25'
     },
     options: {
       type: Object,
@@ -4951,7 +4951,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mdPageSize: {
       type: [Number, String],
-      default: '10'
+      default: '20'
     },
     mdRefId: String,
     options: {
@@ -7958,7 +7958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mdDuration: {
       type: [String, Number],
-      default: 40000
+      default: 10000
     }
   },
   mixins: [__WEBPACK_IMPORTED_MODULE_1__core_components_mdTheme_mixin__["a" /* default */]],
@@ -11898,14 +11898,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     deleteDti: function deleteDti(dti) {
       dti.is_revoked = true;
-      this.$http.post('sys/dti-categories', dti).then(function (response) {}, function (response) {
+      this.$http.put('sys/dti-categories', dti).then(function (response) {}, function (response) {
         dti.is_revoked = false;
       });
     },
     saveDti: function saveDti() {
       var _this2 = this;
 
-      this.$http.post('sys/dti-categories', this.currentDti).then(function (response) {
+      this.$http.put('sys/dti-categories', this.currentDti).then(function (response) {
         _this2.loadDatas();
         _this2.$toast(_this2.$lang.LANG_SAVESUCCESS);
         _this2.closeDialog('dtiDialog');
@@ -20628,6 +20628,180 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemEdit.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_mixin_model__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/mixin/model.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_mixin_model__["a" /* default */]],
+  computed: {
+    canSave: function canSave() {
+      return this.validate(true);
+    }
+  },
+  methods: {
+    validate: function validate(notToast) {
+      var validator = this.$validate(this.model.main, {
+        'code': 'required',
+        'name': 'required'
+      });
+      var fail = validator.fails();
+      if (fail && !notToast) {
+        this.$toast(validator.errors.all());
+      }
+      return !fail;
+    },
+    initModel: function initModel() {
+      return {
+        main: { 'code': '', 'name': '', 'type_enum': 'fixed' }
+      };
+    },
+    list: function list() {
+      this.$router.push({ name: 'module', params: { module: 'sys.dti.params.list' } });
+    },
+    initDtiRef: function initDtiRef(options) {
+      if (this.model.main.category) {
+        options.wheres.category = { name: 'category_id', value: this.model.main.category.id };
+      } else {
+        options.wheres.category = false;
+      }
+    }
+  },
+  created: function created() {
+    this.route = 'sys/dti-parmas';
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemList.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      selectRows: [],
+      loading: 0
+    };
+  },
+
+  methods: {
+    create: function create() {
+      this.$router.push({ name: 'module', params: { module: 'sys.dti.param.edit' } });
+    },
+    edit: function edit(item) {
+      this.$router.push({ name: 'id', params: { module: 'sys.dti.param.edit', id: item.id } });
+    },
+    remove: function remove() {
+      var _this = this;
+
+      if (!this.selectRows || !this.selectRows.length) {
+        this.$toast(this.$lang.LANG_NODELETEDATA);
+        return;
+      }
+      this.loading++;
+      var ids = this._.map(this.selectRows, 'id').toString();
+      this.$http.delete('sys/dti-params/' + ids).then(function (response) {
+        _this.load();
+        _this.loading--;
+        _this.$toast(_this.$lang.LANG_DELETESUCCESS);
+      }, function (response) {
+        _this.$toast(_this.$lang.LANG_DELETEFAIL);
+        _this.loading--;
+      });
+    },
+    select: function select(items) {
+      this.selectRows = items;
+    },
+    load: function load() {
+      this.$refs.list.pagination(1);
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiLogList.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -22583,6 +22757,122 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-0e9b36e8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ebcd5ce\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemEdit.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('md-part', [_c('md-part-toolbar', [_c('md-part-toolbar-group', [_c('md-button', {
+    attrs: {
+      "disabled": !_vm.canSave
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.save($event)
+      }
+    }
+  }, [_vm._v("保存")]), _vm._v(" "), _c('md-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.cancel($event)
+      }
+    }
+  }, [_vm._v("放弃")]), _vm._v(" "), _c('md-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.create($event)
+      }
+    }
+  }, [_vm._v("新增")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.list($event)
+      }
+    }
+  }, [_vm._v("列表")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-content', [_c('md-input-container', [_c('label', [_vm._v("分类")]), _vm._v(" "), _c('md-input-ref', {
+    attrs: {
+      "md-ref-id": "gmf.sys.dti.category.ref"
+    },
+    model: {
+      value: (_vm.model.main.category),
+      callback: function($$v) {
+        _vm.model.main.category = $$v
+      },
+      expression: "model.main.category"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("接口")]), _vm._v(" "), _c('md-input-ref', {
+    attrs: {
+      "md-ref-id": "gmf.sys.dti.ref"
+    },
+    on: {
+      "init": _vm.initDtiRef
+    },
+    model: {
+      value: (_vm.model.main.dti),
+      callback: function($$v) {
+        _vm.model.main.dti = $$v
+      },
+      expression: "model.main.dti"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("编码")]), _vm._v(" "), _c('md-input', {
+    attrs: {
+      "required": "",
+      "maxlength": "10"
+    },
+    model: {
+      value: (_vm.model.main.code),
+      callback: function($$v) {
+        _vm.model.main.code = $$v
+      },
+      expression: "model.main.code"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("名称")]), _vm._v(" "), _c('md-input', {
+    attrs: {
+      "required": ""
+    },
+    model: {
+      value: (_vm.model.main.name),
+      callback: function($$v) {
+        _vm.model.main.name = $$v
+      },
+      expression: "model.main.name"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("类型")]), _vm._v(" "), _c('md-enum', {
+    attrs: {
+      "md-enum-id": "gmf.sys.dti.param.type.enum"
+    },
+    model: {
+      value: (_vm.model.main.type_enum),
+      callback: function($$v) {
+        _vm.model.main.type_enum = $$v
+      },
+      expression: "model.main.type_enum"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("值")]), _vm._v(" "), _c('md-input', {
+    model: {
+      value: (_vm.model.main.value),
+      callback: function($$v) {
+        _vm.model.main.value = $$v
+      },
+      expression: "model.main.value"
+    }
+  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+    attrs: {
+      "loading": _vm.loading
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0ebcd5ce", module.exports)
   }
 }
 
@@ -24995,6 +25285,52 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-2d20aae8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2d4d24a6\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('md-part', [_c('md-part-toolbar', [_c('md-part-toolbar-group', [_c('md-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.create($event)
+      }
+    }
+  }, [_vm._v("新增")]), _vm._v(" "), _c('md-button', {
+    attrs: {
+      "disabled": !(_vm.selectRows && _vm.selectRows.length)
+    },
+    nativeOn: {
+      "click": function($event) {
+        _vm.remove($event)
+      }
+    }
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+    ref: "list",
+    attrs: {
+      "md-query-id": "gmf.sys.dti.param.list"
+    },
+    on: {
+      "select": _vm.select,
+      "dblclick": _vm.edit
+    }
+  }), _vm._v(" "), _c('md-loading', {
+    attrs: {
+      "loading": _vm.loading
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2d4d24a6", module.exports)
   }
 }
 
@@ -53054,6 +53390,13 @@ module.exports = Component.exports
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__sysDtiParamList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__sysDtiParamList_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__sysDtiLogList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysDtiLogList.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__sysDtiLogList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__sysDtiLogList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__sysDtiItemEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__sysDtiItemEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__sysDtiItemEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__sysDtiItemList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__sysDtiItemList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__sysDtiItemList_vue__);
+
+
+
 
 
 
@@ -53098,6 +53441,9 @@ function install(Vue) {
   Vue.component('sysDtiParamList', __WEBPACK_IMPORTED_MODULE_12__sysDtiParamList_vue___default.a);
 
   Vue.component('sysDtiLogList', __WEBPACK_IMPORTED_MODULE_13__sysDtiLogList_vue___default.a);
+
+  Vue.component('sysDtiItemEdit', __WEBPACK_IMPORTED_MODULE_14__sysDtiItemEdit_vue___default.a);
+  Vue.component('sysDtiItemList', __WEBPACK_IMPORTED_MODULE_15__sysDtiItemList_vue___default.a);
 }
 
 /***/ }),
@@ -53173,6 +53519,88 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-29eb5298", Component.options)
   } else {
     hotAPI.reload("data-v-29eb5298", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemEdit.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemEdit.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0ebcd5ce\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemEdit.vue"),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\suite-cbo\\sys\\sysDtiItemEdit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] sysDtiItemEdit.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0ebcd5ce", Component.options)
+  } else {
+    hotAPI.reload("data-v-0ebcd5ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemList.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2d4d24a6\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysDtiItemList.vue"),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\suite-cbo\\sys\\sysDtiItemList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] sysDtiItemList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2d4d24a6", Component.options)
+  } else {
+    hotAPI.reload("data-v-2d4d24a6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
