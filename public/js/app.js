@@ -12674,7 +12674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     validate: function validate(notToast) {
-      var validator = this.$validate(this.model.main, { 'purpose': 'required', 'group': 'required' });
+      var validator = this.$validate(this.model.main, { 'purpose': 'required' });
       var fail = validator.fails();
       if (fail && !notToast) {
         this.$toast(validator.errors.all());
@@ -12720,7 +12720,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       this._.forEach(datas, function (v, k) {
-        _this3.model.main.lines.push({ 'element': v, 'biz_type_enum': '', 'match_direction_enum': 'fm', 'src_element': null, 'src_group': null, 'value_type_enum': 'amt', adjust: '100' });
+        _this3.model.main.lines.push({
+          'element': v,
+          'biz_type_enum': '',
+          'match_direction_enum': 'fm',
+          'match_group': _this3.model.main.group,
+          'to_group': null,
+          'value_type_enum': 'amt',
+          'adjust': '100'
+        });
       });
     },
     init_group_ref: function init_group_ref(options) {
@@ -27146,7 +27154,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('md-input-container', [_c('label', [_vm._v("阿米巴")]), _vm._v(" "), _c('md-input-ref', {
     attrs: {
-      "required": "",
       "md-ref-id": "suite.amiba.group.ref"
     },
     on: {
@@ -27191,6 +27198,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "150px"
     }
+  }, [_vm._v("匹配方")]), _vm._v(" "), _c('md-table-head', {
+    attrs: {
+      "width": "150px"
+    }
   }, [_vm._v("匹配方向")]), _vm._v(" "), _c('md-table-head', {
     attrs: {
       "width": "150px"
@@ -27223,15 +27234,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "150px"
     }
-  }, [_vm._v("因素1")]), _vm._v(" "), _c('md-table-head', {
-    attrs: {
-      "width": "150px"
-    }
-  }, [_vm._v("因素2")]), _vm._v(" "), _c('md-table-head', {
-    attrs: {
-      "width": "150px"
-    }
-  }, [_vm._v("来源巴")]), _vm._v(" "), _c('md-table-head', {
+  }, [_vm._v("因素")]), _vm._v(" "), _c('md-table-head', {
     attrs: {
       "width": "150px"
     }
@@ -27239,7 +27242,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "md-tooltip": "100"
     }
-  }, [_vm._v("取值比例%")])], 1)], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.model.main.lines), function(row, rowIndex) {
+  }, [_vm._v("取值比例%")]), _vm._v(" "), _c('md-table-head', {
+    attrs: {
+      "width": "150px"
+    }
+  }, [_vm._v("交易方")])], 1)], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.model.main.lines), function(row, rowIndex) {
     return _c('md-table-row', {
       key: rowIndex,
       attrs: {
@@ -27259,6 +27266,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           row.element = $$v
         },
         expression: "row.element"
+      }
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.amiba.group.ref"
+      },
+      model: {
+        value: (row.match_group),
+        callback: function($$v) {
+          row.match_group = $$v
+        },
+        expression: "row.match_group"
       }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-enum', {
       attrs: {
@@ -27353,25 +27371,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         },
         expression: "row.factor1"
       }
-    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input', {
-      model: {
-        value: (row.factor2),
-        callback: function($$v) {
-          row.factor2 = $$v
-        },
-        expression: "row.factor2"
-      }
-    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
-      attrs: {
-        "md-ref-id": "suite.amiba.group.ref"
-      },
-      model: {
-        value: (row.src_group),
-        callback: function($$v) {
-          row.src_group = $$v
-        },
-        expression: "row.src_group"
-      }
     })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-enum', {
       attrs: {
         "md-enum-id": "suite.amiba.value.type.enum"
@@ -27393,6 +27392,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           row.adjust = $$v
         },
         expression: "row.adjust"
+      }
+    })], 1)], 1), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [_c('md-input-ref', {
+      attrs: {
+        "md-ref-id": "suite.amiba.group.ref"
+      },
+      model: {
+        value: (row.to_group),
+        callback: function($$v) {
+          row.to_group = $$v
+        },
+        expression: "row.to_group"
       }
     })], 1)], 1)], 1)
   }))], 1), _vm._v(" "), _c('md-table-tool', [_c('md-table-action', {
