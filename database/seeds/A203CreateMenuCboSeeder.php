@@ -57,11 +57,11 @@ class A203CreateMenuCboSeeder extends Seeder {
 				$builder->id($id)->code('cbo.setting.unit')->name('计量单位')->parent('cbo.base')
 					->uri('cbo.unit.list')->sequence($this->sequence . '0208')->tag($this->tag);
 			});
-			// $id = "74cca5400a0b11e7bbe39513fefc51be";
-			// Menu::build(function (Builder $builder) use ($id) {
-			// 	$builder->id($id)->code('cbo.setting.currency')->name('币种')->parent('cbo.base')
-			// 		->uri('cbo.currency.list')->sequence($this->sequence . '0210')->tag($this->tag);
-			// });
+			$id = "74cca5400a0b11e7bbe39513fefc51be";
+			Menu::build(function (Builder $builder) use ($id) {
+				$builder->id($id)->code('cbo.setting.currency')->name('币种')->parent('cbo.base')
+					->uri('cbo.currency.list')->sequence($this->sequence . '0210')->tag($this->tag);
+			});
 
 			//地址
 			// $id = "a28f6f000a0a11e79c751d22c652d45f";

@@ -20687,6 +20687,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -20714,11 +20727,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     initModel: function initModel() {
       return {
-        main: { 'code': '', 'name': '', 'type_enum': 'fixed' }
+        main: { 'code': '', 'name': '', 'method_enum': 'post', 'local': null, 'category': null }
       };
     },
     list: function list() {
-      this.$router.push({ name: 'module', params: { module: 'sys.dti.params.list' } });
+      this.$router.push({ name: 'module', params: { module: 'sys.dti.item.list' } });
     },
     initDtiRef: function initDtiRef(options) {
       if (this.model.main.category) {
@@ -20729,7 +20742,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   created: function created() {
-    this.route = 'sys/dti-parmas';
+    this.route = 'sys/dtis';
   }
 });
 
@@ -20771,10 +20784,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     create: function create() {
-      this.$router.push({ name: 'module', params: { module: 'sys.dti.param.edit' } });
+      this.$router.push({ name: 'module', params: { module: 'sys.dti.item.edit' } });
     },
     edit: function edit(item) {
-      this.$router.push({ name: 'id', params: { module: 'sys.dti.param.edit', id: item.id } });
+      this.$router.push({ name: 'id', params: { module: 'sys.dti.item.edit', id: item.id } });
     },
     remove: function remove() {
       var _this = this;
@@ -20785,7 +20798,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.loading++;
       var ids = this._.map(this.selectRows, 'id').toString();
-      this.$http.delete('sys/dti-params/' + ids).then(function (response) {
+      this.$http.delete('sys/dtis/' + ids).then(function (response) {
         _this.load();
         _this.loading--;
         _this.$toast(_this.$lang.LANG_DELETESUCCESS);
@@ -22799,7 +22812,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("列表")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-content', [_c('md-input-container', [_c('label', [_vm._v("分类")]), _vm._v(" "), _c('md-input-ref', {
+  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-content', [_c('md-input-container', [_c('label', [_vm._v("接口")]), _vm._v(" "), _c('md-input-ref', {
+    attrs: {
+      "md-ref-id": "gmf.sys.dti.local.ref"
+    },
+    model: {
+      value: (_vm.model.main.local),
+      callback: function($$v) {
+        _vm.model.main.local = $$v
+      },
+      expression: "model.main.local"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("分类")]), _vm._v(" "), _c('md-input-ref', {
     attrs: {
       "md-ref-id": "gmf.sys.dti.category.ref"
     },
@@ -22809,20 +22833,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.model.main.category = $$v
       },
       expression: "model.main.category"
-    }
-  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("接口")]), _vm._v(" "), _c('md-input-ref', {
-    attrs: {
-      "md-ref-id": "gmf.sys.dti.ref"
-    },
-    on: {
-      "init": _vm.initDtiRef
-    },
-    model: {
-      value: (_vm.model.main.dti),
-      callback: function($$v) {
-        _vm.model.main.dti = $$v
-      },
-      expression: "model.main.dti"
     }
   })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("编码")]), _vm._v(" "), _c('md-input', {
     attrs: {
@@ -22849,22 +22859,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("类型")]), _vm._v(" "), _c('md-enum', {
     attrs: {
-      "md-enum-id": "gmf.sys.dti.param.type.enum"
+      "md-enum-id": "gmf.sys.dti.method.enum"
     },
     model: {
-      value: (_vm.model.main.type_enum),
+      value: (_vm.model.main.method_enum),
       callback: function($$v) {
-        _vm.model.main.type_enum = $$v
+        _vm.model.main.method_enum = $$v
       },
-      expression: "model.main.type_enum"
+      expression: "model.main.method_enum"
     }
-  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("值")]), _vm._v(" "), _c('md-input', {
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("接口路径")]), _vm._v(" "), _c('md-input', {
     model: {
-      value: (_vm.model.main.value),
+      value: (_vm.model.main.path),
       callback: function($$v) {
-        _vm.model.main.value = $$v
+        _vm.model.main.path = $$v
       },
-      expression: "model.main.value"
+      expression: "model.main.path"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("请求头")]), _vm._v(" "), _c('md-textarea', {
+    model: {
+      value: (_vm.model.main.header),
+      callback: function($$v) {
+        _vm.model.main.header = $$v
+      },
+      expression: "model.main.header"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("请求体")]), _vm._v(" "), _c('md-textarea', {
+    model: {
+      value: (_vm.model.main.body),
+      callback: function($$v) {
+        _vm.model.main.body = $$v
+      },
+      expression: "model.main.body"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("备注")]), _vm._v(" "), _c('md-textarea', {
+    model: {
+      value: (_vm.model.main.memo),
+      callback: function($$v) {
+        _vm.model.main.memo = $$v
+      },
+      expression: "model.main.memo"
     }
   })], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -25307,7 +25341,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
-      "md-query-id": "gmf.sys.dti.param.list"
+      "md-query-id": "gmf.sys.dti.list"
     },
     on: {
       "select": _vm.select,

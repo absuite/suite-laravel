@@ -97,10 +97,17 @@ class B302CreateRefSysSeeder extends Seeder {
 				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
-			$id = "d0ff930063b311e7a13213da5f61b954";
+			$id = "ba2803e09b9311e78dcf79eb91bc712f";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.dti.ref')->entity('gmf.sys.dti')
-					->fields(['id', 'category.name', 'code', 'name']);
+					->fields(['id', 'category.name', 'local.name', 'code', 'name', 'method_enum', 'path', 'body', 'header']);
+				$builder->orders(['category.code', 'local.code', 'code', 'created_at' => 'desc']);
+			});
+
+			$id = "ba2828c09b9311e791494f12b81a59cd";
+			Models\Query::build(function (Builder $builder) use ($id) {
+				$builder->id($id)->name('gmf.sys.dti.local.ref')->entity('gmf.sys.dti.local')
+					->fields(['id', 'code', 'name', 'method_enum', 'path', 'body', 'header']);
 				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 

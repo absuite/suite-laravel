@@ -102,8 +102,15 @@ class B202CreateQuerySysSeeder extends Seeder {
 			$id = "b7609c2062e111e7821eb75781824e97";
 			Models\Query::build(function (Builder $builder) use ($id) {
 				$builder->id($id)->name('gmf.sys.dti.list')->entity('gmf.sys.dti')
-					->fields(['id', 'category.name', 'code', 'name']);
-				$builder->orders(['category.code', 'code', 'created_at' => 'desc']);
+					->fields(['id', 'category.name', 'local.name', 'code', 'name', 'method_enum', 'path', 'body', 'header']);
+				$builder->orders(['category.code', 'local.code', 'code', 'created_at' => 'desc']);
+			});
+
+			$id = "6d8961009b9311e7b892f9f5b12cd8b3";
+			Models\Query::build(function (Builder $builder) use ($id) {
+				$builder->id($id)->name('gmf.sys.dti.local.list')->entity('gmf.sys.dti.local')
+					->fields(['id', 'code', 'name', 'method_enum', 'path', 'body', 'header']);
+				$builder->orders(['code', 'created_at' => 'desc']);
 			});
 
 			$id = "b7609e7062e111e7a78045214e863a8c";
