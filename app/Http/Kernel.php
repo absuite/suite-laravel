@@ -34,13 +34,13 @@ class Kernel extends HttpKernel {
 			//\App\Http\Middleware\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
 			\Gmf\Passport\Http\Middleware\CreateFreshApiToken::class,
-			//'visitor',
+			'visitor',
 		],
 
 		'api' => [
 			//'throttle:60,1',
 			'bindings',
-			//'visitor',
+			'visitor',
 		],
 	];
 

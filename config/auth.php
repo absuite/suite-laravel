@@ -67,7 +67,7 @@ return [
 	'providers' => [
 		'users' => [
 			'driver' => 'eloquent',
-			'model' => Gmf\Sys\Models\User::class,
+			'model' => Gmf\Ac\Models\User::class,
 		],
 
 		// 'users' => [
@@ -94,7 +94,7 @@ return [
 	'passwords' => [
 		'users' => [
 			'provider' => 'users',
-			'table' => 'gmf_sys_password_resets',
+			'table' => 'gmf_ac_password_resets',
 			'expire' => 60,
 		],
 	],

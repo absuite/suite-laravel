@@ -12,7 +12,7 @@ return [
 		    | any other location as required by the application or its packages.
 	*/
 
-	'name' => 'Laravel',
+	'name' => env('APP_NAME', 'Laravel'),
 
 	/*
 		    |--------------------------------------------------------------------------
@@ -186,6 +186,7 @@ return [
 		Ggoop/Gmf
 		 */
 		Gmf\Sys\ServiceProvider::class,
+		Gmf\Ac\ServiceProvider::class,
 		Gmf\Passport\ServiceProvider::class,
 		Suite\Cbo\ServiceProvider::class,
 		Suite\Amiba\ServiceProvider::class,

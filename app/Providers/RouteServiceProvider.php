@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Gmf\Ac\Ac;
 use Gmf\Sys\Sys;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function boot() {
 		Sys::routes();
+		Ac::routes();
 		Cbo::routes();
 		Amiba::routes();
 		Bec::routes();
