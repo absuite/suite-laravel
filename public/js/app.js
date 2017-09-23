@@ -9160,6 +9160,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -9466,6 +9467,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -9893,6 +9895,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9908,6 +9919,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.data.adjust.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.currentQ = q;
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'doc_no', operator: 'like', value: this.currentQ }, { name: 'period.name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -10608,6 +10634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -11999,6 +12026,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -12014,6 +12050,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.element.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.currentQ = q;
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -12311,6 +12362,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -12326,6 +12386,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.group.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.currentQ = q;
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -12938,6 +13013,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -12953,6 +13037,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.price.adjust.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.currentQ = q;
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -13227,6 +13326,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -13242,6 +13350,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.price.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.currentQ = q;
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -16369,6 +16492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -16547,6 +16671,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -16725,6 +16850,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -16945,6 +17071,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -17124,6 +17251,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -17298,6 +17426,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -17500,6 +17629,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -17674,6 +17804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -17848,6 +17979,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -18026,6 +18158,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -18508,6 +18641,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -18682,6 +18816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -18860,6 +18995,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -19052,6 +19188,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -19230,6 +19367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -19448,6 +19586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -19627,6 +19766,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -19821,6 +19961,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -20014,6 +20155,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -20195,6 +20337,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -20407,6 +20550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -20605,6 +20749,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -20988,6 +21133,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -21198,6 +21344,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -21459,6 +21606,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     doFetch: function doFetch(q) {
       if (this.currentQ != q) {
+        this.currentQ = q;
         this.load();
       }
       this.currentQ = q;
@@ -23595,7 +23743,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -23612,9 +23762,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("分配方法")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("分配方法")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.allot.method.list"
@@ -23770,7 +23918,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -23787,9 +23937,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("城市区县")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("城市区县")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.division.list"
@@ -24185,7 +24333,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -24202,9 +24352,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("部门")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("部门")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.dept.list"
@@ -25553,7 +25701,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -25570,9 +25720,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "gmf.sys.dti.category.list"
@@ -25850,7 +25998,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -25867,9 +26017,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("接口定义")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "gmf.sys.dti.list"
@@ -26133,7 +26281,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -26150,9 +26300,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("国家/地区")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("国家/地区")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.country.list"
@@ -26471,7 +26619,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -26488,9 +26638,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("工作中心")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("工作中心")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.work.list"
@@ -26778,7 +26926,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -26795,9 +26945,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("料品分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("料品分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.item.category.list"
@@ -26985,7 +27133,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -27002,9 +27152,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("区域")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("区域")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.area.list"
@@ -27501,7 +27649,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -27518,9 +27668,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("班组")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("班组")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.team.list"
@@ -28597,7 +28745,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -28614,9 +28764,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("客商")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("客商")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.trader.list"
@@ -28890,7 +29038,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("责任调整单")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    },
+    nativeOn: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.load()
+      }
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("责任调整单")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.data.adjust.list"
@@ -29254,7 +29419,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -29271,9 +29438,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("计量单位")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("计量单位")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.unit.list"
@@ -29591,7 +29756,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -29608,9 +29775,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("核算数据表")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("核算数据表")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.data.doc.list"
@@ -29657,7 +29822,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("核算要素")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    },
+    nativeOn: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.load()
+      }
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("核算要素")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.element.list"
@@ -29702,7 +29884,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -29719,9 +29903,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("项目分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("项目分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.project.category.list"
@@ -30400,7 +30582,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -30417,9 +30601,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("厂牌分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("厂牌分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.mfc.category.list"
@@ -31392,7 +31574,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -31409,9 +31593,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("组织")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("组织")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.org.list"
@@ -32074,7 +32256,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -32091,9 +32275,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("客商分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("客商分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.trader.category.list"
@@ -32138,7 +32320,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -32155,9 +32339,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("单据类型")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("单据类型")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.doc.type.list"
@@ -32571,7 +32753,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("交易价表")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    },
+    nativeOn: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.load()
+      }
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("交易价表")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.price.list"
@@ -32617,7 +32816,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("阿米巴单元")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    },
+    nativeOn: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.load()
+      }
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("阿米巴单元")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.group.list"
@@ -32899,7 +33115,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("调价单")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    },
+    nativeOn: {
+      "keyup": function($event) {
+        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13)) { return null; }
+        _vm.load()
+      }
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("调价单")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.price.adjust.list"
@@ -33050,7 +33283,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -33067,9 +33302,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("分配标准")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("分配标准")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.amiba.allot.rule.list"
@@ -33557,7 +33790,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -33574,9 +33809,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("批号")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("批号")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.lot.list"
@@ -33786,7 +34019,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -33803,9 +34038,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("存储地点")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("存储地点")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.wh.list"
@@ -33850,7 +34083,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -33867,9 +34102,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("项目")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("项目")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.project.list"
@@ -35222,7 +35455,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -35239,9 +35474,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("省市")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("省市")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.province.list"
@@ -35367,7 +35600,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -35384,9 +35619,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("人员")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("人员")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.person.list"
@@ -35529,7 +35762,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -35546,9 +35781,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("币种")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("币种")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.currency.list"
@@ -36249,7 +36482,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -36266,9 +36501,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("厂牌")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("厂牌")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.mfc.list"
@@ -36433,7 +36666,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -36450,9 +36685,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("参数")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("参数")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "gmf.sys.dti.param.list"
@@ -36800,7 +37033,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
     attrs: {
       "md-gutter": ""
     }
@@ -36817,9 +37052,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.load()
       }
     }
-  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("物料")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("物料")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
     attrs: {
       "md-query-id": "suite.cbo.item.list"
