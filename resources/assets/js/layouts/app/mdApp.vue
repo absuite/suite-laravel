@@ -19,7 +19,7 @@
         this.$refs.menu.toggle();
       },
       loadData(){
-        this.$http.get('/sys/ents/my').then(response => {
+        this.$http.get('sys/ents/my').then(response => {
             this.$root.userData.ents=response.data.data;
           }, response => {
         });

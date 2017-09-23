@@ -27,7 +27,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     loadData: function loadData() {
       var _this = this;
 
-      this.$http.get('/sys/ents/my').then(function (response) {
+      this.$http.get('sys/ents/my').then(function (response) {
         _this.$root.userData.ents = response.data.data;
       }, function (response) {});
     }
