@@ -19,7 +19,7 @@
         <md-icon>arrow_drop_down</md-icon>
       </md-button>
       <md-menu-content>
-        <md-menu-item v-for="item in $root.userData.ents" :key="item">{{item.name }}</md-menu-item>
+        <md-menu-item v-for="item in $root.userData.ents" :key="item.id">{{item.name }}</md-menu-item>
       </md-menu-content>
     </md-menu>
     <md-button class="md-icon-button">
