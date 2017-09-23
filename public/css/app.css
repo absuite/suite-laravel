@@ -10774,6 +10774,7 @@ img.md-icon {
   z-index: 1;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .md-part-toolbar .md-part-toolbar-crumbs {
@@ -10828,7 +10829,7 @@ img.md-icon {
 
 .md-part-toolbar .md-part-toolbar-group + .md-part-toolbar-group:before {
   content: ' ';
-  position: relative;
+  position: absolute;
   height: .20rem;
   width: .01rem;
   background: rgba(0, 0, 0, 0.12);

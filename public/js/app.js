@@ -9133,6 +9133,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9148,6 +9157,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.allot.method.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -9416,6 +9439,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9431,6 +9463,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.allot.rule.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -10535,6 +10581,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -10550,6 +10605,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'amiba.data.doc.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'doc_no', operator: 'like', value: this.currentQ }, { name: 'fm_group.name', operator: 'like', value: this.currentQ }, { name: 'period.name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -11732,213 +11801,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
         item.is_running = false;
       });
-    }
-  },
-  created: function created() {},
-  mounted: function mounted() {
-    this.loadDatas();
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaDtiSetting.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      loading: 0,
-      datas: [],
-      currentDti: {},
-      currentParam: {}
-    };
-  },
-
-  methods: {
-    loadDatas: function loadDatas() {
-      var _this = this;
-
-      this.$http.get('sys/dti-categories', { params: { is_revoked: 0 } }).then(function (response) {
-        _this.datas = response.data.data;
-      }, function (response) {});
-    },
-    openDialog: function openDialog(ref) {
-      this.$refs[ref].open();
-    },
-    closeDialog: function closeDialog(ref) {
-      this.$refs[ref].close();
-    },
-    editorDti: function editorDti(dti) {
-      this.currentDti = { id: dti.id, code: dti.code, name: dti.name, host: dti.host };
-      this.$refs['dtiDialog'].open();
-    },
-    deleteDti: function deleteDti(dti) {
-      dti.is_revoked = true;
-      this.$http.put('sys/dti-categories', dti).then(function (response) {}, function (response) {
-        dti.is_revoked = false;
-      });
-    },
-    saveDti: function saveDti() {
-      var _this2 = this;
-
-      this.$http.put('sys/dti-categories', this.currentDti).then(function (response) {
-        _this2.loadDatas();
-        _this2.$toast(_this2.$lang.LANG_SAVESUCCESS);
-        _this2.closeDialog('dtiDialog');
-      }, function (response) {});
-    },
-    addParam: function addParam(dti) {
-      this.currentDti = { id: dti.id, code: dti.code, name: dti.name, host: dti.host };
-      this.currentParam = { code: '', name: '', value: '', type_enum: 'fixed', category_id: this.currentDti.id };
-      this.$refs['paramDialog'].open();
-    },
-    editorParam: function editorParam(dti, param) {
-      this.currentDti = { id: dti.id, code: dti.code, name: dti.name, host: dti.host };
-      this.currentParam = { id: param.id, code: param.code, name: param.name, type_enum: param.type_enum, value: param.value, category_id: this.currentDti.id };
-      this.$refs['paramDialog'].open();
-    },
-    deleteParam: function deleteParam(dti, param) {
-      var _this3 = this;
-
-      this.$http.delete('sys/dti-params/' + param.id).then(function (response) {
-        _this3.loadDatas();
-        _this3.closeDialog('paramDialog');
-        _this3.$toast(_this3.$lang.LANG_DELETESUCCESS);
-      }, function (response) {});
-    },
-    saveParam: function saveParam() {
-      var _this4 = this;
-
-      this.$http.post('sys/dti-params', this.currentParam).then(function (response) {
-        _this4.loadDatas();
-        _this4.$toast(_this4.$lang.LANG_SAVESUCCESS);
-        _this4.closeDialog('paramDialog');
-      }, function (response) {});
     }
   },
   created: function created() {},
@@ -16480,6 +16342,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -16495,6 +16366,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.area.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -16635,6 +16520,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -16650,6 +16544,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.country.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -16790,6 +16698,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -16805,6 +16722,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.currency.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -16987,6 +16918,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17002,6 +16942,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.division.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -17142,6 +17096,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17158,6 +17121,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.doc.type.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -17294,6 +17271,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17309,6 +17295,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.item.category.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -17472,12 +17472,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       selectRows: [],
-      loading: 0
+      loading: 0,
+      currentQ: ''
     };
   },
 
@@ -17487,6 +17497,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.item.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -17623,6 +17647,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17638,6 +17671,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.lot.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -17774,6 +17821,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17789,6 +17845,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.mfc.category.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -17929,6 +17999,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -17944,6 +18023,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.mfc.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -18388,6 +18481,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18403,6 +18505,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.person.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -18539,6 +18655,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18554,6 +18679,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.project.category.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -18694,6 +18833,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18709,6 +18857,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.project.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -18863,6 +19025,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18878,6 +19049,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.province.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -19018,6 +19203,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19033,6 +19227,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.trader.category.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -19213,6 +19421,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19228,6 +19445,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.trader.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -19368,6 +19599,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19384,6 +19624,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.unit.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -19540,6 +19794,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19555,6 +19818,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.wh.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -19711,6 +19988,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19726,6 +20011,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.dept.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -19869,6 +20168,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19884,6 +20192,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.org.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -20059,6 +20381,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -20074,6 +20404,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.team.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -20234,6 +20578,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -20249,6 +20602,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'cbo.work.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -20610,6 +20977,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'sys.dti.category.edit', id: item.id } });
     },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
+    },
     remove: function remove() {
       var _this = this;
 
@@ -20796,6 +21177,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'sys.dti.item.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -21034,6 +21429,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     edit: function edit(item) {
       this.$router.push({ name: 'id', params: { module: 'sys.dti.param.edit', id: item.id } });
+    },
+    doFetch: function doFetch(q) {
+      if (this.currentQ != q) {
+        this.load();
+      }
+      this.currentQ = q;
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.filter = false;
+      if (this.currentQ) {
+        options.wheres.filter = {
+          "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
+        };
+      }
     },
     remove: function remove() {
       var _this = this;
@@ -23159,7 +23568,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("分配方法")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -23168,7 +23588,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -23316,7 +23737,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("城市区县")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -23325,7 +23757,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -23713,9 +24146,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("部门")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -23724,7 +24166,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -25074,7 +25517,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -25353,7 +25797,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -25609,7 +26054,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("国家/地区")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -25618,7 +26074,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -25929,7 +26386,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("工作中心")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -25938,7 +26406,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -26218,7 +26687,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("料品分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -26227,7 +26707,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -26407,7 +26888,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("区域")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -26416,7 +26908,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -26905,9 +27398,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('div', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("班组")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -26916,7 +27418,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -27985,7 +28488,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("客商")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -27994,7 +28508,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -28624,7 +29139,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("计量单位")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -28633,7 +29159,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -28943,7 +29470,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("核算数据表")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -28952,7 +29490,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -29036,7 +29575,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("项目分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -29045,7 +29595,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -29410,188 +29961,6 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-53d49108\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaDtiSetting.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('md-part', [_c('md-part-toolbar', [_c('span', {
-    staticClass: "flex"
-  }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("接口")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("设置")])], 1)], 1), _vm._v(" "), _c('md-part-body', {
-    staticClass: "md-transparent"
-  }, [_c('md-layout', {
-    staticClass: "md-padding",
-    attrs: {
-      "md-gutter": true
-    }
-  }, _vm._l((_vm.datas), function(item) {
-    return (!item.is_revoked) ? _c('md-layout', {
-      key: item.id,
-      attrs: {
-        "md-flex-xsmall": "100",
-        "md-flex-small": "50",
-        "md-flex-medium": "33",
-        "md-flex-large": "25"
-      }
-    }, [_c('div', {
-      staticClass: "layout flex"
-    }, [_c('md-card', [_c('md-card-header', [_c('md-card-header-text', [_c('div', {
-      staticClass: "md-title"
-    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
-      staticClass: "md-subhead"
-    }, [_vm._v("地址:" + _vm._s(item.host || '未设置'))])]), _vm._v(" "), _c('md-menu', {
-      attrs: {
-        "md-direction": "bottom left"
-      }
-    }, [_c('md-button', {
-      staticClass: "md-icon-button",
-      attrs: {
-        "md-menu-trigger": ""
-      }
-    }, [_c('md-icon', [_vm._v("more_vert")])], 1), _vm._v(" "), _c('md-menu-content', [_c('md-menu-item', {
-      nativeOn: {
-        "click": function($event) {
-          _vm.editorDti(item)
-        }
-      }
-    }, [_c('span', [_vm._v("设置地址")]), _vm._v(" "), _c('md-icon', [_vm._v("edit")])], 1)], 1)], 1)], 1), _vm._v(" "), _c('md-divider'), _vm._v(" "), _c('md-card-actions', [_c('span', [_vm._v("参数变量")]), _vm._v(" "), _c('span', {
-      staticStyle: {
-        "flex": "1"
-      }
-    }), _vm._v(" "), _c('md-button', {
-      staticClass: "md-icon-button",
-      on: {
-        "click": function($event) {
-          _vm.addParam(item)
-        }
-      }
-    }, [_c('md-icon', [_vm._v("add")])], 1)], 1), _vm._v(" "), _c('md-card-content', {
-      staticClass: "no-padding"
-    }, [_c('md-list', {
-      staticClass: "md-double-line"
-    }, _vm._l((item.params), function(p) {
-      return _c('md-list-item', {
-        key: p.id
-      }, [_c('div', {
-        staticClass: "md-list-text-container"
-      }, [_c('span', [_vm._v(_vm._s(p.name) + ":" + _vm._s(p.code))]), _vm._v(" "), (p.type_enum == 'fixed') ? _c('p', [_vm._v("固定值:" + _vm._s(p.value))]) : (p.type_enum == 'expression') ? _c('p', [_vm._v("表达式:" + _vm._s(p.value))]) : (p.type_enum == 'input') ? _c('p', [_vm._v("值来源于参数:" + _vm._s(p.value))]) : _c('p', [_vm._v("固定值:" + _vm._s(p.value))])]), _vm._v(" "), _c('md-menu', {
-        staticClass: "md-list-action",
-        attrs: {
-          "md-direction": "bottom left"
-        }
-      }, [_c('md-button', {
-        staticClass: "md-icon-button",
-        attrs: {
-          "md-menu-trigger": ""
-        }
-      }, [_c('md-icon', [_vm._v("more_vert")])], 1), _vm._v(" "), _c('md-menu-content', [_c('md-menu-item', {
-        nativeOn: {
-          "click": function($event) {
-            _vm.editorParam(item, p)
-          }
-        }
-      }, [_c('span', [_vm._v("编辑")]), _vm._v(" "), _c('md-icon', [_vm._v("edit")])], 1), _vm._v(" "), _c('md-menu-item', {
-        nativeOn: {
-          "click": function($event) {
-            _vm.deleteParam(item, p)
-          }
-        }
-      }, [_c('span', [_vm._v("删除")]), _vm._v(" "), _c('md-icon', [_vm._v("clear")])], 1)], 1)], 1), _vm._v(" "), _c('md-divider', {
-        staticClass: "md-inset"
-      })], 1)
-    }))], 1)], 1)], 1)]) : _vm._e()
-  })), _vm._v(" "), _c('md-dialog', {
-    ref: "dtiDialog"
-  }, [_c('md-dialog-title', [_vm._v("接口设置")]), _vm._v(" "), _c('md-dialog-content', [_c('form', [_c('md-input-container', [_c('label', [_vm._v("接口名称")]), _vm._v(" "), _c('md-input', {
-    model: {
-      value: (_vm.currentDti.name),
-      callback: function($$v) {
-        _vm.currentDti.name = $$v
-      },
-      expression: "currentDti.name"
-    }
-  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("服务地址")]), _vm._v(" "), _c('md-input', {
-    model: {
-      value: (_vm.currentDti.host),
-      callback: function($$v) {
-        _vm.currentDti.host = $$v
-      },
-      expression: "currentDti.host"
-    }
-  })], 1)], 1)]), _vm._v(" "), _c('md-dialog-actions', [_c('md-button', {
-    on: {
-      "click": function($event) {
-        _vm.closeDialog('dtiDialog')
-      }
-    }
-  }, [_vm._v("取消")]), _vm._v(" "), _c('md-button', {
-    staticClass: "md-primary",
-    on: {
-      "click": function($event) {
-        _vm.saveDti()
-      }
-    }
-  }, [_vm._v("保存")])], 1)], 1), _vm._v(" "), _c('md-dialog', {
-    ref: "paramDialog"
-  }, [_c('md-dialog-title', [_vm._v("参数设置")]), _vm._v(" "), _c('md-dialog-content', [_c('form', [_c('md-input-container', [_c('label', [_vm._v("编码")]), _vm._v(" "), _c('md-input', {
-    model: {
-      value: (_vm.currentParam.code),
-      callback: function($$v) {
-        _vm.currentParam.code = $$v
-      },
-      expression: "currentParam.code"
-    }
-  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("名称")]), _vm._v(" "), _c('md-input', {
-    model: {
-      value: (_vm.currentParam.name),
-      callback: function($$v) {
-        _vm.currentParam.name = $$v
-      },
-      expression: "currentParam.name"
-    }
-  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("类型")]), _vm._v(" "), _c('md-enum', {
-    attrs: {
-      "md-enum-id": "gmf.sys.dti.param.type.enum"
-    },
-    model: {
-      value: (_vm.currentParam.type_enum),
-      callback: function($$v) {
-        _vm.currentParam.type_enum = $$v
-      },
-      expression: "currentParam.type_enum"
-    }
-  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("值")]), _vm._v(" "), _c('md-input', {
-    model: {
-      value: (_vm.currentParam.value),
-      callback: function($$v) {
-        _vm.currentParam.value = $$v
-      },
-      expression: "currentParam.value"
-    }
-  })], 1)], 1)]), _vm._v(" "), _c('md-dialog-actions', [_c('md-button', {
-    on: {
-      "click": function($event) {
-        _vm.closeDialog('paramDialog')
-      }
-    }
-  }, [_vm._v("取消")]), _vm._v(" "), _c('md-button', {
-    staticClass: "md-primary",
-    on: {
-      "click": function($event) {
-        _vm.saveParam()
-      }
-    }
-  }, [_vm._v("保存")])], 1)], 1)], 1)], 1)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-53d49108", module.exports)
-  }
-}
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-54a94248\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaDataAdjustEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29898,7 +30267,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("厂牌分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -29907,7 +30287,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -30872,7 +31253,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("组织")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -30881,7 +31273,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -31536,7 +31929,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("客商分类")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -31545,7 +31949,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -31582,7 +31987,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("单据类型")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -31591,7 +32007,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -32476,7 +32893,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("分配标准")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -32485,7 +32913,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -32965,7 +33394,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("批号")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -32974,7 +33414,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -33176,7 +33617,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("存储地点")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -33185,7 +33637,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -33222,7 +33675,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("项目")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -33231,7 +33695,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -34576,7 +35041,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("省市")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -34585,7 +35061,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -34703,7 +35180,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("人员")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -34712,7 +35200,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -34847,7 +35336,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("币种")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -34856,7 +35356,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -35549,7 +36050,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("厂牌")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -35558,7 +36070,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -35724,7 +36237,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
-      "dblclick": _vm.edit
+      "dblclick": _vm.edit,
+      "init": _vm.initQuery
     }
   }), _vm._v(" "), _c('md-loading', {
     attrs: {
@@ -36064,7 +36578,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.remove($event)
       }
     }
-  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("删除")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-layout', {
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-layout', [_c('md-input-container', {
+    staticClass: "md-inset"
+  }, [_c('md-input', {
+    attrs: {
+      "fetch": _vm.doFetch,
+      "placeholder": "search"
+    }
+  })], 1)], 1)], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("物料")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("列表")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-query', {
     ref: "list",
@@ -36073,6 +36598,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
+      "init": _vm.initQuery,
       "dblclick": _vm.edit
     }
   }), _vm._v(" "), _c('md-loading', {
@@ -49456,47 +49982,6 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/vendor/suite-amiba/components/amibaDtiSetting.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
-  /* script */
-  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaDtiSetting.vue"),
-  /* template */
-  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-53d49108\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaDtiSetting.vue"),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\suite-amiba\\components\\amibaDtiSetting.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] amibaDtiSetting.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-53d49108", Component.options)
-  } else {
-    hotAPI.reload("data-v-53d49108", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
 /***/ "./resources/assets/js/vendor/suite-amiba/components/amibaElementEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50661,83 +51146,80 @@ module.exports = Component.exports
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__amibaDtiLog_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__amibaDtiLog_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__amibaDtiRun_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDtiRun.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__amibaDtiRun_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__amibaDtiRun_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__amibaDtiSetting_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDtiSetting.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__amibaDtiSetting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__amibaDtiSetting_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__amibaModelingEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaModelingEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__amibaModelingEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__amibaModelingEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__amibaModelingList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaModelingList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__amibaModelingList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__amibaModelingList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__amibaDataInitEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataInitEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__amibaDataInitEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__amibaDataInitEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__amibaDataInitList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataInitList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__amibaDataInitList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__amibaDataInitList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__amibaDataTimeEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTimeEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__amibaDataTimeEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__amibaDataTimeEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__amibaDataTimeList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTimeList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__amibaDataTimeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__amibaDataTimeList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__amibaDataDocEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDocEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__amibaDataDocEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__amibaDataDocEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__amibaDataDocList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDocList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__amibaDataDocList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__amibaDataDocList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__amibaDataCloseEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataCloseEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__amibaDataCloseEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__amibaDataCloseEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__amibaDataCloseList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataCloseList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__amibaDataCloseList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__amibaDataCloseList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAccountingEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__amibaDataAccountingList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAccountingList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__amibaDataAccountingList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__amibaDataAccountingList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDistributeEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__amibaDataDistributeList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDistributeList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__amibaDataDistributeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__amibaDataDistributeList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__amibaPriceEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__amibaPriceEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__amibaPriceEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__amibaPriceList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__amibaPriceList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__amibaPriceList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceAdjustEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__amibaPriceAdjustList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceAdjustList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__amibaPriceAdjustList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__amibaPriceAdjustList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__amibaDataTargetEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTargetEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__amibaDataTargetEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__amibaDataTargetEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__amibaDataTargetList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTargetList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__amibaDataTargetList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__amibaDataTargetList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAdjustEdit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__amibaDataAdjustList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAdjustList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__amibaDataAdjustList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36__amibaDataAdjustList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__amibaQueryAccount_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryAccount.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__amibaQueryAccount_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37__amibaQueryAccount_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__amibaQueryProfit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryProfit.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__amibaQueryProfit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38__amibaQueryProfit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__amibaQueryDocBiz_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryDocBiz.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__amibaQueryDocBiz_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__amibaQueryDocBiz_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__amibaQueryDocFi_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryDocFi.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__amibaQueryDocFi_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_40__amibaQueryDocFi_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__amibaReportGroupTrendAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupTrendAns.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__amibaReportGroupTrendAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_41__amibaReportGroupTrendAns_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__amibaReportGroupCompareAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupCompareAns.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__amibaReportGroupCompareAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_42__amibaReportGroupCompareAns_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__amibaReportGroupAnalogyAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupAnalogyAns.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__amibaReportGroupAnalogyAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43__amibaReportGroupAnalogyAns_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__amibaReportGroupRankAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupRankAns.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__amibaReportGroupRankAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44__amibaReportGroupRankAns_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeTrend_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupPurposeTrend.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeTrend_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeTrend_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__amibaReportGroupPurposeCompare_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupPurposeCompare.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__amibaReportGroupPurposeCompare_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_46__amibaReportGroupPurposeCompare_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__amibaReportStatementFunctionAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementFunctionAns.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__amibaReportStatementFunctionAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_47__amibaReportStatementFunctionAns_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__amibaReportStatementDevoteAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementDevoteAns.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__amibaReportStatementDevoteAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_48__amibaReportStatementDevoteAns_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__amibaReportStatementCompare_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementCompare.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__amibaReportStatementCompare_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_49__amibaReportStatementCompare_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__amibaReportStatementTrend_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementTrend.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__amibaReportStatementTrend_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_50__amibaReportStatementTrend_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__amibaReportStatementPurpose_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementPurpose.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__amibaReportStatementPurpose_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_51__amibaReportStatementPurpose_vue__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__amibaModelingEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaModelingEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__amibaModelingEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__amibaModelingEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__amibaModelingList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaModelingList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__amibaModelingList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__amibaModelingList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__amibaDataInitEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataInitEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__amibaDataInitEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__amibaDataInitEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__amibaDataInitList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataInitList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__amibaDataInitList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__amibaDataInitList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__amibaDataTimeEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTimeEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__amibaDataTimeEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__amibaDataTimeEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__amibaDataTimeList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTimeList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__amibaDataTimeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__amibaDataTimeList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__amibaDataDocEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDocEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__amibaDataDocEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__amibaDataDocEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__amibaDataDocList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDocList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__amibaDataDocList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__amibaDataDocList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__amibaDataCloseEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataCloseEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__amibaDataCloseEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__amibaDataCloseEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__amibaDataCloseList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataCloseList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__amibaDataCloseList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__amibaDataCloseList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__amibaDataAccountingEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAccountingEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__amibaDataAccountingEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24__amibaDataAccountingEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAccountingList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__amibaDataDistributeEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDistributeEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__amibaDataDistributeEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26__amibaDataDistributeEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataDistributeList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__amibaPriceEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__amibaPriceEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28__amibaPriceEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__amibaPriceList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__amibaPriceList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_29__amibaPriceList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__amibaPriceAdjustEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceAdjustEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__amibaPriceAdjustEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_30__amibaPriceAdjustEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaPriceAdjustList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__amibaDataTargetEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTargetEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__amibaDataTargetEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_32__amibaDataTargetEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__amibaDataTargetList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataTargetList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__amibaDataTargetList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_33__amibaDataTargetList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__amibaDataAdjustEdit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAdjustEdit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__amibaDataAdjustEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34__amibaDataAdjustEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustList_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaDataAdjustList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__amibaQueryAccount_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryAccount.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__amibaQueryAccount_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36__amibaQueryAccount_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__amibaQueryProfit_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryProfit.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__amibaQueryProfit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_37__amibaQueryProfit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__amibaQueryDocBiz_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryDocBiz.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__amibaQueryDocBiz_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_38__amibaQueryDocBiz_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__amibaQueryDocFi_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaQueryDocFi.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__amibaQueryDocFi_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_39__amibaQueryDocFi_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__amibaReportGroupTrendAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupTrendAns.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__amibaReportGroupTrendAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_40__amibaReportGroupTrendAns_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__amibaReportGroupCompareAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupCompareAns.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__amibaReportGroupCompareAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_41__amibaReportGroupCompareAns_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__amibaReportGroupAnalogyAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupAnalogyAns.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__amibaReportGroupAnalogyAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_42__amibaReportGroupAnalogyAns_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__amibaReportGroupRankAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupRankAns.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__amibaReportGroupRankAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_43__amibaReportGroupRankAns_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__amibaReportGroupPurposeTrend_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupPurposeTrend.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__amibaReportGroupPurposeTrend_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_44__amibaReportGroupPurposeTrend_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeCompare_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportGroupPurposeCompare.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeCompare_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeCompare_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__amibaReportStatementFunctionAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementFunctionAns.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__amibaReportStatementFunctionAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_46__amibaReportStatementFunctionAns_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__amibaReportStatementDevoteAns_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementDevoteAns.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__amibaReportStatementDevoteAns_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_47__amibaReportStatementDevoteAns_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__amibaReportStatementCompare_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementCompare.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__amibaReportStatementCompare_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_48__amibaReportStatementCompare_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__amibaReportStatementTrend_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementTrend.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__amibaReportStatementTrend_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_49__amibaReportStatementTrend_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__amibaReportStatementPurpose_vue__ = __webpack_require__("./resources/assets/js/vendor/suite-amiba/components/amibaReportStatementPurpose.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__amibaReportStatementPurpose_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_50__amibaReportStatementPurpose_vue__);
 
 
 
@@ -50824,7 +51306,6 @@ function install(Vue) {
 
   Vue.component('amibaDtiLog', __WEBPACK_IMPORTED_MODULE_12__amibaDtiLog_vue___default.a);
   Vue.component('amibaDtiRun', __WEBPACK_IMPORTED_MODULE_13__amibaDtiRun_vue___default.a);
-  Vue.component('amibaDtiSetting', __WEBPACK_IMPORTED_MODULE_14__amibaDtiSetting_vue___default.a);
 
   Vue.component('amibaAllotMethodEdit', __WEBPACK_IMPORTED_MODULE_8__amibaAllotMethodEdit_vue___default.a);
   Vue.component('amibaAllotMethodList', __WEBPACK_IMPORTED_MODULE_9__amibaAllotMethodList_vue___default.a);
@@ -50832,57 +51313,57 @@ function install(Vue) {
   Vue.component('amibaAllotRuleEdit', __WEBPACK_IMPORTED_MODULE_10__amibaAllotRuleEdit_vue___default.a);
   Vue.component('amibaAllotRuleList', __WEBPACK_IMPORTED_MODULE_11__amibaAllotRuleList_vue___default.a);
 
-  Vue.component('amibaModelingEdit', __WEBPACK_IMPORTED_MODULE_15__amibaModelingEdit_vue___default.a);
-  Vue.component('amibaModelingList', __WEBPACK_IMPORTED_MODULE_16__amibaModelingList_vue___default.a);
+  Vue.component('amibaModelingEdit', __WEBPACK_IMPORTED_MODULE_14__amibaModelingEdit_vue___default.a);
+  Vue.component('amibaModelingList', __WEBPACK_IMPORTED_MODULE_15__amibaModelingList_vue___default.a);
 
-  Vue.component('amibaDataInitEdit', __WEBPACK_IMPORTED_MODULE_17__amibaDataInitEdit_vue___default.a);
-  Vue.component('amibaDataInitList', __WEBPACK_IMPORTED_MODULE_18__amibaDataInitList_vue___default.a);
+  Vue.component('amibaDataInitEdit', __WEBPACK_IMPORTED_MODULE_16__amibaDataInitEdit_vue___default.a);
+  Vue.component('amibaDataInitList', __WEBPACK_IMPORTED_MODULE_17__amibaDataInitList_vue___default.a);
 
-  Vue.component('amibaDataTimeEdit', __WEBPACK_IMPORTED_MODULE_19__amibaDataTimeEdit_vue___default.a);
-  Vue.component('amibaDataTimeList', __WEBPACK_IMPORTED_MODULE_20__amibaDataTimeList_vue___default.a);
+  Vue.component('amibaDataTimeEdit', __WEBPACK_IMPORTED_MODULE_18__amibaDataTimeEdit_vue___default.a);
+  Vue.component('amibaDataTimeList', __WEBPACK_IMPORTED_MODULE_19__amibaDataTimeList_vue___default.a);
 
-  Vue.component('amibaDataDocEdit', __WEBPACK_IMPORTED_MODULE_21__amibaDataDocEdit_vue___default.a);
-  Vue.component('amibaDataDocList', __WEBPACK_IMPORTED_MODULE_22__amibaDataDocList_vue___default.a);
+  Vue.component('amibaDataDocEdit', __WEBPACK_IMPORTED_MODULE_20__amibaDataDocEdit_vue___default.a);
+  Vue.component('amibaDataDocList', __WEBPACK_IMPORTED_MODULE_21__amibaDataDocList_vue___default.a);
 
-  Vue.component('amibaDataCloseEdit', __WEBPACK_IMPORTED_MODULE_23__amibaDataCloseEdit_vue___default.a);
-  Vue.component('amibaDataCloseList', __WEBPACK_IMPORTED_MODULE_24__amibaDataCloseList_vue___default.a);
+  Vue.component('amibaDataCloseEdit', __WEBPACK_IMPORTED_MODULE_22__amibaDataCloseEdit_vue___default.a);
+  Vue.component('amibaDataCloseList', __WEBPACK_IMPORTED_MODULE_23__amibaDataCloseList_vue___default.a);
 
-  Vue.component('amibaDataAccountingEdit', __WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingEdit_vue___default.a);
-  Vue.component('amibaDataAccountingList', __WEBPACK_IMPORTED_MODULE_26__amibaDataAccountingList_vue___default.a);
+  Vue.component('amibaDataAccountingEdit', __WEBPACK_IMPORTED_MODULE_24__amibaDataAccountingEdit_vue___default.a);
+  Vue.component('amibaDataAccountingList', __WEBPACK_IMPORTED_MODULE_25__amibaDataAccountingList_vue___default.a);
 
-  Vue.component('amibaDataDistributeEdit', __WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeEdit_vue___default.a);
-  Vue.component('amibaDataDistributeList', __WEBPACK_IMPORTED_MODULE_28__amibaDataDistributeList_vue___default.a);
+  Vue.component('amibaDataDistributeEdit', __WEBPACK_IMPORTED_MODULE_26__amibaDataDistributeEdit_vue___default.a);
+  Vue.component('amibaDataDistributeList', __WEBPACK_IMPORTED_MODULE_27__amibaDataDistributeList_vue___default.a);
 
-  Vue.component('amibaPriceEdit', __WEBPACK_IMPORTED_MODULE_29__amibaPriceEdit_vue___default.a);
-  Vue.component('amibaPriceList', __WEBPACK_IMPORTED_MODULE_30__amibaPriceList_vue___default.a);
+  Vue.component('amibaPriceEdit', __WEBPACK_IMPORTED_MODULE_28__amibaPriceEdit_vue___default.a);
+  Vue.component('amibaPriceList', __WEBPACK_IMPORTED_MODULE_29__amibaPriceList_vue___default.a);
 
-  Vue.component('amibaPriceAdjustEdit', __WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustEdit_vue___default.a);
-  Vue.component('amibaPriceAdjustList', __WEBPACK_IMPORTED_MODULE_32__amibaPriceAdjustList_vue___default.a);
+  Vue.component('amibaPriceAdjustEdit', __WEBPACK_IMPORTED_MODULE_30__amibaPriceAdjustEdit_vue___default.a);
+  Vue.component('amibaPriceAdjustList', __WEBPACK_IMPORTED_MODULE_31__amibaPriceAdjustList_vue___default.a);
 
-  Vue.component('amibaDataTargetEdit', __WEBPACK_IMPORTED_MODULE_33__amibaDataTargetEdit_vue___default.a);
-  Vue.component('amibaDataTargetList', __WEBPACK_IMPORTED_MODULE_34__amibaDataTargetList_vue___default.a);
+  Vue.component('amibaDataTargetEdit', __WEBPACK_IMPORTED_MODULE_32__amibaDataTargetEdit_vue___default.a);
+  Vue.component('amibaDataTargetList', __WEBPACK_IMPORTED_MODULE_33__amibaDataTargetList_vue___default.a);
 
-  Vue.component('amibaDataAdjustEdit', __WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustEdit_vue___default.a);
-  Vue.component('amibaDataAdjustList', __WEBPACK_IMPORTED_MODULE_36__amibaDataAdjustList_vue___default.a);
+  Vue.component('amibaDataAdjustEdit', __WEBPACK_IMPORTED_MODULE_34__amibaDataAdjustEdit_vue___default.a);
+  Vue.component('amibaDataAdjustList', __WEBPACK_IMPORTED_MODULE_35__amibaDataAdjustList_vue___default.a);
 
-  Vue.component('amibaQueryAccount', __WEBPACK_IMPORTED_MODULE_37__amibaQueryAccount_vue___default.a);
-  Vue.component('amibaQueryProfit', __WEBPACK_IMPORTED_MODULE_38__amibaQueryProfit_vue___default.a);
-  Vue.component('amibaQueryDocFi', __WEBPACK_IMPORTED_MODULE_40__amibaQueryDocFi_vue___default.a);
-  Vue.component('amibaQueryDocBiz', __WEBPACK_IMPORTED_MODULE_39__amibaQueryDocBiz_vue___default.a);
+  Vue.component('amibaQueryAccount', __WEBPACK_IMPORTED_MODULE_36__amibaQueryAccount_vue___default.a);
+  Vue.component('amibaQueryProfit', __WEBPACK_IMPORTED_MODULE_37__amibaQueryProfit_vue___default.a);
+  Vue.component('amibaQueryDocFi', __WEBPACK_IMPORTED_MODULE_39__amibaQueryDocFi_vue___default.a);
+  Vue.component('amibaQueryDocBiz', __WEBPACK_IMPORTED_MODULE_38__amibaQueryDocBiz_vue___default.a);
 
-  Vue.component('amibaReportGroupTrendAns', __WEBPACK_IMPORTED_MODULE_41__amibaReportGroupTrendAns_vue___default.a);
-  Vue.component('amibaReportGroupCompareAns', __WEBPACK_IMPORTED_MODULE_42__amibaReportGroupCompareAns_vue___default.a);
-  Vue.component('amibaReportGroupAnalogyAns', __WEBPACK_IMPORTED_MODULE_43__amibaReportGroupAnalogyAns_vue___default.a);
-  Vue.component('amibaReportGroupRankAns', __WEBPACK_IMPORTED_MODULE_44__amibaReportGroupRankAns_vue___default.a);
+  Vue.component('amibaReportGroupTrendAns', __WEBPACK_IMPORTED_MODULE_40__amibaReportGroupTrendAns_vue___default.a);
+  Vue.component('amibaReportGroupCompareAns', __WEBPACK_IMPORTED_MODULE_41__amibaReportGroupCompareAns_vue___default.a);
+  Vue.component('amibaReportGroupAnalogyAns', __WEBPACK_IMPORTED_MODULE_42__amibaReportGroupAnalogyAns_vue___default.a);
+  Vue.component('amibaReportGroupRankAns', __WEBPACK_IMPORTED_MODULE_43__amibaReportGroupRankAns_vue___default.a);
 
-  Vue.component('amibaReportGroupPurposeTrend', __WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeTrend_vue___default.a);
-  Vue.component('amibaReportGroupPurposeCompare', __WEBPACK_IMPORTED_MODULE_46__amibaReportGroupPurposeCompare_vue___default.a);
+  Vue.component('amibaReportGroupPurposeTrend', __WEBPACK_IMPORTED_MODULE_44__amibaReportGroupPurposeTrend_vue___default.a);
+  Vue.component('amibaReportGroupPurposeCompare', __WEBPACK_IMPORTED_MODULE_45__amibaReportGroupPurposeCompare_vue___default.a);
 
-  Vue.component('amibaReportStatementFunctionAns', __WEBPACK_IMPORTED_MODULE_47__amibaReportStatementFunctionAns_vue___default.a);
-  Vue.component('amibaReportStatementDevoteAns', __WEBPACK_IMPORTED_MODULE_48__amibaReportStatementDevoteAns_vue___default.a);
-  Vue.component('amibaReportStatementCompare', __WEBPACK_IMPORTED_MODULE_49__amibaReportStatementCompare_vue___default.a);
-  Vue.component('amibaReportStatementTrend', __WEBPACK_IMPORTED_MODULE_50__amibaReportStatementTrend_vue___default.a);
-  Vue.component('amibaReportStatementPurpose', __WEBPACK_IMPORTED_MODULE_51__amibaReportStatementPurpose_vue___default.a);
+  Vue.component('amibaReportStatementFunctionAns', __WEBPACK_IMPORTED_MODULE_46__amibaReportStatementFunctionAns_vue___default.a);
+  Vue.component('amibaReportStatementDevoteAns', __WEBPACK_IMPORTED_MODULE_47__amibaReportStatementDevoteAns_vue___default.a);
+  Vue.component('amibaReportStatementCompare', __WEBPACK_IMPORTED_MODULE_48__amibaReportStatementCompare_vue___default.a);
+  Vue.component('amibaReportStatementTrend', __WEBPACK_IMPORTED_MODULE_49__amibaReportStatementTrend_vue___default.a);
+  Vue.component('amibaReportStatementPurpose', __WEBPACK_IMPORTED_MODULE_50__amibaReportStatementPurpose_vue___default.a);
 }
 
 /***/ }),
