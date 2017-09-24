@@ -11390,6 +11390,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
         };
       }
+      options.orders[0] = { name: 'code' };
     },
     remove: function remove() {
       var _this = this;
@@ -11414,9 +11415,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     load: function load() {
       this.$refs.list.pagination(1);
-    },
-    init_model_query: function init_model_query(options) {
-      options.orders[0] = { name: 'code' };
     }
   }
 });
@@ -11726,6 +11724,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           "or": [{ name: 'code', operator: 'like', value: this.currentQ }, { name: 'name', operator: 'like', value: this.currentQ }]
         };
       }
+      options.orders[0] = { name: 'code' };
     },
     remove: function remove() {
       var _this = this;
@@ -11750,9 +11749,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     load: function load() {
       this.$refs.list.pagination(1);
-    },
-    init_model_query: function init_model_query(options) {
-      options.orders[0] = { name: 'code' };
     }
   }
 });
@@ -29876,7 +29872,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-query-id": "suite.amiba.element.list"
     },
     on: {
-      "init": _vm.init_model_query,
+      "init": _vm.initQuery,
       "select": _vm.select,
       "dblclick": _vm.edit
     }
@@ -33043,6 +33039,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
+      "init": _vm.initQuery,
       "dblclick": _vm.edit
     }
   }), _vm._v(" "), _c('md-loading', {
@@ -33105,7 +33102,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-query-id": "suite.amiba.group.list"
     },
     on: {
-      "init": _vm.init_model_query,
+      "init": _vm.initQuery,
       "select": _vm.select,
       "dblclick": _vm.edit
     }
@@ -33407,6 +33404,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "select": _vm.select,
+      "init": _vm.initQuery,
       "dblclick": _vm.edit
     }
   }), _vm._v(" "), _c('md-loading', {
