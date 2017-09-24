@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 use Auth;
 use Gmf\Sys\Builder;
 use Gmf\Sys\Libs\InputHelper;
+use Gmf\Sys\Models as SysModels;
 use Illuminate\Http\Request;
 use Suite\Amiba\Models as AmibaModels;
-use Suite\Cbo\Models as SysModels;
+use Suite\Cbo\Models as CboModels;
 
 class HomeController extends Controller {
 	/**
@@ -43,7 +44,11 @@ class HomeController extends Controller {
 	public function index(Request $request) {
 		$user = Auth::user();
 		$config = $this->getConfig($request, $user);
-		$request->session()->put(config('gmf.ent_session_name'), '4f95c06028d511e7bb351569a8a51d7d');
+		$entId = config('gmf.ent.id');
+		if ($entId) {
+			$ent = SysModels\Ent::find($entId);
+		}
+		$request->session()->put(config('gmf.ent_session_name'), $entId);
 		if (stripos($_SERVER['HTTP_USER_AGENT'], "android") != false || stripos($_SERVER['HTTP_USER_AGENT'], "ios") != false || stripos($_SERVER['HTTP_USER_AGENT'], "wp") != false) {
 			$config->is_mobile(true);
 		}
@@ -64,14 +69,14 @@ class HomeController extends Controller {
 	private function getConfig(Request $request, $user) {
 		$config = new Builder();
 		$item = new Builder();
-		$tmp = SysModels\Currency::where('code', 'CNY')->first();
+		$tmp = CboModels\Currency::where('code', 'CNY')->first();
 		if ($tmp) {
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name)->symbol($tmp->symbol);
 		}
 		$config->currency($item);
 
 		$item = new Builder();
-		$tmp = SysModels\Country::where('code', 'CHN')->first();
+		$tmp = CboModels\Country::where('code', 'CHN')->first();
 		if ($tmp) {
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name);
 		}
@@ -87,9 +92,9 @@ class HomeController extends Controller {
 		$item = new Builder();
 		$item = new Builder();
 		if (!empty($config->purpose->calendar_id)) {
-			$tmp = SysModels\PeriodCalendar::where('id', $config->purpose->calendar_id)->first();
+			$tmp = CboModels\PeriodCalendar::where('id', $config->purpose->calendar_id)->first();
 		} else {
-			$tmp = SysModels\PeriodCalendar::where('code', 'month')->first();
+			$tmp = CboModels\PeriodCalendar::where('code', 'month')->first();
 		}
 		if ($tmp) {
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name);
@@ -98,9 +103,9 @@ class HomeController extends Controller {
 
 		$item = new Builder();
 		if (!empty($config->calendar_id)) {
-			$tmp = SysModels\PeriodAccount::where('code', date('Ym'))->where('calendar_id', $config->calendar_id)->first();
+			$tmp = CboModels\PeriodAccount::where('code', date('Ym'))->where('calendar_id', $config->calendar_id)->first();
 		} else {
-			$tmp = SysModels\PeriodAccount::where('code', date('Ym'))->first();
+			$tmp = CboModels\PeriodAccount::where('code', date('Ym'))->first();
 		}
 		if ($tmp) {
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name)->from_date($tmp->from_date)->to_date($tmp->to_date);
