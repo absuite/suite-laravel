@@ -21764,6 +21764,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21793,6 +21796,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return {
         main: { 'code': '', 'name': '' }
       };
+    },
+    seedDatas: function seedDatas() {
+      var _this = this;
+
+      if (!this.model.main.id) {
+        this.$toast('先保存，再操作此功能!');
+        return;
+      }
+      this.$http.post('sys/ents/seed/' + this.model.main.id).then(function (response) {
+        _this.$toast('导入数据成功!');
+      }, function (response) {
+        _this.$toast('导入失败!');
+      });
     },
     list: function list() {
       this.$router.push({ name: 'module', params: { module: 'sys.ent.list' } });
@@ -23070,7 +23086,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.create($event)
       }
     }
-  }, [_vm._v("新增")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-button', {
+  }, [_vm._v("新增")])], 1), _vm._v(" "), _c('md-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.seedDatas($event)
+      }
+    }
+  }, [_vm._v("导入演示数据")]), _vm._v(" "), _c('md-part-toolbar-group'), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-button', {
     nativeOn: {
       "click": function($event) {
         _vm.list($event)
