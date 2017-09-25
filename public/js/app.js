@@ -21292,7 +21292,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21767,6 +21766,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21797,6 +21804,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         main: { 'code': '', 'name': '' }
       };
     },
+    afterSave: function afterSave(data) {
+      this.$root.loadEnts();
+    },
     seedDatas: function seedDatas() {
       var _this = this;
 
@@ -21804,10 +21814,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$toast('先保存，再操作此功能!');
         return;
       }
+      this.loading++;
       this.$http.post('sys/ents/seed/' + this.model.main.id).then(function (response) {
         _this.$toast('导入数据成功!');
+        _this.loading--;
       }, function (response) {
         _this.$toast('导入失败!');
+        _this.loading--;
       });
     },
     list: function list() {
@@ -23086,19 +23099,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.create($event)
       }
     }
-  }, [_vm._v("新增")])], 1), _vm._v(" "), _c('md-button', {
-    nativeOn: {
-      "click": function($event) {
-        _vm.seedDatas($event)
-      }
-    }
-  }, [_vm._v("导入演示数据")]), _vm._v(" "), _c('md-part-toolbar-group'), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-button', {
+  }, [_vm._v("新增")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-button', {
     nativeOn: {
       "click": function($event) {
         _vm.list($event)
       }
     }
-  }, [_vm._v("列表")])], 1), _vm._v(" "), _c('span', {
+  }, [_vm._v("列表")])], 1), _vm._v(" "), _c('md-part-toolbar-group', [_c('md-button', {
+    nativeOn: {
+      "click": function($event) {
+        _vm.seedDatas($event)
+      }
+    }
+  }, [_vm._v("导入演示数据")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-part-toolbar-crumbs', [_c('md-part-toolbar-crumb', [_vm._v("企业")]), _vm._v(" "), _c('md-part-toolbar-crumb', [_vm._v("编辑")])], 1)], 1), _vm._v(" "), _c('md-part-body', [_c('md-content', [_c('md-input-container', [_c('label', [_vm._v("编码")]), _vm._v(" "), _c('md-input', {
     attrs: {
@@ -23123,11 +23136,27 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.name"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("行业")]), _vm._v(" "), _c('md-input', {
+    model: {
+      value: (_vm.model.main.industry),
+      callback: function($$v) {
+        _vm.model.main.industry = $$v
+      },
+      expression: "model.main.industry"
+    }
+  })], 1), _vm._v(" "), _c('md-input-container', [_c('label', [_vm._v("区域")]), _vm._v(" "), _c('md-input', {
+    model: {
+      value: (_vm.model.main.area),
+      callback: function($$v) {
+        _vm.model.main.area = $$v
+      },
+      expression: "model.main.area"
+    }
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -23658,11 +23687,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "dblclick": _vm.edit,
       "init": _vm.initQuery
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -23795,11 +23824,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.memo"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -24456,11 +24485,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "select": _vm.select,
       "dblclick": _vm.edit
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -24500,11 +24529,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "select": _vm.select,
       "dblclick": _vm.edit
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -25866,11 +25895,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.memo"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -25930,11 +25959,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "dblclick": _vm.edit,
       "init": _vm.initQuery
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -26030,11 +26059,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.memo"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -26227,11 +26256,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "dblclick": _vm.edit,
       "init": _vm.initQuery
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -27588,11 +27617,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "select": _vm.select,
       "init": _vm.initQuery
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -27733,11 +27762,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.host"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -34286,11 +34315,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "select": _vm.select,
       "dblclick": _vm.edit
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -36003,11 +36032,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.memo"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -36720,11 +36749,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "select": _vm.select,
       "dblclick": _vm.edit
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -37151,11 +37180,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "dblclick": _vm.edit,
       "init": _vm.initQuery
     }
-  }), _vm._v(" "), _c('md-loading', {
+  })], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -38107,11 +38136,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       expression: "model.main.memo"
     }
-  })], 1)], 1), _vm._v(" "), _c('md-loading', {
+  })], 1)], 1)], 1), _vm._v(" "), _c('md-loading', {
     attrs: {
       "loading": _vm.loading
     }
-  })], 1)], 1)
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -45658,12 +45687,15 @@ function install(Vue) {
     validate: function validate() {
       return true;
     },
+    beforeSave: function beforeSave(data) {},
+    afterSave: function afterSave(data) {},
     save: function save() {
       var _this = this;
 
       if (!this.validate()) {
         return false;
       }
+      this.beforeSave(this.model);
       var iterable;
       if (this.model.main && this.model.main.id) {
         iterable = this.$http.put(this.route + '/' + this.model.main.id, this.model.main);
@@ -45672,6 +45704,7 @@ function install(Vue) {
       }
       this.loading++;
       iterable && iterable.then(function (response) {
+        _this.afterSave(response.data.data);
         _this.$set(_this.model, 'main', response.data.data || {});
         _this.loading--;
         _this.$toast(_this.$lang.LANG_SAVESUCCESS);
@@ -45729,6 +45762,7 @@ function install(Vue) {
         this.model.main.id = id;
         this.loading++;
         this.$http.get(this.route + '/' + id).then(function (response) {
+          _this3.afterLoad(response.data.data);
           _this3.$set(_this3.model, 'main', response.data.data || {});
           _this3.loading--;
         }, function (response) {
@@ -45743,6 +45777,7 @@ function install(Vue) {
         this.create();
       }
     },
+    afterLoad: function afterLoad(data) {},
     paging: function paging(id) {
       this.load(id);
     },
