@@ -42,12 +42,28 @@ class Handler extends ExceptionHandler {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function render($request, Exception $exception) {
+		$StatusCode = -1;
+		if (method_exists($exception, 'getStatusCode')) {
+			$StatusCode = $exception->getStatusCode();
+		}
 		if ($request->expectsJson() || $request->is('api/*')) {
-			if (method_exists($exception, 'getMessage')) {
-				return APIResult::error($exception->getMessage());
-			} else {
-				return response()->json($exception, 401);
+			$msg = '';
+			if (!$msg && is_a($exception, \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class)) {
+				$msg = 'NotFound';
 			}
+			if (!$msg && is_a($exception, \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException::class)) {
+				$msg = 'NotAllowed';
+			}
+			if (!$msg && method_exists($exception, 'getRawMessage')) {
+				$msg = $exception->getRawMessage();
+			}
+			if (!$msg && method_exists($exception, 'getMessage')) {
+				$msg = $exception->getMessage();
+			}
+			if ($msg) {
+				return APIResult::error($msg);
+			}
+			return response()->json($exception, 401);
 		}
 		return parent::render($request, $exception);
 	}
