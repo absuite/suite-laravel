@@ -20147,9 +20147,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -20158,11 +20174,107 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      test: null
+      navTabs: [],
+      currentTab: {}
     };
   },
 
-  computed: {}
+  watch: {
+    '$route': function $route(to, from) {
+      this.routePageTab(to);
+    }
+  },
+  methods: {
+    toPageTab: function toPageTab(tab) {
+      var oldTab = false;
+      __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t) {
+        if (t.active) {
+          oldTab = t;
+        }
+      });
+      if (oldTab && tab && oldTab.name != tab.name) {
+        oldTab.active = false;
+      }
+      if (tab) {
+        tab.active = true;
+      }
+      window.history.replaceState({}, '', tab.fullPath);
+    },
+    removePageTab: function removePageTab(tab, event) {
+      if (event) {
+        event.preventDefault && event.preventDefault();
+        event.stopPropagation && event.stopPropagation();
+      }
+      var currTab = false;
+      __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t) {
+        if (t.active) {
+          currTab = t;
+        }
+      });
+      var ind = this.getPageTabIndex(tab);
+      var currInd = this.getPageTabIndex(currTab);
+      if (ind >= 0 && this.navTabs.length > 1) {
+        this.navTabs.splice(ind, 1);
+        if (currInd == ind && ind >= 0) {
+          ind = --ind > 0 ? ind : 0;
+          if (this.navTabs.length > 0) {
+            this.navTabs[ind].active = true;
+            window.history.replaceState({}, '', this.navTabs[ind].fullPath);
+          }
+        }
+      }
+    },
+    getPageTabIndex: function getPageTabIndex(tab) {
+      var ind = -1;
+      if (!tab) return ind;
+      __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t, k) {
+        if (t.name == tab.name) {
+          ind = k;
+        }
+      });
+      return ind;
+    },
+    routePageTab: function routePageTab(route) {
+      if (route && route.params && route.params.module) {
+        var name = __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].snakeCase(route.params.module);
+        var tab = false,
+            oldTab = false;
+        __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t) {
+          if (t.name == name) {
+            tab = t;
+          }
+          if (t.active) {
+            oldTab = t;
+          }
+        });
+        if (!tab) {
+          tab = {
+            name: name,
+            module: route.params.module,
+            fullPath: route.fullPath,
+            params: route.params,
+            active: true
+          };
+          this.navTabs.push(tab);
+        } else {
+          tab.fullPath = route.fullPath;
+          tab.params = route.params;
+        }
+        if (oldTab && oldTab.name != tab.name) {
+          oldTab.active = false;
+        }
+        if (tab) {
+          tab.active = true;
+        }
+      }
+    }
+  },
+  created: function created() {
+    console.log('routeroute1');
+  },
+  mounted: function mounted() {
+    this.routePageTab(this.$route);
+  }
 });
 
 /***/ }),
@@ -31176,7 +31288,45 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('router-view')
+  return _c('div', {
+    staticClass: "md-pags layout-fill flex layout-column"
+  }, [_c('div', {
+    staticClass: "md-pag-tabs"
+  }, _vm._l((_vm.navTabs), function(tab) {
+    return _c('div', {
+      key: tab.name,
+      staticClass: "md-pag-tab",
+      class: {
+        'md-active': tab.active
+      },
+      on: {
+        "click": function($event) {
+          _vm.toPageTab(tab)
+        }
+      }
+    }, [_c('span', [_vm._v(_vm._s(tab.name))]), _vm._v(" "), _c('md-button', {
+      staticClass: "md-icon-button md-delete",
+      nativeOn: {
+        "click": function($event) {
+          _vm.removePageTab(tab, $event)
+        }
+      }
+    }, [_c('md-icon', [_vm._v("cancel")])], 1)], 1)
+  })), _vm._v(" "), _c('div', {
+    staticClass: "md-pag-container flex layout-column"
+  }, _vm._l((_vm.navTabs), function(tab) {
+    return _c('div', {
+      key: tab.name,
+      staticClass: "md-pag flex",
+      class: {
+        'md-active': tab.active
+      }
+    }, [_c('md-wrap', {
+      attrs: {
+        "name": tab.name
+      }
+    })], 1)
+  }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -45680,7 +45830,7 @@ function install(Vue) {
   },
   watch: {
     'model.main.id': function modelMainId(value, oldValue) {
-      this.loadPagerInfo(value);
+      this.load(value);
     }
   },
   methods: {
@@ -45776,6 +45926,7 @@ function install(Vue) {
       } else {
         this.create();
       }
+      this.loadPagerInfo(id);
     },
     afterLoad: function afterLoad(data) {},
     paging: function paging(id) {
@@ -45803,7 +45954,6 @@ function install(Vue) {
   },
   mounted: function mounted() {
     this.load(this.$route.params.id);
-    this.loadPagerInfo(this.$route.params.id);
   }
 });
 
@@ -47328,7 +47478,7 @@ router.beforeEach(function (to, from, next) {
     next();
 });
 router.afterEach(function (route) {
-    //console.log('afterEachafterEach');
+    console.log('afterEachafterEach');
 });
 /* harmony default export */ __webpack_exports__["a"] = (router);
 

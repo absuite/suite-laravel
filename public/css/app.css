@@ -11070,6 +11070,62 @@ img.md-icon {
       touch-action: none;
 }
 
+.md-pags .md-pag-tabs {
+  background: #80cbc4;
+}
+
+.md-pags .md-pag-tabs .md-pag-tab {
+  padding: .1rem;
+  padding: .05rem .25rem 0.05rem 0.1rem;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+
+.md-pags .md-pag-tabs .md-pag-tab:hover {
+  background: #32b7a8;
+  color: #fff;
+}
+
+.md-pags .md-pag-tabs .md-pag-tab.md-active {
+  background: #e0f2f1;
+  color: inherit;
+}
+
+.md-pags .md-pag-tabs .md-pag-tab .md-delete {
+  width: 0.24rem;
+  min-width: 0.24rem;
+  height: 0.24rem;
+  min-height: 0.24rem;
+  margin: 0;
+  padding: 0;
+  top: .04rem;
+  right: 0;
+  position: absolute;
+  display: none;
+}
+
+.md-pags .md-pag-tabs .md-pag-tab .md-delete .md-icon {
+  width: 0.18rem;
+  min-width: 0.18rem;
+  height: 0.18rem;
+  min-height: 0.18rem;
+  margin: 0;
+  font-size: 0.18rem;
+}
+
+.md-pags .md-pag-tabs .md-pag-tab:hover .md-delete {
+  display: block;
+}
+
+.md-pags .md-pag-container .md-pag {
+  display: none;
+}
+
+.md-pags .md-pag-container .md-pag.md-active {
+  display: block;
+}
+
 @media (min-width: 660px) {
   .md-refs-dialog .md-table .md-table-cell,
   .md-query .md-table .md-table-cell {
