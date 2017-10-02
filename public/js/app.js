@@ -3810,6 +3810,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_components_mdTheme_mixin__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/components/mdTheme/mixin.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_utils_common__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
 //
 //
 //
@@ -3836,17 +3837,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -3925,9 +3916,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.$refs['table'] && this.$refs['table'].$data) {
         this.$refs['table'].$data.selectedRows = {};
       }
-
+      if (__WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isString(pager) || __WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isNumber(pager)) {
+        pager = this._.extend({}, this.pageInfo, { page: pager });
+      } else {
+        pager = pager || this.pageInfo;
+      }
       this.loading++;
-      pager = pager || this.pageInfo;
       var params = {};
       this._.extend(params, this.options, pager);
       this.$http.post('sys/queries/query/' + this.mdQueryId, params).then(function (response) {
@@ -4224,17 +4218,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4279,7 +4262,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       loading: 0,
       refCache: {},
       pageInfo: {
-        size: this.mdPageSize,
+        size: 0,
         total: 0,
         page: 1
       }
@@ -4297,6 +4280,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           this.selectedRows = [_value];
         }
       }
+    },
+    mdPageSize: function mdPageSize(val) {
+      this.pageInfo.size = val;
     }
   },
   methods: {
@@ -4323,13 +4309,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.doQuery({ q: this.currentQ });
     },
     onTablePagination: function onTablePagination(pager) {
-      pager = pager || this.pageInfo;
+      if (__WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isString(pager) || __WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isNumber(pager)) {
+        pager = this._.extend({}, this.pageInfo, { page: pager });
+      } else {
+        pager = pager || this.pageInfo;
+      }
       this.doQuery(pager);
     },
     doQuery: function doQuery(params) {
       var _this = this;
 
-      params = this._.extend({}, this.options, params);
+      params = this._.extend({}, this.pageInfo, this.options, params);
       if (this.mdRefId) {
         this.$http.post('sys/queries/query/' + this.mdRefId, params).then(function (response) {
           _this.refInfo = response.data.schema;
@@ -4366,6 +4356,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$refs['dialog'].close();
       this.$emit('close', data ? [data] : this.getReturnValue());
     }
+  },
+  mounted: function mounted() {
+    this.pageInfo.size = this.mdPageSize;
   }
 });
 
@@ -20258,7 +20251,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         oldTab.active = true;
         if (newTab.params.refresh === true || oldTab.fullPath !== newTab.fullPath) {
           oldTab.id = __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].uniqueId();
-          //this.navTabs.splice(ind, 1, activeTab);
         }
       } else {
         this.getTabInfo(newTab.code);
@@ -32893,7 +32885,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('md-table-header', [_c('md-table-row', _vm._l((_vm.refInfo.fields), function(column, columnIndex) {
     return (!column.hide && column.alias != 'id') ? _c('md-table-head', {
       key: columnIndex
-    }, [_vm._v("\n            " + _vm._s(column.comment || column.name) + "\n            ")]) : _vm._e()
+    }, [_vm._v("\n            " + _vm._s(column.comment || column.name) + "\n          ")]) : _vm._e()
   }))], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.refData), function(row, rowIndex) {
     return _c('md-table-row', {
       key: row.id,
@@ -32910,7 +32902,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, _vm._l((_vm.refInfo.fields), function(column, columnIndex) {
       return (!column.hide && column.alias != 'id') ? _c('md-table-cell', {
         key: columnIndex
-      }, [_vm._v("\n             " + _vm._s(row[column.alias || column.name]) + "\n            ")]) : _vm._e()
+      }, [_vm._v("\n            " + _vm._s(row[column.alias || column.name]) + "\n          ")]) : _vm._e()
     }))
   }))], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('md-table-pagination', {
     attrs: {
@@ -38540,7 +38532,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('md-table-header', [_c('md-table-row', _vm._l((_vm.refInfo.fields), function(column, columnIndex) {
     return (!column.hide && column.alias != 'id') ? _c('md-table-head', {
       key: columnIndex
-    }, [_vm._v("\n        " + _vm._s(column.comment || column.name) + "\n        ")]) : _vm._e()
+    }, [_vm._v("\n          " + _vm._s(column.comment || column.name) + "\n        ")]) : _vm._e()
   }))], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.refData), function(row, rowIndex) {
     return _c('md-table-row', {
       key: row.id,
