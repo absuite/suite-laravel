@@ -20167,6 +20167,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mdToken: String,
@@ -20249,21 +20250,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         params: route.params,
         active: true
       };
-      if (activeTab) {
+      //un active not current node;
+      if (activeTab && newTab.code !== activeTab.code) {
         activeTab.active = false;
       }
-      activeTab = newTab;
       if (oldTab) {
-        activeTab.name = oldTab.name;
-        if (activeTab.params.refresh === true || oldTab.fullPath !== activeTab.fullPath) {
-          this.navTabs.splice(ind, 1, activeTab);
-        } else {
-          oldTab.active = true;
+        oldTab.active = true;
+        if (newTab.params.refresh === true || oldTab.fullPath !== newTab.fullPath) {
+          oldTab.id = __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].uniqueId();
+          //this.navTabs.splice(ind, 1, activeTab);
         }
       } else {
-        this.getTabInfo(activeTab.code);
-        this.navTabs.push(activeTab);
+        this.getTabInfo(newTab.code);
+        this.navTabs.push(newTab);
       }
+    },
+    getCurrentTabInd: function getCurrentTabInd() {
+      var ind = -1;
+      __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t, i) {
+        if (t.active) {
+          ind = i;
+        }
+      });
+      return ind;
     },
     getTabInfo: function getTabInfo(code) {
       var _this = this;
@@ -20277,11 +20286,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }
         });
       });
+    },
+    refresh: function refresh() {
+      var ind = this.getCurrentTabInd();
+      if (ind >= 0) {
+        var tab = this.navTabs[ind];
+        tab.id = __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].uniqueId();
+      }
     }
   },
   created: function created() {},
   mounted: function mounted() {
+    var _this2 = this;
+
     this.routePageTab(this.$route);
+    document.onkeydown = function (e) {
+      var ev = window.event || e;
+      var code = ev.keyCode || ev.which;
+      if (code == 116 && !ev.ctrlKey) {
+        if (ev.preventDefault) {
+          ev.preventDefault();
+          _this2.refresh();
+        } else {
+          ev.keyCode = 0;
+          ev.returnValue = false;
+          _this2.refresh();
+        }
+      }
+    };
   }
 });
 
