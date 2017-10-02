@@ -20186,19 +20186,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     toPageTab: function toPageTab(tab) {
-      var oldTab = false;
-      __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t) {
-        if (t.active) {
-          oldTab = t;
-        }
-      });
-      if (oldTab && tab && oldTab.name != tab.name) {
-        oldTab.active = false;
-      }
-      if (tab) {
-        tab.active = true;
-      }
-      window.history.replaceState({}, '', tab.fullPath);
+      this.$router.replace(tab.fullPath);
     },
     removePageTab: function removePageTab(tab, event) {
       if (event) {
@@ -20218,8 +20206,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         if (currInd == ind && ind >= 0) {
           ind = --ind > 0 ? ind : 0;
           if (this.navTabs.length > 0) {
-            this.navTabs[ind].active = true;
-            window.history.replaceState({}, '', this.navTabs[ind].fullPath);
+            this.$router.replace(this.navTabs[ind].fullPath);
           }
         }
       }
@@ -20228,50 +20215,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var ind = -1;
       if (!tab) return ind;
       __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t, k) {
-        if (t.name == tab.name) {
+        if (t.code == tab.code) {
           ind = k;
         }
       });
       return ind;
     },
     routePageTab: function routePageTab(route) {
-      if (route && route.params && route.params.module) {
-        var name = __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].snakeCase(route.params.module);
-        var tab = false,
-            oldTab = false;
-        __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t) {
-          if (t.name == name) {
-            tab = t;
-          }
-          if (t.active) {
-            oldTab = t;
+      if (!route || !route.params || !route.params.module) return;
+      //独立模式，把其它页签都关闭
+      if (route.params.standalone === true) {
+        this.navTabs.splice(0, this.navTabs.length);
+      }
+      var code = __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].snakeCase(route.params.module);
+      var oldTab = false,
+          ind = -1,
+          activeTab = false;
+      __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(this.navTabs, function (t, i) {
+        if (t.code == code) {
+          oldTab = t;
+          ind = i;
+        }
+        if (t.active) {
+          activeTab = t;
+        }
+      });
+      var newTab = {
+        id: __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].uniqueId(),
+        code: code,
+        name: code,
+        module: route.params.module,
+        fullPath: route.fullPath,
+        params: route.params,
+        active: true
+      };
+      if (activeTab) {
+        activeTab.active = false;
+      }
+      activeTab = newTab;
+      if (oldTab) {
+        activeTab.name = oldTab.name;
+        if (activeTab.params.refresh === true || oldTab.fullPath !== activeTab.fullPath) {
+          this.navTabs.splice(ind, 1, activeTab);
+        } else {
+          oldTab.active = true;
+        }
+      } else {
+        this.getTabInfo(activeTab.code);
+        this.navTabs.push(activeTab);
+      }
+    },
+    getTabInfo: function getTabInfo(code) {
+      var _this = this;
+
+      if (!code) return;
+      this.$http.get('sys/components/' + code).then(function (response) {
+        if (!response.data.data) return;
+        __WEBPACK_IMPORTED_MODULE_0__gmf_sys_core_utils_common__["a" /* default */].forEach(_this.navTabs, function (t, i) {
+          if (t.code == code) {
+            t.name = response.data.data.name;
           }
         });
-        if (!tab) {
-          tab = {
-            name: name,
-            module: route.params.module,
-            fullPath: route.fullPath,
-            params: route.params,
-            active: true
-          };
-          this.navTabs.push(tab);
-        } else {
-          tab.fullPath = route.fullPath;
-          tab.params = route.params;
-        }
-        if (oldTab && oldTab.name != tab.name) {
-          oldTab.active = false;
-        }
-        if (tab) {
-          tab.active = true;
-        }
-      }
+      });
     }
   },
-  created: function created() {
-    console.log('routeroute1');
-  },
+  created: function created() {},
   mounted: function mounted() {
     this.routePageTab(this.$route);
   }
@@ -20491,10 +20499,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$emit('toggle');
     },
     onChangeEnt: function onChangeEnt() {
-      this.$router.push({ name: 'module', params: { module: 'entchange' } });
+      this.$router.replace({ name: 'module', params: { module: 'entchange', refresh: true, standalone: true } });
     },
     onCreateEnt: function onCreateEnt() {
-      this.$router.push({ name: 'module', params: { module: 'sys.ent.edit' } });
+      this.$router.replace({ name: 'module', params: { module: 'sys.ent.edit' } });
     },
     onSelectEnt: function onSelectEnt(ent) {
       this.$root.userData.ent = ent;
@@ -20941,7 +20949,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: {},
   methods: {
     goForce: function goForce() {
-      this.$router.push({ name: 'module', params: { module: 'dashboard' } });
+      this.$router.replace({ name: 'module', params: { module: 'dashboard', refresh: true, standalone: true } });
     }
   },
   created: function created() {},
@@ -31294,7 +31302,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "md-pag-tabs"
   }, _vm._l((_vm.navTabs), function(tab) {
     return _c('div', {
-      key: tab.name,
+      key: tab.id,
       staticClass: "md-pag-tab",
       class: {
         'md-active': tab.active
@@ -31316,14 +31324,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "md-pag-container flex layout-column"
   }, _vm._l((_vm.navTabs), function(tab) {
     return _c('div', {
-      key: tab.name,
+      key: tab.id,
       staticClass: "md-pag flex",
       class: {
         'md-active': tab.active
       }
     }, [_c('md-wrap', {
+      ref: "tabWrap",
+      refInFor: true,
       attrs: {
-        "name": tab.name
+        "name": tab.code
       }
     })], 1)
   }))])
