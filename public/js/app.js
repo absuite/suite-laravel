@@ -3837,6 +3837,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3895,6 +3900,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    openQueryCase: function openQueryCase() {
+      this.$refs.queryCase.open();
+    },
+    initQueryCase: function initQueryCase(options, promise) {
+      promise && promise.resolve(true);
+    },
     onTablePagination: function onTablePagination(pager) {
       this.pagination(pager);
     },
@@ -3991,31 +4002,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    mdQueryId: String,
+    mdCaseId: String,
+    mdShowWhere: {
+      type: Boolean,
+      default: true
+    },
+    mdShowField: {
+      type: Boolean,
+      default: true
+    },
+    mdShowOrder: {
+      type: Boolean,
+      default: true
+    }
+  },
   data: function data() {
     return {
       inited: false,
       loading: 0,
       options: {
-        query: {},
+        name: '',
+        comment: '',
+        type_enum: '',
+        size: 0,
         wheres: [],
-        columns: [],
+        fields: [],
         orders: []
       }
     };
@@ -4028,14 +4043,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.inited) {
         return;
       }
-      this.inited = true;
-      var promise = new Promise(function (resolve, reject) {
-        _this.$emit('init', _this.options, { resolve: resolve, reject: reject });
-      });
-      promise.then(function (value) {
-        _this.inited = true;
-      }, function (reason) {
-        _this.inited = true;
+      this.loading++;
+      this.$http.get('sys/queries/' + this.mdQueryId).then(function (response) {
+        _this.options.size = response.data.data.size;
+        _this.options.name = response.data.data.name;
+        _this.options.comment = response.data.data.comment;
+        _this.options.type_enum = response.data.data.type_enum;
+        _this.options.entity_id = response.data.data.entity_id;
+        _this.options.entity_name = response.data.data.entity_name;
+        _this.options.entity_comment = response.data.data.entity_comment;
+        _this.options.filter = response.data.data.filter;
+
+        _this.options.wheres = response.data.data.wheres;
+        _this.options.orders = response.data.data.orders;
+        _this.options.fields = response.data.data.fields;
+
+        var promise = new Promise(function (resolve, reject) {
+          _this.$emit('init', _this.options, { resolve: resolve, reject: reject });
+        });
+        promise.then(function (value) {
+          _this.inited = true;
+          _this.loading--;
+        }, function (reason) {
+          _this.inited = false;
+          _this.loading--;
+        });
+      }, function (response) {
+        _this.loading--;
       });
     },
     query: function query() {
@@ -4115,6 +4149,280 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    options: {
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      allItems: [],
+      selectItems: []
+    };
+  },
+
+  methods: {
+    loadAllNodes: function loadAllNodes(entity_id, nodes) {
+      var _this = this;
+
+      if (!entity_id) {
+        return;
+      }
+      this.$http.get('sys/entities/' + entity_id).then(function (response) {
+        _this._.forEach(response.data.data.fields, function (v, k) {
+          var item = {
+            field: v.name,
+            name: v.comment || v.name,
+            type_id: v.type.id,
+            type_name: v.type.name,
+            childs: []
+          };
+          nodes.push(item);
+        });
+      }, function (response) {});
+    },
+    onItemSelect: function onItemSelect(datas) {
+      this.selectItems = datas;
+    },
+    onItemAdd: function onItemAdd() {
+      this.$refs.newItemDialog.open();
+    },
+    onItemRemove: function onItemRemove() {},
+    onNewItemDialogOpen: function onNewItemDialogOpen() {
+      this.allItems.splice(0, this.allItems.length);
+      this.loadAllNodes(this.options.entity_id, this.allItems);
+    },
+    onNewItemConfirm: function onNewItemConfirm() {
+      var selectedItems = this.$refs.newItemDialog.selecteds;
+      this.$refs.newItemDialog.close();
+    },
+    onNewItemCancel: function onNewItemCancel() {
+      this.$refs.newItemDialog.close();
+    },
+    focusNewItemNode: function focusNewItemNode(node) {
+      if (node.childs.length == 0) {
+        this.loadAllNodes(node.type_id, node.childs);
+      }
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    options: Object
+  },
+  data: function data() {
+    return {
+      allItems: []
+    };
+  },
+
+  methods: {
+    onItemSelect: function onItemSelect(datas) {},
+    onItemAdd: function onItemAdd() {
+      this.$refs.newItemDialog.open();
+    },
+    onNewItemDialogOpen: function onNewItemDialogOpen() {},
+    onItemRemove: function onItemRemove() {},
+    orderFieldSwap: function orderFieldSwap(item, event) {
+      item.direction = item.direction === 'desc' ? 'asc' : 'desc';
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    options: Object
+  },
+  data: function data() {
+    return {
+      allItems: [],
+      selectItems: []
+    };
+  },
+
+  methods: {
+    onItemSelect: function onItemSelect(datas) {
+      this.selectItems = datas;
+    },
+    onItemAdd: function onItemAdd() {
+      this.$refs.newItemDialog.open();
+    },
+    onItemRemove: function onItemRemove() {},
+    onNewItemDialogOpen: function onNewItemDialogOpen() {},
+    onNewItemConfirm: function onNewItemConfirm() {
+      this.$refs.newItemDialog.close();
+    },
+    onNewItemCancel: function onNewItemCancel() {
+      this.$refs.newItemDialog.close();
+    },
+    focusNewItemNode: function focusNewItemNode(node) {},
+    selectNewItemNodes: function selectNewItemNodes(nodes) {}
+  },
+  created: function created() {},
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdRadio/mdRadio.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4175,6 +4483,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_components_mdTheme_mixin__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/components/mdTheme/mixin.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__core_utils_common__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4286,6 +4599,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    openQueryCase: function openQueryCase() {
+      this.$refs.queryCase.open();
+    },
+    initQueryCase: function initQueryCase(options, promise) {
+      promise && promise.resolve(true);
+    },
     onRefOpen: function onRefOpen() {
       this.selectedRows = [];
       this.$refs['table'].$data.selectedRows = {};
@@ -7666,6 +7985,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__core_components_mdTheme_mixin__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/components/mdTheme/mixin.js");
+//
+//
 //
 //
 //
@@ -23330,6 +23651,126 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-099c1384\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('md-layout', {
+    attrs: {
+      "md-flex": "100"
+    }
+  }, [_c('md-table-card', {
+    staticClass: "flex"
+  }, [_c('md-table', {
+    staticClass: "flex",
+    on: {
+      "select": _vm.onItemSelect
+    }
+  }, [_c('md-table-header', [_c('md-table-row', [_c('md-table-head', [_vm._v("名称")]), _vm._v(" "), _c('md-table-head', [_vm._v("操作符")]), _vm._v(" "), _c('md-table-head', [_vm._v("条件值")])], 1)], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.options.wheres), function(item, rind) {
+    return _c('md-table-row', {
+      key: rind,
+      attrs: {
+        "md-item": item,
+        "md-auto-select": false,
+        "md-selection": true
+      }
+    }, [_c('md-table-cell', [_vm._v(_vm._s(item.comment || item.name))]), _vm._v(" "), _c('md-table-cell', [_vm._v(_vm._s(item.operator_enum))]), _vm._v(" "), _c('md-table-cell', [_c('div', {
+      staticClass: "input"
+    }, [(item.type_enum == 'value') ? _c('md-input', {
+      model: {
+        value: (item.value),
+        callback: function($$v) {
+          item.value = $$v
+        },
+        expression: "item.value"
+      }
+    }) : (item.type_enum == 'ref') ? _c('md-input-ref', {
+      attrs: {
+        "md-ref-id": item.ref_id
+      },
+      model: {
+        value: (item.value),
+        callback: function($$v) {
+          item.value = $$v
+        },
+        expression: "item.value"
+      }
+    }) : (item.type_enum == 'date') ? _c('md-date', {
+      model: {
+        value: (item.value),
+        callback: function($$v) {
+          item.value = $$v
+        },
+        expression: "item.value"
+      }
+    }) : _c('md-input', {
+      model: {
+        value: (item.value),
+        callback: function($$v) {
+          item.value = $$v
+        },
+        expression: "item.value"
+      }
+    })], 1)])], 1)
+  }))], 1), _vm._v(" "), _c('md-table-tool', [_c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemAdd()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemRemove()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("clear")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  })], 1)], 1), _vm._v(" "), _c('md-dialog', {
+    ref: "newItemDialog",
+    on: {
+      "open": _vm.onNewItemDialogOpen
+    }
+  }, [_c('md-dialog-content', {
+    staticClass: "no-padding layout-column layout-fill"
+  }, [_c('md-tree-view', {
+    attrs: {
+      "nodes": _vm.allItems
+    },
+    on: {
+      "focus": _vm.focusNewItemNode,
+      "select": _vm.selectNewItemNodes
+    }
+  })], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-button', {
+    staticClass: "md-accent md-raised",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onNewItemConfirm($event)
+      }
+    }
+  }, [_vm._v("确定")]), _vm._v(" "), _c('md-button', {
+    staticClass: "md-warn",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onNewItemCancel($event)
+      }
+    }
+  }, [_vm._v("取消")])], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-099c1384", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-099d5a4a\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaDataTargetEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -26214,6 +26655,72 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-2ab4354d", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2be6526b\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('md-layout', {
+    attrs: {
+      "md-flex": "100"
+    }
+  }, [_c('md-table-card', {
+    staticClass: "flex"
+  }, [_c('md-table', {
+    staticClass: "flex",
+    on: {
+      "select": _vm.onItemSelect
+    }
+  }, [_c('md-table-header', [_c('md-table-row', [_c('md-table-head', [_vm._v("名称")]), _vm._v(" "), _c('md-table-head', [_vm._v("排序")])], 1)], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.options.orders), function(item, rind) {
+    return _c('md-table-row', {
+      key: rind,
+      attrs: {
+        "md-item": item,
+        "md-auto-select": false,
+        "md-selection": true
+      }
+    }, [_c('md-table-cell', [_vm._v(_vm._s(item.comment || item.name))]), _vm._v(" "), _c('md-table-cell', [_c('md-button', {
+      staticClass: "md-icon-button",
+      nativeOn: {
+        "click": function($event) {
+          _vm.orderFieldSwap(item, $event)
+        }
+      }
+    }, [(item.direction == 'desc') ? _c('md-icon', [_vm._v("arrow_downward")]) : _c('md-icon', [_vm._v("arrow_upward")])], 1)], 1)], 1)
+  }))], 1), _vm._v(" "), _c('md-table-tool', [_c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemAdd()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemRemove()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("clear")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  })], 1)], 1), _vm._v(" "), _c('md-dialog', {
+    ref: "newItemDialog",
+    on: {
+      "open": _vm.onNewItemDialogOpen
+    }
+  }, [_c('md-dialog-content', {
+    staticClass: "no-padding layout-column layout-fill"
+  })], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2be6526b", module.exports)
   }
 }
 
@@ -31203,6 +31710,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._t("default"), _vm._v(" "), _c('md-dialog', {
     ref: "caseDialog",
     staticClass: "md-query-case-dialog",
+    attrs: {
+      "md-click-outside-to-close": false
+    },
     on: {
       "open": _vm.onOpen,
       "close": _vm.onClose
@@ -31216,75 +31726,49 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-right": "",
       "md-dynamic-height": false
     }
-  }, [(_vm.options.wheres && _vm.options.wheres.length) ? _c('md-tab', {
+  }, [(_vm.mdShowWhere) ? _c('md-tab', {
     attrs: {
       "md-label": "条件",
       "md-icon": "filter_list"
     }
   }, [_c('md-layout', {
+    staticClass: "layout-fill",
     attrs: {
       "md-gutter": ""
     }
-  }, _vm._l((_vm.options.wheres), function(item) {
-    return _c('md-layout', {
-      key: item,
-      attrs: {
-        "md-flex": "100"
-      }
-    }, [_c('md-input-container', {
-      staticClass: "md-inset"
-    }, [_c('div', {
-      staticClass: "label"
-    }, [_c('md-avatar', [_c('md-icon', [_vm._v("attach_file")])], 1), _vm._v(" "), _c('label', [_vm._v(_vm._s(item.comment))])], 1), _vm._v(" "), _c('div', {
-      staticClass: "input"
-    }, [(item.type == 'input') ? _c('md-input', {
-      model: {
-        value: (item.value),
-        callback: function($$v) {
-          item.value = $$v
-        },
-        expression: "item.value"
-      }
-    }) : (item.type == 'ref') ? _c('md-input-ref', {
-      attrs: {
-        "multiple": item.multiple,
-        "md-ref-id": item.refs.id
-      },
-      model: {
-        value: (item.value),
-        callback: function($$v) {
-          item.value = $$v
-        },
-        expression: "item.value"
-      }
-    }) : (item.type == 'date') ? _c('md-date', {
-      model: {
-        value: (item.value),
-        callback: function($$v) {
-          item.value = $$v
-        },
-        expression: "item.value"
-      }
-    }) : _c('md-input', {
-      model: {
-        value: (item.value),
-        callback: function($$v) {
-          item.value = $$v
-        },
-        expression: "item.value"
-      }
-    })], 1)])], 1)
-  }))], 1) : _vm._e(), _vm._v(" "), (_vm.options.columns && _vm.options.columns.length) ? _c('md-tab', {
+  }, [_c('md-query-case-where', {
+    attrs: {
+      "options": _vm.options
+    }
+  })], 1)], 1) : _vm._e(), _vm._v(" "), (_vm.mdShowField) ? _c('md-tab', {
     attrs: {
       "md-label": "栏目",
       "md-icon": "more_horiz"
     }
-  }, [_c('p', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.")]), _vm._v(" "), _c('p', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas amet cum vitae, omnis! Illum quas voluptatem, expedita iste, dicta ipsum ea veniam dolore in, quod saepe reiciendis nihil.")])]) : _vm._e(), _vm._v(" "), (_vm.options.orders && _vm.options.orders.length) ? _c('md-tab', {
+  }, [_c('md-layout', {
+    staticClass: "layout-fill",
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-query-case-field', {
+    attrs: {
+      "options": _vm.options
+    }
+  })], 1)], 1) : _vm._e(), _vm._v(" "), (_vm.mdShowOrder) ? _c('md-tab', {
     attrs: {
       "md-label": "排序",
       "md-icon": "sort"
     }
-  }, [_c('p', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorum quas.")])]) : _vm._e()], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
+  }, [_c('md-layout', {
+    staticClass: "layout-fill",
+    attrs: {
+      "md-gutter": ""
+    }
+  }, [_c('md-query-case-order', {
+    attrs: {
+      "options": _vm.options
+    }
+  })], 1)], 1) : _vm._e()], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-button', {
     staticClass: "md-accent md-raised",
@@ -32904,7 +33388,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         key: columnIndex
       }, [_vm._v("\n            " + _vm._s(row[column.alias || column.name]) + "\n          ")]) : _vm._e()
     }))
-  }))], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('md-table-pagination', {
+  }))], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('md-query-case', {
+    ref: "queryCase",
+    attrs: {
+      "md-query-id": _vm.mdRefId
+    },
+    on: {
+      "init": _vm.initQueryCase
+    }
+  }, [_c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.openQueryCase()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("search")])], 1)], 1), _vm._v(" "), _c('md-table-pagination', {
     attrs: {
       "md-size": _vm.pageInfo.size,
       "md-total": _vm.pageInfo.total,
@@ -35178,7 +35677,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-auto-select": _vm.mdAutoSelect,
       "nodes": _vm.nodes
     }
-  })], 1)
+  }, [_vm._t("default")], 2)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -37917,6 +38416,90 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e2b293d2\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('md-layout', {
+    attrs: {
+      "md-flex": "100"
+    }
+  }, [_c('md-table-card', {
+    staticClass: "flex"
+  }, [_c('md-table', {
+    staticClass: "flex",
+    on: {
+      "select": _vm.onItemSelect
+    }
+  }, [_c('md-table-header', [_c('md-table-row', [_c('md-table-head', [_vm._v("名称")]), _vm._v(" "), _c('md-table-head', [_vm._v("显示名称")])], 1)], 1), _vm._v(" "), _c('md-table-body', _vm._l((_vm.options.fields), function(item, rind) {
+    return _c('md-table-row', {
+      key: rind,
+      attrs: {
+        "md-item": item,
+        "md-auto-select": false,
+        "md-selection": true
+      }
+    }, [_c('md-table-cell', [_vm._v(_vm._s(item.comment || item.name))]), _vm._v(" "), _c('md-table-cell', [_vm._v(_vm._s(item.comment || item.name))])], 1)
+  }))], 1), _vm._v(" "), _c('md-table-tool', [_c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemAdd()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemRemove()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("clear")])], 1), _vm._v(" "), _c('span', {
+    staticClass: "flex"
+  })], 1)], 1), _vm._v(" "), _c('md-dialog', {
+    ref: "newItemDialog",
+    on: {
+      "open": _vm.onNewItemDialogOpen
+    }
+  }, [_c('md-toolbar', [_c('h1', {
+    staticClass: "md-title"
+  }, [_vm._v("选择更多内容")])]), _vm._v(" "), _c('md-dialog-content', {
+    staticClass: "no-padding layout-column layout-fill"
+  }, [_c('md-tree-view', {
+    attrs: {
+      "nodes": _vm.allItems
+    },
+    on: {
+      "focus": _vm.focusNewItemNode
+    }
+  })], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-button', {
+    staticClass: "md-accent md-raised",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onNewItemConfirm($event)
+      }
+    }
+  }, [_vm._v("确定")]), _vm._v(" "), _c('md-button', {
+    staticClass: "md-warn",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onNewItemCancel($event)
+      }
+    }
+  }, [_vm._v("取消")])], 1)], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-e2b293d2", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e56e38bc\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdChips/mdChip.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38551,7 +39134,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         key: columnIndex
       }, [_vm._v("\n          " + _vm._s(row[column.alias || column.name]) + "\n        ")]) : _vm._e()
     }))
-  }))], 1), _vm._v(" "), _c('md-table-tool', [_c('span', {
+  }))], 1), _vm._v(" "), _c('md-table-tool', [_c('md-query-case', {
+    ref: "queryCase",
+    attrs: {
+      "md-query-id": _vm.mdQueryId
+    },
+    on: {
+      "init": _vm.initQueryCase
+    }
+  }, [_c('md-button', {
+    staticClass: "md-icon-button",
+    nativeOn: {
+      "click": function($event) {
+        _vm.openQueryCase()
+      }
+    }
+  }, [_c('md-icon', [_vm._v("search")])], 1)], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-table-pagination', {
     attrs: {
@@ -43146,6 +43744,15 @@ module.exports = Component.exports
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mdQuery_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__mdQuery_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCase.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue__);
+
+
+
 
 
 
@@ -43153,6 +43760,9 @@ module.exports = Component.exports
 function install(Vue) {
   Vue.component('mdQuery', __WEBPACK_IMPORTED_MODULE_0__mdQuery_vue___default.a);
   Vue.component('mdQueryCase', __WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue___default.a);
+  Vue.component('mdQueryCaseWhere', __WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue___default.a);
+  Vue.component('mdQueryCaseOrder', __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue___default.a);
+  Vue.component('mdQueryCaseField', __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue___default.a);
 }
 
 /***/ }),
@@ -43228,6 +43838,129 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-58366fd3", Component.options)
   } else {
     hotAPI.reload("data-v-58366fd3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e2b293d2\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue"),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\gmf-sys\\components\\mdQuery\\mdQueryCaseField.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] mdQueryCaseField.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e2b293d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-e2b293d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2be6526b\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue"),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\gmf-sys\\components\\mdQuery\\mdQueryCaseOrder.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] mdQueryCaseOrder.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2be6526b", Component.options)
+  } else {
+    hotAPI.reload("data-v-2be6526b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-099c1384\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue"),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\gmf-sys\\components\\mdQuery\\mdQueryCaseWhere.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] mdQueryCaseWhere.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-099c1384", Component.options)
+  } else {
+    hotAPI.reload("data-v-099c1384", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
