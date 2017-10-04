@@ -3895,7 +3895,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       },
       refInfo: {},
       refData: [],
-      loading: 0
+      loading: 0,
+      caseModel: {}
     };
   },
 
@@ -3905,6 +3906,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     initQueryCase: function initQueryCase(options, promise) {
       promise && promise.resolve(true);
+    },
+    queryQueryCase: function queryQueryCase(caseModel) {
+      this.caseModel = caseModel;
+      this.pagination(1);
     },
     onTablePagination: function onTablePagination(pager) {
       this.pagination(pager);
@@ -3921,21 +3926,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     pagination: function pagination(pager) {
       var _this2 = this;
 
-      this.$emit('init', this.options);
-
-      this.selectedRows = [];
-      if (this.$refs['table'] && this.$refs['table'].$data) {
-        this.$refs['table'].$data.selectedRows = {};
-      }
       if (__WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isString(pager) || __WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isNumber(pager)) {
         pager = this._.extend({}, this.pageInfo, { page: pager });
       } else {
         pager = pager || this.pageInfo;
       }
+      var options = this._.extend({}, {}, this.options, this.caseModel, pager);
+      this.$emit('init', options);
+      this.selectedRows = [];
+      if (this.$refs['table'] && this.$refs['table'].$data) {
+        this.$refs['table'].$data.selectedRows = {};
+      }
       this.loading++;
-      var params = {};
-      this._.extend(params, this.options, pager);
-      this.$http.post('sys/queries/query/' + this.mdQueryId, params).then(function (response) {
+      this.$http.post('sys/queries/query/' + this.mdQueryId, options).then(function (response) {
         _this2.refInfo = response.data.schema;
         _this2.refData = response.data.data;
         _this2.pageInfo.size = response.data.pager.size;
@@ -3970,6 +3973,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -4073,7 +4077,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     query: function query() {
-      this.$emit('query', this.options);
+      var caseModel = this.getQueryCase();
+      this.$emit('query', caseModel);
       this.$refs.caseDialog.close();
     },
     open: function open() {
@@ -4090,31 +4095,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onClose: function onClose() {
       this.$emit('close', this.options);
     },
+    cleanCase: function cleanCase() {
+      var caseModel = this.getEmptyCase();
+      this.$emit('query', caseModel);
+      this.$refs.caseDialog.close();
+    },
+    getEmptyCase: function getEmptyCase() {
+      var qc = {
+        size: this.options.size,
+        name: this.options.name,
+        comment: this.options.comment,
+        type_enum: this.options.type_enum,
+        wheres: { case: { items: [], boolean: 'and' } },
+        orders: [],
+        fields: []
+      };
+      return qc;
+    },
     getQueryCase: function getQueryCase() {
       var _this2 = this;
 
-      var qc = { wheres: [], orders: [], columns: [] };
+      var qc = this.getEmptyCase();
       this._.each(this.options.wheres, function (v) {
-        if (v.value) {
-          var item = _this2.formatCaseWhereItem(v);
-          if (item) qc.wheres.push(item);
-        }
+        var item = _this2.formatCaseWhereItem(v);
+        if (item) qc.wheres.case.items.push(item);
+      });
+      this._.each(this.options.orders, function (v) {
+        qc.orders.push({ name: v.name, direction: v.direction, comment: v.comment });
+      });
+      this._.each(this.options.fields, function (v) {
+        qc.fields.push({ name: v.name, comment: v.comment });
       });
       return qc;
     },
     formatCaseWhereItem: function formatCaseWhereItem(where) {
+      if (!where || !where.value) return false;
       var has = false;
-      var whereItem = { name: where.name, comment: where.comment };
+      var whereItem = { name: where.name, comment: where.comment, value: where.value };
       if (where.operator) {
         whereItem.operator = where.operator;
       }
-      if (where.type == 'ref' && where.value) {
+      if (where.type_type == 'ref' && where.value) {
         whereItem.value = this.getRefWhereItemValue(where);
-        if (whereItem.value !== false) {
-          has = true;
+        if (whereItem.value === false) {
+          return false;
         }
       }
-      return has ? whereItem : false;
+      if (whereItem.value === false) {
+        return false;
+      }
+      return whereItem;
     },
     getRefWhereItemValue: function getRefWhereItemValue(where) {
       var valueField = 'id',
@@ -4137,13 +4167,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return value;
     }
   },
-  created: function created() {
-    var _this3 = this;
-
-    this.options.getQueryCase = function () {
-      return _this3.getQueryCase();
-    };
-  },
+  created: function created() {},
   mounted: function mounted() {}
 });
 
@@ -4196,7 +4220,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4206,31 +4229,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      allItems: [],
       selectItems: []
     };
   },
 
   methods: {
-    loadAllNodes: function loadAllNodes(entity_id, nodes) {
-      var _this = this;
-
-      if (!entity_id) {
-        return;
-      }
-      this.$http.get('sys/entities/' + entity_id).then(function (response) {
-        _this._.forEach(response.data.data.fields, function (v, k) {
-          var item = {
-            field: v.name,
-            name: v.comment || v.name,
-            type_id: v.type.id,
-            type_name: v.type.name,
-            childs: []
-          };
-          nodes.push(item);
-        });
-      }, function (response) {});
-    },
     onItemSelect: function onItemSelect(datas) {
       this.selectItems = datas;
     },
@@ -4238,21 +4241,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$refs.newItemDialog.open();
     },
     onItemRemove: function onItemRemove() {},
-    onNewItemDialogOpen: function onNewItemDialogOpen() {
-      this.allItems.splice(0, this.allItems.length);
-      this.loadAllNodes(this.options.entity_id, this.allItems);
-    },
     onNewItemConfirm: function onNewItemConfirm() {
-      var selectedItems = this.$refs.newItemDialog.selecteds;
+      var _this = this;
+
+      var selectedItems = this.$refs.onNewItemTree.getItems();
+      this._.forEach(selectedItems, function (v, k) {
+        var need = false,
+            item = _this.formatFieldToColumn(v);
+        _this._.forEach(_this.options.fields, function (va, ka) {
+          if (va.name == item.name) {
+            need = true;
+          }
+        });
+        if (need === false) {
+          _this.options.fields.push(item);
+        }
+      });
       this.$refs.newItemDialog.close();
     },
     onNewItemCancel: function onNewItemCancel() {
       this.$refs.newItemDialog.close();
     },
-    focusNewItemNode: function focusNewItemNode(node) {
-      if (node.childs.length == 0) {
-        this.loadAllNodes(node.type_id, node.childs);
-      }
+    formatFieldToColumn: function formatFieldToColumn(field) {
+      return {
+        name: field.path,
+        comment: field.path_name,
+        type_id: field.type_id,
+        type_name: field.type_name,
+        type_type: field.type_type
+      };
     }
   },
   created: function created() {},
@@ -4304,6 +4321,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4311,17 +4337,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      allItems: []
+      selectItems: []
     };
   },
 
   methods: {
-    onItemSelect: function onItemSelect(datas) {},
+    onItemSelect: function onItemSelect(datas) {
+      this.selectItems = datas;
+    },
     onItemAdd: function onItemAdd() {
       this.$refs.newItemDialog.open();
     },
-    onNewItemDialogOpen: function onNewItemDialogOpen() {},
     onItemRemove: function onItemRemove() {},
+    onNewItemConfirm: function onNewItemConfirm() {
+      var _this = this;
+
+      var selectedItems = this.$refs.onNewItemTree.getItems();
+      this._.forEach(selectedItems, function (v, k) {
+        var need = false,
+            item = _this.formatFieldToOrder(v);
+        _this._.forEach(_this.options.orders, function (va, ka) {
+          if (va.name == item.name) {
+            need = true;
+          }
+        });
+        if (need === false) {
+          _this.options.orders.push(item);
+        }
+      });
+      this.$refs.newItemDialog.close();
+    },
+    onNewItemCancel: function onNewItemCancel() {
+      this.$refs.newItemDialog.close();
+    },
+    formatFieldToOrder: function formatFieldToOrder(field) {
+      return {
+        name: field.path,
+        comment: field.path_name,
+        type_id: field.type_id,
+        type_name: field.type_name,
+        type_type: field.type_type,
+        direction: 'desc'
+      };
+    },
     orderFieldSwap: function orderFieldSwap(item, event) {
       item.direction = item.direction === 'desc' ? 'asc' : 'desc';
     }
@@ -4387,6 +4445,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4394,7 +4454,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      allItems: [],
       selectItems: []
     };
   },
@@ -4407,18 +4466,139 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$refs.newItemDialog.open();
     },
     onItemRemove: function onItemRemove() {},
-    onNewItemDialogOpen: function onNewItemDialogOpen() {},
     onNewItemConfirm: function onNewItemConfirm() {
+      var _this = this;
+
+      var selectedItems = this.$refs.onNewItemTree.getItems();
+      this._.forEach(selectedItems, function (v, k) {
+        var need = false,
+            item = _this.formatFieldToWhere(v);
+        _this._.forEach(_this.options.wheres, function (va, ka) {
+          if (va.name == item.name) {
+            need = true;
+          }
+        });
+        if (need === false) {
+          _this.options.wheres.push(item);
+        }
+      });
       this.$refs.newItemDialog.close();
     },
     onNewItemCancel: function onNewItemCancel() {
       this.$refs.newItemDialog.close();
     },
-    focusNewItemNode: function focusNewItemNode(node) {},
-    selectNewItemNodes: function selectNewItemNodes(nodes) {}
+    formatFieldToWhere: function formatFieldToWhere(field) {
+      var item = {
+        name: field.path,
+        comment: field.path_name,
+        type_id: field.type_id,
+        type_name: field.type_name,
+        type_type: field.type_type
+      };
+      if (field.type_type === 'entity') {
+        item.type_enum = 'ref';
+        item.ref_id = field.type_name + '.ref';
+      } else if (field.type_type === 'enum') {
+        item.type_enum = 'enum';
+        item.ref_id = field.type_name;
+      } else if (field.type_type === 'dateTime' || field.type_type === 'date' || field.type_type === 'time' || field.type_type === 'timestamp') {
+        item.type_enum = 'date';
+      } else {
+        item.type_enum = field.type_type;
+      }
+      return item;
+    }
   },
   created: function created() {},
   mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    mdEntityId: {
+      type: String
+    }
+  },
+  watch: {
+    mdEntityId: function mdEntityId(val) {
+      this.loadAllNodes();
+    }
+  },
+  data: function data() {
+    return {
+      node: {
+        type_id: '',
+        path: '',
+        path_name: '',
+        childs: []
+      }
+    };
+  },
+
+  methods: {
+    loadAllNodes: function loadAllNodes() {
+      this.node.type_id = this.mdEntityId;
+      this.loadEntityNodes(this.node);
+    },
+    loadEntityNodes: function loadEntityNodes(parentNode) {
+      var _this = this;
+
+      if (!parentNode || !parentNode.type_id) {
+        return;
+      }
+      if (!parentNode.childs || parentNode.childs.length > 1) {
+        return;
+      }
+      this.$http.get('sys/entities/' + parentNode.type_id).then(function (response) {
+        parentNode.childs.splice(0, parentNode.childs.length);
+        _this._.forEach(response.data.data.fields, function (v, k) {
+          var item = {
+            field: v.name,
+            name: v.comment || v.name,
+            type_id: v.type.id,
+            type_name: v.type.name,
+            type_type: v.type.type
+          };
+          item.path = item.field;
+          item.path_name = item.name;
+          if (v.type.type === 'entity') {
+            item.childs = [];
+          }
+          if (parentNode.path) {
+            item.path = parentNode.path + '.' + item.path;
+          }
+          if (parentNode.path_name) {
+            item.path_name = parentNode.path_name + '.' + item.path_name;
+          }
+          parentNode.childs.push(item);
+        });
+      }, function (response) {});
+    },
+    getItems: function getItems() {
+      return this.$refs.tree.selecteds;
+    },
+    focusNewItemNode: function focusNewItemNode(node) {
+      if (node.type_type === 'entity') {
+        this.loadEntityNodes(node);
+      }
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.loadAllNodes();
+  }
 });
 
 /***/ }),
@@ -4578,7 +4758,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         size: 0,
         total: 0,
         page: 1
-      }
+      },
+      caseModel: {}
     };
   },
 
@@ -4605,6 +4786,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     initQueryCase: function initQueryCase(options, promise) {
       promise && promise.resolve(true);
     },
+    queryQueryCase: function queryQueryCase(caseModel) {
+      this.caseModel = caseModel;
+      this.pagination(1);
+    },
     onRefOpen: function onRefOpen() {
       this.selectedRows = [];
       this.$refs['table'].$data.selectedRows = {};
@@ -4617,7 +4802,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onRefClose: function onRefClose() {},
     doFetch: function doFetch(q) {
       if (this.currentQ != q && this.autoquery) {
-        this.doQuery({ q: q });
+        this.currentQ = q;
+        this.pagination(1);
       }
       this.currentQ = q;
     },
@@ -4625,22 +4811,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (this.autoquery && isMana) {
         this.autoquery = false;
       }
-      this.doQuery({ q: this.currentQ });
+      this.pagination(1);
     },
     onTablePagination: function onTablePagination(pager) {
+      this.pagination(pager);
+    },
+    pagination: function pagination(pager) {
+      var _this = this;
+
       if (__WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isString(pager) || __WEBPACK_IMPORTED_MODULE_1__core_utils_common__["a" /* default */].isNumber(pager)) {
         pager = this._.extend({}, this.pageInfo, { page: pager });
       } else {
         pager = pager || this.pageInfo;
       }
-      this.doQuery(pager);
-    },
-    doQuery: function doQuery(params) {
-      var _this = this;
-
-      params = this._.extend({}, this.pageInfo, this.options, params);
+      var options = this._.extend({}, { q: this.currentQ }, this.options, this.caseModel, pager);
+      this.$emit('init', options);
       if (this.mdRefId) {
-        this.$http.post('sys/queries/query/' + this.mdRefId, params).then(function (response) {
+        this.$http.post('sys/queries/query/' + this.mdRefId, options).then(function (response) {
           _this.refInfo = response.data.schema;
           _this.refData = response.data.data;
           _this.pageInfo.size = response.data.pager.size;
@@ -23674,9 +23861,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "md-auto-select": false,
         "md-selection": true
       }
-    }, [_c('md-table-cell', [_vm._v(_vm._s(item.comment || item.name))]), _vm._v(" "), _c('md-table-cell', [_vm._v(_vm._s(item.operator_enum))]), _vm._v(" "), _c('md-table-cell', [_c('div', {
-      staticClass: "input"
-    }, [(item.type_enum == 'value') ? _c('md-input', {
+    }, [_c('md-table-cell', [_vm._v(_vm._s(item.comment || item.name))]), _vm._v(" "), _c('md-table-cell', [_vm._v(_vm._s(item.operator_enum))]), _vm._v(" "), _c('md-table-cell', [_c('md-input-container', [(item.type_enum == 'value') ? _c('md-input', {
       model: {
         value: (item.value),
         callback: function($$v) {
@@ -23687,6 +23872,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }) : (item.type_enum == 'ref') ? _c('md-input-ref', {
       attrs: {
         "md-ref-id": item.ref_id
+      },
+      model: {
+        value: (item.value),
+        callback: function($$v) {
+          item.value = $$v
+        },
+        expression: "item.value"
+      }
+    }) : (item.type_enum == 'enum') ? _c('md-enum', {
+      attrs: {
+        "md-enum-id": item.ref_id
       },
       model: {
         value: (item.value),
@@ -23711,15 +23907,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         },
         expression: "item.value"
       }
-    })], 1)])], 1)
+    })], 1)], 1)], 1)
   }))], 1), _vm._v(" "), _c('md-table-tool', [_c('md-button', {
-    staticClass: "md-icon-button",
-    nativeOn: {
-      "click": function($event) {
-        _vm.onItemAdd()
-      }
-    }
-  }, [_c('md-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('md-button', {
     staticClass: "md-icon-button",
     nativeOn: {
       "click": function($event) {
@@ -23728,20 +23917,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('md-icon', [_vm._v("clear")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  })], 1)], 1), _vm._v(" "), _c('md-dialog', {
-    ref: "newItemDialog",
-    on: {
-      "open": _vm.onNewItemDialogOpen
+  })], 1), _vm._v(" "), _c('md-button', {
+    staticClass: "md-fab md-mini md-fab-bottom-right",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemAdd()
+      }
     }
-  }, [_c('md-dialog-content', {
+  }, [_c('md-icon', [_vm._v("add")])], 1)], 1), _vm._v(" "), _c('md-dialog', {
+    ref: "newItemDialog"
+  }, [_c('md-toolbar', [_c('h1', {
+    staticClass: "md-title"
+  }, [_vm._v("选择更多内容")])]), _vm._v(" "), _c('md-dialog-content', {
     staticClass: "no-padding layout-column layout-fill"
-  }, [_c('md-tree-view', {
+  }, [_c('md-query-field', {
+    ref: "onNewItemTree",
     attrs: {
-      "nodes": _vm.allItems
-    },
-    on: {
-      "focus": _vm.focusNewItemNode,
-      "select": _vm.selectNewItemNodes
+      "md-entity-id": _vm.options.entity_id
     }
   })], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
     staticClass: "flex"
@@ -26695,26 +26887,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "md-icon-button",
     nativeOn: {
       "click": function($event) {
-        _vm.onItemAdd()
-      }
-    }
-  }, [_c('md-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('md-button', {
-    staticClass: "md-icon-button",
-    nativeOn: {
-      "click": function($event) {
         _vm.onItemRemove()
       }
     }
   }, [_c('md-icon', [_vm._v("clear")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  })], 1)], 1), _vm._v(" "), _c('md-dialog', {
-    ref: "newItemDialog",
-    on: {
-      "open": _vm.onNewItemDialogOpen
+  })], 1), _vm._v(" "), _c('md-button', {
+    staticClass: "md-fab md-mini md-fab-bottom-right",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemAdd()
+      }
     }
-  }, [_c('md-dialog-content', {
+  }, [_c('md-icon', [_vm._v("add")])], 1)], 1), _vm._v(" "), _c('md-dialog', {
+    ref: "newItemDialog"
+  }, [_c('md-toolbar', [_c('h1', {
+    staticClass: "md-title"
+  }, [_vm._v("选择更多内容")])]), _vm._v(" "), _c('md-dialog-content', {
     staticClass: "no-padding layout-column layout-fill"
-  })], 1)], 1)
+  }, [_c('md-query-field', {
+    ref: "onNewItemTree",
+    attrs: {
+      "md-entity-id": _vm.options.entity_id
+    }
+  })], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
+    staticClass: "flex"
+  }), _vm._v(" "), _c('md-button', {
+    staticClass: "md-accent md-raised",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onNewItemConfirm($event)
+      }
+    }
+  }, [_vm._v("确定")]), _vm._v(" "), _c('md-button', {
+    staticClass: "md-warn",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onNewItemCancel($event)
+      }
+    }
+  }, [_vm._v("取消")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -31600,6 +31812,30 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-56bda432\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('md-tree-view', {
+    ref: "tree",
+    attrs: {
+      "nodes": _vm.node.childs
+    },
+    on: {
+      "focus": _vm.focusNewItemNode
+    }
+  })
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-56bda432", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-577fd050\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdCard/mdCardMediaActions.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31768,7 +32004,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "options": _vm.options
     }
-  })], 1)], 1) : _vm._e()], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
+  })], 1)], 1) : _vm._e()], 1)], 1), _vm._v(" "), _c('md-dialog-actions', [_c('md-button', {
+    staticClass: "md-warn",
+    nativeOn: {
+      "click": function($event) {
+        _vm.cleanCase($event)
+      }
+    }
+  }, [_vm._v("不使用方案查询")]), _vm._v(" "), _c('span', {
     staticClass: "flex"
   }), _vm._v(" "), _c('md-button', {
     staticClass: "md-accent md-raised",
@@ -33394,7 +33637,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-query-id": _vm.mdRefId
     },
     on: {
-      "init": _vm.initQueryCase
+      "init": _vm.initQueryCase,
+      "query": _vm.queryQueryCase
     }
   }, [_c('md-button', {
     staticClass: "md-icon-button",
@@ -38444,33 +38688,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "md-icon-button",
     nativeOn: {
       "click": function($event) {
-        _vm.onItemAdd()
-      }
-    }
-  }, [_c('md-icon', [_vm._v("add")])], 1), _vm._v(" "), _c('md-button', {
-    staticClass: "md-icon-button",
-    nativeOn: {
-      "click": function($event) {
         _vm.onItemRemove()
       }
     }
   }, [_c('md-icon', [_vm._v("clear")])], 1), _vm._v(" "), _c('span', {
     staticClass: "flex"
-  })], 1)], 1), _vm._v(" "), _c('md-dialog', {
-    ref: "newItemDialog",
-    on: {
-      "open": _vm.onNewItemDialogOpen
+  })], 1), _vm._v(" "), _c('md-button', {
+    staticClass: "md-fab md-mini md-fab-bottom-right",
+    nativeOn: {
+      "click": function($event) {
+        _vm.onItemAdd()
+      }
     }
+  }, [_c('md-icon', [_vm._v("add")])], 1)], 1), _vm._v(" "), _c('md-dialog', {
+    ref: "newItemDialog"
   }, [_c('md-toolbar', [_c('h1', {
     staticClass: "md-title"
   }, [_vm._v("选择更多内容")])]), _vm._v(" "), _c('md-dialog-content', {
     staticClass: "no-padding layout-column layout-fill"
-  }, [_c('md-tree-view', {
+  }, [_c('md-query-field', {
+    ref: "onNewItemTree",
     attrs: {
-      "nodes": _vm.allItems
-    },
-    on: {
-      "focus": _vm.focusNewItemNode
+      "md-entity-id": _vm.options.entity_id
     }
   })], 1), _vm._v(" "), _c('md-dialog-actions', [_c('span', {
     staticClass: "flex"
@@ -39140,7 +39379,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "md-query-id": _vm.mdQueryId
     },
     on: {
-      "init": _vm.initQueryCase
+      "init": _vm.initQueryCase,
+      "query": _vm.queryQueryCase
     }
   }, [_c('md-button', {
     staticClass: "md-icon-button",
@@ -43742,14 +43982,16 @@ module.exports = Component.exports
 /* harmony export (immutable) */ __webpack_exports__["a"] = install;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mdQuery_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQuery.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mdQuery_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__mdQuery_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCase.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mdQueryField_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mdQueryField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mdQueryField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mdQueryCase_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCase.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mdQueryCase_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mdQueryCase_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseWhere_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseWhere.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseWhere_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__mdQueryCaseWhere_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseOrder_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseOrder.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseOrder_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__mdQueryCaseOrder_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mdQueryCaseField_vue__ = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryCaseField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mdQueryCaseField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__mdQueryCaseField_vue__);
 
 
 
@@ -43759,10 +44001,11 @@ module.exports = Component.exports
 
 function install(Vue) {
   Vue.component('mdQuery', __WEBPACK_IMPORTED_MODULE_0__mdQuery_vue___default.a);
-  Vue.component('mdQueryCase', __WEBPACK_IMPORTED_MODULE_1__mdQueryCase_vue___default.a);
-  Vue.component('mdQueryCaseWhere', __WEBPACK_IMPORTED_MODULE_2__mdQueryCaseWhere_vue___default.a);
-  Vue.component('mdQueryCaseOrder', __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseOrder_vue___default.a);
-  Vue.component('mdQueryCaseField', __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseField_vue___default.a);
+  Vue.component('mdQueryField', __WEBPACK_IMPORTED_MODULE_1__mdQueryField_vue___default.a);
+  Vue.component('mdQueryCase', __WEBPACK_IMPORTED_MODULE_2__mdQueryCase_vue___default.a);
+  Vue.component('mdQueryCaseWhere', __WEBPACK_IMPORTED_MODULE_3__mdQueryCaseWhere_vue___default.a);
+  Vue.component('mdQueryCaseOrder', __WEBPACK_IMPORTED_MODULE_4__mdQueryCaseOrder_vue___default.a);
+  Vue.component('mdQueryCaseField', __WEBPACK_IMPORTED_MODULE_5__mdQueryCaseField_vue___default.a);
 }
 
 /***/ }),
@@ -43961,6 +44204,47 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-099c1384", Component.options)
   } else {
     hotAPI.reload("data-v-099c1384", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")(
+  /* script */
+  __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryField.vue"),
+  /* template */
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-56bda432\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/components/mdQuery/mdQueryField.vue"),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "F:\\project\\suite\\suite-laravel\\resources\\assets\\js\\vendor\\gmf-sys\\components\\mdQuery\\mdQueryField.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] mdQueryField.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-56bda432", Component.options)
+  } else {
+    hotAPI.reload("data-v-56bda432", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
