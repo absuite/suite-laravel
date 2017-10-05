@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 use Auth;
 use Gmf\Sys\Builder;
+use Gmf\Sys\Libs\APIResult;
 use Gmf\Sys\Libs\InputHelper;
-use Gmf\Sys\Models as SysModels;
 use Illuminate\Http\Request;
 use Suite\Amiba\Models as AmibaModels;
 use Suite\Cbo\Models as CboModels;
@@ -16,7 +16,8 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth')->except('test');
+		$this->middleware('auth')->except('test', 'getConfig');
+		$this->middleware(['auth:api', 'ent_check'])->only('getConfig');
 	}
 	public function test(Request $request) {
 		$names = [];
@@ -43,82 +44,98 @@ class HomeController extends Controller {
 	 */
 	public function index(Request $request) {
 		$user = Auth::user();
-		$config = $this->getConfig($request, $user);
-		$entId = config('gmf.ent.id');
-		if ($entId) {
-			$ent = SysModels\Ent::find($entId);
-		}
-		$request->session()->put(config('gmf.ent_session_name'), $entId);
-		if (stripos($_SERVER['HTTP_USER_AGENT'], "android") != false || stripos($_SERVER['HTTP_USER_AGENT'], "ios") != false || stripos($_SERVER['HTTP_USER_AGENT'], "wp") != false) {
-			$config->is_mobile(true);
-		}
-		$token = $this->issueDcToken($request, $config);
-		$config->token($token);
+		$config = $this->issueConfig($request, $user);
+		$request->session()->put(config('gmf.ent_session_name'), $config->entId);
 		return view('gmf::app', ['config' => $config]);
 	}
-	private function issueDcToken(Request $request, $config) {
+	public function getConfig(Request $request) {
+		$user = Auth::user();
+		$config = $this->issueConfig($request, $user);
+		return APIResult::json($config);
+	}
+	private function issueDcToken(Request $request) {
 		$user = Auth::user();
 		$token = false;
 		$token = $user->createToken($user->type);
-
 		$data = new Builder();
 		$data->expires_in(time($token->token->expires_at));
 		$data->access_token($token->accessToken);
 		return $data;
 	}
-	private function getConfig(Request $request, $user) {
+
+	private function issueConfig(Request $request, $user) {
 		$config = new Builder();
-		$item = new Builder();
-		$tmp = CboModels\Currency::where('code', 'CNY')->first();
+		$entId = $request->oauth_ent_id;
+		if (empty($entId)) {
+			$entId = config('gmf.ent.id');
+		}
+		$config->entId($entId);
+
+		$item = false;
+		$tmp = CboModels\Currency::where('ent_id', $config->entId)->where('code', 'CNY')->first();
+		if (empty($tmp)) {
+			$tmp = CboModels\Currency::where('ent_id', $config->entId)->first();
+		}
 		if ($tmp) {
+			$item = new Builder();
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name)->symbol($tmp->symbol);
 		}
 		$config->currency($item);
 
-		$item = new Builder();
+		$item = false;
 		$tmp = CboModels\Country::where('code', 'CHN')->first();
+
 		if ($tmp) {
+			$item = new Builder();
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name);
 		}
 		$config->country($item);
 
-		$item = new Builder();
-		$tmp = AmibaModels\Purpose::with('calendar')->where('code', 'ob01')->first();
+		$item = false;
+		$tmp = AmibaModels\Purpose::where('ent_id', $config->entId)->with('calendar')->where('code', 'ob01')->first();
+		if (empty($tmp)) {
+			$tmp = AmibaModels\Purpose::where('ent_id', $config->entId)->with('calendar')->first();
+		}
 		if ($tmp) {
+			$item = new Builder();
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name)->calendar_id($tmp->calendar_id);
 		}
 		$config->purpose($item);
 
-		$item = new Builder();
-		$item = new Builder();
+		$item = false;
 		if (!empty($config->purpose->calendar_id)) {
-			$tmp = CboModels\PeriodCalendar::where('id', $config->purpose->calendar_id)->first();
+			$item = new Builder();
+			$tmp = CboModels\PeriodCalendar::where('ent_id', $config->entId)->where('id', $config->purpose->calendar_id)->first();
 		} else {
-			$tmp = CboModels\PeriodCalendar::where('code', 'month')->first();
+			$item = new Builder();
+			$tmp = CboModels\PeriodCalendar::where('ent_id', $config->entId)->where('code', 'month')->first();
 		}
 		if ($tmp) {
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name);
 		}
 		$config->calendar($item);
 
-		$item = new Builder();
+		$item = false;
 		if (!empty($config->calendar_id)) {
-			$tmp = CboModels\PeriodAccount::where('code', date('Ym'))->where('calendar_id', $config->calendar_id)->first();
+			$tmp = CboModels\PeriodAccount::where('ent_id', $config->entId)->where('code', date('Ym'))->where('calendar_id', $config->calendar_id)->first();
 		} else {
-			$tmp = CboModels\PeriodAccount::where('code', date('Ym'))->first();
+			$tmp = CboModels\PeriodAccount::where('ent_id', $config->entId)->where('code', date('Ym'))->first();
 		}
 		if ($tmp) {
+			$item = new Builder();
 			$item->id($tmp->id)->code($tmp->code)->name($tmp->name)->from_date($tmp->from_date)->to_date($tmp->to_date);
 		}
 		$config->period($item);
 
 		$config->date(date('Y-m-d'));
 
-		$user = Auth::user();
+		$config->user($user);
 
-		if ($user) {
-			$config->user($user);
+		if (stripos($_SERVER['HTTP_USER_AGENT'], "android") != false || stripos($_SERVER['HTTP_USER_AGENT'], "ios") != false || stripos($_SERVER['HTTP_USER_AGENT'], "wp") != false) {
+			$config->is_mobile(true);
 		}
+		$token = $this->issueDcToken($request);
+		$config->token($token);
 		return $config;
 	}
 	public function home(Request $request) {

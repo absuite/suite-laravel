@@ -14,4 +14,4 @@ Route::get('/', ['uses' => 'HomeController@home']);
 
 Route::any('/test', ['uses' => 'HomeController@test']);
 
-Route::get('/{page?}', ['uses' => 'HomeController@index'])->where('page', '^(?!js\/|gapi\/|css\/|dist\/).*$');
+Route::get('/{page?}', ['uses' => 'HomeController@index'])->where('page', '^(?!js\/|api\/|css\/|dist\/).*$');
