@@ -5,7 +5,9 @@ use Auth;
 use Gmf\Sys\Builder;
 use Gmf\Sys\Libs\APIResult;
 use Gmf\Sys\Libs\InputHelper;
+use Gmf\Sys\Models\Ent;
 use Illuminate\Http\Request;
+use Log;
 use Suite\Amiba\Models as AmibaModels;
 use Suite\Cbo\Models as CboModels;
 
@@ -17,7 +19,8 @@ class HomeController extends Controller {
 	 */
 	public function __construct() {
 		$this->middleware('auth')->except('test', 'getConfig');
-		$this->middleware(['auth:api', 'ent_check'])->only('getConfig');
+		//$this->middleware(['auth:api', 'ent_check'])->only('getConfig');
+		$this->middleware(['auth', 'ent_check'])->only('getConfig');
 	}
 	public function test(Request $request) {
 		$names = [];
@@ -45,7 +48,9 @@ class HomeController extends Controller {
 	public function index(Request $request) {
 		$user = Auth::user();
 		$config = $this->issueConfig($request, $user);
-		$request->session()->put(config('gmf.ent_session_name'), $config->entId);
+		if ($request->input('getconfig') == "1") {
+			return json_encode($config);
+		}
 		return view('gmf::app', ['config' => $config]);
 	}
 	public function getConfig(Request $request) {
@@ -67,9 +72,18 @@ class HomeController extends Controller {
 		$config = new Builder();
 		$entId = $request->oauth_ent_id;
 		if (empty($entId)) {
+			$entId = session(config('gmf.ent_session_name'));
+			Log::error('get current ent id:' . $entId);
+			if ($entId && empty(Ent::find($entId))) {
+				$entId = null;
+			}
+		}
+		if (empty($entId)) {
 			$entId = config('gmf.ent.id');
 		}
 		$config->entId($entId);
+		session([config('gmf.ent_session_name') => $entId]);
+		Log::error('set current ent id:' . $entId);
 
 		$item = false;
 		$tmp = CboModels\Currency::where('ent_id', $config->entId)->where('code', 'CNY')->first();

@@ -13,5 +13,5 @@
 Route::get('/', ['uses' => 'HomeController@home']);
 
 Route::any('/test', ['uses' => 'HomeController@test']);
-
+Route::get('getconfig', ['uses' => 'HomeController@getConfig']);
 Route::get('/{page?}', ['uses' => 'HomeController@index'])->where('page', '^(?!js\/|api\/|css\/|dist\/).*$');
