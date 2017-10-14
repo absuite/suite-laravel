@@ -31493,7 +31493,7 @@ var render = function() {
                   _c("label", [_vm._v("编码")]),
                   _vm._v(" "),
                   _c("md-input", {
-                    attrs: { required: "", maxlength: "10" },
+                    attrs: { required: "" },
                     model: {
                       value: _vm.model.main.code,
                       callback: function($$v) {
