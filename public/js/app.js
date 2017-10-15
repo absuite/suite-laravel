@@ -103,7 +103,8 @@ exports.default = {
     cacheKey: { default: null },
     cacheLifetime: { default: 5 },
     filterPlaceholder: { default: 'Filter table…' },
-    filterNoResults: { default: '暂无数据！' }
+    filterNoResults: { default: '暂无数据！' },
+    pagerSize: { default: 20, type: Number }
   },
 
   data: function data() {
@@ -132,6 +133,9 @@ exports.default = {
     };
   },
   watch: {
+    pagerSize: function pagerSize(v) {
+      this.pager.size = v;
+    },
     filter: function filter() {
       this.mapDataToRows();
       this.saveState();
@@ -581,22 +585,23 @@ exports.default = {
                 });
               }
               _this8.width = _this8.getWidth();
+              _this8.pager.size = _this8.pagerSize;
 
               if (!_this8.autoLoad) {
-                _context5.next = 5;
+                _context5.next = 6;
                 break;
               }
 
-              _context5.next = 5;
+              _context5.next = 6;
               return _this8.mapDataToRows();
 
-            case 5:
+            case 6:
               _this8.$nextTick(function () {
                 _this8.canFireEvents = true;
                 _this8.refreshStatus();
               });
 
-            case 6:
+            case 7:
             case 'end':
               return _context5.stop();
           }
@@ -13264,21 +13269,24 @@ exports.default = {
   },
 
   methods: {
-    loadDatas: function loadDatas() {
+    loadDatas: function loadDatas(_ref) {
       var _this = this;
 
+      var pager = _ref.pager;
       return _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        var params;
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this.$http.get('sys/dtis', { params: { date: _this.model.date } });
-
-              case 2:
-                return _context.abrupt('return', _context.sent);
+                params = _this._.extend({}, pager, { date: _this.model.date });
+                _context.next = 3;
+                return _this.$http.get('sys/dtis', { params: params });
 
               case 3:
+                return _context.abrupt('return', _context.sent);
+
+              case 4:
               case 'end':
                 return _context.stop();
             }
@@ -39759,6 +39767,7 @@ var render = function() {
               ref: "grid",
               attrs: {
                 datas: _vm.loadDatas,
+                pagerSize: 50,
                 "row-focused": false,
                 "auto-load": true
               }
