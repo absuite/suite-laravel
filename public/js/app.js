@@ -988,7 +988,8 @@ exports.default = {
       return {
         'is-tool': this.column && this.column.isTool,
         'md-grid-selection': this.selection,
-        'cell-focused': this.focused
+        'cell-focused': this.focused,
+        'multiple': this.column && this.column.multiple
       };
     },
     editable: function editable() {
@@ -1114,6 +1115,7 @@ exports.default = {
         field: { required: false, type: String },
         label: { default: null, type: String },
         dataType: { default: 'string', type: String },
+        multiple: { default: false, type: Boolean },
 
         refType: { default: '', type: String },
         refId: { default: '', type: String },
@@ -13203,11 +13205,52 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _regenerator = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
 var _common = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
 
 var _common2 = _interopRequireDefault(_common);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   data: function data() {
@@ -13216,9 +13259,7 @@ exports.default = {
         date: this.$root.userConfig.date
       },
       loading: 0,
-      is_running: 0,
-      datas: [],
-      selectItems: []
+      is_running: 0
     };
   },
 
@@ -13226,26 +13267,37 @@ exports.default = {
     loadDatas: function loadDatas() {
       var _this = this;
 
-      this.$http.get('sys/dtis', { params: { date: this.model.date } }).then(function (response) {
-        _this.datas = response.data.data;
-      });
-    },
-    onTableSelect: function onTableSelect(items) {
-      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
+        return _regenerator2.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this.$http.get('sys/dtis', { params: { date: _this.model.date } });
 
-      this.selectItems = [];
-      Object.keys(items).forEach(function (row, index) {
-        _this2.selectItems[index] = items[row];
-      });
+              case 2:
+                return _context.abrupt('return', _context.sent);
+
+              case 3:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, _this);
+      }))();
     },
     runAll: function runAll() {
-      for (var i = 0; i < this.selectItems.length; i++) {
-        this.runItem(this.selectItems[i]);
-      }
+      var _this2 = this;
+
+      var rows = this.$refs.grid.getSelectedDatas(true);
+      rows && rows.forEach(function (item) {
+        _this2.runItem(item);
+      });
     },
     runItem: function runItem(item) {
       var _this3 = this;
 
+      if (!item) return;
       item.is_running = true;
       var datas = {
         date: this.model.date,
@@ -13276,60 +13328,8 @@ exports.default = {
     }
   },
   created: function created() {},
-  mounted: function mounted() {
-    this.loadDatas();
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+  mounted: function mounted() {}
+};
 
 /***/ }),
 
@@ -39754,74 +39754,56 @@ var render = function() {
         "md-part-body",
         [
           _c(
-            "md-table-card",
-            { staticClass: "flex md-query" },
+            "md-grid",
+            {
+              ref: "grid",
+              attrs: {
+                datas: _vm.loadDatas,
+                "row-focused": false,
+                "auto-load": true
+              }
+            },
             [
-              _c(
-                "md-table",
-                { staticClass: "flex", on: { select: _vm.onTableSelect } },
-                [
-                  _c(
-                    "md-table-header",
-                    [
-                      _c(
-                        "md-table-row",
-                        [
-                          _c("md-table-head", [_vm._v("分类")]),
-                          _vm._v(" "),
-                          _c("md-table-head", [_vm._v("名称")]),
-                          _vm._v(" "),
-                          _c("md-table-head", [_vm._v("开始时间")]),
-                          _vm._v(" "),
-                          _c("md-table-head", [_vm._v("结束时间")]),
-                          _vm._v(" "),
-                          _c("md-table-head", [_vm._v("状态")]),
-                          _vm._v(" "),
-                          _c("md-table-head", [_vm._v("消息")])
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "md-table-body",
-                    _vm._l(_vm.datas, function(item) {
-                      return _c(
-                        "md-table-row",
-                        {
-                          key: item.id,
-                          attrs: { "md-item": item, "md-selection": true }
-                        },
-                        [
-                          _c("md-table-cell", [
-                            _vm._v(_vm._s(item.category.name))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", [_vm._v(_vm._s(item.name))]),
-                          _vm._v(" "),
-                          _c("md-table-cell", [
-                            _vm._v(_vm._s(item.begin_date))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", [_vm._v(_vm._s(item.end_date))]),
-                          _vm._v(" "),
-                          _c("md-table-cell", [
-                            _vm._v(_vm._s(item.is_running ? "正在执行" : "等待中"))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", [_vm._v(_vm._s(item.msg))])
-                        ],
-                        1
-                      )
-                    })
-                  )
-                ],
-                1
-              ),
+              _c("md-grid-column", {
+                attrs: { label: "分类", field: "category", dataType: "entity" }
+              }),
               _vm._v(" "),
-              _c("md-table-tool", [_c("span", { staticClass: "flex" })])
+              _c("md-grid-column", { attrs: { label: "名称", field: "name" } }),
+              _vm._v(" "),
+              _c("md-grid-column", {
+                attrs: { label: "开始时间", field: "begin_date" }
+              }),
+              _vm._v(" "),
+              _c("md-grid-column", {
+                attrs: { label: "结束时间", field: "begin_date" }
+              }),
+              _vm._v(" "),
+              _c("md-grid-column", {
+                attrs: { label: "状态" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(row) {
+                      return [
+                        _vm._v(
+                          "\n          " +
+                            _vm._s(row.is_running ? "正在执行" : "等待中") +
+                            "\n        "
+                        )
+                      ]
+                    }
+                  }
+                ])
+              }),
+              _vm._v(" "),
+              _c("md-grid-column", {
+                attrs: {
+                  label: "消息",
+                  field: "msg",
+                  width: "500px",
+                  multiple: ""
+                }
+              })
             ],
             1
           ),
@@ -61373,7 +61355,7 @@ var Column = function () {
       width: '150px'
     },
         mixins = (0, _extend2.default)({}, options, columnComponent);
-    var properties = (0, _pick2.default)(mixins, ['field', 'label', 'dataType', 'sortable', 'sortBy', 'filterable', 'editable', 'filterOn', 'hidden', 'formatter', 'cellClass', 'headerClass', 'width', 'isTool', 'refType', 'refId', 'refInit']);
+    var properties = (0, _pick2.default)(mixins, ['field', 'label', 'dataType', 'sortable', 'sortBy', 'filterable', 'editable', 'filterOn', 'hidden', 'formatter', 'cellClass', 'headerClass', 'width', 'isTool', 'refType', 'refId', 'refInit', 'multiple']);
 
     for (var property in properties) {
       this[property] = mixins[property];

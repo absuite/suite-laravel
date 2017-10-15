@@ -4548,6 +4548,11 @@ button:focus {
   border-right-width: 0;
 }
 
+.md-grid td.multiple .md-grid-cell-container,
+.md-grid th.multiple .md-grid-cell-container {
+  white-space: normal;
+}
+
 .md-grid .md-grid-head tr:last-child td,
 .md-grid .md-grid-head tr:last-child th,
 .md-grid .md-grid-foot tr:last-child td,
