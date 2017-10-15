@@ -23761,6 +23761,107 @@ exports.default = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEntityList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      selectRows: [],
+      loading: 0,
+      model: { role: null, entity: null }
+    };
+  },
+
+  watch: {
+    'model.role': function modelRole(value) {
+      this.loadData();
+    },
+    'model.entity': function modelEntity(value) {
+      this.loadData();
+    }
+  },
+  methods: {
+    create: function create() {
+      this.$router.push({ name: 'module', params: { module: 'sys.authority.role.entity.edit' } });
+    },
+    edit: function edit(item) {
+      this.$router.push({ name: 'id', params: { module: 'sys.authority.role.entity.edit', id: item.id } });
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.role = this.model.role;
+      options.wheres.entity = this.model.entity;
+    },
+    remove: function remove() {
+      var _this = this;
+
+      if (!this.selectRows || !this.selectRows.length) {
+        this.$toast(this.$lang.LANG_NODELETEDATA);
+        return;
+      }
+      this.loading++;
+      var ids = this._.map(this.selectRows, 'id').toString();
+      this.$http.delete('sys/role-entities/' + ids).then(function (response) {
+        _this.loadData();
+        _this.loading--;
+        _this.$toast(_this.$lang.LANG_DELETESUCCESS);
+      }, function (response) {
+        _this.$toast(_this.$lang.LANG_DELETEFAIL);
+        _this.loading--;
+      });
+    },
+    select: function select(items) {
+      this.selectRows = items;
+    },
+    loadData: function loadData() {
+      this.$refs.list.pagination(1);
+    }
+  }
+};
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleList.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23810,6 +23911,309 @@ exports.default = {
       this.loading++;
       var ids = this._.map(this.selectRows, 'id').toString();
       this.$http.delete('sys/roles/' + ids).then(function (response) {
+        _this.loadData();
+        _this.loading--;
+        _this.$toast(_this.$lang.LANG_DELETESUCCESS);
+      }, function (response) {
+        _this.$toast(_this.$lang.LANG_DELETEFAIL);
+        _this.loading--;
+      });
+    },
+    select: function select(items) {
+      this.selectRows = items;
+    },
+    loadData: function loadData() {
+      this.$refs.list.pagination(1);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleMenuList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      selectRows: [],
+      loading: 0,
+      model: { role: null, menu: null }
+    };
+  },
+
+  watch: {
+    'model.role': function modelRole(value) {
+      this.loadData();
+    },
+    'model.menu': function modelMenu(value) {
+      this.loadData();
+    }
+  },
+  methods: {
+    create: function create() {
+      this.$router.push({ name: 'module', params: { module: 'sys.authority.role.menu.edit' } });
+    },
+    edit: function edit(item) {
+      this.$router.push({ name: 'id', params: { module: 'sys.authority.role.menu.edit', id: item.id } });
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.role = this.model.role;
+      options.wheres.menu = this.model.menu;
+    },
+    remove: function remove() {
+      var _this = this;
+
+      if (!this.selectRows || !this.selectRows.length) {
+        this.$toast(this.$lang.LANG_NODELETEDATA);
+        return;
+      }
+      this.loading++;
+      var ids = this._.map(this.selectRows, 'id').toString();
+      this.$http.delete('sys/role-menus/' + ids).then(function (response) {
+        _this.loadData();
+        _this.loading--;
+        _this.$toast(_this.$lang.LANG_DELETESUCCESS);
+      }, function (response) {
+        _this.$toast(_this.$lang.LANG_DELETEFAIL);
+        _this.loading--;
+      });
+    },
+    select: function select(items) {
+      this.selectRows = items;
+    },
+    loadData: function loadData() {
+      this.$refs.list.pagination(1);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRolePermitList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      selectRows: [],
+      loading: 0,
+      model: { role: null, permit: null }
+    };
+  },
+
+  watch: {
+    'model.role': function modelRole(value) {
+      this.loadData();
+    },
+    'model.permit': function modelPermit(value) {
+      this.loadData();
+    }
+  },
+  methods: {
+    create: function create() {
+      this.$router.push({ name: 'module', params: { module: 'sys.authority.role.permit.edit' } });
+    },
+    edit: function edit(item) {
+      this.$router.push({ name: 'id', params: { module: 'sys.authority.role.permit.edit', id: item.id } });
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.role = this.model.role;
+      options.wheres.permit = this.model.permit;
+    },
+    remove: function remove() {
+      var _this = this;
+
+      if (!this.selectRows || !this.selectRows.length) {
+        this.$toast(this.$lang.LANG_NODELETEDATA);
+        return;
+      }
+      this.loading++;
+      var ids = this._.map(this.selectRows, 'id').toString();
+      this.$http.delete('sys/role-permits/' + ids).then(function (response) {
+        _this.loadData();
+        _this.loading--;
+        _this.$toast(_this.$lang.LANG_DELETESUCCESS);
+      }, function (response) {
+        _this.$toast(_this.$lang.LANG_DELETEFAIL);
+        _this.loading--;
+      });
+    },
+    select: function select(items) {
+      this.selectRows = items;
+    },
+    loadData: function loadData() {
+      this.$refs.list.pagination(1);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleUserList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      selectRows: [],
+      loading: 0,
+      model: { role: null, user: null }
+    };
+  },
+
+  watch: {
+    'model.role': function modelRole(value) {
+      this.loadData();
+    },
+    'model.user': function modelUser(value) {
+      this.loadData();
+    }
+  },
+  methods: {
+    create: function create() {
+      this.$router.push({ name: 'module', params: { module: 'sys.authority.role.user.edit' } });
+    },
+    edit: function edit(item) {
+      this.$router.push({ name: 'id', params: { module: 'sys.authority.role.user.edit', id: item.id } });
+    },
+    initQuery: function initQuery(options) {
+      options.wheres.role = this.model.role;
+      options.wheres.user = this.model.user;
+    },
+    remove: function remove() {
+      var _this = this;
+
+      if (!this.selectRows || !this.selectRows.length) {
+        this.$toast(this.$lang.LANG_NODELETEDATA);
+        return;
+      }
+      this.loading++;
+      var ids = this._.map(this.selectRows, 'id').toString();
+      this.$http.delete('sys/role-users/' + ids).then(function (response) {
         _this.loadData();
         _this.loading--;
         _this.$toast(_this.$lang.LANG_DELETESUCCESS);
@@ -30611,6 +31015,188 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-099d5a4a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-09e11875\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRolePermitList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "md-part",
+    [
+      _c(
+        "md-part-toolbar",
+        [
+          _c(
+            "md-part-toolbar-group",
+            [
+              _c(
+                "md-button",
+                {
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.create($event)
+                    }
+                  }
+                },
+                [_vm._v("新增")]
+              ),
+              _vm._v(" "),
+              _c(
+                "md-button",
+                {
+                  attrs: {
+                    disabled: !(_vm.selectRows && _vm.selectRows.length)
+                  },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.remove($event)
+                    }
+                  }
+                },
+                [_vm._v("删除")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div"),
+          _vm._v(" "),
+          _c(
+            "md-part-toolbar-group",
+            { staticClass: "flex" },
+            [
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-align": "end" } },
+                [
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("角色")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: {
+                              "md-ref-id": "gmf.sys.authority.role.ref"
+                            },
+                            model: {
+                              value: _vm.model.role,
+                              callback: function($$v) {
+                                _vm.model.role = $$v
+                              },
+                              expression: "model.role"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("权限")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: {
+                              "md-ref-id": "gmf.sys.authority.permit.ref"
+                            },
+                            model: {
+                              value: _vm.model.permit,
+                              callback: function($$v) {
+                                _vm.model.permit = $$v
+                              },
+                              expression: "model.permit"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    [
+                      _c(
+                        "md-button",
+                        {
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.query($event)
+                            }
+                          }
+                        },
+                        [_vm._v("查询")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "md-part-body",
+        [
+          _c("md-query", {
+            ref: "list",
+            attrs: { "md-query-id": "gmf.sys.authority.role.menu.list" },
+            on: { select: _vm.select, dblclick: _vm.edit, init: _vm.initQuery }
+          }),
+          _vm._v(" "),
+          _c("md-loading", { attrs: { loading: _vm.loading } })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-09e11875", module.exports)
   }
 }
 
@@ -43072,6 +43658,186 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4f799f86\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEntityList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "md-part",
+    [
+      _c(
+        "md-part-toolbar",
+        [
+          _c(
+            "md-part-toolbar-group",
+            [
+              _c(
+                "md-button",
+                {
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.create($event)
+                    }
+                  }
+                },
+                [_vm._v("新增")]
+              ),
+              _vm._v(" "),
+              _c(
+                "md-button",
+                {
+                  attrs: {
+                    disabled: !(_vm.selectRows && _vm.selectRows.length)
+                  },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.remove($event)
+                    }
+                  }
+                },
+                [_vm._v("删除")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div"),
+          _vm._v(" "),
+          _c(
+            "md-part-toolbar-group",
+            { staticClass: "flex" },
+            [
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-align": "end" } },
+                [
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("角色")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: {
+                              "md-ref-id": "gmf.sys.authority.role.ref"
+                            },
+                            model: {
+                              value: _vm.model.role,
+                              callback: function($$v) {
+                                _vm.model.role = $$v
+                              },
+                              expression: "model.role"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("实体")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: { "md-ref-id": "gmf.sys.entity.ref" },
+                            model: {
+                              value: _vm.model.entity,
+                              callback: function($$v) {
+                                _vm.model.entity = $$v
+                              },
+                              expression: "model.entity"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    [
+                      _c(
+                        "md-button",
+                        {
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.query($event)
+                            }
+                          }
+                        },
+                        [_vm._v("查询")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "md-part-body",
+        [
+          _c("md-query", {
+            ref: "list",
+            attrs: { "md-query-id": "gmf.sys.authority.role.entity.list" },
+            on: { select: _vm.select, dblclick: _vm.edit, init: _vm.initQuery }
+          }),
+          _vm._v(" "),
+          _c("md-loading", { attrs: { loading: _vm.loading } })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4f799f86", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4f973f84\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-amiba/components/amibaPriceEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53924,6 +54690,186 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-91a87db6\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleUserList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "md-part",
+    [
+      _c(
+        "md-part-toolbar",
+        [
+          _c(
+            "md-part-toolbar-group",
+            [
+              _c(
+                "md-button",
+                {
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.create($event)
+                    }
+                  }
+                },
+                [_vm._v("新增")]
+              ),
+              _vm._v(" "),
+              _c(
+                "md-button",
+                {
+                  attrs: {
+                    disabled: !(_vm.selectRows && _vm.selectRows.length)
+                  },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.remove($event)
+                    }
+                  }
+                },
+                [_vm._v("删除")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div"),
+          _vm._v(" "),
+          _c(
+            "md-part-toolbar-group",
+            { staticClass: "flex" },
+            [
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-align": "end" } },
+                [
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("角色")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: {
+                              "md-ref-id": "gmf.sys.authority.role.ref"
+                            },
+                            model: {
+                              value: _vm.model.role,
+                              callback: function($$v) {
+                                _vm.model.role = $$v
+                              },
+                              expression: "model.role"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("用户")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: { "md-ref-id": "gmf.sys.user.ref" },
+                            model: {
+                              value: _vm.model.user,
+                              callback: function($$v) {
+                                _vm.model.user = $$v
+                              },
+                              expression: "model.user"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    [
+                      _c(
+                        "md-button",
+                        {
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.query($event)
+                            }
+                          }
+                        },
+                        [_vm._v("查询")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "md-part-body",
+        [
+          _c("md-query", {
+            ref: "list",
+            attrs: { "md-query-id": "gmf.sys.authority.role.menu.list" },
+            on: { select: _vm.select, dblclick: _vm.edit, init: _vm.initQuery }
+          }),
+          _vm._v(" "),
+          _c("md-loading", { attrs: { loading: _vm.loading } })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-91a87db6", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-92fff196\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/components/cboPeriodAccountList.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55631,6 +56577,186 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-abf632ea", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-af01d28e\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleMenuList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "md-part",
+    [
+      _c(
+        "md-part-toolbar",
+        [
+          _c(
+            "md-part-toolbar-group",
+            [
+              _c(
+                "md-button",
+                {
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.create($event)
+                    }
+                  }
+                },
+                [_vm._v("新增")]
+              ),
+              _vm._v(" "),
+              _c(
+                "md-button",
+                {
+                  attrs: {
+                    disabled: !(_vm.selectRows && _vm.selectRows.length)
+                  },
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.remove($event)
+                    }
+                  }
+                },
+                [_vm._v("删除")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div"),
+          _vm._v(" "),
+          _c(
+            "md-part-toolbar-group",
+            { staticClass: "flex" },
+            [
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-align": "end" } },
+                [
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("角色")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: {
+                              "md-ref-id": "gmf.sys.authority.role.ref"
+                            },
+                            model: {
+                              value: _vm.model.role,
+                              callback: function($$v) {
+                                _vm.model.role = $$v
+                              },
+                              expression: "model.role"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    {
+                      attrs: {
+                        "md-flex-small": "33",
+                        "md-flex-medium": "15",
+                        "md-flex-large": "15"
+                      }
+                    },
+                    [
+                      _c(
+                        "md-input-container",
+                        { staticClass: "md-inset" },
+                        [
+                          _c("label", [_vm._v("菜单")]),
+                          _vm._v(" "),
+                          _c("md-input-ref", {
+                            attrs: { "md-ref-id": "gmf.sys.menu.ref" },
+                            model: {
+                              value: _vm.model.menu,
+                              callback: function($$v) {
+                                _vm.model.menu = $$v
+                              },
+                              expression: "model.menu"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "md-layout",
+                    [
+                      _c(
+                        "md-button",
+                        {
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.query($event)
+                            }
+                          }
+                        },
+                        [_vm._v("查询")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "md-part-body",
+        [
+          _c("md-query", {
+            ref: "list",
+            attrs: { "md-query-id": "gmf.sys.authority.role.menu.list" },
+            on: { select: _vm.select, dblclick: _vm.edit, init: _vm.initQuery }
+          }),
+          _vm._v(" "),
+          _c("md-loading", { attrs: { loading: _vm.loading } })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-af01d28e", module.exports)
   }
 }
 
@@ -79507,22 +80633,6 @@ var _sysProfileList = __webpack_require__("./resources/assets/js/vendor/suite-cb
 
 var _sysProfileList2 = _interopRequireDefault(_sysProfileList);
 
-var _sysAuthorityPermitEdit = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityPermitEdit.vue");
-
-var _sysAuthorityPermitEdit2 = _interopRequireDefault(_sysAuthorityPermitEdit);
-
-var _sysAuthorityPermitList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityPermitList.vue");
-
-var _sysAuthorityPermitList2 = _interopRequireDefault(_sysAuthorityPermitList);
-
-var _sysAuthorityRoleEdit = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEdit.vue");
-
-var _sysAuthorityRoleEdit2 = _interopRequireDefault(_sysAuthorityRoleEdit);
-
-var _sysAuthorityRoleList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleList.vue");
-
-var _sysAuthorityRoleList2 = _interopRequireDefault(_sysAuthorityRoleList);
-
 var _sysEntList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysEntList.vue");
 
 var _sysEntList2 = _interopRequireDefault(_sysEntList);
@@ -79559,6 +80669,38 @@ var _sysDtiItemList = __webpack_require__("./resources/assets/js/vendor/suite-cb
 
 var _sysDtiItemList2 = _interopRequireDefault(_sysDtiItemList);
 
+var _sysAuthorityPermitEdit = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityPermitEdit.vue");
+
+var _sysAuthorityPermitEdit2 = _interopRequireDefault(_sysAuthorityPermitEdit);
+
+var _sysAuthorityPermitList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityPermitList.vue");
+
+var _sysAuthorityPermitList2 = _interopRequireDefault(_sysAuthorityPermitList);
+
+var _sysAuthorityRoleEdit = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEdit.vue");
+
+var _sysAuthorityRoleEdit2 = _interopRequireDefault(_sysAuthorityRoleEdit);
+
+var _sysAuthorityRoleList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleList.vue");
+
+var _sysAuthorityRoleList2 = _interopRequireDefault(_sysAuthorityRoleList);
+
+var _sysAuthorityRoleEntityList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEntityList.vue");
+
+var _sysAuthorityRoleEntityList2 = _interopRequireDefault(_sysAuthorityRoleEntityList);
+
+var _sysAuthorityRoleMenuList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleMenuList.vue");
+
+var _sysAuthorityRoleMenuList2 = _interopRequireDefault(_sysAuthorityRoleMenuList);
+
+var _sysAuthorityRolePermitList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRolePermitList.vue");
+
+var _sysAuthorityRolePermitList2 = _interopRequireDefault(_sysAuthorityRolePermitList);
+
+var _sysAuthorityRoleUserList = __webpack_require__("./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleUserList.vue");
+
+var _sysAuthorityRoleUserList2 = _interopRequireDefault(_sysAuthorityRoleUserList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function install(Vue) {
@@ -79587,6 +80729,11 @@ function install(Vue) {
 
   Vue.component('sysAuthorityRoleEdit', _sysAuthorityRoleEdit2.default);
   Vue.component('sysAuthorityRoleList', _sysAuthorityRoleList2.default);
+
+  Vue.component('sysAuthorityRoleEntityList', _sysAuthorityRoleEntityList2.default);
+  Vue.component('sysAuthorityRoleMenuList', _sysAuthorityRoleMenuList2.default);
+  Vue.component('sysAuthorityRolePermitList', _sysAuthorityRolePermitList2.default);
+  Vue.component('sysAuthorityRoleUserList', _sysAuthorityRoleUserList2.default);
 }
 
 /***/ }),
@@ -79732,6 +80879,53 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEntityList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEntityList.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4f799f86\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleEntityList.vue")
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\suite-cbo\\sys\\sysAuthorityRoleEntityList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] sysAuthorityRoleEntityList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4f799f86", Component.options)
+  } else {
+    hotAPI.reload("data-v-4f799f86", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleList.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -79768,6 +80962,147 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-01de0e3a", Component.options)
   } else {
     hotAPI.reload("data-v-01de0e3a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleMenuList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleMenuList.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-af01d28e\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleMenuList.vue")
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\suite-cbo\\sys\\sysAuthorityRoleMenuList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] sysAuthorityRoleMenuList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-af01d28e", Component.options)
+  } else {
+    hotAPI.reload("data-v-af01d28e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRolePermitList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRolePermitList.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-09e11875\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRolePermitList.vue")
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\suite-cbo\\sys\\sysAuthorityRolePermitList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] sysAuthorityRolePermitList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-09e11875", Component.options)
+  } else {
+    hotAPI.reload("data-v-09e11875", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleUserList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\"],\"plugins\":[\"transform-async-to-generator\",[\"transform-runtime\",{\"helpers\":false,\"polyfill\":false,\"regenerator\":true}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleUserList.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-91a87db6\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/suite-cbo/sys/sysAuthorityRoleUserList.vue")
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\suite-cbo\\sys\\sysAuthorityRoleUserList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] sysAuthorityRoleUserList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-91a87db6", Component.options)
+  } else {
+    hotAPI.reload("data-v-91a87db6", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
