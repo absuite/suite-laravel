@@ -40,8 +40,8 @@ class Kernel extends HttpKernel {
 		'api' => [
 			//'throttle:60,1',
 			'bindings',
-			'visitor',
 			'ent_check',
+			'visitor',
 		],
 	];
 
@@ -62,5 +62,6 @@ class Kernel extends HttpKernel {
 		'visitor' => \Gmf\Sys\Http\Middleware\VisitorMiddleware::class,
 		'client_credentials' => \Gmf\Passport\Http\Middleware\CheckClientCredentials::class,
 		'ent_check' => \Gmf\Sys\Http\Middleware\EntCheck::class,
+		'lns_check' => \Gmf\Sys\Http\Middleware\LnsCheck::class,
 	];
 }
