@@ -1,14 +1,9 @@
 <?php
 
 namespace App\Providers;
-use Gmf\Ac\Ac;
-use Gmf\Sys\Sys;
+
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Suite\Amiba\Amiba;
-use Suite\Bec\Bec;
-use Suite\Cbo\Cbo;
-use Suite\Mobile\Mobile;
 
 class RouteServiceProvider extends ServiceProvider {
 	/**
@@ -26,12 +21,7 @@ class RouteServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
-		Sys::routes();
-		Ac::routes();
-		Cbo::routes();
-		Amiba::routes();
-		Bec::routes();
-		Mobile::routes();
+
 		parent::boot();
 	}
 
