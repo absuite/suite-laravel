@@ -178,6 +178,8 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		//qrcode
 		SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
+		Maatwebsite\Excel\ExcelServiceProvider::class,
 		/*
 			  api
 		*/
@@ -242,6 +244,7 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 		//QrCode
 		'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 	],
 
 ];
