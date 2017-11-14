@@ -245,6 +245,8 @@ return [
 		//QrCode
 		'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+		'Ent' => Gmf\Sys\EntFacade::class,
 	],
 
 ];
