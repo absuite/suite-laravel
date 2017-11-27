@@ -1,3 +1,4 @@
+@import "~gmf/components/MdLayout/mixins";
 .md-app-menu {
     user-select: none;
     .md-sidenav {
@@ -139,13 +140,13 @@
         min-width: 252px;
     }
 }
-@include layout-xlarge {
+@include md-layout-xlarge {
     .md-app-menu.has-extend .md-sidenav-content {
         max-width: 66.66%;
     }
 }
 
-@include layout-small {
+@include md-layout-small {
     .md-app-menu.has-extend .md-sidenav-content {
         width: 100%;
     }
