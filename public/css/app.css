@@ -13437,6 +13437,12 @@ button:focus {
 .md-select-menu.md-menu-content {
   z-index: 131;
 }
+.md-list-item.md-active > .md-list-item-expand .md-list-expand {
+  height: auto;
+  opacity: 1;
+  -webkit-transform: translate3D(0, 0, 0);
+          transform: translate3D(0, 0, 0);
+}
 /**
  * The default transition, used when the element is visible
  * since the beginning of the animation
@@ -24282,6 +24288,10 @@ tbody .md-table-row td {
 .md-app .md-logo {
     margin: 0;
 }
+.md-app > .md-app-drawer {
+    overflow: visible;
+    width: 230px;
+}
 .md-app .md-app-toolbar .search {
     margin-right: 12px;
     margin-left: 20px;
@@ -24290,6 +24300,137 @@ tbody .md-table-row td {
 .md-app .md-app-toolbar .search {
         display: none;
 }
+}
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.suite-app-toolbar {
+  width: 100%;
+}
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.suite-app-menu-extend {
+  position: fixed;
+  overflow: auto;
+  top: 0px;
+  left: 100%;
+  z-index: 60;
+  background: #fff;
+  width: 200%;
+  max-height: 100%;
+  min-height: 100%;
+}
+.suite-app-menu {
+  max-width: 100%;
+  max-height: 100%;
+}
+.suite-app-menu > .md-list {
+    overflow-y: auto;
 }
 
 .md-card[data-v-2ecffdea] {
@@ -24657,37 +24798,38 @@ tbody .md-table-row td {
  * @param {string} $variant —  The type of constrasted variable
  */
 :root {
-  --md-theme-default-primary: #448aff;
-  --md-theme-default-accent: #ff5252;
+  --md-theme-default-primary: #0f9d58;
+  --md-theme-default-accent: #ff5722;
   --md-theme-default-theme: "light";
+  --md-theme-default-text-primary-on-primary: #FFFFFF;
 }
 .md-theme-default :not(input):not(textarea)::-moz-selection {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent-on-background, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent-on-background, #ff5722);
   color: #fff;
   color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
 .md-theme-default :not(input):not(textarea)::selection {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent-on-background, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent-on-background, #ff5722);
   color: #fff;
   color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
 .md-theme-default a:not(.md-button) {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-theme-default a:not(.md-button):hover {
-    color: rgba(68, 138, 255, 0.8);
-    color: var(--md-theme-default-primary-on-background, rgba(68, 138, 255, 0.8));
+    color: rgba(15, 157, 88, 0.8);
+    color: var(--md-theme-default-primary-on-background, rgba(15, 157, 88, 0.8));
 }
 .md-theme-default a:not(.md-button).md-accent {
-    color: #ff5252;
-    color: var(--md-theme-default-accent-on-background, #ff5252);
+    color: #ff5722;
+    color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-theme-default a:not(.md-button).md-accent:hover {
-      color: rgba(255, 82, 82, 0.8);
-      color: var(--md-theme-default-accent-on-background, rgba(255, 82, 82, 0.8));
+      color: rgba(255, 87, 34, 0.8);
+      color: var(--md-theme-default-accent-on-background, rgba(255, 87, 34, 0.8));
 }
 html.md-theme-default {
   background-color: #fafafa;
@@ -24712,8 +24854,8 @@ html.md-theme-default {
   background: var(--md-theme-default-scrollbar-on-background-variant, #757575);
 }
 .md-list.md-theme-default .md-autocomplete-items .md-highlight-text-match {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-list.md-theme-default .md-autocomplete-loading {
   background-color: rgba(255, 255, 255, 0.54);
@@ -24776,12 +24918,12 @@ html.md-theme-default {
     fill: var(--md-theme-default-text-primary-on-icon-disabled, #fff);
 }
 .md-avatar.md-theme-default.md-primary {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-avatar.md-theme-default.md-primary.md-avatar-icon {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
@@ -24792,12 +24934,12 @@ html.md-theme-default {
       fill: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-avatar.md-theme-default.md-accent {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-avatar.md-theme-default.md-accent.md-avatar-icon {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
@@ -24812,26 +24954,26 @@ html.md-theme-default {
   background-color: var(--md-theme-default-background, #fff);
 }
 .md-bottom-bar.md-theme-default.md-type-fixed .md-bottom-bar-item.md-active {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-bottom-bar.md-theme-default.md-type-fixed .md-bottom-bar-item.md-active .md-icon {
-      color: #448aff;
-      color: var(--md-theme-default-primary-on-background, #448aff);
+      color: #0f9d58;
+      color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-bottom-bar.md-theme-default.md-type-fixed .md-bottom-bar-item.md-active .md-icon svg {
-        fill: #448aff;
-        fill: var(--md-theme-default-primary-on-background, #448aff);
+        fill: #0f9d58;
+        fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-bottom-bar.md-theme-default.md-type-shift {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary, #0f9d58);
   color: rgba(255, 255, 255, 0.7);
   color: var(--md-theme-default-text-primary-on-primary, rgba(255, 255, 255, 0.7));
 }
 .md-bottom-bar.md-theme-default.md-type-shift > .md-ripple .md-ripple-wave {
-    background-color: #116aff;
-    background-color: var(--md-theme-default-primary-on-primary, #116aff);
+    background-color: #0b6e3e;
+    background-color: var(--md-theme-default-primary-on-primary, #0b6e3e);
 }
 .md-bottom-bar.md-theme-default.md-type-shift .md-icon {
     color: #fff;
@@ -24858,26 +25000,26 @@ html.md-theme-default {
   background-color: var(--md-theme-default-background, #fff);
 }
 .md-bottom-bar.md-theme-default.md-accent.md-type-fixed .md-bottom-bar-item.md-active {
-    color: #ff5252;
-    color: var(--md-theme-default-accent-on-background, #ff5252);
+    color: #ff5722;
+    color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-bottom-bar.md-theme-default.md-accent.md-type-fixed .md-bottom-bar-item.md-active .md-icon {
-      color: #ff5252;
-      color: var(--md-theme-default-accent-on-background, #ff5252);
+      color: #ff5722;
+      color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-bottom-bar.md-theme-default.md-accent.md-type-fixed .md-bottom-bar-item.md-active .md-icon svg {
-        fill: #ff5252;
-        fill: var(--md-theme-default-accent-on-background, #ff5252);
+        fill: #ff5722;
+        fill: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-bottom-bar.md-theme-default.md-accent.md-type-shift {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent, #ff5722);
   color: rgba(255, 255, 255, 0.7);
   color: var(--md-theme-default-text-primary-on-accent, rgba(255, 255, 255, 0.7));
 }
 .md-bottom-bar.md-theme-default.md-accent.md-type-shift > .md-ripple .md-ripple-wave {
-    background-color: #ff1f1f;
-    background-color: var(--md-theme-default-accent-on-accent, #ff1f1f);
+    background-color: #ee3900;
+    background-color: var(--md-theme-default-accent-on-accent, #ee3900);
 }
 .md-bottom-bar.md-theme-default.md-accent.md-type-shift .md-icon {
     color: #fff;
@@ -24904,28 +25046,28 @@ html.md-theme-default {
   color: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.87));
 }
 .md-button.md-theme-default.md-primary {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-button.md-theme-default.md-primary .md-icon-font {
-      color: #448aff;
-      color: var(--md-theme-default-primary-on-background, #448aff);
+      color: #0f9d58;
+      color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-button.md-theme-default.md-primary .md-icon-image {
-      fill: #448aff;
-      fill: var(--md-theme-default-primary-on-background, #448aff);
+      fill: #0f9d58;
+      fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-button.md-theme-default.md-accent {
-    color: #ff5252;
-    color: var(--md-theme-default-accent-on-background, #ff5252);
+    color: #ff5722;
+    color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-button.md-theme-default.md-accent .md-icon-font {
-      color: #ff5252;
-      color: var(--md-theme-default-accent-on-background, #ff5252);
+      color: #ff5722;
+      color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-button.md-theme-default.md-accent .md-icon-image {
-      fill: #ff5252;
-      fill: var(--md-theme-default-accent-on-background, #ff5252);
+      fill: #ff5722;
+      fill: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-button.md-theme-default.md-raised[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -24942,8 +25084,8 @@ html.md-theme-default {
 .md-button.md-theme-default.md-raised:not([disabled]).md-primary {
       color: #fff;
       color: var(--md-theme-default-text-primary-on-primary, #fff);
-      background-color: #448aff;
-      background-color: var(--md-theme-default-primary, #448aff);
+      background-color: #0f9d58;
+      background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-button.md-theme-default.md-raised:not([disabled]).md-primary .md-icon-font {
         color: #fff;
@@ -24956,8 +25098,8 @@ html.md-theme-default {
 .md-button.md-theme-default.md-raised:not([disabled]).md-accent {
       color: #fff;
       color: var(--md-theme-default-text-primary-on-accent, #fff);
-      background-color: #ff5252;
-      background-color: var(--md-theme-default-accent, #ff5252);
+      background-color: #ff5722;
+      background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-button.md-theme-default.md-raised:not([disabled]).md-accent .md-icon-font {
         color: #fff;
@@ -24972,8 +25114,8 @@ html.md-theme-default {
     background-color: var(--md-theme-default-disabled-background-on-background, rgba(0, 0, 0, 0.12));
 }
 .md-button.md-theme-default.md-fab:not([disabled]) {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-button.md-theme-default.md-fab:not([disabled]) .md-icon-font {
       color: #fff;
@@ -24984,8 +25126,8 @@ html.md-theme-default {
       fill: var(--md-theme-default-text-primary-on-accent, #fff);
 }
 .md-button.md-theme-default.md-fab:not([disabled]).md-primary {
-      background-color: #448aff;
-      background-color: var(--md-theme-default-primary, #448aff);
+      background-color: #0f9d58;
+      background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-button.md-theme-default.md-fab:not([disabled]).md-primary .md-icon-font {
         color: #fff;
@@ -25034,14 +25176,14 @@ html.md-theme-default {
     background-color: var(--md-theme-default-divider-on-background, rgba(0, 0, 0, 0.12));
 }
 .md-card.md-theme-default.md-primary {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-card.md-theme-default.md-primary .md-card-expand .md-card-actions {
-      background-color: #448aff;
-      background-color: var(--md-theme-default-primary, #448aff);
+      background-color: #0f9d58;
+      background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-card.md-theme-default.md-primary .md-card-header .md-button:not(.md-primary):not(.md-accent),
     .md-card.md-theme-default.md-primary .md-card-actions .md-button:not(.md-primary):not(.md-accent) {
@@ -25060,14 +25202,14 @@ html.md-theme-default {
       background-color: var(--md-theme-default-divider-on-primary, rgba(255, 255, 255, 0.12));
 }
 .md-card.md-theme-default.md-accent {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
 .md-card.md-theme-default.md-accent .md-card-expand .md-card-actions {
-      background-color: #ff5252;
-      background-color: var(--md-theme-default-accent, #ff5252);
+      background-color: #ff5722;
+      background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-card.md-theme-default.md-accent .md-card-header .md-button:not(.md-primary):not(.md-accent),
     .md-card.md-theme-default.md-accent .md-card-actions .md-button:not(.md-primary):not(.md-accent) {
@@ -25086,28 +25228,28 @@ html.md-theme-default {
       background-color: var(--md-theme-default-divider-on-accent, rgba(255, 255, 255, 0.12));
 }
 .md-checkbox.md-theme-default.md-checked .md-checkbox-container {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent, #ff5252);
-  border-color: #ff5252;
-  border-color: var(--md-theme-default-accent, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent, #ff5722);
+  border-color: #ff5722;
+  border-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-checkbox.md-theme-default.md-checked .md-checkbox-container:after {
     border-color: #fff;
     border-color: var(--md-theme-default-background, #fff);
 }
 .md-checkbox.md-theme-default.md-checked .md-ripple {
-  color: #ff5252;
-  color: var(--md-theme-default-accent, #ff5252);
+  color: #ff5722;
+  color: var(--md-theme-default-accent, #ff5722);
 }
 .md-checkbox.md-theme-default.md-checked.md-primary .md-checkbox-container {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary, #448aff);
-  border-color: #448aff;
-  border-color: var(--md-theme-default-primary, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary, #0f9d58);
+  border-color: #0f9d58;
+  border-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-checkbox.md-theme-default.md-checked.md-primary .md-ripple {
-  color: #448aff;
-  color: var(--md-theme-default-primary, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-checkbox.md-theme-default .md-checkbox-container {
   border-color: rgba(0, 0, 0, 0.54);
@@ -25154,8 +25296,8 @@ html.md-theme-default {
         color: var(--md-theme-default-icon-on-background, rgba(0, 0, 0, 0.54));
 }
 .md-chip.md-theme-default.md-primary {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
@@ -25176,8 +25318,8 @@ html.md-theme-default {
         background-color: var(--md-theme-default-background, rgba(255, 255, 255, 0.87));
 }
 .md-chip.md-theme-default.md-accent {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
@@ -25213,14 +25355,14 @@ html.md-theme-default {
   color: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.87));
 }
 .md-content.md-theme-default.md-primary {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-content.md-theme-default.md-accent {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
@@ -25235,8 +25377,8 @@ html.md-theme-default {
   color: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.87));
 }
 .md-datepicker-dialog.md-theme-default .md-datepicker-header {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
@@ -25259,8 +25401,8 @@ html.md-theme-default {
     color: var(--md-theme-default-disabled-on-background, rgba(0, 0, 0, 0.26));
 }
 .md-datepicker-dialog.md-theme-default .md-datepicker-today {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-datepicker-dialog.md-theme-default .md-datepicker-day-button:hover,
   .md-datepicker-dialog.md-theme-default .md-datepicker-month-button:hover,
@@ -25269,15 +25411,15 @@ html.md-theme-default {
     background-color: var(--md-theme-default-divider, rgba(0, 0, 0, 0.12));
 }
 .md-datepicker-dialog.md-theme-default .md-datepicker-day-button.md-datepicker-selected {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-datepicker-dialog.md-theme-default .md-datepicker-month-button.md-datepicker-selected,
   .md-datepicker-dialog.md-theme-default .md-datepicker-year-button.md-datepicker-selected {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-datepicker-dialog.md-theme-default .md-datepicker-year-selector {
     border-bottom-color: rgba(0, 0, 0, 0.12);
@@ -25316,27 +25458,27 @@ html.md-theme-default {
   background-color: var(--md-theme-default-disabled, rgba(0, 0, 0, 0.06));
 }
 .md-empty-state.md-theme-default.md-primary .md-empty-state-icon.md-icon-image svg {
-  fill: #448aff;
-  fill: var(--md-theme-default-primary-on-background, #448aff);
+  fill: #0f9d58;
+  fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-empty-state.md-theme-default.md-primary .md-empty-state-icon.md-icon-font {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-empty-state.md-theme-default.md-accent .md-empty-state-icon.md-icon-image svg {
-  fill: #ff5252;
-  fill: var(--md-theme-default-accent-on-background, #ff5252);
+  fill: #ff5722;
+  fill: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-empty-state.md-theme-default.md-accent .md-empty-state-icon.md-icon-font {
-  color: #ff5252;
-  color: var(--md-theme-default-accent-on-background, #ff5252);
+  color: #ff5722;
+  color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-field.md-theme-default:after {
   background-color: rgba(0, 0, 0, 0.42);
 }
 .md-field.md-theme-default:before {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-field.md-theme-default .md-helper-text,
 .md-field.md-theme-default .md-count,
@@ -25356,8 +25498,8 @@ html.md-theme-default {
   border-color: rgba(0, 0, 0, 0.42);
 }
 .md-field.md-theme-default.md-has-textarea:not(.md-autogrow):before {
-  border-color: #448aff;
-  border-color: var(--md-theme-default-primary, #448aff);
+  border-color: #0f9d58;
+  border-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-field.md-theme-default.md-disabled:after {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.38) 33%, transparent 0%);
@@ -25397,18 +25539,18 @@ html.md-theme-default {
 .md-field.md-theme-default.md-focused .md-input,
 .md-field.md-theme-default.md-focused .md-textarea, .md-field.md-theme-default.md-highlight .md-input,
 .md-field.md-theme-default.md-highlight .md-textarea {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-field.md-theme-default.md-focused > .md-icon, .md-field.md-theme-default.md-highlight > .md-icon {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
-  fill: #448aff;
-  fill: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
+  fill: #0f9d58;
+  fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-field.md-theme-default.md-focused label {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-field.md-theme-default.md-disabled .md-icon svg {
   fill: rgba(0, 0, 0, 0.26);
@@ -25419,24 +25561,24 @@ html.md-theme-default {
   fill: var(--md-theme-default-icon-on-background, rgba(0, 0, 0, 0.54));
 }
 .md-icon.md-theme-default.md-icon-image svg.md-primary {
-    fill: #448aff;
-    fill: var(--md-theme-default-primary-on-background, #448aff);
+    fill: #0f9d58;
+    fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-icon.md-theme-default.md-icon-image svg.md-accent {
-    fill: #ff5252;
-    fill: var(--md-theme-default-accent-on-background, #ff5252);
+    fill: #ff5722;
+    fill: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-icon.md-theme-default.md-icon-font {
   color: rgba(0, 0, 0, 0.54);
   color: var(--md-theme-default-icon-on-background, rgba(0, 0, 0, 0.54));
 }
 .md-icon.md-theme-default.md-icon-font.md-primary {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-icon.md-theme-default.md-icon-font.md-accent {
-    color: #ff5252;
-    color: var(--md-theme-default-accent-on-background, #ff5252);
+    color: #ff5722;
+    color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-list.md-theme-default {
   background-color: #fff;
@@ -25472,8 +25614,8 @@ html.md-theme-default {
 }
 .md-list.md-theme-default .md-selected .md-list-item-content,
   .md-list.md-theme-default .router-link-exact-active .md-list-item-content {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-list.md-theme-default .md-list-item-expand.md-active {
     border-color: rgba(0, 0, 0, 0.12);
@@ -25482,106 +25624,106 @@ html.md-theme-default {
 .md-menu-item.md-theme-default.md-primary .md-list-item-link,
 .md-menu-item.md-theme-default.md-primary .md-list-item-router,
 .md-menu-item.md-theme-default.md-primary .md-list-item-button {
-  color: #448aff;
-  color: var(--md-theme-default-primary-on-background, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-menu-item.md-theme-default.md-accent .md-list-item-link,
 .md-menu-item.md-theme-default.md-accent .md-list-item-router,
 .md-menu-item.md-theme-default.md-accent .md-list-item-button {
-  color: #ff5252;
-  color: var(--md-theme-default-accent-on-background, #ff5252);
+  color: #ff5722;
+  color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-progress-bar.md-theme-default.md-indeterminate, .md-progress-bar.md-theme-default.md-query {
-  background-color: rgba(68, 138, 255, 0.38);
-  background-color: var(--md-theme-default-primary-on-, rgba(68, 138, 255, 0.38));
+  background-color: rgba(15, 157, 88, 0.38);
+  background-color: var(--md-theme-default-primary-on-, rgba(15, 157, 88, 0.38));
 }
 .md-progress-bar.md-theme-default.md-indeterminate .md-progress-bar-track:after,
   .md-progress-bar.md-theme-default.md-indeterminate .md-progress-bar-fill:after, .md-progress-bar.md-theme-default.md-query .md-progress-bar-track:after,
   .md-progress-bar.md-theme-default.md-query .md-progress-bar-fill:after {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-progress-bar.md-theme-default.md-indeterminate.md-accent, .md-progress-bar.md-theme-default.md-query.md-accent {
-    background-color: rgba(255, 82, 82, 0.38);
-    background-color: var(--md-theme-default-accent-on-, rgba(255, 82, 82, 0.38));
+    background-color: rgba(255, 87, 34, 0.38);
+    background-color: var(--md-theme-default-accent-on-, rgba(255, 87, 34, 0.38));
 }
 .md-progress-bar.md-theme-default.md-indeterminate.md-accent .md-progress-bar-track:after,
     .md-progress-bar.md-theme-default.md-indeterminate.md-accent .md-progress-bar-fill:after, .md-progress-bar.md-theme-default.md-query.md-accent .md-progress-bar-track:after,
     .md-progress-bar.md-theme-default.md-query.md-accent .md-progress-bar-fill:after {
-      background-color: #ff5252;
-      background-color: var(--md-theme-default-accent, #ff5252);
+      background-color: #ff5722;
+      background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-progress-bar.md-theme-default.md-determinate {
-  background-color: rgba(68, 138, 255, 0.38);
-  background-color: var(--md-theme-default-primary-on-, rgba(68, 138, 255, 0.38));
+  background-color: rgba(15, 157, 88, 0.38);
+  background-color: var(--md-theme-default-primary-on-, rgba(15, 157, 88, 0.38));
 }
 .md-progress-bar.md-theme-default.md-determinate .md-progress-bar-fill {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-progress-bar.md-theme-default.md-determinate.md-accent {
-    background-color: rgba(255, 82, 82, 0.38);
-    background-color: var(--md-theme-default-accent-on-, rgba(255, 82, 82, 0.38));
+    background-color: rgba(255, 87, 34, 0.38);
+    background-color: var(--md-theme-default-accent-on-, rgba(255, 87, 34, 0.38));
 }
 .md-progress-bar.md-theme-default.md-determinate.md-accent .md-progress-bar-fill {
-      background-color: #ff5252;
-      background-color: var(--md-theme-default-accent, #ff5252);
+      background-color: #ff5722;
+      background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-progress-bar.md-theme-default.md-buffer .md-progress-bar-fill {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-progress-bar.md-theme-default.md-buffer .md-progress-bar-track {
-  background-color: rgba(68, 138, 255, 0.38);
-  background-color: var(--md-theme-default-primary-on-, rgba(68, 138, 255, 0.38));
+  background-color: rgba(15, 157, 88, 0.38);
+  background-color: var(--md-theme-default-primary-on-, rgba(15, 157, 88, 0.38));
 }
 .md-progress-bar.md-theme-default.md-buffer .md-progress-bar-buffer {
-  border-color: rgba(68, 138, 255, 0.38);
-  border-color: var(--md-theme-default-primary-on-, rgba(68, 138, 255, 0.38));
+  border-color: rgba(15, 157, 88, 0.38);
+  border-color: var(--md-theme-default-primary-on-, rgba(15, 157, 88, 0.38));
 }
 .md-progress-bar.md-theme-default.md-buffer.md-accent .md-progress-bar-fill {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-progress-bar.md-theme-default.md-buffer.md-accent .md-progress-bar-track {
-  background-color: rgba(255, 82, 82, 0.38);
-  background-color: var(--md-theme-default-accent-on-, rgba(255, 82, 82, 0.38));
+  background-color: rgba(255, 87, 34, 0.38);
+  background-color: var(--md-theme-default-accent-on-, rgba(255, 87, 34, 0.38));
 }
 .md-progress-bar.md-theme-default.md-buffer.md-accent .md-progress-bar-buffer {
-  border-color: rgba(255, 82, 82, 0.38);
-  border-color: var(--md-theme-default-accent-on-, rgba(255, 82, 82, 0.38));
+  border-color: rgba(255, 87, 34, 0.38);
+  border-color: var(--md-theme-default-accent-on-, rgba(255, 87, 34, 0.38));
 }
 .md-progress-spinner.md-theme-default .md-progress-spinner-circle {
-  stroke: #448aff;
-  stroke: var(--md-theme-default-primary, #448aff);
+  stroke: #0f9d58;
+  stroke: var(--md-theme-default-primary, #0f9d58);
 }
 .md-progress-spinner.md-theme-default.md-accent .md-progress-spinner-circle {
-  stroke: #ff5252;
-  stroke: var(--md-theme-default-accent, #ff5252);
+  stroke: #ff5722;
+  stroke: var(--md-theme-default-accent, #ff5722);
 }
 .md-radio.md-theme-default.md-checked .md-radio-container {
-  border-color: #ff5252;
-  border-color: var(--md-theme-default-accent, #ff5252);
+  border-color: #ff5722;
+  border-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-radio.md-theme-default.md-checked .md-radio-container:after {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-radio.md-theme-default.md-checked .md-ripple {
-  color: #ff5252;
-  color: var(--md-theme-default-accent, #ff5252);
+  color: #ff5722;
+  color: var(--md-theme-default-accent, #ff5722);
 }
 .md-radio.md-theme-default.md-checked.md-primary .md-radio-container {
-  border-color: #448aff;
-  border-color: var(--md-theme-default-primary, #448aff);
+  border-color: #0f9d58;
+  border-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-radio.md-theme-default.md-checked.md-primary .md-radio-container:after {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-radio.md-theme-default.md-checked.md-primary .md-ripple {
-  color: #448aff;
-  color: var(--md-theme-default-primary, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-radio.md-theme-default .md-radio-container {
   border-color: rgba(0, 0, 0, 0.54);
@@ -25639,8 +25781,8 @@ html.md-theme-default {
     color: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.87));
 }
 .md-steppers.md-theme-default .md-stepper-header.md-active .md-stepper-number, .md-steppers.md-theme-default .md-stepper-header.md-done .md-stepper-number {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary-on-background, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary-on-background, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
@@ -25665,32 +25807,32 @@ html.md-theme-default {
   color: var(--md-theme-default-text-accent-on-background, rgba(0, 0, 0, 0.54));
 }
 .md-subheader.md-theme-default.md-primary {
-    color: #448aff;
-    color: var(--md-theme-default-primary-on-background, #448aff);
+    color: #0f9d58;
+    color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-switch.md-theme-default.md-checked .md-switch-container {
-  background-color: rgba(255, 82, 82, 0.38);
-  background-color: var(--md-theme-default-accent-on-, rgba(255, 82, 82, 0.38));
+  background-color: rgba(255, 87, 34, 0.38);
+  background-color: var(--md-theme-default-accent-on-, rgba(255, 87, 34, 0.38));
 }
 .md-switch.md-theme-default.md-checked .md-switch-thumb {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-switch.md-theme-default.md-checked .md-ripple {
-  color: #ff5252;
-  color: var(--md-theme-default-accent, #ff5252);
+  color: #ff5722;
+  color: var(--md-theme-default-accent, #ff5722);
 }
 .md-switch.md-theme-default.md-checked.md-primary .md-switch-container {
-  background-color: rgba(68, 138, 255, 0.38);
-  background-color: var(--md-theme-default-primary-on-, rgba(68, 138, 255, 0.38));
+  background-color: rgba(15, 157, 88, 0.38);
+  background-color: var(--md-theme-default-primary-on-, rgba(15, 157, 88, 0.38));
 }
 .md-switch.md-theme-default.md-checked.md-primary .md-switch-thumb {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-switch.md-theme-default.md-checked.md-primary .md-ripple {
-  color: #448aff;
-  color: var(--md-theme-default-primary, #448aff);
+  color: #0f9d58;
+  color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-switch.md-theme-default .md-switch-container {
   background-color: rgba(0, 0, 0, 0.38);
@@ -25714,8 +25856,8 @@ html.md-theme-default {
 .md-table.md-theme-default .md-table-alternate-header .md-table-toolbar {
   color: rgba(0, 0, 0, 0.87);
   color: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.87));
-  background-color: rgba(255, 82, 82, 0.2);
-  background-color: var(--md-theme-default-accent-on-, rgba(255, 82, 82, 0.2));
+  background-color: rgba(255, 87, 34, 0.2);
+  background-color: var(--md-theme-default-accent-on-, rgba(255, 87, 34, 0.2));
 }
 .md-table.md-theme-default .md-table-row:hover:not(.md-header-row) .md-table-cell {
   background-color: rgba(0, 0, 0, 0.08);
@@ -25726,8 +25868,8 @@ html.md-theme-default {
   background-color: var(--md-theme-default-rowvariant, #f5f5f5);
 }
 .md-table.md-theme-default .md-table-row.md-selected.md-primary, .md-table.md-theme-default .md-table-row.md-selected-single.md-primary {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary-on-background, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary-on-background, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
@@ -25739,12 +25881,12 @@ html.md-theme-default {
       border-color: #fff;
 }
 .md-table.md-theme-default .md-table-row.md-selected.md-primary .md-checkbox-container:after, .md-table.md-theme-default .md-table-row.md-selected-single.md-primary .md-checkbox-container:after {
-        border-color: #448aff;
-        border-color: var(--md-theme-default-primary, #448aff);
+        border-color: #0f9d58;
+        border-color: var(--md-theme-default-primary, #0f9d58);
 }
 .md-table.md-theme-default .md-table-row.md-selected.md-accent, .md-table.md-theme-default .md-table-row.md-selected-single.md-accent {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent-on-background, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent-on-background, #ff5722);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
@@ -25756,8 +25898,8 @@ html.md-theme-default {
       border-color: #fff;
 }
 .md-table.md-theme-default .md-table-row.md-selected.md-accent .md-checkbox-container:after, .md-table.md-theme-default .md-table-row.md-selected-single.md-accent .md-checkbox-container:after {
-        border-color: #ff5252;
-        border-color: var(--md-theme-default-accent, #ff5252);
+        border-color: #ff5722;
+        border-color: var(--md-theme-default-accent, #ff5722);
 }
 .md-table.md-theme-default .md-table-row td {
   border-top-color: rgba(0, 0, 0, 0.12);
@@ -25806,24 +25948,24 @@ html.md-theme-default {
         fill: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.7));
 }
 .md-tabs.md-theme-default .md-tabs-navigation .md-button.md-active {
-      color: #448aff;
-      color: var(--md-theme-default-primary-on-background, #448aff);
+      color: #0f9d58;
+      color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default .md-tabs-navigation .md-button.md-active .md-icon {
-        color: #448aff;
-        color: var(--md-theme-default-primary-on-background, #448aff);
+        color: #0f9d58;
+        color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default .md-tabs-navigation .md-button.md-active .md-icon svg {
-          fill: #448aff;
-          fill: var(--md-theme-default-primary-on-background, #448aff);
+          fill: #0f9d58;
+          fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default .md-tabs-indicator {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary-on-background, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default.md-primary .md-tabs-navigation {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary-on-background, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default.md-primary .md-tabs-navigation .md-button {
     color: rgba(255, 255, 255, 0.7);
@@ -25858,8 +26000,8 @@ html.md-theme-default {
   background-color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-tabs.md-theme-default.md-accent .md-tabs-navigation {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent-on-background, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-tabs.md-theme-default.md-accent .md-tabs-navigation .md-button {
     color: rgba(255, 255, 255, 0.7);
@@ -25914,24 +26056,24 @@ html.md-theme-default {
         fill: var(--md-theme-default-text-primary-on-background, rgba(0, 0, 0, 0.7));
 }
 .md-tabs.md-theme-default .md-tabs-navigation .md-button.md-active {
-      color: #448aff;
-      color: var(--md-theme-default-primary-on-background, #448aff);
+      color: #0f9d58;
+      color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default .md-tabs-navigation .md-button.md-active .md-icon {
-        color: #448aff;
-        color: var(--md-theme-default-primary-on-background, #448aff);
+        color: #0f9d58;
+        color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default .md-tabs-navigation .md-button.md-active .md-icon svg {
-          fill: #448aff;
-          fill: var(--md-theme-default-primary-on-background, #448aff);
+          fill: #0f9d58;
+          fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default .md-tabs-indicator {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary-on-background, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default.md-primary .md-tabs-navigation {
-  background-color: #448aff;
-  background-color: var(--md-theme-default-primary-on-background, #448aff);
+  background-color: #0f9d58;
+  background-color: var(--md-theme-default-primary-on-background, #0f9d58);
 }
 .md-tabs.md-theme-default.md-primary .md-tabs-navigation .md-button {
     color: rgba(255, 255, 255, 0.7);
@@ -25966,8 +26108,8 @@ html.md-theme-default {
   background-color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-tabs.md-theme-default.md-accent .md-tabs-navigation {
-  background-color: #ff5252;
-  background-color: var(--md-theme-default-accent-on-background, #ff5252);
+  background-color: #ff5722;
+  background-color: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-tabs.md-theme-default.md-accent .md-tabs-navigation .md-button {
     color: rgba(255, 255, 255, 0.7);
@@ -26022,8 +26164,8 @@ html.md-theme-default {
     color: var(--md-theme-default-text-primary-on-background-variant, rgba(0, 0, 0, 0.87));
 }
 .md-toolbar.md-theme-default.md-primary {
-    background-color: #448aff;
-    background-color: var(--md-theme-default-primary, #448aff);
+    background-color: #0f9d58;
+    background-color: var(--md-theme-default-primary, #0f9d58);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
@@ -26046,8 +26188,8 @@ html.md-theme-default {
       color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
 .md-toolbar.md-theme-default.md-accent {
-    background-color: #ff5252;
-    background-color: var(--md-theme-default-accent, #ff5252);
+    background-color: #ff5722;
+    background-color: var(--md-theme-default-accent, #ff5722);
     color: #fff;
     color: var(--md-theme-default-text-primary-on-accent, #fff);
 }
@@ -29606,6 +29748,8 @@ html.md-theme-light-teal {
 }
 body {
   height: 100%;
+  min-height: 100%;
+  max-height: 100%;
   position: relative;
   background-color: #f0f0f0 !important;
 }

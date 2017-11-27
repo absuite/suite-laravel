@@ -5,6 +5,8 @@
   @import "./light-teal";
   body {
     height: 100%;
+    min-height: 100%;
+    max-height: 100%;
     position: relative;
     background-color: #f0f0f0!important;
   }
