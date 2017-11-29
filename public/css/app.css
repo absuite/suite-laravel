@@ -23356,12 +23356,12 @@ tbody .md-table-row td {
 /* Transitions - Based on Angular Material */
 .md-part-toolbar {
   background-color: #E0F2F1;
-  min-height: 36px;
+  min-height: 40px;
   z-index: 1;
   position: relative;
 }
 .md-part-toolbar.md-toolbar.md-dense {
-    min-height: 36px;
+    min-height: 40px;
 }
 .md-part-toolbar .md-part-toolbar-crumbs {
     padding: 0 16px;
@@ -23380,16 +23380,31 @@ tbody .md-table-row td {
     margin: 0;
     min-width: 0;
 }
-.md-part-toolbar .md-part-toolbar-group .md-input-container {
+.md-part-toolbar .md-part-toolbar-group .md-field {
     padding: 0px;
-    min-height: 36px;
-    background: rgba(255, 255, 255, 0.88);
+    min-height: 40px;
+    margin: 0px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row nowrap;
 }
-.md-part-toolbar .md-part-toolbar-group .md-input-container.md-inset label {
-      font-size: inherit;
+.md-part-toolbar .md-part-toolbar-group .md-field .md-chip {
+      padding-top: 10px;
+      font-size: 16px;
+      height: 38px;
 }
-.md-part-toolbar .md-part-toolbar-group .md-input-container.md-inset > .label {
-      min-width: inherit;
+.md-part-toolbar .md-part-toolbar-group .md-field .md-input {
+      line-height: 40px;
+      height: 40px;
+      padding-top: 10px;
+      min-width: auto;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field label {
+      top: 15px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-focused label,
+  .md-part-toolbar .md-part-toolbar-group .md-field.md-has-value label {
+    top: 0px;
 }
 .md-part-toolbar .md-part-toolbar-group + .md-part-toolbar-group:before {
     content: ' ';
@@ -24223,247 +24238,6 @@ tbody .md-table-row td {
 .md-fetch.md-focused > .md-button .md-icon {
   color: rgba(0, 0, 0, 0.87) !important;
   color: var(--md-theme-default-text-primary-on-background-variant, rgba(0, 0, 0, 0.87)) !important;
-}
-/**
- * The default transition, used when the element is visible
- * since the beginning of the animation
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The enter transition, used when the element is not visible on the screen
- * since the beginning of the animation and become visible
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The leave transition, used when the element is visible on the screen
- * since the beginning of the animation and is removed
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The stand transition, used when the element is going to accelerate,
- * like movements from bottom to top
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The out transition, used when the element is going to deaccelerate,
- * like movements from top to bottom
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/* Transitions - Based on Angular Material */
-/**
- * The layout system breakpoints
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-/**
- * The available gutter sizes
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-.md-app {
-  max-height: 100%;
-}
-.md-app .md-app-content {
-    padding: 0px;
-}
-.md-app .md-logo {
-    margin: 0;
-}
-.md-app > .md-app-drawer {
-    overflow: visible;
-    width: 230px;
-}
-.md-app .md-app-toolbar .search {
-    margin-right: 12px;
-    margin-left: 20px;
-}
-@media (max-width: 944px) {
-.md-app .md-app-toolbar .search {
-        display: none;
-}
-}
-/**
- * The default transition, used when the element is visible
- * since the beginning of the animation
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The enter transition, used when the element is not visible on the screen
- * since the beginning of the animation and become visible
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The leave transition, used when the element is visible on the screen
- * since the beginning of the animation and is removed
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The stand transition, used when the element is going to accelerate,
- * like movements from bottom to top
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The out transition, used when the element is going to deaccelerate,
- * like movements from top to bottom
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/* Transitions - Based on Angular Material */
-/**
- * The layout system breakpoints
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-/**
- * The available gutter sizes
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-.suite-app-toolbar {
-  width: 100%;
-}
-/**
- * The default transition, used when the element is visible
- * since the beginning of the animation
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The enter transition, used when the element is not visible on the screen
- * since the beginning of the animation and become visible
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The leave transition, used when the element is visible on the screen
- * since the beginning of the animation and is removed
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The stand transition, used when the element is going to accelerate,
- * like movements from bottom to top
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The out transition, used when the element is going to deaccelerate,
- * like movements from top to bottom
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/* Transitions - Based on Angular Material */
-/**
- * The layout system breakpoints
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-/**
- * The available gutter sizes
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-.suite-app-menu-extend {
-  position: fixed;
-  overflow: auto;
-  top: 0px;
-  left: 100%;
-  z-index: 60;
-  background: #fff;
-  width: 200%;
-  max-height: 100%;
-  min-height: 100%;
-}
-.suite-app-menu {
-  max-width: 100%;
-  max-height: 100%;
-}
-.suite-app-menu > .md-list {
-    overflow-y: auto;
-}
-
-.md-card[data-v-2ecffdea] {
-  margin: 0.15rem;
-}
-@media (max-width: 600px) {
-.md-card[data-v-2ecffdea] {
-    margin: 0;
-}
-}
-
-.myChart[data-v-7ab6c018] {
-  min-height: 300px;
-}
-
-.myChart[data-v-3d563aec] {
-  min-height: 300px;
-}
-
-.myChart[data-v-1447fc70] {
-  min-height: 300px;
-}
-
-.myChart[data-v-45b76b02] {
-  min-height: 300px;
-}
-
-.myChart[data-v-624adb8a] {
-  min-height: 300px;
-}
-
-.myChart[data-v-fdb9dcdc] {
-  min-height: 300px;
 }
 
 @charset "UTF-8";
@@ -29763,6 +29537,272 @@ body {
     user-select: none;
 }
 }
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.md-app {
+  max-height: 100%;
+  min-height: 100%;
+}
+.md-app .md-part-body {
+    padding: 0px;
+}
+.md-app .md-app-content {
+    padding: 0px;
+}
+.md-app .md-logo {
+    margin: 0;
+}
+.md-app > .md-app-drawer {
+    width: 230px;
+}
+.md-app > .md-app-drawer.md-active {
+      overflow: visible;
+}
+.md-app .md-app-toolbar .search {
+    margin-right: 12px;
+    margin-left: 20px;
+}
+@media (max-width: 944px) {
+.md-app .md-app-toolbar .search {
+        display: none;
+}
+}
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.suite-app-toolbar {
+  width: 100%;
+}
+.suite-app-toolbar .md-pag-tabs {
+    padding-left: 0px;
+}
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.suite-app-menu-extend {
+  position: fixed;
+  overflow: auto;
+  top: 0px;
+  left: 100%;
+  z-index: 60;
+  background: #fff;
+  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.3);
+  width: 200%;
+  max-height: 100%;
+  min-height: 100%;
+}
+.suite-app-menu {
+  max-width: 100%;
+  max-height: 100%;
+}
+.suite-app-menu > .md-list {
+    overflow-y: auto;
+}
+.suite-app-menu .suite-app-menu-extend .md-list {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap;
+}
+.suite-app-menu .suite-app-menu-extend .md-list .md-subheader {
+      width: 100%;
+      color: var(--md-theme-default-primary, #0f9d58);
+}
+.suite-app-menu .suite-app-menu-extend .md-list .md-list-item {
+      margin: 0px;
+}
+.suite-app-menu .suite-app-menu-extend .md-list .md-list-item .md-list-item-content {
+        min-height: 30px;
+}
+
+.md-card[data-v-2ecffdea] {
+  margin: 0.15rem;
+}
+@media (max-width: 600px) {
+.md-card[data-v-2ecffdea] {
+    margin: 0;
+}
+}
+
+.myChart[data-v-7ab6c018] {
+  min-height: 300px;
+}
+
+.myChart[data-v-3d563aec] {
+  min-height: 300px;
+}
+
+.myChart[data-v-1447fc70] {
+  min-height: 300px;
+}
+
+.myChart[data-v-45b76b02] {
+  min-height: 300px;
+}
+
+.myChart[data-v-624adb8a] {
+  min-height: 300px;
+}
+
+.myChart[data-v-fdb9dcdc] {
+  min-height: 300px;
+}
 @charset "UTF-8";
 
 /**
@@ -29875,6 +29915,8 @@ body {
 
 .md-pag-container {
   display: none;
+  min-height: 100%;
+  height: 100%;
 }
 
 .md-pag-container.md-active {

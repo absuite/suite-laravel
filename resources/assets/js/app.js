@@ -7,9 +7,6 @@ import bec from './vendor/suite-bec';
 import mobile from './vendor/suite-mobile';
 
 
-import './themes';
-
-
 Vue.use(cbo);
 Vue.use(amiba);
 Vue.use(bec);
