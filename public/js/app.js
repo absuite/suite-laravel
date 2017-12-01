@@ -7011,9 +7011,6 @@ exports.default = new _MdComponent2.default({
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 exports.default = {
   name: 'MdLayout',
   props: {
@@ -7022,6 +7019,10 @@ exports.default = {
       default: 'div'
     },
     mdRow: Boolean,
+    mdWrap: {
+      type: Boolean,
+      default: true
+    },
     mdRowXsmall: Boolean,
     mdRowSmall: Boolean,
     mdRowMedium: Boolean,
@@ -7043,14 +7044,14 @@ exports.default = {
     mdHideMediumAndUp: Boolean,
     mdHideLargeAndUp: Boolean,
     mdHideXlargeAndUp: Boolean,
-    mdGutter: [String, Number, Boolean],
+    mdGutter: Boolean,
     mdAlign: String,
     mdAlignXsmall: String,
     mdAlignSmall: String,
     mdAlignMedium: String,
     mdAlignLarge: String,
     mdAlignXlarge: String,
-    mdFlex: [String, Number, Boolean],
+    mdFlex: Boolean,
     mdFlexXsmall: [String, Number, Boolean],
     mdFlexSmall: [String, Number, Boolean],
     mdFlexMedium: [String, Number, Boolean],
@@ -7065,23 +7066,34 @@ exports.default = {
   },
   computed: {
     classes: function classes() {
-      var _classes;
-
-      var classes = (_classes = {
-        'md-layout-column': this.mdRow,
+      var classes = {
+        'md-layout-row': this.mdRow,
+        'md-layout-wrap': this.mdWrap,
         'md-row-xsmall': this.mdRowXsmall,
         'md-row-small': this.mdRowSmall,
         'md-row-medium': this.mdRowMedium,
         'md-row-large': this.mdRowLarge,
-        'md-row-xlarge': this.mdRowXlarge
-      }, _defineProperty(_classes, 'md-layout-column', this.mdColumn), _defineProperty(_classes, 'md-column-xsmall', this.mdColumnXsmall), _defineProperty(_classes, 'md-column-small', this.mdColumnSmall), _defineProperty(_classes, 'md-column-medium', this.mdColumnMedium), _defineProperty(_classes, 'md-column-large', this.mdColumnLarge), _defineProperty(_classes, 'md-column-xlarge', this.mdColumnXlarge), _defineProperty(_classes, 'md-hide-xsmall', this.mdHideXsmall), _defineProperty(_classes, 'md-hide-small', this.mdHideSmall), _defineProperty(_classes, 'md-hide-medium', this.mdHideMedium), _defineProperty(_classes, 'md-hide-large', this.mdHideLarge), _defineProperty(_classes, 'md-hide-xlarge', this.mdHideXlarge), _defineProperty(_classes, 'md-hide-xsmall-and-up', this.mdHideXsmallAndUp), _defineProperty(_classes, 'md-hide-small-and-up', this.mdHideSmallAndUp), _defineProperty(_classes, 'md-hide-medium-and-up', this.mdHideMediumAndUp), _defineProperty(_classes, 'md-hide-large-and-up', this.mdHideLargeAndUp), _defineProperty(_classes, 'md-hide-xlarge-and-up', this.mdHideXlargeAndUp), _classes);
+        'md-row-xlarge': this.mdRowXlarge,
+        'md-layout-column': this.mdColumn,
+        'md-column-xsmall': this.mdColumnXsmall,
+        'md-column-small': this.mdColumnSmall,
+        'md-column-medium': this.mdColumnMedium,
+        'md-column-large': this.mdColumnLarge,
+        'md-column-xlarge': this.mdColumnXlarge,
+        'md-hide-xsmall': this.mdHideXsmall,
+        'md-hide-small': this.mdHideSmall,
+        'md-hide-medium': this.mdHideMedium,
+        'md-hide-large': this.mdHideLarge,
+        'md-hide-xlarge': this.mdHideXlarge,
+        'md-hide-xsmall-and-up': this.mdHideXsmallAndUp,
+        'md-hide-small-and-up': this.mdHideSmallAndUp,
+        'md-hide-medium-and-up': this.mdHideMediumAndUp,
+        'md-hide-large-and-up': this.mdHideLargeAndUp,
+        'md-hide-xlarge-and-up': this.mdHideXlargeAndUp
+      };
 
       if (this.mdGutter) {
-        if (typeof this.mdGutter === 'boolean') {
-          classes['md-gutter'] = true;
-        } else if (this.mdGutter) {
-          classes['md-gutter-' + this.mdGutter] = true;
-        }
+        classes['md-gutter'] = true;
       }
 
       /* Flex */
@@ -8823,6 +8835,8 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+//
+//
 //
 //
 //
@@ -15133,13 +15147,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   mixins: [_MdModel2.default, _MdModelGrid2.default],
@@ -15211,10 +15218,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -15313,19 +15316,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -15490,10 +15480,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -15589,16 +15575,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -15660,10 +15636,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -15798,16 +15770,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   mixins: [_MdModel2.default, _MdModelGrid2.default],
@@ -15866,10 +15828,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -15983,16 +15941,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -16069,10 +16017,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -16124,16 +16068,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -16235,10 +16169,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -16302,23 +16232,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -16613,10 +16526,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -16697,19 +16606,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -16847,10 +16743,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -16916,22 +16808,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -17069,10 +16945,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -17138,16 +17010,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -17288,10 +17150,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -17363,10 +17221,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -17417,16 +17271,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -17521,10 +17365,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -17584,10 +17424,6 @@ var _common2 = _interopRequireDefault(_common);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
-//
-//
-//
-//
 //
 //
 //
@@ -17866,15 +17702,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -17887,10 +17714,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -18160,14 +17983,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -18180,10 +17995,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -18347,16 +18158,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   mixins: [_MdModel2.default, _MdModelGrid2.default],
@@ -18456,10 +18257,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -18525,16 +18322,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -18723,10 +18510,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -18807,16 +18590,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -19005,10 +18778,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -19168,16 +18937,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -19190,10 +18949,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -19283,16 +19038,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -19347,10 +19092,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -19522,13 +19263,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -19606,16 +19340,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -19732,19 +19456,6 @@ var defaultOpts = {
   },
   series: []
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -20039,16 +19750,6 @@ var defaultOpts = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -20283,16 +19984,6 @@ var defaultOpts = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -20467,19 +20158,6 @@ var defaultOpts = {
     data: []
   }]
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -20774,16 +20452,6 @@ var defaultOpts = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -20901,19 +20569,6 @@ var _MdQueryCase2 = _interopRequireDefault(_MdQueryCase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -21306,16 +20961,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -21416,16 +21061,6 @@ exports.default = {
     this.loadGroups();
   }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -21573,16 +21208,6 @@ exports.default = {
     this.loadGroups();
   }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -21779,16 +21404,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -21903,19 +21518,6 @@ exports.default = {
   },
   mounted: function mounted() {}
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -22423,9 +22025,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
 
 /***/ }),
 
@@ -22438,10 +22037,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -22606,10 +22201,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -22622,10 +22213,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -22790,10 +22377,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -22806,10 +22389,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -23005,21 +22584,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -23032,10 +22596,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -23200,10 +22760,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -23216,10 +22772,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -23381,10 +22933,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -23397,10 +22945,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -23580,18 +23124,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -23604,10 +23136,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -23769,10 +23297,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -23785,10 +23309,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -23949,10 +23469,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -23965,10 +23481,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -24130,13 +23642,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -24149,10 +23654,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -24254,10 +23755,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -24317,10 +23814,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -24476,10 +23969,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -24608,13 +24097,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -24627,10 +24109,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -24791,10 +24269,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -24807,10 +24281,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -24972,13 +24442,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -24991,10 +24454,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -25170,13 +24629,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -25189,10 +24641,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -25357,10 +24805,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -25373,10 +24817,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -25565,26 +25005,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -25597,10 +25017,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -25765,10 +25181,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -25781,10 +25193,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -25957,19 +25365,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -25982,10 +25377,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -26157,18 +25548,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -26181,10 +25560,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -26349,13 +25724,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -26368,10 +25736,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -26556,24 +25920,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -26586,10 +25932,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -26765,19 +26107,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -26790,10 +26119,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
 //
 //
 //
@@ -50637,17 +49962,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("客商")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -50714,100 +50029,75 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("分类")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.trader.category.ref" },
-                    model: {
-                      value: _vm.model.main.category,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "category", $$v)
-                      },
-                      expression: "model.main.category"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "分类",
+                  "md-ref-id": "suite.cbo.trader.category.ref"
+                },
+                model: {
+                  value: _vm.model.main.category,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "category", $$v)
+                  },
+                  expression: "model.main.category"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("国家")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.country.ref" },
-                    model: {
-                      value: _vm.model.main.country,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "country", $$v)
-                      },
-                      expression: "model.main.country"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "国家",
+                  "md-ref-id": "suite.cbo.country.ref"
+                },
+                model: {
+                  value: _vm.model.main.country,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "country", $$v)
+                  },
+                  expression: "model.main.country"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("省份")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.province.ref" },
-                    model: {
-                      value: _vm.model.main.province,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "province", $$v)
-                      },
-                      expression: "model.main.province"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "省份",
+                  "md-ref-id": "suite.cbo.province.ref"
+                },
+                model: {
+                  value: _vm.model.main.province,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "province", $$v)
+                  },
+                  expression: "model.main.province"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("城市区县")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.division.ref" },
-                    model: {
-                      value: _vm.model.main.division,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "division", $$v)
-                      },
-                      expression: "model.main.division"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "城市区县",
+                  "md-ref-id": "suite.cbo.division.ref"
+                },
+                model: {
+                  value: _vm.model.main.division,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "division", $$v)
+                  },
+                  expression: "model.main.division"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("区域")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.area.ref" },
-                    model: {
-                      value: _vm.model.main.area,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "area", $$v)
-                      },
-                      expression: "model.main.area"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "区域",
+                  "md-ref-id": "suite.cbo.area.ref"
+                },
+                model: {
+                  value: _vm.model.main.area,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "area", $$v)
+                  },
+                  expression: "model.main.area"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -50988,17 +50278,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("核算目的")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -51047,49 +50327,35 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("日历")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      required: "",
-                      "md-ref-id": "suite.cbo.period.calendar.ref"
-                    },
-                    model: {
-                      value: _vm.model.main.calendar,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "calendar", $$v)
-                      },
-                      expression: "model.main.calendar"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "日历",
+                  required: "",
+                  "md-ref-id": "suite.cbo.period.calendar.ref"
+                },
+                model: {
+                  value: _vm.model.main.calendar,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "calendar", $$v)
+                  },
+                  expression: "model.main.calendar"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("币种")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      required: "",
-                      "md-ref-id": "suite.cbo.currency.ref"
-                    },
-                    model: {
-                      value: _vm.model.main.currency,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "currency", $$v)
-                      },
-                      expression: "model.main.currency"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "币种",
+                  required: "",
+                  "md-ref-id": "suite.cbo.currency.ref"
+                },
+                model: {
+                  value: _vm.model.main.currency,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "currency", $$v)
+                  },
+                  expression: "model.main.currency"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -51272,16 +50538,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("部门")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -51289,6 +50545,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -51414,17 +50671,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("分配方法")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -51438,19 +50685,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -51476,15 +50715,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -51510,37 +50741,22 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          required: "",
+                          "md-label": "核算目的",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   )
@@ -51841,17 +51057,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("料品分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -52000,16 +51206,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("币种")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -52017,6 +51213,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -52167,7 +51364,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               "md-ref-id": "gmf.sys.authority.role.ref"
                             },
@@ -52202,7 +51399,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("用户")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: { "md-ref-id": "gmf.sys.user.ref" },
                             model: {
                               value: _vm.model.user,
@@ -52353,16 +51550,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("核算要素")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -52370,6 +51557,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -52449,16 +51637,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("省市")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -52466,6 +51644,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -52846,16 +52025,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("料品分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -52863,6 +52032,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -53080,7 +52250,7 @@ var render = function() {
                 [
                   _c("label", [_vm._v("接口")]),
                   _vm._v(" "),
-                  _c("md-input-ref", {
+                  _c("md-ref-input", {
                     attrs: { "md-ref-id": "gmf.sys.dti.local.ref" },
                     model: {
                       value: _vm.model.main.local,
@@ -53099,7 +52269,7 @@ var render = function() {
                 [
                   _c("label", [_vm._v("分类")]),
                   _vm._v(" "),
-                  _c("md-input-ref", {
+                  _c("md-ref-input", {
                     attrs: { "md-ref-id": "gmf.sys.dti.category.ref" },
                     model: {
                       value: _vm.model.main.category,
@@ -53363,17 +52533,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("单据类型")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -53893,17 +53053,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("部门")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -53952,24 +53102,20 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("组织")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.org.ref" },
-                    model: {
-                      value: _vm.model.main.org,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "org", $$v)
-                      },
-                      expression: "model.main.org"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "组织",
+                  required: "",
+                  "md-ref-id": "suite.cbo.org.ref"
+                },
+                model: {
+                  value: _vm.model.main.org,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "org", $$v)
+                  },
+                  expression: "model.main.org"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -53993,44 +53139,33 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("负责人")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.person.ref" },
-                    model: {
-                      value: _vm.model.main.manager,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "manager", $$v)
-                      },
-                      expression: "model.main.manager"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "负责人",
+                  "md-ref-id": "suite.cbo.person.ref"
+                },
+                model: {
+                  value: _vm.model.main.manager,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "manager", $$v)
+                  },
+                  expression: "model.main.manager"
+                }
+              }),
               _vm._v(" "),
               _c(
-                "md-field",
-                [
-                  _c(
-                    "md-checkbox",
-                    {
-                      attrs: { required: "" },
-                      model: {
-                        value: _vm.model.main.is_effective,
-                        callback: function($$v) {
-                          _vm.$set(_vm.model.main, "is_effective", $$v)
-                        },
-                        expression: "model.main.is_effective"
-                      }
+                "md-checkbox",
+                {
+                  attrs: { required: "" },
+                  model: {
+                    value: _vm.model.main.is_effective,
+                    callback: function($$v) {
+                      _vm.$set(_vm.model.main, "is_effective", $$v)
                     },
-                    [_vm._v("生效的")]
-                  )
-                ],
-                1
+                    expression: "model.main.is_effective"
+                  }
+                },
+                [_vm._v("生效的")]
               )
             ],
             1
@@ -54108,16 +53243,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("分配方法")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -54125,6 +53250,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -54185,28 +53311,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -54223,28 +53341,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("从")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.fm_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "fm_period", $$v)
-                              },
-                              expression: "model.fm_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "从",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.fm_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "fm_period", $$v)
+                          },
+                          expression: "model.fm_period"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -54261,44 +53371,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("到")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.to_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "to_period", $$v)
-                              },
-                              expression: "model.to_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "到",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.to_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "to_period", $$v)
+                          },
+                          expression: "model.to_period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴类比分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -54550,17 +53642,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("币种")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -54848,23 +53930,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("核算目的")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -54944,16 +54017,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("客商分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
           )
         ],
         1
@@ -54961,6 +54024,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -55061,16 +54125,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("工作中心")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -55078,6 +54132,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -55247,7 +54302,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("用户")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               required: "",
                               "md-ref-id": "gmf.sys.user.ref"
@@ -55387,16 +54442,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("客商")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -55404,6 +54449,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -55555,17 +54601,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("核算要素")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -55579,19 +54615,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -55617,15 +54645,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -55651,87 +54671,58 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("上级核算要素")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: { "md-ref-id": "suite.amiba.element.ref" },
-                            on: { init: _vm.initParentElementRef },
-                            model: {
-                              value: _vm.model.main.parent,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "parent", $$v)
-                              },
-                              expression: "model.main.parent"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "上级核算要素",
+                          "md-ref-id": "suite.amiba.element.ref"
+                        },
+                        on: { init: _vm.initParentElementRef },
+                        model: {
+                          value: _vm.model.main.parent,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "parent", $$v)
+                          },
+                          expression: "model.main.parent"
+                        }
+                      })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-row": "" } },
+                [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -55761,15 +54752,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -55800,15 +54783,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -55837,15 +54812,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -55870,39 +54837,32 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-row": "" } },
+                [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
-                        "md-field",
-                        [
-                          _c(
-                            "md-checkbox",
-                            {
-                              attrs: { required: "" },
-                              model: {
-                                value: _vm.model.main.is_manual,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.model.main, "is_manual", $$v)
-                                },
-                                expression: "model.main.is_manual"
-                              }
+                        "md-checkbox",
+                        {
+                          attrs: { required: "" },
+                          model: {
+                            value: _vm.model.main.is_manual,
+                            callback: function($$v) {
+                              _vm.$set(_vm.model.main, "is_manual", $$v)
                             },
-                            [_vm._v("是否人工")]
-                          )
-                        ],
-                        1
+                            expression: "model.main.is_manual"
+                          }
+                        },
+                        [_vm._v("是否人工")]
                       )
                     ],
                     1
@@ -56032,17 +54992,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("省市")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -56110,27 +55060,20 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("国家/地区")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      required: "",
-                      "md-ref-id": "suite.cbo.country.ref"
-                    },
-                    model: {
-                      value: _vm.model.main.country,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "country", $$v)
-                      },
-                      expression: "model.main.country"
-                    }
-                  })
-                ],
-                1
-              )
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "国家/地区",
+                  required: "",
+                  "md-ref-id": "suite.cbo.country.ref"
+                },
+                model: {
+                  value: _vm.model.main.country,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "country", $$v)
+                  },
+                  expression: "model.main.country"
+                }
+              })
             ],
             1
           ),
@@ -56207,16 +55150,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("区域")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -56224,6 +55157,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -56329,16 +55263,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("批号")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -56346,6 +55270,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -57128,16 +56053,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("班组")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -57145,6 +56060,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -57302,17 +56218,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("交易价表")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -57326,19 +56232,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -57364,15 +56262,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -57398,92 +56288,54 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("阿米巴")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              disabled: _vm.isApproved,
-                              required: "",
-                              "md-ref-id": "suite.amiba.group.ref"
-                            },
-                            on: { init: _vm.init_group_ref },
-                            model: {
-                              value: _vm.model.main.group,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "group", $$v)
-                              },
-                              expression: "model.main.group"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "阿米巴",
+                          disabled: _vm.isApproved,
+                          required: "",
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        on: { init: _vm.init_group_ref },
+                        model: {
+                          value: _vm.model.main.group,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "group", $$v)
+                          },
+                          expression: "model.main.group"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -57669,16 +56521,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("日志")])
-            ],
-            1
           )
         ],
         1
@@ -57686,6 +56528,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -57973,17 +56816,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("客商分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -58172,17 +57005,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("工作中心")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -58231,64 +57054,50 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("组织")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.org.ref" },
-                    model: {
-                      value: _vm.model.main.org,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "org", $$v)
-                      },
-                      expression: "model.main.org"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "组织",
+                  required: "",
+                  "md-ref-id": "suite.cbo.org.ref"
+                },
+                model: {
+                  value: _vm.model.main.org,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "org", $$v)
+                  },
+                  expression: "model.main.org"
+                }
+              }),
+              _vm._v(" "),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "部门",
+                  required: "",
+                  "md-ref-id": "suite.cbo.dept.ref"
+                },
+                on: { init: _vm.initDeptRef },
+                model: {
+                  value: _vm.model.main.dept,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "dept", $$v)
+                  },
+                  expression: "model.main.dept"
+                }
+              }),
               _vm._v(" "),
               _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("部门")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.dept.ref" },
-                    on: { init: _vm.initDeptRef },
-                    model: {
-                      value: _vm.model.main.dept,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "dept", $$v)
-                      },
-                      expression: "model.main.dept"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c(
-                    "md-checkbox",
-                    {
-                      attrs: { required: "" },
-                      model: {
-                        value: _vm.model.main.is_effective,
-                        callback: function($$v) {
-                          _vm.$set(_vm.model.main, "is_effective", $$v)
-                        },
-                        expression: "model.main.is_effective"
-                      }
+                "md-checkbox",
+                {
+                  attrs: { required: "" },
+                  model: {
+                    value: _vm.model.main.is_effective,
+                    callback: function($$v) {
+                      _vm.$set(_vm.model.main, "is_effective", $$v)
                     },
-                    [_vm._v("生效的")]
-                  )
-                ],
-                1
+                    expression: "model.main.is_effective"
+                  }
+                },
+                [_vm._v("生效的")]
               )
             ],
             1
@@ -58433,17 +57242,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("区域")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -58669,17 +57468,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("批号")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -59438,16 +58227,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("单据类型")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -59455,6 +58234,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -59580,17 +58360,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("班组")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -59639,103 +58409,79 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("组织")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.org.ref" },
-                    model: {
-                      value: _vm.model.main.org,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "org", $$v)
-                      },
-                      expression: "model.main.org"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "组织",
+                  required: "",
+                  "md-ref-id": "suite.cbo.org.ref"
+                },
+                model: {
+                  value: _vm.model.main.org,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "org", $$v)
+                  },
+                  expression: "model.main.org"
+                }
+              }),
+              _vm._v(" "),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "部门",
+                  required: "",
+                  "md-ref-id": "suite.cbo.dept.ref"
+                },
+                on: { init: _vm.initDeptRef },
+                model: {
+                  value: _vm.model.main.dept,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "dept", $$v)
+                  },
+                  expression: "model.main.dept"
+                }
+              }),
+              _vm._v(" "),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "工作中心",
+                  "md-ref-id": "suite.cbo.work.ref"
+                },
+                on: { init: _vm.initWorgRef },
+                model: {
+                  value: _vm.model.main.work,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "work", $$v)
+                  },
+                  expression: "model.main.work"
+                }
+              }),
+              _vm._v(" "),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "负责人",
+                  "md-ref-id": "suite.cbo.person.ref"
+                },
+                model: {
+                  value: _vm.model.main.manager,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "manager", $$v)
+                  },
+                  expression: "model.main.manager"
+                }
+              }),
               _vm._v(" "),
               _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("部门")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.dept.ref" },
-                    on: { init: _vm.initDeptRef },
-                    model: {
-                      value: _vm.model.main.dept,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "dept", $$v)
-                      },
-                      expression: "model.main.dept"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("工作中心")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.work.ref" },
-                    on: { init: _vm.initWorgRef },
-                    model: {
-                      value: _vm.model.main.work,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "work", $$v)
-                      },
-                      expression: "model.main.work"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("负责人")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.person.ref" },
-                    model: {
-                      value: _vm.model.main.manager,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "manager", $$v)
-                      },
-                      expression: "model.main.manager"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c(
-                    "md-checkbox",
-                    {
-                      attrs: { required: "" },
-                      model: {
-                        value: _vm.model.main.is_effective,
-                        callback: function($$v) {
-                          _vm.$set(_vm.model.main, "is_effective", $$v)
-                        },
-                        expression: "model.main.is_effective"
-                      }
+                "md-checkbox",
+                {
+                  attrs: { required: "" },
+                  model: {
+                    value: _vm.model.main.is_effective,
+                    callback: function($$v) {
+                      _vm.$set(_vm.model.main, "is_effective", $$v)
                     },
-                    [_vm._v("生效的")]
-                  )
-                ],
-                1
+                    expression: "model.main.is_effective"
+                  }
+                },
+                [_vm._v("生效的")]
               )
             ],
             1
@@ -59822,28 +58568,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -59860,44 +58598,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("损益目标达成")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -60043,23 +58763,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("期间")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -60139,16 +58850,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("计量单位")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -60156,6 +58857,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -60243,23 +58945,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("执行")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c(
             "md-grid",
@@ -60751,16 +59444,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("业务数据")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("查询")])
-            ],
-            1
           )
         ],
         1
@@ -60768,6 +59451,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -61183,28 +59867,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -61221,44 +59897,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴比较分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -61438,28 +60096,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -61476,44 +60126,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("考核结果")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("查询")])
             ],
             1
           )
@@ -61523,6 +60155,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -61899,17 +60532,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("期初")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -61923,116 +60546,71 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            on: { init: _vm.init_period_ref },
-                            model: {
-                              value: _vm.model.main.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "period", $$v)
-                              },
-                              expression: "model.main.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        on: { init: _vm.init_period_ref },
+                        model: {
+                          value: _vm.model.main.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "period", $$v)
+                          },
+                          expression: "model.main.period"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("币种")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.currency.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.currency,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "currency", $$v)
-                              },
-                              expression: "model.main.currency"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "币种",
+                          required: "",
+                          "md-ref-id": "suite.cbo.currency.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.currency,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "currency", $$v)
+                          },
+                          expression: "model.main.currency"
+                        }
+                      })
                     ],
                     1
                   )
@@ -62158,16 +60736,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("项目")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -62175,6 +60743,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -62508,16 +61077,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("交易价表")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -62525,6 +61084,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -62598,23 +61158,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("经营目标")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -62694,16 +61245,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("厂牌")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -62711,6 +61252,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -62882,17 +61424,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("计量单位")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -63058,7 +61590,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               "md-ref-id": "gmf.sys.authority.role.ref"
                             },
@@ -63093,7 +61625,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("菜单")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: { "md-ref-id": "gmf.sys.menu.ref" },
                             model: {
                               value: _vm.model.menu,
@@ -63337,23 +61869,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("数据建模")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -63528,28 +62051,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -63566,44 +62081,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴排名分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -63907,10 +62404,17 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "md-toolbar",
-    { staticClass: "md-part-toolbar md-dense", attrs: { "md-elevation": "1" } },
-    [_vm._t("default")],
-    2
+    "div",
+    { staticClass: "md-part-toolbar" },
+    [
+      _c(
+        "md-toolbar",
+        { staticClass: "md-dense", attrs: { "md-elevation": "1" } },
+        [_vm._t("default")],
+        2
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -63997,7 +62501,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               "md-ref-id": "gmf.sys.authority.role.ref"
                             },
@@ -64032,7 +62536,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("实体")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: { "md-ref-id": "gmf.sys.entity.ref" },
                             model: {
                               value: _vm.model.entity,
@@ -64465,17 +62969,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("项目")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -64486,24 +62980,19 @@ var render = function() {
           _c(
             "md-content",
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("分类")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.project.category.ref" },
-                    model: {
-                      value: _vm.model.main.category,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "category", $$v)
-                      },
-                      expression: "model.main.category"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "分类",
+                  "md-ref-id": "suite.cbo.project.category.ref"
+                },
+                model: {
+                  value: _vm.model.main.category,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "category", $$v)
+                  },
+                  expression: "model.main.category"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -65022,17 +63511,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("经营目标")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -65046,155 +63525,95 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("阿米巴")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.group.ref"
-                            },
-                            on: { init: _vm.init_group_ref },
-                            model: {
-                              value: _vm.model.main.group,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "group", $$v)
-                              },
-                              expression: "model.main.group"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "阿米巴",
+                          required: "",
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        on: { init: _vm.init_group_ref },
+                        model: {
+                          value: _vm.model.main.group,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "group", $$v)
+                          },
+                          expression: "model.main.group"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("开始期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            on: { init: _vm.init_period_ref },
-                            model: {
-                              value: _vm.model.main.fm_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "fm_period", $$v)
-                              },
-                              expression: "model.main.fm_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "开始期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        on: { init: _vm.init_period_ref },
+                        model: {
+                          value: _vm.model.main.fm_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "fm_period", $$v)
+                          },
+                          expression: "model.main.fm_period"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("结束期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            on: { init: _vm.init_period_ref },
-                            model: {
-                              value: _vm.model.main.to_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "to_period", $$v)
-                              },
-                              expression: "model.main.to_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "结束期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        on: { init: _vm.init_period_ref },
+                        model: {
+                          value: _vm.model.main.to_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "to_period", $$v)
+                          },
+                          expression: "model.main.to_period"
+                        }
+                      })
                     ],
                     1
                   )
@@ -65655,7 +64074,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               "md-ref-id": "gmf.sys.authority.role.ref"
                             },
@@ -65690,7 +64109,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("用户")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: { "md-ref-id": "gmf.sys.user.ref" },
                             model: {
                               value: _vm.model.user,
@@ -65861,17 +64280,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("厂牌")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -65882,24 +64291,19 @@ var render = function() {
           _c(
             "md-content",
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("分类")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.mfc.category.ref" },
-                    model: {
-                      value: _vm.model.main.category,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "category", $$v)
-                      },
-                      expression: "model.main.category"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "分类",
+                  "md-ref-id": "suite.cbo.mfc.category.ref"
+                },
+                model: {
+                  value: _vm.model.main.category,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "category", $$v)
+                  },
+                  expression: "model.main.category"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -66097,7 +64501,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               required: "",
                               "md-ref-id": "gmf.sys.authority.role.ref"
@@ -66244,17 +64648,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("期间关账")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("关账")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -66266,47 +64660,35 @@ var render = function() {
             "md-content",
             { staticClass: "flex layout-column" },
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("核算目的")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.amiba.purpose.ref" },
-                    model: {
-                      value: _vm.model.main.purpose,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "purpose", $$v)
-                      },
-                      expression: "model.main.purpose"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "核算目的",
+                  "md-ref-id": "suite.amiba.purpose.ref"
+                },
+                model: {
+                  value: _vm.model.main.purpose,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "purpose", $$v)
+                  },
+                  expression: "model.main.purpose"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("期间")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      multiple: "",
-                      "md-ref-id": "suite.cbo.period.account.ref"
-                    },
-                    on: { init: _vm.init_period_ref },
-                    model: {
-                      value: _vm.model.main.period,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "period", $$v)
-                      },
-                      expression: "model.main.period"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "期间",
+                  multiple: "",
+                  "md-ref-id": "suite.cbo.period.account.ref"
+                },
+                on: { init: _vm.init_period_ref },
+                model: {
+                  value: _vm.model.main.period,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "period", $$v)
+                  },
+                  expression: "model.main.period"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -66688,17 +65070,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("数据建模")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("建模")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -66710,46 +65082,34 @@ var render = function() {
             "md-content",
             { staticClass: "flex layout-column" },
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("核算目的")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.amiba.purpose.ref" },
-                    model: {
-                      value: _vm.model.main.purpose,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "purpose", $$v)
-                      },
-                      expression: "model.main.purpose"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "核算目的",
+                  "md-ref-id": "suite.amiba.purpose.ref"
+                },
+                model: {
+                  value: _vm.model.main.purpose,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "purpose", $$v)
+                  },
+                  expression: "model.main.purpose"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("期间")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      multiple: "",
-                      "md-ref-id": "suite.cbo.period.account.ref"
-                    },
-                    model: {
-                      value: _vm.model.main.period,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "period", $$v)
-                      },
-                      expression: "model.main.period"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "期间",
+                  multiple: "",
+                  "md-ref-id": "suite.cbo.period.account.ref"
+                },
+                model: {
+                  value: _vm.model.main.period,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "period", $$v)
+                  },
+                  expression: "model.main.period"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -67390,17 +65750,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("人员")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -67449,24 +65799,19 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("部门")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.dept.ref" },
-                    model: {
-                      value: _vm.model.main.dept,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "dept", $$v)
-                      },
-                      expression: "model.main.dept"
-                    }
-                  })
-                ],
-                1
-              )
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "部门",
+                  "md-ref-id": "suite.cbo.dept.ref"
+                },
+                model: {
+                  value: _vm.model.main.dept,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "dept", $$v)
+                  },
+                  expression: "model.main.dept"
+                }
+              })
             ],
             1
           ),
@@ -67735,7 +66080,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               required: "",
                               "md-ref-id": "gmf.sys.authority.role.ref"
@@ -68178,28 +66523,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -68216,44 +66553,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("损益横比")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -68529,23 +66848,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("时间数据")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -68673,23 +66983,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("期初")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -69066,17 +67367,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("分配标准")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -69090,19 +67381,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -69128,15 +67411,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -69162,113 +67437,68 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("分配方法")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.allot.method.ref"
-                            },
-                            on: { init: _vm.init_method_ref },
-                            model: {
-                              value: _vm.model.main.method,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "method", $$v)
-                              },
-                              expression: "model.main.method"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "分配方法",
+                          required: "",
+                          "md-ref-id": "suite.amiba.allot.method.ref"
+                        },
+                        on: { init: _vm.init_method_ref },
+                        model: {
+                          value: _vm.model.main.method,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "method", $$v)
+                          },
+                          expression: "model.main.method"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("来源核算要素")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.element.ref"
-                            },
-                            on: { init: _vm.init_element_ref },
-                            model: {
-                              value: _vm.model.main.element,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "element", $$v)
-                              },
-                              expression: "model.main.element"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "来源核算要素",
+                          required: "",
+                          "md-ref-id": "suite.amiba.element.ref"
+                        },
+                        on: { init: _vm.init_element_ref },
+                        model: {
+                          value: _vm.model.main.element,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "element", $$v)
+                          },
+                          expression: "model.main.element"
+                        }
+                      })
                     ],
                     1
                   )
@@ -69384,28 +67614,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -69422,28 +67644,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("从")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.fm_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "fm_period", $$v)
-                              },
-                              expression: "model.fm_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "从",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.fm_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "fm_period", $$v)
+                          },
+                          expression: "model.fm_period"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -69460,44 +67674,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("到")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.to_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "to_period", $$v)
-                              },
-                              expression: "model.to_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "到",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.to_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "to_period", $$v)
+                          },
+                          expression: "model.to_period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴目标达成趋势分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -69727,7 +67923,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               required: "",
                               "md-ref-id": "gmf.sys.authority.role.ref"
@@ -69997,28 +68193,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -70035,44 +68223,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("职能式损益表")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -70252,23 +68422,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("间接费用分配")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -70520,17 +68681,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("时间数据")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -70544,94 +68695,56 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            on: { init: _vm.init_period_ref },
-                            model: {
-                              value: _vm.model.main.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "period", $$v)
-                              },
-                              expression: "model.main.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        on: { init: _vm.init_period_ref },
+                        model: {
+                          value: _vm.model.main.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "period", $$v)
+                          },
+                          expression: "model.main.period"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -71180,16 +69293,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("城市区县")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -71197,6 +69300,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -71404,17 +69508,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("项目分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -71532,23 +69626,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("期间关账")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -71649,16 +69734,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("组织")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -71666,6 +69741,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -72389,16 +70465,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("人员")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -72406,6 +70472,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -72589,16 +70656,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("物料")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -72606,6 +70663,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -72714,17 +70772,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("间接费用分配")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("分配")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -72736,47 +70784,35 @@ var render = function() {
             "md-content",
             { staticClass: "flex layout-column" },
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("核算目的")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.amiba.purpose.ref" },
-                    model: {
-                      value: _vm.model.main.purpose,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "purpose", $$v)
-                      },
-                      expression: "model.main.purpose"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "核算目的",
+                  "md-ref-id": "suite.amiba.purpose.ref"
+                },
+                model: {
+                  value: _vm.model.main.purpose,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "purpose", $$v)
+                  },
+                  expression: "model.main.purpose"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("期间")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      multiple: "",
-                      "md-ref-id": "suite.cbo.period.account.ref"
-                    },
-                    on: { init: _vm.init_period_ref },
-                    model: {
-                      value: _vm.model.main.period,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "period", $$v)
-                      },
-                      expression: "model.main.period"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "期间",
+                  multiple: "",
+                  "md-ref-id": "suite.cbo.period.account.ref"
+                },
+                on: { init: _vm.init_period_ref },
+                model: {
+                  value: _vm.model.main.period,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "period", $$v)
+                  },
+                  expression: "model.main.period"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -73199,28 +71235,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -73237,28 +71265,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("从")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.fm_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "fm_period", $$v)
-                              },
-                              expression: "model.fm_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "从",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.fm_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "fm_period", $$v)
+                          },
+                          expression: "model.fm_period"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -73275,44 +71295,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("到")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.to_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "to_period", $$v)
-                              },
-                              expression: "model.to_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "到",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.to_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "to_period", $$v)
+                          },
+                          expression: "model.to_period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴趋势分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -73622,7 +71624,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               "md-ref-id": "gmf.sys.authority.role.ref"
                             },
@@ -73657,7 +71659,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("权限")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               "md-ref-id": "gmf.sys.authority.permit.ref"
                             },
@@ -73834,7 +71836,7 @@ var render = function() {
                 [
                   _c("label", [_vm._v("分类")]),
                   _vm._v(" "),
-                  _c("md-input-ref", {
+                  _c("md-ref-input", {
                     attrs: { "md-ref-id": "gmf.sys.dti.category.ref" },
                     model: {
                       value: _vm.model.main.category,
@@ -73853,7 +71855,7 @@ var render = function() {
                 [
                   _c("label", [_vm._v("接口")]),
                   _vm._v(" "),
-                  _c("md-input-ref", {
+                  _c("md-ref-input", {
                     attrs: { "md-ref-id": "gmf.sys.dti.ref" },
                     on: { init: _vm.initDtiRef },
                     model: {
@@ -74064,17 +72066,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("城市区县")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -74142,90 +72134,65 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("国家/地区")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      required: "",
-                      "md-ref-id": "suite.cbo.country.ref"
-                    },
-                    model: {
-                      value: _vm.model.main.country,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "country", $$v)
-                      },
-                      expression: "model.main.country"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "国家/地区",
+                  required: "",
+                  "md-ref-id": "suite.cbo.country.ref"
+                },
+                model: {
+                  value: _vm.model.main.country,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "country", $$v)
+                  },
+                  expression: "model.main.country"
+                }
+              }),
+              _vm._v(" "),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "区域",
+                  "md-ref-id": "suite.cbo.area.ref"
+                },
+                on: { init: _vm.initAreaRef },
+                model: {
+                  value: _vm.model.main.area,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "area", $$v)
+                  },
+                  expression: "model.main.area"
+                }
+              }),
+              _vm._v(" "),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "省份",
+                  required: "",
+                  "md-ref-id": "suite.cbo.province.ref"
+                },
+                on: { init: _vm.initProvinceRef },
+                model: {
+                  value: _vm.model.main.province,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "province", $$v)
+                  },
+                  expression: "model.main.province"
+                }
+              }),
               _vm._v(" "),
               _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("区域")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.area.ref" },
-                    on: { init: _vm.initAreaRef },
-                    model: {
-                      value: _vm.model.main.area,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "area", $$v)
-                      },
-                      expression: "model.main.area"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("省份")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      required: "",
-                      "md-ref-id": "suite.cbo.province.ref"
+                "md-checkbox",
+                {
+                  attrs: { required: "" },
+                  model: {
+                    value: _vm.model.main.is_effective,
+                    callback: function($$v) {
+                      _vm.$set(_vm.model.main, "is_effective", $$v)
                     },
-                    on: { init: _vm.initProvinceRef },
-                    model: {
-                      value: _vm.model.main.province,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "province", $$v)
-                      },
-                      expression: "model.main.province"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c(
-                    "md-checkbox",
-                    {
-                      attrs: { required: "" },
-                      model: {
-                        value: _vm.model.main.is_effective,
-                        callback: function($$v) {
-                          _vm.$set(_vm.model.main, "is_effective", $$v)
-                        },
-                        expression: "model.main.is_effective"
-                      }
-                    },
-                    [_vm._v("生效的")]
-                  )
-                ],
-                1
+                    expression: "model.main.is_effective"
+                  }
+                },
+                [_vm._v("生效的")]
               )
             ],
             1
@@ -74462,23 +72429,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("日历")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -74604,17 +72562,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("国家/地区")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -74757,16 +72705,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("分配标准")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -74774,6 +72712,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -75093,17 +73032,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("厂牌分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -75206,17 +73135,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("经营会计核算")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -75228,47 +73147,35 @@ var render = function() {
             "md-content",
             { staticClass: "flex layout-column" },
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("核算目的")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.amiba.purpose.ref" },
-                    model: {
-                      value: _vm.model.main.purpose,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "purpose", $$v)
-                      },
-                      expression: "model.main.purpose"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "核算目的",
+                  "md-ref-id": "suite.amiba.purpose.ref"
+                },
+                model: {
+                  value: _vm.model.main.purpose,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "purpose", $$v)
+                  },
+                  expression: "model.main.purpose"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("期间")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: {
-                      multiple: "",
-                      "md-ref-id": "suite.cbo.period.account.ref"
-                    },
-                    on: { init: _vm.init_period_ref },
-                    model: {
-                      value: _vm.model.main.period,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "period", $$v)
-                      },
-                      expression: "model.main.period"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "期间",
+                  multiple: "",
+                  "md-ref-id": "suite.cbo.period.account.ref"
+                },
+                on: { init: _vm.init_period_ref },
+                model: {
+                  value: _vm.model.main.period,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "period", $$v)
+                  },
+                  expression: "model.main.period"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -75461,17 +73368,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("调价单")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -75485,19 +73382,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -75523,15 +73412,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -75557,91 +73438,53 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("阿米巴")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.group.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.group,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "group", $$v)
-                              },
-                              expression: "model.main.group"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "阿米巴",
+                          required: "",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.group,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "group", $$v)
+                          },
+                          expression: "model.main.group"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -75816,16 +73659,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("项目分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -75833,6 +73666,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -75994,17 +73828,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴经营模型")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -76018,19 +73842,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -76055,15 +73871,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -76088,72 +73896,44 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("阿米巴")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: { "md-ref-id": "suite.amiba.group.ref" },
-                            on: { init: _vm.init_group_ref },
-                            model: {
-                              value: _vm.model.main.group,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "group", $$v)
-                              },
-                              expression: "model.main.group"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "阿米巴",
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        on: { init: _vm.init_group_ref },
+                        model: {
+                          value: _vm.model.main.group,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "group", $$v)
+                          },
+                          expression: "model.main.group"
+                        }
+                      })
                     ],
                     1
                   )
@@ -76377,28 +74157,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -76415,44 +74187,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("经营台账")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("查询")])
             ],
             1
           )
@@ -76462,6 +74216,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -76744,16 +74499,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("国家/地区")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -76761,6 +74506,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -77404,16 +75150,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("厂牌分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -77421,6 +75157,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -77481,28 +75218,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -77519,44 +75248,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("贡献式损益表")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -77711,23 +75422,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("经营会计核算")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -77807,16 +75509,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("调价单")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -77824,6 +75516,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -78072,23 +75765,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴经营模型")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -78455,17 +76139,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("存储地点")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -78514,62 +76188,49 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("组织")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.org.ref" },
-                    model: {
-                      value: _vm.model.main.org,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "org", $$v)
-                      },
-                      expression: "model.main.org"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "组织",
+                  required: "",
+                  "md-ref-id": "suite.cbo.org.ref"
+                },
+                model: {
+                  value: _vm.model.main.org,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "org", $$v)
+                  },
+                  expression: "model.main.org"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("部门")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.dept.ref" },
-                    model: {
-                      value: _vm.model.main.dept,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "dept", $$v)
-                      },
-                      expression: "model.main.dept"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "部门",
+                  required: "",
+                  "md-ref-id": "suite.cbo.dept.ref"
+                },
+                model: {
+                  value: _vm.model.main.dept,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "dept", $$v)
+                  },
+                  expression: "model.main.dept"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("负责人")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.person.ref" },
-                    model: {
-                      value: _vm.model.main.manager,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "manager", $$v)
-                      },
-                      expression: "model.main.manager"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "负责人",
+                  "md-ref-id": "suite.cbo.person.ref"
+                },
+                model: {
+                  value: _vm.model.main.manager,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "manager", $$v)
+                  },
+                  expression: "model.main.manager"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -78703,28 +76364,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -78741,28 +76394,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("从")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.fm_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "fm_period", $$v)
-                              },
-                              expression: "model.fm_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "从",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.fm_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "fm_period", $$v)
+                          },
+                          expression: "model.fm_period"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -78779,44 +76424,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("到")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.to_period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "to_period", $$v)
-                              },
-                              expression: "model.to_period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "到",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.to_period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "to_period", $$v)
+                          },
+                          expression: "model.to_period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("损益趋势分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )
@@ -79067,17 +76694,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("责任调整单")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -79091,19 +76708,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -79129,15 +76738,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -79163,90 +76764,52 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            on: { init: _vm.init_period_ref },
-                            model: {
-                              value: _vm.model.main.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "period", $$v)
-                              },
-                              expression: "model.main.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        on: { init: _vm.init_period_ref },
+                        model: {
+                          value: _vm.model.main.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "period", $$v)
+                          },
+                          expression: "model.main.period"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -79764,17 +77327,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("核算数据表")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -79788,19 +77341,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -79826,15 +77371,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -79860,128 +77397,82 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            on: { init: _vm.init_period_ref },
-                            model: {
-                              value: _vm.model.main.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "period", $$v)
-                              },
-                              expression: "model.main.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        on: { init: _vm.init_period_ref },
+                        model: {
+                          value: _vm.model.main.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "period", $$v)
+                          },
+                          expression: "model.main.period"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算要素")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.element.ref"
-                            },
-                            on: { init: _vm.init_element_ref },
-                            model: {
-                              value: _vm.model.main.element,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "element", $$v)
-                              },
-                              expression: "model.main.element"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算要素",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.element.ref"
+                        },
+                        on: { init: _vm.init_element_ref },
+                        model: {
+                          value: _vm.model.main.element,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "element", $$v)
+                          },
+                          expression: "model.main.element"
+                        }
+                      })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-row": "" } },
+                [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80010,91 +77501,53 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("阿米巴")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.group.ref"
-                            },
-                            on: { init: _vm.init_fm_group_ref },
-                            model: {
-                              value: _vm.model.main.fm_group,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "fm_group", $$v)
-                              },
-                              expression: "model.main.fm_group"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "阿米巴",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        on: { init: _vm.init_fm_group_ref },
+                        model: {
+                          value: _vm.model.main.fm_group,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "fm_group", $$v)
+                          },
+                          expression: "model.main.fm_group"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("对方阿米巴")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              disabled: _vm.isApproved,
-                              "md-ref-id": "suite.amiba.group.ref"
-                            },
-                            on: { init: _vm.init_to_group_ref },
-                            model: {
-                              value: _vm.model.main.to_group,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "to_group", $$v)
-                              },
-                              expression: "model.main.to_group"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "对方阿米巴",
+                          disabled: _vm.isApproved,
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        on: { init: _vm.init_to_group_ref },
+                        model: {
+                          value: _vm.model.main.to_group,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "to_group", $$v)
+                          },
+                          expression: "model.main.to_group"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80124,15 +77577,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "25",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80388,17 +77833,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴单元")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -80412,19 +77847,11 @@ var render = function() {
             [
               _c(
                 "md-layout",
-                { attrs: { "md-gutter": "" } },
+                { attrs: { "md-gutter": "", "md-row": "" } },
                 [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80450,15 +77877,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80484,87 +77903,51 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("核算目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.main.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "purpose", $$v)
-                              },
-                              expression: "model.main.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "核算目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.main.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "purpose", $$v)
+                          },
+                          expression: "model.main.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("上级阿米巴单元")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: { "md-ref-id": "suite.amiba.group.ref" },
-                            on: { init: _vm.initParentGroupRef },
-                            model: {
-                              value: _vm.model.main.parent,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "parent", $$v)
-                              },
-                              expression: "model.main.parent"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "上级阿米巴单元",
+                          "md-ref-id": "suite.amiba.group.ref"
+                        },
+                        on: { init: _vm.initParentGroupRef },
+                        model: {
+                          value: _vm.model.main.parent,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "parent", $$v)
+                          },
+                          expression: "model.main.parent"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80588,19 +77971,18 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "md-layout",
+                { attrs: { "md-gutter": "", "md-row": "" } },
+                [
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80628,15 +78010,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -80662,15 +78036,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    {
-                      attrs: {
-                        "md-flex-xsmall": "100",
-                        "md-flex-small": "50",
-                        "md-flex-medium": "33",
-                        "md-flex-large": "20",
-                        "md-flex-xlarge": "20"
-                      }
-                    },
+                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
                     [
                       _c(
                         "md-field",
@@ -81042,16 +78408,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("存储地点")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -81059,6 +78415,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -81260,17 +78617,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("日历")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -81546,16 +78893,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("责任调整单")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -81563,6 +78900,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -82053,7 +79391,7 @@ var render = function() {
                         [
                           _c("label", [_vm._v("角色")]),
                           _vm._v(" "),
-                          _c("md-input-ref", {
+                          _c("md-ref-input", {
                             attrs: {
                               required: "",
                               "md-ref-id": "gmf.sys.authority.role.ref"
@@ -82397,17 +79735,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("物料")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -82475,43 +79803,34 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("分类")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.item.category.ref" },
-                    model: {
-                      value: _vm.model.main.category,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "category", $$v)
-                      },
-                      expression: "model.main.category"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "分类",
+                  "md-ref-id": "suite.cbo.item.category.ref"
+                },
+                model: {
+                  value: _vm.model.main.category,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "category", $$v)
+                  },
+                  expression: "model.main.category"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("计量单位")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { required: "", "md-ref-id": "suite.cbo.unit.ref" },
-                    model: {
-                      value: _vm.model.main.unit,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "unit", $$v)
-                      },
-                      expression: "model.main.unit"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "计量单位",
+                  required: "",
+                  "md-ref-id": "suite.cbo.unit.ref"
+                },
+                model: {
+                  value: _vm.model.main.unit,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "unit", $$v)
+                  },
+                  expression: "model.main.unit"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -82533,24 +79852,18 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "md-field",
-                [
-                  _c(
-                    "md-checkbox",
-                    {
-                      attrs: { required: "" },
-                      model: {
-                        value: _vm.model.main.is_effective,
-                        callback: function($$v) {
-                          _vm.$set(_vm.model.main, "is_effective", $$v)
-                        },
-                        expression: "model.main.is_effective"
-                      }
+                "md-checkbox",
+                {
+                  attrs: { required: "" },
+                  model: {
+                    value: _vm.model.main.is_effective,
+                    callback: function($$v) {
+                      _vm.$set(_vm.model.main, "is_effective", $$v)
                     },
-                    [_vm._v("生效的")]
-                  )
-                ],
-                1
+                    expression: "model.main.is_effective"
+                  }
+                },
+                [_vm._v("生效的")]
               ),
               _vm._v(" "),
               _c(
@@ -82828,16 +80141,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("核算数据表")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -82845,6 +80148,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -82924,16 +80228,6 @@ var render = function() {
             "md-part-toolbar-group",
             [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴单元")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
-            1
           )
         ],
         1
@@ -82941,6 +80235,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -83074,27 +80369,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -83249,16 +80536,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("财务数据")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("查询")])
-            ],
-            1
           )
         ],
         1
@@ -83266,6 +80543,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -83731,17 +81009,7 @@ var render = function() {
             on: { paging: _vm.paging }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("组织")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -83790,24 +81058,19 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("负责人")]),
-                  _vm._v(" "),
-                  _c("md-input-ref", {
-                    attrs: { "md-ref-id": "suite.cbo.person.ref" },
-                    model: {
-                      value: _vm.model.main.manager,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "manager", $$v)
-                      },
-                      expression: "model.main.manager"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "负责人",
+                  "md-ref-id": "suite.cbo.person.ref"
+                },
+                model: {
+                  value: _vm.model.main.manager,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "manager", $$v)
+                  },
+                  expression: "model.main.manager"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -83886,28 +81149,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("目的")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.amiba.purpose.ref"
-                            },
-                            model: {
-                              value: _vm.model.purpose,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "purpose", $$v)
-                              },
-                              expression: "model.purpose"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "目的",
+                          required: "",
+                          "md-ref-id": "suite.amiba.purpose.ref"
+                        },
+                        model: {
+                          value: _vm.model.purpose,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "purpose", $$v)
+                          },
+                          expression: "model.purpose"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -83924,44 +81179,26 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("期间")]),
-                          _vm._v(" "),
-                          _c("md-input-ref", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "suite.cbo.period.account.ref"
-                            },
-                            model: {
-                              value: _vm.model.period,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "period", $$v)
-                              },
-                              expression: "model.period"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "期间",
+                          required: "",
+                          "md-ref-id": "suite.cbo.period.account.ref"
+                        },
+                        model: {
+                          value: _vm.model.period,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "period", $$v)
+                          },
+                          expression: "model.period"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("阿米巴目标达成比较分析")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("报表")])
             ],
             1
           )

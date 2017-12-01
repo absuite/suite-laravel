@@ -13443,6 +13443,18 @@ button:focus {
   -webkit-transform: translate3D(0, 0, 0);
           transform: translate3D(0, 0, 0);
 }
+.md-card .md-card-header .md-card-media {
+  margin-left: 0px;
+}
+.md-card .md-card-header .md-card-media + .md-card-header-text {
+  margin-left: 16px;
+}
+.md-card .md-card-header .md-card-header-text + .md-card-media {
+  margin-left: 16px;
+}
+.md-checkbox .md-checkbox-label {
+  font-size: 16px;
+}
 /**
  * The default transition, used when the element is visible
  * since the beginning of the animation
@@ -17634,8 +17646,6 @@ body > .md-overlay, .md-overlay.md-fixed {
 [class*="md-layout"] {
   display: -webkit-box;
   display: flex;
-  -webkit-box-flex: 1;
-          flex: 1;
 }
 [class*="md-layout"].md-centered {
     width: 100%;
@@ -23376,9 +23386,11 @@ tbody .md-table-row td {
       font-size: 25px;
       -webkit-font-smoothing: antialiased;
 }
-.md-part-toolbar .md-part-toolbar-group .md-button {
+.md-part-toolbar .md-part-toolbar-group .md-button:not(.md-icon-button) {
     margin: 0;
     min-width: 0;
+    line-height: 40px;
+    height: 40px;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field {
     padding: 0px;
@@ -23389,15 +23401,21 @@ tbody .md-table-row td {
             flex-flow: row nowrap;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field .md-chip {
-      padding-top: 10px;
-      font-size: 16px;
-      height: 38px;
+      margin: 0px;
+      margin-top: 16px;
+      line-height: 24px;
+      height: 24px;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field .md-input {
       line-height: 40px;
       height: 40px;
-      padding-top: 10px;
       min-width: auto;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-ref-input .md-input {
+      padding-top: 10px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-ref-input .md-ref-filter {
+      margin-top: 5px;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field label {
       top: 15px;
@@ -23527,30 +23545,35 @@ tbody .md-table-row td {
  * @group transition
  */
 /* Transitions - Based on Angular Material */
-.md-ref-input .md-chip.md-theme-default {
+.md-ref-input.md-field .md-chip {
+  font-size: 16px;
   border-radius: 0 10px 10px 0px;
   margin-bottom: 1px;
-  background-color: transparent;
   overflow: hidden;
 }
-.md-ref-input .md-chip.md-theme-default .md-ripple {
+.md-ref-input.md-field .md-chip .md-ripple {
     padding-left: 0px;
 }
-.md-ref-input .md-chip.md-theme-default:last-of-type {
+.md-ref-input.md-field .md-chip:last-of-type {
     margin-right: 8px;
 }
-.md-ref-input .md-chip.md-theme-default:not(:hover) .md-input-action {
+.md-ref-input.md-field .md-chip:not(:hover) .md-input-action {
     -webkit-transform: translate3d(220%, 0px, 0px);
             transform: translate3d(220%, 0px, 0px);
 }
-.md-ref-input .md-ref-filter {
+.md-ref-input.md-field .md-chip.md-theme-default {
+  background-color: transparent;
+}
+.md-ref-input.md-field .md-ref-filter {
   min-height: auto;
-  height: auto;
+  min-width: 32px;
+  height: 32px;
+  width: 32px;
   margin: 0px;
   padding: 0px;
 }
-.md-ref-input .md-input {
-  min-width: 128px;
+.md-ref-input.md-field .md-input {
+  min-width: auto;
 }
 /**
  * The default transition, used when the element is visible
@@ -23756,7 +23779,7 @@ tbody .md-table-row td {
   overflow: hidden;
 }
 .md-grid .md-grid-cell-container {
-    padding: 0.04rem;
+    padding: 4px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -23780,9 +23803,9 @@ tbody .md-table-row td {
         height: 100%;
         min-height: auto;
         margin: 0px;
-        width: .3rem;
+        width: 30px;
         min-width: auto;
-        height: .3rem;
+        height: 30px;
 }
 .md-grid td,
   .md-grid th {
@@ -23840,10 +23863,10 @@ tbody .md-table-row td {
     position: relative;
 }
 .md-grid .md-grid-head .md-grid-cell-container {
-      padding-right: .07rem;
-      padding-left: .08rem;
-      padding-top: .08rem;
-      padding-bottom: .07rem;
+      padding-right: 7px;
+      padding-left: 8px;
+      padding-top: 8px;
+      padding-bottom: 7px;
 }
 .md-grid .md-grid-head td,
     .md-grid .md-grid-head th {
@@ -23861,7 +23884,7 @@ tbody .md-table-row td {
 .md-grid .md-grid-head td.has-sort:after,
         .md-grid .md-grid-head th.has-sort:after {
           position: absolute;
-          left: 0.01rem;
+          left: 1px;
           display: -webkit-box;
           display: flex;
           -webkit-box-align: center;
@@ -23958,13 +23981,13 @@ tbody .md-table-row td {
     overflow: hidden;
     background-color: #fafafa;
     border-top: 1px solid #dfdfdf;
-    min-height: .4rem;
+    min-height: 40px;
     position: relative;
 }
 .md-grid .md-grid-actions {
     background-color: #fafafa;
     border-top: 1px solid #dfdfdf;
-    min-height: .4rem;
+    min-height: 40px;
     color: #666;
 }
 .md-grid .md-grid-actions > div > .md-icon-button {
@@ -29596,11 +29619,11 @@ body {
   max-height: 100%;
   min-height: 100%;
 }
-.md-app .md-part-body {
-    padding: 0px;
-}
 .md-app .md-app-content {
     padding: 0px;
+}
+.md-app .md-app-content.md-content {
+      background-color: transparent;
 }
 .md-app .md-logo {
     margin: 0;
@@ -29619,6 +29642,22 @@ body {
 .md-app .md-app-toolbar .search {
         display: none;
 }
+}
+.md-app .md-part .md-part-toolbar {
+    background-color: transparent;
+}
+.md-app .md-part .md-part-toolbar .md-toolbar.md-dense {
+      min-height: 40px;
+      background-color: #fff;
+      max-width: 1200px;
+      margin: 0 auto;
+}
+.md-app .md-part .md-part-body {
+    padding: 10px;
+    margin: 10px auto;
+    width: auto;
+    max-width: 1200px;
+    width: 100%;
 }
 /**
  * The default transition, used when the element is visible
