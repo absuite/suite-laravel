@@ -228,6 +228,9 @@ audio:not(.md-image),
 .no-padding {
   padding: 0 !important;
 }
+.no-margin {
+  margin: 0 !important;
+}
 .wrap {
   flex-wrap: wrap;
 }
@@ -236,34 +239,34 @@ audio:not(.md-image),
   flex-wrap: nowrap;
 }
 .md-indent-0 {
-  padding-left: 0rem;
+  padding-left: 0px;
 }
 .md-indent-1 {
-  padding-left: 0.25rem;
+  padding-left: 20px;
 }
 .md-indent-2 {
-  padding-left: 0.5rem;
+  padding-left: 40px;
 }
 .md-indent-3 {
-  padding-left: 0.75rem;
+  padding-left: 60px;
 }
 .md-indent-4 {
-  padding-left: 1rem;
+  padding-left: 80px;
 }
 .md-indent-5 {
-  padding-left: 1.25rem;
+  padding-left: 100px;
 }
 .md-indent-6 {
-  padding-left: 1.5rem;
+  padding-left: 120px;
 }
 .md-indent-7 {
-  padding-left: 1.75rem;
+  padding-left: 140px;
 }
 .md-indent-8 {
-  padding-left: 2rem;
+  padding-left: 160px;
 }
 .md-indent-9 {
-  padding-left: 2.25rem;
+  padding-left: 180px;
 }
 
 /**/
@@ -13455,6 +13458,9 @@ button:focus {
 .md-checkbox .md-checkbox-label {
   font-size: 16px;
 }
+.md-field.md-theme-default.md-disabled:after {
+  background-color: transparent;
+}
 /**
  * The default transition, used when the element is visible
  * since the beginning of the animation
@@ -23308,8 +23314,8 @@ tbody .md-table-row td {
 .md-part-body .md-part-side > .md-navigation {
       display: none;
       position: absolute;
-      top: 38%;
-      right: -0.13rem;
+      top: 38px;
+      right: -12px;
       z-index: 1;
       margin: 0;
       padding: 0;
@@ -23317,11 +23323,11 @@ tbody .md-table-row td {
 .md-part-body .md-part-side.md-active {
       display: block;
       overflow: hidden;
-      min-width: 1.9rem;
+      min-width: 190px;
       max-width: 100%;
 }
 .md-part-body .md-part-side.md-active > .md-navigation {
-        right: -0.38rem;
+        right: 38px;
 }
 /**
  * The default transition, used when the element is visible
@@ -23364,74 +23370,90 @@ tbody .md-table-row td {
  * @group transition
  */
 /* Transitions - Based on Angular Material */
-.md-part-toolbar {
-  background-color: #E0F2F1;
+.md-part-toolbar.md-toolbar.md-dense {
   min-height: 40px;
   z-index: 1;
   position: relative;
-}
-.md-part-toolbar.md-toolbar.md-dense {
-    min-height: 40px;
+  padding: 0px 10px;
 }
 .md-part-toolbar .md-part-toolbar-crumbs {
-    padding: 0 16px;
+  padding: 0 16px;
 }
 .md-part-toolbar .md-part-toolbar-crumbs .md-part-toolbar-crumb + .md-part-toolbar-crumb:before {
-      content: '\E5CC';
-      vertical-align: top;
-      display: inline-block;
-      font-family: 'Material Icons';
-      font-weight: normal;
-      font-style: normal;
-      font-size: 25px;
-      -webkit-font-smoothing: antialiased;
+    content: '\E5CC';
+    vertical-align: top;
+    display: inline-block;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    -webkit-font-smoothing: antialiased;
 }
 .md-part-toolbar .md-part-toolbar-group .md-button:not(.md-icon-button) {
-    margin: 0;
-    min-width: 0;
-    line-height: 40px;
-    height: 40px;
+  margin: 0;
+  min-width: 0;
+  line-height: 40px;
+  height: 40px;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field {
-    padding: 0px;
-    min-height: 40px;
-    margin: 0px;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-flow: row nowrap;
-}
-.md-part-toolbar .md-part-toolbar-group .md-field .md-chip {
-      margin: 0px;
-      margin-top: 16px;
-      line-height: 24px;
-      height: 24px;
-}
-.md-part-toolbar .md-part-toolbar-group .md-field .md-input {
-      line-height: 40px;
-      height: 40px;
-      min-width: auto;
-}
-.md-part-toolbar .md-part-toolbar-group .md-field.md-ref-input .md-input {
-      padding-top: 10px;
-}
-.md-part-toolbar .md-part-toolbar-group .md-field.md-ref-input .md-ref-filter {
-      margin-top: 5px;
+  padding: 0px;
+  min-height: 40px;
+  margin: 0px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row nowrap;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field label {
-      top: 15px;
+    top: 10px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field:after {
+    background-color: transparent;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field > .md-icon {
+    margin: 0px;
+    margin-top: 10px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field .md-chip {
+    margin: 0px;
+    margin-top: 16px;
+    line-height: 24px;
+    height: 24px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field .md-input {
+    line-height: 40px;
+    height: 40px;
+    min-width: auto;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field label + .md-input {
+    padding-top: 16px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-ref-input label + .md-input {
+    padding-top: 10px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-ref-input .md-ref-filter {
+    margin-top: 5px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-autocomplete.md-fetch {
+    height: 38px;
+    min-height: 38px;
+    border-radius: 2px;
+}
+.md-part-toolbar .md-part-toolbar-group .md-field.md-autocomplete.md-fetch .md-input {
+      -webkit-text-fill-color: #4b4747;
+      color: #4b4747;
 }
 .md-part-toolbar .md-part-toolbar-group .md-field.md-focused label,
-  .md-part-toolbar .md-part-toolbar-group .md-field.md-has-value label {
-    top: 0px;
+.md-part-toolbar .md-part-toolbar-group .md-field.md-has-value label {
+  top: 0px;
 }
 .md-part-toolbar .md-part-toolbar-group + .md-part-toolbar-group:before {
-    content: ' ';
-    position: absolute;
-    height: 20px;
-    width: 1px;
-    background: rgba(0, 0, 0, 0.12);
-    top: 8px;
-    display: inline-block;
+  content: ' ';
+  position: absolute;
+  height: 20px;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.12);
+  top: 8px;
+  display: inline-block;
 }
 
 .query-cases[data-v-53491331] {
@@ -23549,6 +23571,7 @@ tbody .md-table-row td {
   font-size: 16px;
   border-radius: 0 10px 10px 0px;
   margin-bottom: 1px;
+  padding-left: 0px;
   overflow: hidden;
 }
 .md-ref-input.md-field .md-chip .md-ripple {
@@ -23771,6 +23794,47 @@ tbody .md-table-row td {
 }
 
 @charset "UTF-8";
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
 .md-grid {
   border: 1px solid #c7c7c7;
   background: #fff;
@@ -23780,11 +23844,12 @@ tbody .md-table-row td {
 }
 .md-grid .md-grid-cell-container {
     padding: 4px;
+    min-height: 32px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.md-grid .md-grid-cell-container .md-input-container {
+.md-grid .md-grid-cell-container .md-field {
       position: absolute;
       top: 0;
       left: 0;
@@ -23859,7 +23924,7 @@ tbody .md-table-row td {
 .md-grid .md-grid-head {
     overflow: hidden;
     background-color: #f4f4f4;
-    border-bottom: 2px solid #53abe6;
+    border-bottom: 2px solid #0f9d58;
     position: relative;
 }
 .md-grid .md-grid-head .md-grid-cell-container {
@@ -23943,14 +24008,14 @@ tbody .md-table-row td {
       background-color: #f9f9f9;
 }
 .md-grid .md-grid-body tr.selected {
-      background-color: #80cbc4;
+      background-color: rgba(15, 157, 88, 0.37);
 }
 .md-grid .md-grid-body tr:hover > :first-child:before,
     .md-grid .md-grid-body tr.focused > :first-child:before {
       content: " ";
       position: absolute;
       left: 0;
-      background: #009688;
+      background: rgba(15, 157, 88, 0.8);
       width: 3px;
       height: 100%;
       top: 0;
@@ -23967,15 +24032,15 @@ tbody .md-table-row td {
       left: 0;
       width: 100%;
       height: 100%;
-      border: 2px solid #53abe6;
+      border: 2px solid #0f9d58;
 }
 .md-grid .md-grid-body tr.focused.row-focused {
-      background: #009688;
+      background-color: rgba(15, 157, 88, 0.8);
       color: #fff;
 }
 .md-grid .md-grid-body tr.focused.row-focused td,
       .md-grid .md-grid-body tr.focused.row-focused th {
-        border-right-color: #009688;
+        border-right-color: rgba(15, 157, 88, 0.8);
 }
 .md-grid .md-grid-foot {
     overflow: hidden;
@@ -24116,7 +24181,7 @@ tbody .md-table-row td {
   min-width: 100%;
 }
 .md-chart-default .highcharts-title {
-  font-size: 0.18rem !important;
+  font-size: 18px !important;
   color: #000 !important;
   fill: #000 !important;
   margin: 5px !important;
@@ -24127,7 +24192,7 @@ tbody .md-table-row td {
 }
 .md-chart-default .md-chart-yaxis text {
   fill: #666 !important;
-  font-size: 0.14rem !important;
+  font-size: 14px !important;
 }
 .md-chart-default .md-chart-xaxis {
   color: #ddd !important;
@@ -24135,24 +24200,24 @@ tbody .md-table-row td {
 }
 .md-chart-default .md-chart-xaxis text {
   fill: #666666 !important;
-  font-size: 0.14rem !important;
+  font-size: 14px !important;
 }
 .md-chart-default .md-chart-yaxis > highcharts-grid-line {
   stroke: #ddd !important;
 }
 .md-chart-default .md-chart-data-labels,
 .md-chart-default .md-chart-data-labels text {
-  font-size: 0.13rem !important;
+  font-size: 13px !important;
   font-weight: 500 !important;
 }
 .md-chart-default .highcharts-legend-item > text {
   color: #666 !important;
-  font-size: 0.13rem !important;
+  font-size: 13px !important;
   fill: #666 !important;
 }
 .md-chart-default .highcharts-legend-item > rect {
-  width: 0.1rem !important;
-  height: 0.1rem !important;
+  width: 10px !important;
+  height: 10px !important;
 }
 /**
  * The default transition, used when the element is visible
@@ -29619,19 +29684,23 @@ body {
   max-height: 100%;
   min-height: 100%;
 }
+.md-app .md-gutter.md-layout-row > [class*="md-flex"] + [class*="md-flex"] {
+    margin-left: 0;
+}
 .md-app .md-app-content {
     padding: 0px;
 }
 .md-app .md-app-content.md-content {
       background-color: transparent;
+      height: 100%;
 }
 .md-app .md-logo {
     margin: 0;
 }
-.md-app > .md-app-drawer {
+.md-app > .md-app-drawer.menu-drawer {
     width: 230px;
 }
-.md-app > .md-app-drawer.md-active {
+.md-app > .md-app-drawer.menu-drawer.md-active {
       overflow: visible;
 }
 .md-app .md-app-toolbar .search {
@@ -29643,21 +29712,194 @@ body {
         display: none;
 }
 }
-.md-app .md-part .md-part-toolbar {
-    background-color: transparent;
-}
-.md-app .md-part .md-part-toolbar .md-toolbar.md-dense {
-      min-height: 40px;
-      background-color: #fff;
-      max-width: 1200px;
-      margin: 0 auto;
-}
-.md-app .md-part .md-part-body {
-    padding: 10px;
-    margin: 10px auto;
-    width: auto;
+.md-app .md-part {
+    margin: 0 auto;
     max-width: 1200px;
     width: 100%;
+}
+.md-app .md-part.md-full {
+      max-width: 100%;
+}
+.md-app .md-part .md-part-toolbar.md-toolbar.md-dense {
+      background-color: #fff;
+      margin: 0 auto;
+      min-height: 40px;
+      width: 100%;
+}
+.md-app .md-part .md-part-body {
+      padding: 10px;
+      margin: 10px auto;
+      width: 100%;
+}
+.md-app .md-form .md-layout > .md-field {
+    margin-left: 0px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.md-app .md-pag-container {
+    display: none;
+    min-height: 100%;
+    height: 100%;
+}
+.md-app .md-pag-container.md-active {
+      display: block;
+}
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.suite-app-menu-extend {
+  position: fixed;
+  overflow: hidden;
+  top: 0px;
+  left: 100%;
+  z-index: 60;
+  background: #fff;
+  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.3);
+  width: 200%;
+  max-height: 100%;
+  min-height: 100%;
+}
+.suite-app-menu {
+  max-width: 100%;
+  max-height: 100%;
+}
+.suite-app-menu > .md-list {
+    overflow-y: auto;
+}
+.suite-app-menu .suite-app-menu-extend > section {
+    width: 100%;
+}
+.suite-app-menu .suite-app-menu-extend > section .extend-body {
+      overflow: auto;
+      width: 100%;
+}
+.suite-app-menu .suite-app-menu-extend .md-list {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row wrap;
+    -webkit-box-flex: 0;
+            flex: none;
+}
+.suite-app-menu .suite-app-menu-extend .md-list .md-subheader {
+      width: 100%;
+      color: var(--md-theme-default-primary, #0f9d58);
+}
+.suite-app-menu .suite-app-menu-extend .md-list .md-list-item {
+      margin: 0px;
+}
+.suite-app-menu .suite-app-menu-extend .md-list .md-list-item .md-list-item-content {
+        min-height: 30px;
+}
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+.suite-app-sider .md-list-item.md-active .md-list-item-content > .md-icon,
+.suite-app-sider .md-list-item.md-active .md-list-item-content > .md-list-item-text {
+  color: var(--md-theme-default-primary, red);
 }
 /**
  * The default transition, used when the element is visible
@@ -29720,103 +29962,52 @@ body {
 .suite-app-toolbar .md-pag-tabs {
     padding-left: 0px;
 }
-/**
- * The default transition, used when the element is visible
- * since the beginning of the animation
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The enter transition, used when the element is not visible on the screen
- * since the beginning of the animation and become visible
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The leave transition, used when the element is visible on the screen
- * since the beginning of the animation and is removed
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The stand transition, used when the element is going to accelerate,
- * like movements from bottom to top
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/**
- * The out transition, used when the element is going to deaccelerate,
- * like movements from top to bottom
- * ---
- * @access private
- * @type transition
- * @group transition
- */
-/* Transitions - Based on Angular Material */
-/**
- * The layout system breakpoints
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-/**
- * The available gutter sizes
- * ---
- * @access private
- * @type layout
- * @group layout
- */
-.suite-app-menu-extend {
-  position: fixed;
-  overflow: auto;
-  top: 0px;
-  left: 100%;
-  z-index: 60;
-  background: #fff;
-  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.3);
-  width: 200%;
-  max-height: 100%;
-  min-height: 100%;
-}
-.suite-app-menu {
-  max-width: 100%;
-  max-height: 100%;
-}
-.suite-app-menu > .md-list {
-    overflow-y: auto;
-}
-.suite-app-menu .suite-app-menu-extend .md-list {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-            flex-flow: row wrap;
-}
-.suite-app-menu .suite-app-menu-extend .md-list .md-subheader {
-      width: 100%;
-      color: var(--md-theme-default-primary, #0f9d58);
-}
-.suite-app-menu .suite-app-menu-extend .md-list .md-list-item {
+.suite-app-toolbar .md-pag-tabs .md-pag-item {
       margin: 0px;
+      opacity: .8;
+      min-width: 60px;
+      min-height: 40px;
+      overflow: hidden;
+      padding-left: 2px;
+      padding-right: 5px;
 }
-.suite-app-menu .suite-app-menu-extend .md-list .md-list-item .md-list-item-content {
-        min-height: 30px;
+.suite-app-toolbar .md-pag-tabs .md-pag-item .md-ripple {
+        padding: 0px;
+}
+.suite-app-toolbar .md-pag-tabs .md-pag-item.md-active {
+        opacity: 1;
+}
+.suite-app-toolbar .md-pag-tabs .md-pag-item .md-delete {
+        margin: 0px;
+        padding: 0px;
+        width: 18px;
+        height: 18px;
+        min-width: auto;
+        min-height: auto;
+        -webkit-transform: translate3d(120%, 0px, 0px);
+                transform: translate3d(120%, 0px, 0px);
+        opacity: 0;
+}
+.suite-app-toolbar .md-pag-tabs .md-pag-item .md-delete .md-icon {
+          font-size: 18px;
+}
+.suite-app-toolbar .md-pag-tabs .md-pag-item:hover .md-delete {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+                transform: translate3d(0px, 0px, 0px);
+        opacity: 1;
 }
 
 .md-card[data-v-2ecffdea] {
-  margin: 0.15rem;
+  margin: 15px;
 }
 @media (max-width: 600px) {
 .md-card[data-v-2ecffdea] {
     margin: 0;
 }
+}
+
+.md-file-import-list.md-list {
+  padding: 0;
 }
 
 .myChart[data-v-7ab6c018] {
@@ -29906,61 +30097,6 @@ body {
  * @type layout
  * @group layout
  */
-
-.md-pag-tabs .md-tabs-navigation > .md-button {
-  opacity: .8;
-}
-
-.md-pag-tabs .md-tabs-navigation > .md-button.md-active {
-  opacity: 1;
-}
-
-.md-pag-tabs .md-tabs-navigation > .md-button > .md-ripple {
-  padding-right: 8px;
-}
-
-.md-pag-tabs .md-tabs-navigation > .md-button:hover .md-delete {
-  -webkit-transform: translate3d(0px, 0px, 0px);
-          transform: translate3d(0px, 0px, 0px);
-  opacity: 1;
-}
-
-.md-pag-tabs .md-tabs-navigation > .md-button .md-delete {
-  min-width: auto;
-  min-height: auto;
-  padding: 0px;
-  margin: 0px 0px 0px 5px;
-  width: auto;
-  height: auto;
-  -webkit-transform: translate3d(220%, 0px, 0px);
-          transform: translate3d(220%, 0px, 0px);
-  opacity: 0;
-}
-
-.md-pag-tabs .md-tabs-navigation > .md-button .md-delete .md-ripple {
-  padding: 0px;
-  margin: 0px;
-}
-
-.md-pag-tabs .md-tabs-navigation > .md-button .md-delete .md-icon {
-  min-width: auto;
-  min-height: auto;
-  padding: 0px;
-  margin: 0px;
-  font-size: 18px;
-  height: 18px;
-  width: 18px;
-}
-
-.md-pag-container {
-  display: none;
-  min-height: 100%;
-  height: 100%;
-}
-
-.md-pag-container.md-active {
-  display: block;
-}
 
 /**
  * The default transition, used when the element is visible

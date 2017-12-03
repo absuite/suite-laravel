@@ -2251,7 +2251,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
 
 exports.default = {
   name: 'MdDatepicker',
@@ -2264,10 +2263,16 @@ exports.default = {
   },
   props: {
     value: [String, Date],
+    disabled: Boolean,
+    mdLabel: String,
+    mdAutoSelect: {
+      type: Boolean,
+      default: true
+    },
     mdDisabledDates: [Array, Function],
     mdOpenOnFocus: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data: function data() {
@@ -2281,7 +2286,7 @@ exports.default = {
     selectedDate: function selectedDate(_selectedDate) {
       if (_selectedDate) {
         this.modelDate = this.dateToHTMLString(_selectedDate);
-        this.$emit('input', _selectedDate);
+        this.$emit('input', this.modelDate);
       }
     },
     value: function value() {
@@ -2530,6 +2535,7 @@ exports.default = new _MdComponent2.default({
   },
   props: {
     mdDate: Date,
+    mdAutoSelect: Boolean,
     mdDisabledDates: [Array, Function]
   },
   data: function data() {
@@ -2748,6 +2754,9 @@ exports.default = new _MdComponent2.default({
     selectDate: function selectDate(day) {
       this.currentDate = (0, _set_date2.default)(this.currentDate, day);
       this.selectedDate = this.currentDate;
+      if (this.mdAutoSelect) {
+        this.onConfirm();
+      }
     },
     closeDialog: function closeDialog() {
       this.$emit('md-closed');
@@ -6187,6 +6196,7 @@ exports.default = {
   },
   props: {
     column: { type: Object },
+    containerClass: String,
     row: { type: Object },
     selection: { default: false, type: Boolean },
     type: { default: 'td', type: String }
@@ -6278,10 +6288,6 @@ exports.default = {
     });
   }
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -7051,7 +7057,7 @@ exports.default = {
     mdAlignMedium: String,
     mdAlignLarge: String,
     mdAlignXlarge: String,
-    mdFlex: Boolean,
+    mdFlex: [String, Number, Boolean],
     mdFlexXsmall: [String, Number, Boolean],
     mdFlexSmall: [String, Number, Boolean],
     mdFlexMedium: [String, Number, Boolean],
@@ -8840,8 +8846,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
 
 exports.default = {
   name: 'MdPartToolbar',
@@ -9767,7 +9771,7 @@ exports.default = {
 
                 this.options.query_id = response.data.data.query_id;
                 this.options.query_name = response.data.data.query_name;
-                this.options.case_id = response.data.data.case_id || '';
+                this.options.case_id = response.data.data.case_id || '0';
                 this.options.case_name = response.data.data.case_name || '';
                 this.options.size = response.data.data.size;
                 this.options.entity_id = response.data.data.entity_id;
@@ -10910,7 +10914,7 @@ exports.default = new _MdComponent2.default({
   },
   props: {
     value: [Array, Object],
-    mdDisabled: Boolean,
+    disabled: Boolean,
     mdMultiple: Boolean,
     mdRefId: String,
     id: {
@@ -11015,6 +11019,7 @@ exports.default = new _MdComponent2.default({
       return this.selectedValues;
     },
     openRef: function openRef() {
+      if (this.disabled) return;
       this.$emit('mdPick', this.options);
       if (this.mdRefId) {
         this.$refs.ref.open();
@@ -11032,6 +11037,7 @@ exports.default = new _MdComponent2.default({
     insertChip: function insertChip(_ref) {
       var target = _ref.target;
 
+      if (this.disabled) return;
       if (!this.inputValue || this.getValueIndex(this.inputValue) >= 0 || !this.modelRespectLimit) {
         return;
       }
@@ -15767,9 +15773,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
 
 exports.default = {
   mixins: [_MdModel2.default, _MdModelGrid2.default],
@@ -16232,11 +16235,6 @@ var _MdModelGrid2 = _interopRequireDefault(_MdModelGrid);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
-//
-//
-//
-//
-//
 //
 //
 //
@@ -17452,9 +17450,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -17628,8 +17623,6 @@ exports.default = {
     this.route = 'amiba/elements';
   }
 }; //
-//
-//
 //
 //
 //
@@ -17907,8 +17900,6 @@ exports.default = {
     this.route = 'amiba/groups';
   }
 }; //
-//
-//
 //
 //
 //
@@ -19503,10 +19494,6 @@ var defaultOpts = {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -19698,10 +19685,6 @@ var defaultOpts = {
     data: []
   }]
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -19980,10 +19963,6 @@ var defaultOpts = {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -20158,10 +20137,6 @@ var defaultOpts = {
     data: []
   }]
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -20448,10 +20423,6 @@ var defaultOpts = {
 //
 //
 //
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -20569,10 +20540,6 @@ var _MdQueryCase2 = _interopRequireDefault(_MdQueryCase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -20957,10 +20924,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -21061,10 +21024,6 @@ exports.default = {
     this.loadGroups();
   }
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -21208,10 +21167,6 @@ exports.default = {
     this.loadGroups();
   }
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -21400,10 +21355,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -21518,10 +21469,6 @@ exports.default = {
   },
   mounted: function mounted() {}
 }; //
-//
-//
-//
-//
 //
 //
 //
@@ -21803,6 +21750,10 @@ var _common2 = _interopRequireDefault(_common);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
+//
+//
+//
+//
 //
 //
 //
@@ -26215,8 +26166,19 @@ var _PageTabMixin = __webpack_require__("./resources/assets/js/vendor/suite-cbo/
 
 var _PageTabMixin2 = _interopRequireDefault(_PageTabMixin);
 
+var _AppMenu = __webpack_require__("./resources/assets/js/vendor/suite-cbo/layouts/AppMenu.vue");
+
+var _AppMenu2 = _interopRequireDefault(_AppMenu);
+
+var _AppSider = __webpack_require__("./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue");
+
+var _AppSider2 = _interopRequireDefault(_AppSider);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
 //
 //
 //
@@ -26235,6 +26197,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = new _MdComponent2.default({
   name: 'App',
+  components: {
+    AppMenu: _AppMenu2.default,
+    AppSider: _AppSider2.default
+  },
   props: {
     mdToken: String,
     mdTitle: String
@@ -26247,13 +26213,28 @@ exports.default = new _MdComponent2.default({
   },
   data: function data() {
     return {
-      menuVisible: false
+      menuVisible: false,
+      siderVisible: false
     };
   },
 
   methods: {
     toggleMenu: function toggleMenu() {
       this.menuVisible = !this.menuVisible;
+    },
+    toggleSider: function toggleSider() {
+      this.siderVisible = !this.siderVisible;
+    },
+    onChangeEnt: function onChangeEnt() {
+      var _this = this;
+
+      this.menuVisible = false;
+      this.siderVisible = false;
+      this.$http.get('/getconfig').then(function (response) {
+        if (!response.data.data) return;
+        _this.$set(_this.$root, 'userConfig', response.data.data);
+        _this.$router.replace({ name: 'module', params: { module: 'entchange', refresh: true, standalone: true } });
+      });
     }
   },
   mounted: function mounted() {}
@@ -26320,17 +26301,25 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
   props: {
     mdToken: String,
     mdTitle: String
   },
+  watch: {
+    "$root.userData.entId": function $rootUserDataEntId(v, o) {
+      this.loadData();
+    }
+  },
   data: function data() {
     return {
       rootMenu: [],
       extendMenu: [],
       currentCategory: '',
+      currentTip: '',
       categoryTimeout: false
     };
   },
@@ -26351,7 +26340,9 @@ exports.default = {
         _this.currentCategory = '';
       }, 100);
     },
-    tipNav: function tipNav() {},
+    tipNav: function tipNav(nav) {
+      this.currentTip = nav;
+    },
     goNav: function goNav(nav, event) {
       if (!nav) return;
       if (typeof nav === 'string') {
@@ -26369,6 +26360,88 @@ exports.default = {
       }, function (response) {
         _this2.$toast(response);
       });
+    }
+  },
+  created: function created() {
+    this.loadData();
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: {
+    mdToken: String,
+    mdTitle: String
+  },
+  data: function data() {
+    return {};
+  },
+
+  methods: {
+    toggle: function toggle() {
+      this.$emit('toggle');
+      return true;
+    },
+    loadData: function loadData() {},
+    onCreateEnt: function onCreateEnt() {
+      this.toggle();
+      this.$router.replace({ name: 'module', params: { module: 'sys.ent.edit' } });
+    },
+    onSelectEnt: function onSelectEnt(ent) {
+      this.toggle();
+      this.$root.userData.ent = ent;
     }
   },
   created: function created() {
@@ -26397,74 +26470,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = {
   props: {},
   mixins: [_PageTabMixin2.default],
-  watch: {
-    "$root.userData.entId": function $rootUserDataEntId(v, o) {
-      this.onChangeEnt();
-    }
-  },
+  watch: {},
   data: function data() {
     return {
       search_q: '',
-      search_options: []
+      search_options: [],
+      showSidepanel: false
     };
   },
 
   methods: {
     toggleMenu: function toggleMenu() {
-      this.$emit('toggle');
+      this.$emit('toggleMenu');
     },
-    onChangeEnt: function onChangeEnt() {
-      var _this = this;
-
-      this.$http.get('/getconfig').then(function (response) {
-        if (!response.data.data) return;
-        _this.$set(_this.$root, 'userConfig', response.data.data);
-        _this.$router.replace({ name: 'module', params: { module: 'entchange', refresh: true, standalone: true } });
-      });
-    },
-    onCreateEnt: function onCreateEnt() {
-      this.$router.replace({ name: 'module', params: { module: 'sys.ent.edit' } });
-    },
-    onSelectEnt: function onSelectEnt(ent) {
-      this.$root.userData.ent = ent;
+    toggleSider: function toggleSider() {
+      this.$emit('toggleSider');
     }
   }
 }; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -26934,6 +26957,14 @@ exports.default = {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 
@@ -27290,12 +27321,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -27456,9 +27481,6 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -27688,12 +27710,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -27761,12 +27777,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -27857,9 +27867,6 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -28084,12 +28091,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -28158,9 +28159,6 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -28380,12 +28378,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -28454,9 +28446,6 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -28680,12 +28669,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -28754,9 +28737,6 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -28975,12 +28955,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
   data: function data() {
@@ -29120,11 +29094,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -29137,17 +29106,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -29335,17 +29293,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -29358,17 +29305,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -29457,17 +29393,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -29640,17 +29565,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /***/ }),
 
@@ -29663,17 +29577,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -29862,10 +29765,6 @@ exports.default = {
 //
 //
 //
-//
-//
-//
-//
 
 /***/ }),
 
@@ -29878,16 +29777,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -30417,6 +30306,13 @@ function toComment(sourceMap) {
 
 /***/ }),
 
+/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-018a0033\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-042f1410\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/core/MdCss.vue":
 /***/ (function(module, exports) {
 
@@ -30845,6 +30741,13 @@ function toComment(sourceMap) {
 /***/ }),
 
 /***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5b63e757\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppMenu.vue":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d75e134\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/common/cboFileImport.vue":
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -49864,6 +49767,150 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-018a0033\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "suite-app-sider layout layout-column" },
+    [
+      _c("md-toolbar", { staticClass: "md-primary" }, [
+        _c("div", { staticClass: "md-toolbar-row" }, [
+          _c(
+            "div",
+            { staticClass: "md-toolbar-section-start" },
+            [
+              _c(
+                "md-button",
+                { staticClass: "md-icon-button md-avatar" },
+                [
+                  _c("md-avatar", [
+                    _c("img", {
+                      attrs: { src: "/img/vendor/gmf-sys/avatar/1.jpg" }
+                    })
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("h2", { staticClass: "md-title flex" }, [
+            _vm._v(_vm._s(_vm.$root.userConfig.user.name))
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "md-toolbar-section-end" },
+            [
+              _c(
+                "md-button",
+                {
+                  staticClass: "md-icon-button",
+                  nativeOn: {
+                    click: function($event) {
+                      _vm.toggle()
+                    }
+                  }
+                },
+                [_c("md-icon", [_vm._v("arrow_forward")])],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "layout layout-column flex" },
+        [
+          _c(
+            "md-list",
+            [
+              _c("md-subheader", [_vm._v("企业")]),
+              _vm._v(" "),
+              _vm._l(_vm.$root.userData.ents, function(item) {
+                return _c(
+                  "md-list-item",
+                  {
+                    key: item.id,
+                    class: {
+                      "md-active": item.id == _vm.$root.userData.ent.id
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.onSelectEnt(item)
+                      }
+                    }
+                  },
+                  [
+                    _c("md-icon", [_vm._v("account_balance")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "md-list-item-text" }, [
+                      _vm._v(_vm._s(item.name))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "md-button",
+                      { staticClass: "md-icon-button md-list-action" },
+                      [_c("md-icon", [_vm._v("send")])],
+                      1
+                    )
+                  ],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _c("md-divider", { staticClass: "md-inset" }),
+              _vm._v(" "),
+              _c(
+                "md-list-item",
+                { on: { click: _vm.onCreateEnt } },
+                [
+                  _c("md-icon", [_vm._v("account_balance")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "md-list-item-text" }, [
+                    _vm._v("创建企业")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "md-button",
+                    { staticClass: "md-icon-button md-list-action" },
+                    [_c("md-icon", [_vm._v("add")])],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-018a0033", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0223d7c8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/components/cboTraderEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -50681,7 +50728,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -50689,7 +50736,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -50715,7 +50769,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -50741,7 +50802,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -51265,7 +51333,12 @@ var render = function() {
                 "tr",
                 [
                   _vm.multiple
-                    ? _c("md-grid-cell", { attrs: { selection: true } })
+                    ? _c("md-grid-cell", {
+                        attrs: {
+                          selection: true,
+                          "container-class": "md-layout md-align-center-center"
+                        }
+                      })
                     : _vm._e(),
                   _vm._v(" "),
                   _vm._l(_vm.visibleColumns, function(column) {
@@ -51358,27 +51431,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -51393,25 +51458,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("用户")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: { "md-ref-id": "gmf.sys.user.ref" },
-                            model: {
-                              value: _vm.model.user,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "user", $$v)
-                              },
-                              expression: "model.user"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "用户",
+                          "md-ref-id": "gmf.sys.user.ref"
+                        },
+                        model: {
+                          value: _vm.model.user,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "user", $$v)
+                          },
+                          expression: "model.user"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -51445,6 +51504,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -51790,17 +51850,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("企业")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -52222,19 +52272,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("接口定义")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -52245,43 +52283,33 @@ var render = function() {
           _c(
             "md-content",
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("接口")]),
-                  _vm._v(" "),
-                  _c("md-ref-input", {
-                    attrs: { "md-ref-id": "gmf.sys.dti.local.ref" },
-                    model: {
-                      value: _vm.model.main.local,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "local", $$v)
-                      },
-                      expression: "model.main.local"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "接口",
+                  "md-ref-id": "gmf.sys.dti.local.ref"
+                },
+                model: {
+                  value: _vm.model.main.local,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "local", $$v)
+                  },
+                  expression: "model.main.local"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("分类")]),
-                  _vm._v(" "),
-                  _c("md-ref-input", {
-                    attrs: { "md-ref-id": "gmf.sys.dti.category.ref" },
-                    model: {
-                      value: _vm.model.main.category,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "category", $$v)
-                      },
-                      expression: "model.main.category"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "分类",
+                  "md-ref-id": "gmf.sys.dti.category.ref"
+                },
+                model: {
+                  value: _vm.model.main.category,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "category", $$v)
+                  },
+                  expression: "model.main.category"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -52823,13 +52851,18 @@ var render = function() {
       _c(
         "md-app-toolbar",
         { staticClass: "md-dense md-primary" },
-        [_c("app-toolbar", { on: { toggle: _vm.toggleMenu } })],
+        [
+          _c("app-toolbar", {
+            on: { toggleMenu: _vm.toggleMenu, toggleSider: _vm.toggleSider }
+          })
+        ],
         1
       ),
       _vm._v(" "),
       _c(
         "md-app-drawer",
         {
+          staticClass: "menu-drawer",
           attrs: { "md-active": _vm.menuVisible },
           on: {
             "update:mdActive": function($event) {
@@ -52861,6 +52894,21 @@ var render = function() {
             1
           )
         })
+      ),
+      _vm._v(" "),
+      _c(
+        "md-app-drawer",
+        {
+          staticClass: "md-right",
+          attrs: { "md-active": _vm.siderVisible },
+          on: {
+            "update:mdActive": function($event) {
+              _vm.siderVisible = $event
+            }
+          }
+        },
+        [_c("app-sider", { on: { toggle: _vm.toggleSider } })],
+        1
       )
     ],
     1
@@ -53287,6 +53335,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -53400,7 +53449,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -53442,58 +53491,41 @@ var render = function() {
                         "md-table",
                         [
                           _c(
-                            "md-table-header",
+                            "md-table-row",
                             [
-                              _c(
-                                "md-table-row",
-                                [
-                                  _c("md-table-head", [_vm._v("阿米巴")]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.categories, function(cell, cind) {
-                                    return _c(
-                                      "md-table-head",
-                                      {
-                                        key: cind,
-                                        attrs: { "md-numeric": "" }
-                                      },
-                                      [_vm._v(_vm._s(cell))]
-                                    )
-                                  })
-                                ],
-                                2
-                              )
+                              _c("md-table-head", [_vm._v("阿米巴")]),
+                              _vm._v(" "),
+                              _vm._l(_vm.categories, function(cell, cind) {
+                                return _c(
+                                  "md-table-head",
+                                  { key: cind, attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(cell))]
+                                )
+                              })
                             ],
-                            1
+                            2
                           ),
                           _vm._v(" "),
-                          _c(
-                            "md-table-body",
-                            _vm._l(_vm.dataDetail, function(row, index) {
-                              return _c(
-                                "md-table-row",
-                                { key: index },
-                                [
-                                  _c("md-table-cell", [
-                                    _vm._v(_vm._s(row.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.categories, function(cell, cind) {
-                                    return _c(
-                                      "md-table-cell",
-                                      {
-                                        key: cind,
-                                        attrs: { "md-numeric": "" }
-                                      },
-                                      [_vm._v(_vm._s(row.profit[cind]))]
-                                    )
-                                  })
-                                ],
-                                2
-                              )
-                            })
-                          )
+                          _vm._l(_vm.dataDetail, function(row, index) {
+                            return _c(
+                              "md-table-row",
+                              { key: index },
+                              [
+                                _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
+                                _vm._v(" "),
+                                _vm._l(_vm.categories, function(cell, cind) {
+                                  return _c(
+                                    "md-table-cell",
+                                    { key: cind, attrs: { "md-numeric": "" } },
+                                    [_vm._v(_vm._s(row.profit[cind]))]
+                                  )
+                                })
+                              ],
+                              2
+                            )
+                          })
                         ],
-                        1
+                        2
                       )
                     ],
                     1
@@ -53791,18 +53823,15 @@ var render = function() {
     "md-field",
     { staticClass: "md-datepicker" },
     [
-      _c("md-date-icon", {
-        staticClass: "md-date-icon",
-        nativeOn: {
-          click: function($event) {
-            _vm.toggleDialog($event)
-          }
-        }
-      }),
+      _vm.mdLabel ? _c("label", [_vm._v(_vm._s(_vm.mdLabel))]) : _vm._e(),
       _vm._v(" "),
       _c("md-input", {
         ref: "input",
-        attrs: { type: "date", pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}" },
+        attrs: {
+          type: "date",
+          disabled: _vm.disabled,
+          pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        },
         nativeOn: {
           focus: function($event) {
             _vm.onFocus($event)
@@ -53817,6 +53846,17 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      !_vm.disabled
+        ? _c("md-date-icon", {
+            staticClass: "md-date-icon",
+            nativeOn: {
+              click: function($event) {
+                _vm.toggleDialog($event)
+              }
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
       _vm._t("default"),
       _vm._v(" "),
       _c(
@@ -53825,6 +53865,7 @@ var render = function() {
           _vm.showDialog
             ? _c("md-datepicker-dialog", {
                 attrs: {
+                  "md-auto-select": _vm.mdAutoSelect,
                   "md-date": _vm.selectedDate,
                   "md-disabled-dates": _vm.mdDisabledDates
                 },
@@ -54297,27 +54338,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("用户")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "gmf.sys.user.ref"
-                            },
-                            model: {
-                              value: _vm.model.user,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "user", $$v)
-                              },
-                              expression: "model.user"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "用户",
+                          required: "",
+                          "md-ref-id": "gmf.sys.user.ref"
+                        },
+                        model: {
+                          value: _vm.model.user,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "user", $$v)
+                          },
+                          expression: "model.user"
+                        }
+                      })
                     ],
                     1
                   )
@@ -54611,7 +54645,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -54619,7 +54653,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -54645,7 +54686,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -54671,7 +54719,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -54693,7 +54748,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -54711,18 +54773,18 @@ var render = function() {
                       })
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "", "md-row": "" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -54752,7 +54814,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -54783,7 +54852,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -54812,7 +54888,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -54848,7 +54931,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-checkbox",
@@ -55586,7 +55676,7 @@ var render = function() {
                 fn: function(row) {
                   return [
                     _c(
-                      "md-input-container",
+                      "md-field",
                       [
                         _c("md-enum", {
                           attrs: {
@@ -55623,7 +55713,7 @@ var render = function() {
                         row.operator_enum.indexOf("like") >= 0
                         ? [
                             _c(
-                              "md-input-container",
+                              "md-field",
                               [
                                 _c("md-input", {
                                   model: {
@@ -55643,25 +55733,19 @@ var render = function() {
                           ? [
                               row.type_enum == "date"
                                 ? [
-                                    _c(
-                                      "md-input-container",
-                                      [
-                                        _c("md-date", {
-                                          model: {
-                                            value: row.value,
-                                            callback: function($$v) {
-                                              _vm.$set(row, "value", $$v)
-                                            },
-                                            expression: "row.value"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
+                                    _c("md-datepicker", {
+                                      model: {
+                                        value: row.value,
+                                        callback: function($$v) {
+                                          _vm.$set(row, "value", $$v)
+                                        },
+                                        expression: "row.value"
+                                      }
+                                    })
                                   ]
                                 : [
                                     _c(
-                                      "md-input-container",
+                                      "md-field",
                                       [
                                         _c("md-input", {
                                           model: {
@@ -55678,11 +55762,11 @@ var render = function() {
                                   ]
                             ]
                           : [
-                              _c(
-                                "md-input-container",
-                                [
-                                  row.type_enum == "value"
-                                    ? [
+                              row.type_enum == "value"
+                                ? [
+                                    _c(
+                                      "md-field",
+                                      [
                                         _c("md-input", {
                                           model: {
                                             value: row.value,
@@ -55692,22 +55776,28 @@ var render = function() {
                                             expression: "row.value"
                                           }
                                         })
-                                      ]
-                                    : row.type_enum == "ref"
-                                      ? [
-                                          _c("md-input-ref", {
-                                            attrs: { "md-ref-id": row.ref_id },
-                                            model: {
-                                              value: row.value,
-                                              callback: function($$v) {
-                                                _vm.$set(row, "value", $$v)
-                                              },
-                                              expression: "row.value"
-                                            }
-                                          })
-                                        ]
-                                      : row.type_enum == "enum"
-                                        ? [
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                : row.type_enum == "ref"
+                                  ? [
+                                      _c("md-ref-input", {
+                                        attrs: { "md-ref-id": row.ref_id },
+                                        model: {
+                                          value: row.value,
+                                          callback: function($$v) {
+                                            _vm.$set(row, "value", $$v)
+                                          },
+                                          expression: "row.value"
+                                        }
+                                      })
+                                    ]
+                                  : row.type_enum == "enum"
+                                    ? [
+                                        _c(
+                                          "md-field",
+                                          [
                                             _c("md-enum", {
                                               attrs: {
                                                 "md-enum-id": row.ref_id
@@ -55720,20 +55810,26 @@ var render = function() {
                                                 expression: "row.value"
                                               }
                                             })
-                                          ]
-                                        : row.type_enum == "date"
-                                          ? [
-                                              _c("md-date", {
-                                                model: {
-                                                  value: row.value,
-                                                  callback: function($$v) {
-                                                    _vm.$set(row, "value", $$v)
-                                                  },
-                                                  expression: "row.value"
-                                                }
-                                              })
-                                            ]
-                                          : [
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    : row.type_enum == "date"
+                                      ? [
+                                          _c("md-datepicker", {
+                                            model: {
+                                              value: row.value,
+                                              callback: function($$v) {
+                                                _vm.$set(row, "value", $$v)
+                                              },
+                                              expression: "row.value"
+                                            }
+                                          })
+                                        ]
+                                      : [
+                                          _c(
+                                            "md-field",
+                                            [
                                               _c("md-input", {
                                                 model: {
                                                   value: row.value,
@@ -55743,10 +55839,10 @@ var render = function() {
                                                   expression: "row.value"
                                                 }
                                               })
-                                            ]
-                                ],
-                                2
-                              )
+                                            ],
+                                            1
+                                          )
+                                        ]
                             ]
                   ]
                 }
@@ -55766,25 +55862,19 @@ var render = function() {
                       ? [
                           row.type_enum == "date"
                             ? [
-                                _c(
-                                  "md-input-container",
-                                  [
-                                    _c("md-date", {
-                                      model: {
-                                        value: row.value2,
-                                        callback: function($$v) {
-                                          _vm.$set(row, "value2", $$v)
-                                        },
-                                        expression: "row.value2"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
+                                _c("md-datepicker", {
+                                  model: {
+                                    value: row.value2,
+                                    callback: function($$v) {
+                                      _vm.$set(row, "value2", $$v)
+                                    },
+                                    expression: "row.value2"
+                                  }
+                                })
                               ]
                             : [
                                 _c(
-                                  "md-input-container",
+                                  "md-field",
                                   [
                                     _c("md-input", {
                                       model: {
@@ -56228,7 +56318,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -56236,7 +56326,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -56262,7 +56359,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -56288,7 +56392,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -56311,7 +56422,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -56335,7 +56453,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -57575,60 +57700,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("企业")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -57637,6 +57709,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -57685,6 +57758,7 @@ var render = function() {
             [
               _c(
                 "md-card",
+                { staticClass: "flex" },
                 [
                   _c(
                     "md-card-media",
@@ -57745,13 +57819,13 @@ var render = function() {
             [
               _c(
                 "md-card",
+                { staticClass: "flex" },
                 [
                   _c(
                     "md-tabs",
                     {
                       staticClass: "md-accent layout-fill",
-                      staticStyle: { "min-height": "4rem" },
-                      attrs: { "md-fixed": "", "md-dynamic-height": false }
+                      attrs: { "md-fixed": "" }
                     },
                     [
                       _c(
@@ -57760,43 +57834,51 @@ var render = function() {
                         [
                           _c(
                             "md-list",
-                            { staticClass: "custom-list md-triple-line" },
-                            _vm._l(_vm.model.news, function(item) {
-                              return _c(
-                                "md-list-item",
-                                { key: item.id },
-                                [
+                            { staticClass: "md-double-line" },
+                            [
+                              _vm._l(_vm.model.news, function(item) {
+                                return [
                                   _c(
-                                    "div",
-                                    { staticClass: "md-list-text-container" },
-                                    [
-                                      _c("span", [_vm._v(_vm._s(item.title))]),
-                                      _vm._v(" "),
-                                      _c("p", [_vm._v(_vm._s(item.summary))])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-button",
-                                    {
-                                      staticClass:
-                                        "md-icon-button md-list-action"
-                                    },
+                                    "md-list-item",
                                     [
                                       _c(
-                                        "md-icon",
-                                        { staticClass: "md-primary" },
-                                        [_vm._v("star")]
+                                        "div",
+                                        { staticClass: "md-list-item-text" },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(item.title))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("p", [
+                                            _vm._v(_vm._s(item.summary))
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "md-button",
+                                        {
+                                          staticClass:
+                                            "md-icon-button md-list-action"
+                                        },
+                                        [
+                                          _c(
+                                            "md-icon",
+                                            { staticClass: "md-primary" },
+                                            [_vm._v("star")]
+                                          )
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
                                   _c("md-divider")
-                                ],
-                                1
-                              )
-                            })
+                                ]
+                              })
+                            ],
+                            2
                           )
                         ],
                         1
@@ -57808,43 +57890,51 @@ var render = function() {
                         [
                           _c(
                             "md-list",
-                            { staticClass: "custom-list md-triple-line" },
-                            _vm._l(_vm.model.statutes, function(item) {
-                              return _c(
-                                "md-list-item",
-                                { key: item.id },
-                                [
+                            { staticClass: "md-double-line" },
+                            [
+                              _vm._l(_vm.model.statutes, function(item) {
+                                return [
                                   _c(
-                                    "div",
-                                    { staticClass: "md-list-text-container" },
-                                    [
-                                      _c("span", [_vm._v(_vm._s(item.title))]),
-                                      _vm._v(" "),
-                                      _c("p", [_vm._v(_vm._s(item.summary))])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-button",
-                                    {
-                                      staticClass:
-                                        "md-icon-button md-list-action"
-                                    },
+                                    "md-list-item",
                                     [
                                       _c(
-                                        "md-icon",
-                                        { staticClass: "md-primary" },
-                                        [_vm._v("star")]
+                                        "div",
+                                        { staticClass: "md-list-item-text" },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(item.title))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("p", [
+                                            _vm._v(_vm._s(item.summary))
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "md-button",
+                                        {
+                                          staticClass:
+                                            "md-icon-button md-list-action"
+                                        },
+                                        [
+                                          _c(
+                                            "md-icon",
+                                            { staticClass: "md-primary" },
+                                            [_vm._v("star")]
+                                          )
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
                                   _c("md-divider")
-                                ],
-                                1
-                              )
-                            })
+                                ]
+                              })
+                            ],
+                            2
                           )
                         ],
                         1
@@ -57856,43 +57946,51 @@ var render = function() {
                         [
                           _c(
                             "md-list",
-                            { staticClass: "custom-list md-triple-line" },
-                            _vm._l(_vm.model.knowledges, function(item) {
-                              return _c(
-                                "md-list-item",
-                                { key: item.id },
-                                [
+                            { staticClass: "md-double-line" },
+                            [
+                              _vm._l(_vm.model.knowledges, function(item) {
+                                return [
                                   _c(
-                                    "div",
-                                    { staticClass: "md-list-text-container" },
-                                    [
-                                      _c("span", [_vm._v(_vm._s(item.title))]),
-                                      _vm._v(" "),
-                                      _c("p", [_vm._v(_vm._s(item.summary))])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-button",
-                                    {
-                                      staticClass:
-                                        "md-icon-button md-list-action"
-                                    },
+                                    "md-list-item",
                                     [
                                       _c(
-                                        "md-icon",
-                                        { staticClass: "md-primary" },
-                                        [_vm._v("star")]
+                                        "div",
+                                        { staticClass: "md-list-item-text" },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(item.title))
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("p", [
+                                            _vm._v(_vm._s(item.summary))
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "md-button",
+                                        {
+                                          staticClass:
+                                            "md-icon-button md-list-action"
+                                        },
+                                        [
+                                          _c(
+                                            "md-icon",
+                                            { staticClass: "md-primary" },
+                                            [_vm._v("star")]
+                                          )
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
                                   ),
                                   _vm._v(" "),
                                   _c("md-divider")
-                                ],
-                                1
-                              )
-                            })
+                                ]
+                              })
+                            ],
+                            2
                           )
                         ],
                         1
@@ -57905,20 +58003,20 @@ var render = function() {
                           _c(
                             "md-list",
                             { staticClass: "md-dense" },
-                            _vm._l(_vm.model.prices, function(item) {
-                              return _c(
-                                "md-list-item",
-                                { key: item.id },
-                                [
-                                  _c("span", [_vm._v(_vm._s(item.title))]),
-                                  _vm._v(" "),
-                                  _c("span", [_vm._v(_vm._s(item.price))]),
+                            [
+                              _vm._l(_vm.model.prices, function(item) {
+                                return [
+                                  _c("md-list-item", [
+                                    _c("span", [_vm._v(_vm._s(item.title))]),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(item.price))])
+                                  ]),
                                   _vm._v(" "),
                                   _c("md-divider")
-                                ],
-                                1
-                              )
-                            })
+                                ]
+                              })
+                            ],
+                            2
                           )
                         ],
                         1
@@ -58084,62 +58182,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("接口定义")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -58148,6 +58191,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -58544,6 +58588,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -58627,7 +58672,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -58650,62 +58695,53 @@ var render = function() {
                 { staticClass: "flex" },
                 [
                   _c(
-                    "md-table-header",
+                    "md-table-row",
                     [
-                      _c(
-                        "md-table-row",
-                        [
-                          _c("md-table-head", [_vm._v("目标类型")]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("目标值")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("实际值")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("差异")
-                          ])
-                        ],
-                        1
-                      )
+                      _c("md-table-head", [_vm._v("目标类型")]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("目标值")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("实际值")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("差异")
+                      ])
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "md-table-body",
-                    _vm._l(_vm.dataDetail, function(row, index) {
-                      return _c(
-                        "md-table-row",
-                        { key: index },
-                        [
-                          _c("md-table-cell", [
-                            _c("div", { class: ["md-indent-" + row.indent] }, [
-                              _vm._v(_vm._s(row.itemName))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.plan_value))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.month_value))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.diff_value))
+                  _vm._l(_vm.dataDetail, function(row, index) {
+                    return _c(
+                      "md-table-row",
+                      { key: index },
+                      [
+                        _c("md-table-cell", [
+                          _c("div", { class: ["md-indent-" + row.indent] }, [
+                            _vm._v(_vm._s(row.itemName))
                           ])
-                        ],
-                        1
-                      )
-                    })
-                  )
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.plan_value))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.month_value))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.diff_value))
+                        ])
+                      ],
+                      1
+                    )
+                  })
                 ],
-                1
+                2
               )
             ],
             1
@@ -58901,25 +58937,16 @@ var render = function() {
           _c(
             "md-part-toolbar-group",
             [
-              _c(
-                "md-field",
-                { staticClass: "md-inset" },
-                [
-                  _c("label", [_vm._v("日期")]),
-                  _vm._v(" "),
-                  _c("md-date", {
-                    attrs: { required: "" },
-                    model: {
-                      value: _vm.model.date,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model, "date", $$v)
-                      },
-                      expression: "model.date"
-                    }
-                  })
-                ],
-                1
-              )
+              _c("md-datepicker", {
+                attrs: { "md-label": "日期", required: "" },
+                model: {
+                  value: _vm.model.date,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model, "date", $$v)
+                  },
+                  expression: "model.date"
+                }
+              })
             ],
             1
           ),
@@ -58930,7 +58957,7 @@ var render = function() {
               _c(
                 "md-button",
                 {
-                  staticClass: "md-primary md-raised",
+                  staticClass: "md-primary",
                   attrs: { disabled: _vm.is_running > 0 },
                   nativeOn: {
                     click: function($event) {
@@ -59428,6 +59455,7 @@ var render = function() {
                       _c(
                         "md-button",
                         {
+                          staticClass: "md-primary",
                           nativeOn: {
                             click: function($event) {
                               _vm.query($event)
@@ -59843,6 +59871,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -59926,7 +59955,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -59968,72 +59997,61 @@ var render = function() {
                         "md-table",
                         [
                           _c(
-                            "md-table-header",
+                            "md-table-row",
                             [
+                              _c("md-table-head", [_vm._v("阿米巴")]),
+                              _vm._v(" "),
                               _c(
-                                "md-table-row",
-                                [
-                                  _c("md-table-head", [_vm._v("阿米巴")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际收入")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际支出")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际利润")]
-                                  )
-                                ],
-                                1
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际收入")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际支出")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际利润")]
                               )
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "md-table-body",
-                            _vm._l(_vm.dataDetail, function(row, index) {
-                              return _c(
-                                "md-table-row",
-                                { key: index },
-                                [
-                                  _c("md-table-cell", [
-                                    _vm._v(_vm._s(row.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_income))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_cost))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_profit))]
-                                  )
-                                ],
-                                1
-                              )
-                            })
-                          )
+                          _vm._l(_vm.dataDetail, function(row, index) {
+                            return _c(
+                              "md-table-row",
+                              { key: index },
+                              [
+                                _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_income))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_cost))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_profit))]
+                                )
+                              ],
+                              1
+                            )
+                          })
                         ],
-                        1
+                        2
                       )
                     ],
                     1
@@ -60233,50 +60251,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -60285,6 +60260,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -60542,7 +60518,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -60550,7 +60526,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -60572,7 +60555,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -60595,7 +60585,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -61584,27 +61581,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -61619,25 +61608,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("菜单")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: { "md-ref-id": "gmf.sys.menu.ref" },
-                            model: {
-                              value: _vm.model.menu,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "menu", $$v)
-                              },
-                              expression: "model.menu"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "菜单",
+                          "md-ref-id": "gmf.sys.menu.ref"
+                        },
+                        model: {
+                          value: _vm.model.menu,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "menu", $$v)
+                          },
+                          expression: "model.menu"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -61671,6 +61654,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -61724,8 +61708,8 @@ var render = function() {
           {
             key: chip.id,
             attrs: {
-              "md-deletable": !_vm.mdStatic,
-              "md-clickable": !_vm.mdStatic
+              "md-deletable": !_vm.mdStatic && !_vm.disabled,
+              "md-clickable": !_vm.mdStatic && !_vm.disabled
             },
             on: {
               keydown: function($event) {
@@ -61735,16 +61719,16 @@ var render = function() {
                 ) {
                   return null
                 }
-                _vm.$emit("md-click", chip, key)
+                !_vm.disabled && _vm.$emit("md-click", chip, key)
               },
               "md-delete": function($event) {
                 $event.stopPropagation()
-                _vm.removeChip(chip)
+                !_vm.disabled && _vm.removeChip(chip)
               }
             },
             nativeOn: {
               click: function($event) {
-                _vm.$emit("md-click", chip, key)
+                !_vm.disabled && _vm.$emit("md-click", chip, key)
               }
             }
           },
@@ -61757,49 +61741,56 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      !_vm.mdDisabled && !_vm.mdStatic && _vm.modelRespectLimit
-        ? _c("md-input", {
-            ref: "input",
-            attrs: {
-              type: _vm.mdInputType,
-              id: _vm.id,
-              placeholder: _vm.mdPlaceholder
-            },
-            on: {
-              keydown: [
-                function($event) {
-                  if (
-                    !("button" in $event) &&
-                    _vm._k($event.keyCode, "enter", 13, $event.key)
-                  ) {
-                    return null
-                  }
-                  _vm.insertChip($event)
-                },
-                function($event) {
-                  if (!("button" in $event) && $event.keyCode !== 8) {
-                    return null
-                  }
-                  _vm.handleBackRemove($event)
-                }
-              ]
-            },
-            nativeOn: {
-              dblclick: function($event) {
-                _vm.openRef()
+      _c("md-input", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.disabled && !_vm.mdStatic && _vm.modelRespectLimit,
+            expression: "!disabled&&!mdStatic && modelRespectLimit"
+          }
+        ],
+        ref: "input",
+        attrs: {
+          disabled: _vm.disabled,
+          type: _vm.mdInputType,
+          id: _vm.id,
+          placeholder: _vm.mdPlaceholder
+        },
+        on: {
+          keydown: [
+            function($event) {
+              if (
+                !("button" in $event) &&
+                _vm._k($event.keyCode, "enter", 13, $event.key)
+              ) {
+                return null
               }
+              _vm.insertChip($event)
             },
-            model: {
-              value: _vm.inputValue,
-              callback: function($$v) {
-                _vm.inputValue = typeof $$v === "string" ? $$v.trim() : $$v
-              },
-              expression: "inputValue"
+            function($event) {
+              if (!("button" in $event) && $event.keyCode !== 8) {
+                return null
+              }
+              _vm.handleBackRemove($event)
             }
-          })
-        : _vm._e(),
+          ]
+        },
+        nativeOn: {
+          dblclick: function($event) {
+            _vm.openRef()
+          }
+        },
+        model: {
+          value: _vm.inputValue,
+          callback: function($$v) {
+            _vm.inputValue = typeof $$v === "string" ? $$v.trim() : $$v
+          },
+          expression: "inputValue"
+        }
+      }),
       _vm._v(" "),
-      !_vm.mdDisabled
+      !_vm.disabled
         ? _c(
             "md-button",
             {
@@ -62027,6 +62018,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -62110,7 +62102,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll" },
+        { staticClass: "no-padding no-margin" },
         [
           _c(
             "md-layout",
@@ -62136,70 +62128,55 @@ var render = function() {
                     "md-table",
                     [
                       _c(
-                        "md-table-header",
+                        "md-table-row",
                         [
-                          _c(
-                            "md-table-row",
-                            [
-                              _c("md-table-head", [_vm._v("阿米巴")]),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v("实际收入")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v("实际支出")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v("实际利润")]
-                              )
-                            ],
-                            1
-                          )
+                          _c("md-table-head", [_vm._v("阿米巴")]),
+                          _vm._v(" "),
+                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                            _vm._v("实际收入")
+                          ]),
+                          _vm._v(" "),
+                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                            _vm._v("实际支出")
+                          ]),
+                          _vm._v(" "),
+                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                            _vm._v("实际利润")
+                          ])
                         ],
                         1
                       ),
                       _vm._v(" "),
-                      _c(
-                        "md-table-body",
-                        _vm._l(_vm.dataDetail, function(row, index) {
-                          return _c(
-                            "md-table-row",
-                            { key: index },
-                            [
-                              _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(row.this_income))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(row.this_cost))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(row.this_profit))]
-                              )
-                            ],
-                            1
-                          )
-                        })
-                      )
+                      _vm._l(_vm.dataDetail, function(row, index) {
+                        return _c(
+                          "md-table-row",
+                          { key: index },
+                          [
+                            _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(row.this_income))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(row.this_cost))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(row.this_profit))]
+                            )
+                          ],
+                          1
+                        )
+                      })
                     ],
-                    1
+                    2
                   )
                 ],
                 1
@@ -62404,17 +62381,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "md-part-toolbar" },
-    [
-      _c(
-        "md-toolbar",
-        { staticClass: "md-dense", attrs: { "md-elevation": "1" } },
-        [_vm._t("default")],
-        2
-      )
-    ],
-    1
+    "md-toolbar",
+    { staticClass: "md-part-toolbar md-dense", attrs: { "md-elevation": "1" } },
+    [_vm._t("default")],
+    2
   )
 }
 var staticRenderFns = []
@@ -62495,27 +62465,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -62530,25 +62492,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("实体")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: { "md-ref-id": "gmf.sys.entity.ref" },
-                            model: {
-                              value: _vm.model.entity,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "entity", $$v)
-                              },
-                              expression: "model.entity"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "实体",
+                          "md-ref-id": "gmf.sys.entity.ref"
+                        },
+                        model: {
+                          value: _vm.model.entity,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "entity", $$v)
+                          },
+                          expression: "model.entity"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -62582,6 +62538,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -63521,7 +63478,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -63529,7 +63486,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -63551,7 +63515,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -63574,7 +63545,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -63597,7 +63575,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -64068,27 +64053,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -64103,25 +64080,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("用户")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: { "md-ref-id": "gmf.sys.user.ref" },
-                            model: {
-                              value: _vm.model.user,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "user", $$v)
-                              },
-                              expression: "model.user"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "用户",
+                          "md-ref-id": "gmf.sys.user.ref"
+                        },
+                        model: {
+                          value: _vm.model.user,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "user", $$v)
+                          },
+                          expression: "model.user"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -64155,6 +64126,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -64496,27 +64468,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          required: "",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   )
@@ -64763,28 +64728,7 @@ var render = function() {
       "div",
       { staticClass: "md-toolbar-row layout-align-space-between-center" },
       [
-        _c(
-          "div",
-          { staticClass: "md-toolbar-section-start" },
-          [
-            _c(
-              "md-button",
-              {
-                staticClass: "md-icon-button",
-                nativeOn: {
-                  click: function($event) {
-                    _vm.toggleMenu()
-                  }
-                }
-              },
-              [_c("md-icon", [_vm._v("menu")])],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(0, false, false)
-          ],
-          1
-        ),
+        _vm._m(0, false, false),
         _vm._v(" "),
         _c(
           "div",
@@ -64813,128 +64757,21 @@ var render = function() {
           { staticClass: "md-toolbar-section-end" },
           [
             _c(
-              "md-menu",
-              { ref: "menuEnts", attrs: { "md-align-trigger": "" } },
+              "md-button",
+              {
+                staticClass: "md-icon-button md-avatar",
+                nativeOn: {
+                  click: function($event) {
+                    _vm.toggleSider()
+                  }
+                }
+              },
               [
-                _c(
-                  "md-button",
-                  { attrs: { "md-menu-trigger": "" } },
-                  [
-                    _vm._v(
-                      _vm._s(_vm.$root.userData.ent.name) + "\n            "
-                    ),
-                    _c("md-icon", [_vm._v("arrow_drop_down")])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "md-menu-content",
-                  [
-                    _vm._l(_vm.$root.userData.ents, function(item) {
-                      return _c(
-                        "md-menu-item",
-                        {
-                          key: item.id,
-                          on: {
-                            selected: function($event) {
-                              _vm.onSelectEnt(item)
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(item.name))]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _c("md-divider"),
-                    _vm._v(" "),
-                    _c("md-menu-item", { on: { selected: _vm.onCreateEnt } }, [
-                      _vm._v("创建企业")
-                    ])
-                  ],
-                  2
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "md-menu",
-              { ref: "menuUser", attrs: { "md-align-trigger": "" } },
-              [
-                _c(
-                  "md-button",
-                  {
-                    staticClass: "md-icon-button md-avatar",
-                    attrs: { "md-menu-trigger": "" }
-                  },
-                  [
-                    _c("md-avatar", [
-                      _c("img", {
-                        attrs: { src: "/img/vendor/gmf-sys/avatar/1.jpg" }
-                      })
-                    ])
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "md-menu-content",
-                  [
-                    _c(
-                      "md-card",
-                      { staticClass: "md-primary" },
-                      [
-                        _c(
-                          "md-card-header",
-                          [
-                            _c("md-card-header-text", [
-                              _c("div", { staticClass: "md-title" }, [
-                                _vm._v(_vm._s(_vm.$root.userConfig.user.name))
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "md-subhead" }, [
-                                _vm._v(
-                                  _vm._s(_vm.$root.userConfig.user.account)
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("md-card-media", [
-                              _c("img", {
-                                attrs: {
-                                  src: "/img/vendor/gmf-sys/avatar/1.jpg",
-                                  alt: "People"
-                                }
-                              })
-                            ])
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("md-card-actions", [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "layout-row layout-fill layout-align-space-between-center"
-                            },
-                            [
-                              _c("md-button", [_vm._v("添加账号")]),
-                              _vm._v(" "),
-                              _c("md-button", { attrs: { href: "/logout" } }, [
-                                _vm._v("退出")
-                              ])
-                            ],
-                            1
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
+                _c("md-avatar", [
+                  _c("img", {
+                    attrs: { src: "/img/vendor/gmf-sys/avatar/1.jpg" }
+                  })
+                ])
               ],
               1
             )
@@ -64944,78 +64781,70 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "md-toolbar-row" },
-      [
-        _c(
-          "div",
-          { staticClass: "md-toolbar-section-start md-flexible" },
-          [
-            _c(
-              "md-button",
-              {
-                staticClass: "md-icon-button",
-                nativeOn: {
-                  click: function($event) {
-                    _vm.toggleMenu()
-                  }
-                }
-              },
-              [_c("md-icon", [_vm._v("menu")])],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "md-tabs",
-          {
-            staticClass: "md-pag-tabs md-primary md-dense",
-            scopedSlots: _vm._u([
-              {
-                key: "md-tab",
-                fn: function(ref) {
-                  var tab = ref.tab
-                  return [
-                    _c("span", [_vm._v(_vm._s(tab.label))]),
-                    _vm._v(" "),
-                    _c(
-                      "md-button",
-                      {
-                        staticClass: "md-icon-button md-delete",
-                        nativeOn: {
-                          click: function($event) {
-                            _vm.removePageTab(tab.data, $event)
-                          }
-                        }
-                      },
-                      [_c("md-icon", [_vm._v("cancel")])],
-                      1
-                    )
-                  ]
+    _c("div", { staticClass: "md-toolbar-row" }, [
+      _c(
+        "div",
+        { staticClass: "md-toolbar-section-start" },
+        [
+          _c(
+            "md-button",
+            {
+              staticClass: "md-icon-button",
+              nativeOn: {
+                click: function($event) {
+                  _vm.toggleMenu()
                 }
               }
-            ])
-          },
-          _vm._l(_vm.navTabs, function(tab) {
-            return _c("md-tab", {
+            },
+            [_c("md-icon", [_vm._v("menu")])],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "md-pag-tabs" },
+        _vm._l(_vm.navTabs, function(tab) {
+          return _c(
+            "md-button",
+            {
               key: tab.id,
-              attrs: { id: tab.id, "md-label": tab.name },
+              staticClass: "md-pag-item",
+              class: { "md-active": tab.active },
               on: {
                 click: function($event) {
                   _vm.toPageTab(tab)
                 }
               }
-            })
-          })
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "md-toolbar-section-end md-flexible" })
-      ],
-      1
-    )
+            },
+            [
+              _c("span", [_vm._v(_vm._s(tab.name))]),
+              _vm._v(" "),
+              _vm.navTabs.length > 1
+                ? _c(
+                    "md-button",
+                    {
+                      staticClass: "md-icon-button md-delete",
+                      nativeOn: {
+                        click: function($event) {
+                          _vm.removePageTab(tab, $event)
+                        }
+                      }
+                    },
+                    [_c("md-icon", [_vm._v("cancel")])],
+                    1
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        })
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "md-toolbar-section-end md-flexible" })
+    ])
   ])
 }
 var staticRenderFns = [
@@ -65023,8 +64852,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h2", { staticClass: "md-logo md-title" }, [
-      _c("img", { attrs: { src: "/img/logo.png" } })
+    return _c("div", { staticClass: "md-toolbar-section-start" }, [
+      _c("h2", { staticClass: "md-logo md-title" }, [
+        _c("img", { attrs: { src: "/img/logo.png" } })
+      ])
     ])
   }
 ]
@@ -66075,27 +65906,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          required: "",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   )
@@ -66409,7 +66233,7 @@ var render = function() {
               expression: "currentCategory"
             }
           ],
-          staticClass: "suite-app-menu-extend",
+          staticClass: "suite-app-menu-extend layout layout-column",
           on: {
             mouseenter: function($event) {
               _vm.showCategory(_vm.currentCategory)
@@ -66429,7 +66253,8 @@ var render = function() {
                   expression: "currentCategory==item.code"
                 }
               ],
-              key: item.id
+              key: item.id,
+              staticClass: "layout layout-column"
             },
             [
               _c("md-toolbar", [
@@ -66438,39 +66263,45 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._l(item.childs, function(sItem) {
-                return item.childs && item.childs.length
-                  ? _c(
-                      "md-list",
-                      { key: sItem.id },
-                      [
-                        _c("md-subheader", [_vm._v(_vm._s(sItem.name))]),
-                        _vm._v(" "),
-                        _vm._l(sItem.childs, function(ssItem) {
-                          return _c(
-                            "md-list-item",
-                            {
-                              key: ssItem.id,
-                              on: {
-                                click: function($event) {
-                                  _vm.goNav(ssItem, $event)
+              _c(
+                "div",
+                { staticClass: "extend-body layout layout-column flex" },
+                _vm._l(item.childs, function(sItem) {
+                  return item.childs && item.childs.length
+                    ? _c(
+                        "md-list",
+                        { key: sItem.id },
+                        [
+                          _c("md-subheader", [_vm._v(_vm._s(sItem.name))]),
+                          _vm._v(" "),
+                          _vm._l(sItem.childs, function(ssItem) {
+                            return _c(
+                              "md-list-item",
+                              {
+                                key: ssItem.id,
+                                on: {
+                                  click: function($event) {
+                                    _vm.goNav(ssItem, $event)
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _c("div", { staticClass: "md-list-item-text" }, [
-                                _vm._v(_vm._s(ssItem.name))
-                              ])
-                            ]
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  : _vm._e()
-              })
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "md-list-item-text" },
+                                  [_vm._v(_vm._s(ssItem.name))]
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    : _vm._e()
+                })
+              )
             ],
-            2
+            1
           )
         })
       )
@@ -66499,6 +66330,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -66582,7 +66414,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -66605,103 +66437,94 @@ var render = function() {
                 { staticClass: "flex md-header-multiple" },
                 [
                   _c(
-                    "md-table-header",
+                    "md-table-row",
                     [
                       _c(
-                        "md-table-row",
-                        [
-                          _c(
-                            "md-table-head",
-                            {
-                              staticStyle: { "min-width": "2rem" },
-                              attrs: { rowspan: "2" }
-                            },
-                            [_vm._v("收支项目")]
-                          ),
-                          _vm._v(" "),
-                          _vm._l(_vm.dataCategories, function(g) {
-                            return [
-                              _c("md-table-head", { attrs: { colspan: "3" } }, [
-                                _vm._v(_vm._s(g))
-                              ])
-                            ]
-                          })
-                        ],
-                        2
+                        "md-table-head",
+                        {
+                          staticStyle: { "min-width": "2rem" },
+                          attrs: { rowspan: "2" }
+                        },
+                        [_vm._v("收支项目")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "md-table-row",
-                        [
-                          _vm._l(_vm.dataCategories, function(g) {
-                            return [
-                              _c(
-                                "md-table-head",
-                                { staticStyle: { "min-width": "1rem" } },
-                                [_vm._v("发生额")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { staticStyle: { "min-width": "1rem" } },
-                                [_vm._v("结构比率")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { staticStyle: { "min-width": "1rem" } },
-                                [_vm._v("年累计")]
-                              )
-                            ]
-                          })
-                        ],
-                        2
-                      )
+                      _vm._l(_vm.dataCategories, function(g) {
+                        return [
+                          _c("md-table-head", { attrs: { colspan: "3" } }, [
+                            _vm._v(_vm._s(g))
+                          ])
+                        ]
+                      })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
-                    "md-table-body",
-                    _vm._l(_vm.dataDetail, function(row, index) {
-                      return _c(
-                        "md-table-row",
-                        { key: index },
-                        [
-                          _c("md-table-cell", [
-                            _c("div", { class: ["md-indent-" + row.indent] }, [
-                              _vm._v(_vm._s(row.itemName))
-                            ])
-                          ]),
+                    "md-table-row",
+                    [
+                      _vm._l(_vm.dataCategories, function(g) {
+                        return [
+                          _c(
+                            "md-table-head",
+                            { staticStyle: { "min-width": "1rem" } },
+                            [_vm._v("发生额")]
+                          ),
                           _vm._v(" "),
-                          _vm._l(row.categories, function(cItem) {
-                            return [
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(cItem.money_month))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(cItem.money_month_ratio))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(cItem.money_year))]
-                              )
-                            ]
-                          })
-                        ],
-                        2
-                      )
-                    })
-                  )
+                          _c(
+                            "md-table-head",
+                            { staticStyle: { "min-width": "1rem" } },
+                            [_vm._v("结构比率")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "md-table-head",
+                            { staticStyle: { "min-width": "1rem" } },
+                            [_vm._v("年累计")]
+                          )
+                        ]
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.dataDetail, function(row, index) {
+                    return _c(
+                      "md-table-row",
+                      { key: index },
+                      [
+                        _c("md-table-cell", [
+                          _c("div", { class: ["md-indent-" + row.indent] }, [
+                            _vm._v(_vm._s(row.itemName))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(row.categories, function(cItem) {
+                          return [
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(cItem.money_month))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(cItem.money_month_ratio))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(cItem.money_year))]
+                            )
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  })
                 ],
-                1
+                2
               )
             ],
             1
@@ -66741,7 +66564,7 @@ var render = function() {
     [
       _c(
         "md-menu",
-        { attrs: { "md-size": "1" } },
+        { attrs: { "md-size": "auto" } },
         [
           _c(
             "div",
@@ -66756,17 +66579,40 @@ var render = function() {
           _c(
             "md-menu-content",
             [
-              _c("md-menu-item", { on: { selected: _vm.openPicker } }, [
-                _vm._v("导入数据")
-              ]),
-              _vm._v(" "),
-              _vm.template
-                ? _c(
-                    "md-menu-item",
-                    { on: { selected: _vm.onDownTemplateFile } },
-                    [_vm._v("下载模板")]
-                  )
-                : _vm._e()
+              _c(
+                "md-list",
+                { staticClass: "md-file-import-list" },
+                [
+                  _c(
+                    "md-list-item",
+                    { on: { click: _vm.openPicker } },
+                    [
+                      _c("md-icon", [_vm._v("add_to_photos")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "md-list-item-text" }, [
+                        _vm._v("导入数据")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.template
+                    ? _c(
+                        "md-list-item",
+                        { on: { click: _vm.onDownTemplateFile } },
+                        [
+                          _c("md-icon", [_vm._v("cloud_download")]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "md-list-item-text" }, [
+                            _vm._v("下载模板")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             1
           )
@@ -67377,7 +67223,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -67385,7 +67231,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -67411,7 +67264,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -67437,7 +67297,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -67459,7 +67326,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -67482,7 +67356,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -67590,6 +67471,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -67703,7 +67585,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -67745,60 +67627,49 @@ var render = function() {
                         "md-table",
                         [
                           _c(
-                            "md-table-header",
+                            "md-table-row",
                             [
+                              _c("md-table-head", [_vm._v("期间")]),
+                              _vm._v(" "),
                               _c(
-                                "md-table-row",
-                                [
-                                  _c("md-table-head", [_vm._v("期间")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际利润")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("目标利润")]
-                                  )
-                                ],
-                                1
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际利润")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("目标利润")]
                               )
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "md-table-body",
-                            _vm._l(_vm.dataDetail, function(row, index) {
-                              return _c(
-                                "md-table-row",
-                                { key: index },
-                                [
-                                  _c("md-table-cell", [
-                                    _vm._v(_vm._s(row.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_profit))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.plan_profit))]
-                                  )
-                                ],
-                                1
-                              )
-                            })
-                          )
+                          _vm._l(_vm.dataDetail, function(row, index) {
+                            return _c(
+                              "md-table-row",
+                              { key: index },
+                              [
+                                _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_profit))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.plan_profit))]
+                                )
+                              ],
+                              1
+                            )
+                          })
                         ],
-                        1
+                        2
                       )
                     ],
                     1
@@ -67918,27 +67789,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          required: "",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   )
@@ -68169,6 +68033,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -68252,7 +68117,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -68275,70 +68140,61 @@ var render = function() {
                 { staticClass: "flex" },
                 [
                   _c(
-                    "md-table-header",
+                    "md-table-row",
                     [
-                      _c(
-                        "md-table-row",
-                        [
-                          _c("md-table-head", [_vm._v("收支项目")]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("发生额")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("结构比率")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("年累计")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("累计比率")
-                          ])
-                        ],
-                        1
-                      )
+                      _c("md-table-head", [_vm._v("收支项目")]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("发生额")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("结构比率")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("年累计")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("累计比率")
+                      ])
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "md-table-body",
-                    _vm._l(_vm.dataDetail, function(row, index) {
-                      return _c(
-                        "md-table-row",
-                        { key: index },
-                        [
-                          _c("md-table-cell", [
-                            _c("div", { class: ["md-indent-" + row.indent] }, [
-                              _vm._v(_vm._s(row.itemName))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.month_value))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.month_ratio))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.year_value))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.year_ratio))
+                  _vm._l(_vm.dataDetail, function(row, index) {
+                    return _c(
+                      "md-table-row",
+                      { key: index },
+                      [
+                        _c("md-table-cell", [
+                          _c("div", { class: ["md-indent-" + row.indent] }, [
+                            _vm._v(_vm._s(row.itemName))
                           ])
-                        ],
-                        1
-                      )
-                    })
-                  )
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.month_value))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.month_ratio))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.year_value))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.year_ratio))
+                        ])
+                      ],
+                      1
+                    )
+                  })
                 ],
-                1
+                2
               )
             ],
             1
@@ -68691,7 +68547,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -68699,7 +68555,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -68721,7 +68584,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -68744,7 +68614,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -69121,62 +68998,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("参数")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -69185,6 +69007,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -69956,62 +69779,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -70020,6 +69788,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -70098,6 +69867,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -70334,50 +70104,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -70577,6 +70304,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -70913,62 +70641,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-part-toolbar-group",
-            [
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "" } },
-                [
-                  _c(
-                    "md-layout",
-                    [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("md-input", {
-                            attrs: {
-                              fetch: _vm.doFetch,
-                              placeholder: "search"
-                            },
-                            nativeOn: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key
-                                  )
-                                ) {
-                                  return null
-                                }
-                                _vm.load()
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("日志")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("列表")])
-            ],
+            [_c("md-fetch", { attrs: { fetch: _vm.doFetch } })],
             1
           )
         ],
@@ -70977,6 +70650,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -71211,6 +70885,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -71324,7 +70999,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -71366,72 +71041,61 @@ var render = function() {
                         "md-table",
                         [
                           _c(
-                            "md-table-header",
+                            "md-table-row",
                             [
+                              _c("md-table-head", [_vm._v("期间")]),
+                              _vm._v(" "),
                               _c(
-                                "md-table-row",
-                                [
-                                  _c("md-table-head", [_vm._v("期间")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际收入")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际支出")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际利润")]
-                                  )
-                                ],
-                                1
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际收入")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际支出")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际利润")]
                               )
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "md-table-body",
-                            _vm._l(_vm.dataDetail, function(row, index) {
-                              return _c(
-                                "md-table-row",
-                                { key: index },
-                                [
-                                  _c("md-table-cell", [
-                                    _vm._v(_vm._s(row.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_income))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_cost))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_profit))]
-                                  )
-                                ],
-                                1
-                              )
-                            })
-                          )
+                          _vm._l(_vm.dataDetail, function(row, index) {
+                            return _c(
+                              "md-table-row",
+                              { key: index },
+                              [
+                                _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_income))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_cost))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_profit))]
+                                )
+                              ],
+                              1
+                            )
+                          })
                         ],
-                        1
+                        2
                       )
                     ],
                     1
@@ -71618,27 +71282,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -71653,27 +71309,19 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        { staticClass: "md-inset" },
-                        [
-                          _c("label", [_vm._v("权限")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              "md-ref-id": "gmf.sys.authority.permit.ref"
-                            },
-                            model: {
-                              value: _vm.model.permit,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "permit", $$v)
-                              },
-                              expression: "model.permit"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "权限",
+                          "md-ref-id": "gmf.sys.authority.permit.ref"
+                        },
+                        model: {
+                          value: _vm.model.permit,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "permit", $$v)
+                          },
+                          expression: "model.permit"
+                        }
+                      })
                     ],
                     1
                   ),
@@ -71707,6 +71355,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
+        { staticClass: "no-padding" },
         [
           _c("md-query", {
             ref: "list",
@@ -71808,19 +71457,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("参数")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -71831,44 +71468,31 @@ var render = function() {
           _c(
             "md-content",
             [
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("分类")]),
-                  _vm._v(" "),
-                  _c("md-ref-input", {
-                    attrs: { "md-ref-id": "gmf.sys.dti.category.ref" },
-                    model: {
-                      value: _vm.model.main.category,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "category", $$v)
-                      },
-                      expression: "model.main.category"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: {
+                  "md-label": "分类",
+                  "md-ref-id": "gmf.sys.dti.category.ref"
+                },
+                model: {
+                  value: _vm.model.main.category,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "category", $$v)
+                  },
+                  expression: "model.main.category"
+                }
+              }),
               _vm._v(" "),
-              _c(
-                "md-field",
-                [
-                  _c("label", [_vm._v("接口")]),
-                  _vm._v(" "),
-                  _c("md-ref-input", {
-                    attrs: { "md-ref-id": "gmf.sys.dti.ref" },
-                    on: { init: _vm.initDtiRef },
-                    model: {
-                      value: _vm.model.main.dti,
-                      callback: function($$v) {
-                        _vm.$set(_vm.model.main, "dti", $$v)
-                      },
-                      expression: "model.main.dti"
-                    }
-                  })
-                ],
-                1
-              ),
+              _c("md-ref-input", {
+                attrs: { "md-label": "接口", "md-ref-id": "gmf.sys.dti.ref" },
+                on: { init: _vm.initDtiRef },
+                model: {
+                  value: _vm.model.main.dti,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model.main, "dti", $$v)
+                  },
+                  expression: "model.main.dti"
+                }
+              }),
               _vm._v(" "),
               _c(
                 "md-field",
@@ -72813,6 +72437,7 @@ var render = function() {
             "md-grid-cell-edit",
             {
               staticClass: "md-grid-cell-container",
+              class: [_vm.containerClass],
               attrs: { column: _vm.column, row: _vm.row }
             },
             [
@@ -72820,31 +72445,24 @@ var render = function() {
                 ? [_vm._t("editor")]
                 : _vm.column && _vm.column.dataType == "entity"
                   ? [
-                      _c(
-                        "md-input-container",
-                        [
-                          _c("md-input-ref", {
-                            attrs: {
-                              "md-ref-id":
-                                _vm.column.refId || _vm.column.refType
-                            },
-                            on: { init: _vm.on_init_ref },
-                            model: {
-                              value: _vm.row.data[_vm.column.field],
-                              callback: function($$v) {
-                                _vm.$set(_vm.row.data, _vm.column.field, $$v)
-                              },
-                              expression: "row.data[column.field]"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-ref-id": _vm.column.refId || _vm.column.refType
+                        },
+                        on: { init: _vm.on_init_ref },
+                        model: {
+                          value: _vm.row.data[_vm.column.field],
+                          callback: function($$v) {
+                            _vm.$set(_vm.row.data, _vm.column.field, $$v)
+                          },
+                          expression: "row.data[column.field]"
+                        }
+                      })
                     ]
                   : _vm.column && _vm.column.dataType == "enum"
                     ? [
                         _c(
-                          "md-input-container",
+                          "md-field",
                           [
                             _c("md-enum", {
                               attrs: {
@@ -72865,29 +72483,19 @@ var render = function() {
                       ]
                     : _vm.column && _vm.column.dataType == "date"
                       ? [
-                          _c(
-                            "md-input-container",
-                            [
-                              _c("md-date", {
-                                model: {
-                                  value: _vm.row.data[_vm.column.field],
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.row.data,
-                                      _vm.column.field,
-                                      $$v
-                                    )
-                                  },
-                                  expression: "row.data[column.field]"
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          _c("md-datepicker", {
+                            model: {
+                              value: _vm.row.data[_vm.column.field],
+                              callback: function($$v) {
+                                _vm.$set(_vm.row.data, _vm.column.field, $$v)
+                              },
+                              expression: "row.data[column.field]"
+                            }
+                          })
                         ]
                       : [
                           _c(
-                            "md-input-container",
+                            "md-field",
                             [
                               _c("md-input", {
                                 model: {
@@ -72913,6 +72521,7 @@ var render = function() {
             "md-grid-cell-show",
             {
               staticClass: "md-grid-cell-container",
+              class: [_vm.containerClass],
               attrs: { column: _vm.column, row: _vm.row }
             },
             [_vm._t("default")],
@@ -73378,7 +72987,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -73386,7 +72995,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -73412,7 +73028,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -73438,7 +73061,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -73461,7 +73091,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -73484,7 +73121,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -73838,7 +73482,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -73846,7 +73490,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -73871,7 +73522,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -73896,7 +73554,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -73918,7 +73583,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -74613,9 +74285,15 @@ var render = function() {
               _vm.multiple
                 ? _c(
                     "md-grid-cell",
-                    { attrs: { selection: true } },
+                    {
+                      attrs: {
+                        selection: true,
+                        "container-class": "md-layout md-align-center-center"
+                      }
+                    },
                     [
                       _c("md-checkbox", {
+                        staticClass: "md-primary",
                         on: { change: _vm.handleSelected },
                         model: {
                           value: _vm.selected,
@@ -75194,6 +74872,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -75277,7 +74956,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -75300,74 +74979,65 @@ var render = function() {
                 { staticClass: "flex" },
                 [
                   _c(
-                    "md-table-header",
+                    "md-table-row",
                     [
-                      _c(
-                        "md-table-row",
-                        [
-                          _c("md-table-head", [_vm._v("收支项目")]),
-                          _vm._v(" "),
-                          _c("md-table-head", [_vm._v("方向")]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("发生额")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("结构比率")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("年累计")
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-head", { attrs: { "md-numeric": "" } }, [
-                            _vm._v("累计比率")
-                          ])
-                        ],
-                        1
-                      )
+                      _c("md-table-head", [_vm._v("收支项目")]),
+                      _vm._v(" "),
+                      _c("md-table-head", [_vm._v("方向")]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("发生额")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("结构比率")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("年累计")
+                      ]),
+                      _vm._v(" "),
+                      _c("md-table-head", { attrs: { "md-numeric": "" } }, [
+                        _vm._v("累计比率")
+                      ])
                     ],
                     1
                   ),
                   _vm._v(" "),
-                  _c(
-                    "md-table-body",
-                    _vm._l(_vm.dataDetail, function(row, index) {
-                      return _c(
-                        "md-table-row",
-                        { key: index },
-                        [
-                          _c("md-table-cell", [
-                            _c("div", { class: ["md-indent-" + row.indent] }, [
-                              _vm._v(_vm._s(row.itemName))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", [_vm._v(_vm._s(row.direction))]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.month_value))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.month_ratio))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.year_value))
-                          ]),
-                          _vm._v(" "),
-                          _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
-                            _vm._v(_vm._s(row.year_ratio))
+                  _vm._l(_vm.dataDetail, function(row, index) {
+                    return _c(
+                      "md-table-row",
+                      { key: index },
+                      [
+                        _c("md-table-cell", [
+                          _c("div", { class: ["md-indent-" + row.indent] }, [
+                            _vm._v(_vm._s(row.itemName))
                           ])
-                        ],
-                        1
-                      )
-                    })
-                  )
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", [_vm._v(_vm._s(row.direction))]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.month_value))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.month_ratio))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.year_value))
+                        ]),
+                        _vm._v(" "),
+                        _c("md-table-cell", { attrs: { "md-numeric": "" } }, [
+                          _vm._v(_vm._s(row.year_ratio))
+                        ])
+                      ],
+                      1
+                    )
+                  })
                 ],
-                1
+                2
               )
             ],
             1
@@ -76340,6 +76010,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -76453,7 +76124,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -76476,103 +76147,94 @@ var render = function() {
                 { staticClass: "flex md-header-multiple" },
                 [
                   _c(
-                    "md-table-header",
+                    "md-table-row",
                     [
                       _c(
-                        "md-table-row",
-                        [
-                          _c(
-                            "md-table-head",
-                            {
-                              staticStyle: { "min-width": "2rem" },
-                              attrs: { rowspan: "2" }
-                            },
-                            [_vm._v("收支项目")]
-                          ),
-                          _vm._v(" "),
-                          _vm._l(_vm.dataCategories, function(g) {
-                            return [
-                              _c("md-table-head", { attrs: { colspan: "3" } }, [
-                                _vm._v(_vm._s(g))
-                              ])
-                            ]
-                          })
-                        ],
-                        2
+                        "md-table-head",
+                        {
+                          staticStyle: { "min-width": "2rem" },
+                          attrs: { rowspan: "2" }
+                        },
+                        [_vm._v("收支项目")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "md-table-row",
-                        [
-                          _vm._l(_vm.dataCategories, function(g) {
-                            return [
-                              _c(
-                                "md-table-head",
-                                { staticStyle: { "min-width": "1rem" } },
-                                [_vm._v("发生额")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { staticStyle: { "min-width": "1rem" } },
-                                [_vm._v("结构比率")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-head",
-                                { staticStyle: { "min-width": "1rem" } },
-                                [_vm._v("年累计")]
-                              )
-                            ]
-                          })
-                        ],
-                        2
-                      )
+                      _vm._l(_vm.dataCategories, function(g) {
+                        return [
+                          _c("md-table-head", { attrs: { colspan: "3" } }, [
+                            _vm._v(_vm._s(g))
+                          ])
+                        ]
+                      })
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
                   _c(
-                    "md-table-body",
-                    _vm._l(_vm.dataDetail, function(row, index) {
-                      return _c(
-                        "md-table-row",
-                        { key: index },
-                        [
-                          _c("md-table-cell", [
-                            _c("div", { class: ["md-indent-" + row.indent] }, [
-                              _vm._v(_vm._s(row.itemName))
-                            ])
-                          ]),
+                    "md-table-row",
+                    [
+                      _vm._l(_vm.dataCategories, function(g) {
+                        return [
+                          _c(
+                            "md-table-head",
+                            { staticStyle: { "min-width": "1rem" } },
+                            [_vm._v("发生额")]
+                          ),
                           _vm._v(" "),
-                          _vm._l(row.categories, function(cItem) {
-                            return [
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(cItem.money_month))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(cItem.money_month_ratio))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "md-table-cell",
-                                { attrs: { "md-numeric": "" } },
-                                [_vm._v(_vm._s(cItem.money_year))]
-                              )
-                            ]
-                          })
-                        ],
-                        2
-                      )
-                    })
-                  )
+                          _c(
+                            "md-table-head",
+                            { staticStyle: { "min-width": "1rem" } },
+                            [_vm._v("结构比率")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "md-table-head",
+                            { staticStyle: { "min-width": "1rem" } },
+                            [_vm._v("年累计")]
+                          )
+                        ]
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.dataDetail, function(row, index) {
+                    return _c(
+                      "md-table-row",
+                      { key: index },
+                      [
+                        _c("md-table-cell", [
+                          _c("div", { class: ["md-indent-" + row.indent] }, [
+                            _vm._v(_vm._s(row.itemName))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(row.categories, function(cItem) {
+                          return [
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(cItem.money_month))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(cItem.money_month_ratio))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "md-table-cell",
+                              { attrs: { "md-numeric": "" } },
+                              [_vm._v(_vm._s(cItem.money_year))]
+                            )
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  })
                 ],
-                1
+                2
               )
             ],
             1
@@ -76704,7 +76366,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -76712,7 +76374,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -76738,33 +76407,39 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("单据日期")]),
-                          _vm._v(" "),
-                          _c("md-date", {
-                            attrs: { required: "" },
-                            model: {
-                              value: _vm.model.main.doc_date,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "doc_date", $$v)
-                              },
-                              expression: "model.main.doc_date"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-datepicker", {
+                        attrs: { required: "", "md-label": "单据日期" },
+                        model: {
+                          value: _vm.model.main.doc_date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "doc_date", $$v)
+                          },
+                          expression: "model.main.doc_date"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -76786,7 +76461,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -76809,7 +76491,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77107,9 +76796,15 @@ var render = function() {
       _vm.multiple
         ? _c(
             "md-grid-cell",
-            { attrs: { selection: true } },
+            {
+              attrs: {
+                selection: true,
+                "container-class": "md-layout md-align-center-center"
+              }
+            },
             [
               _c("md-checkbox", {
+                staticClass: "md-primary",
                 on: { change: _vm.handleSelected },
                 model: {
                   value: _vm.selected,
@@ -77337,7 +77032,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form" },
             [
               _c(
                 "md-layout",
@@ -77345,7 +77040,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77371,33 +77073,43 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("单据日期")]),
-                          _vm._v(" "),
-                          _c("md-date", {
-                            attrs: { required: "", disabled: _vm.isApproved },
-                            model: {
-                              value: _vm.model.main.doc_date,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model.main, "doc_date", $$v)
-                              },
-                              expression: "model.main.doc_date"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-datepicker", {
+                        attrs: {
+                          "md-label": "单据日期",
+                          required: "",
+                          disabled: _vm.isApproved
+                        },
+                        model: {
+                          value: _vm.model.main.doc_date,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model.main, "doc_date", $$v)
+                          },
+                          expression: "model.main.doc_date"
+                        }
+                      })
                     ],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77419,7 +77131,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77442,7 +77161,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77461,18 +77187,18 @@ var render = function() {
                       })
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "", "md-row": "" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77501,7 +77227,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77524,7 +77257,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77547,7 +77287,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77577,7 +77324,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77843,7 +77597,7 @@ var render = function() {
         [
           _c(
             "md-content",
-            { staticClass: "flex layout-column" },
+            { staticClass: "flex layout-column md-form md-form" },
             [
               _c(
                 "md-layout",
@@ -77851,7 +77605,14 @@ var render = function() {
                 [
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77877,7 +77638,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77903,7 +77671,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77925,7 +77700,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c("md-ref-input", {
                         attrs: {
@@ -77947,7 +77729,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -77971,18 +77760,18 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "md-layout",
-                { attrs: { "md-gutter": "", "md-row": "" } },
-                [
+                  ),
+                  _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -78010,7 +77799,14 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
@@ -78036,14 +77832,21 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-layout",
-                    { attrs: { "md-flex": "", "md-flex-small": "100" } },
+                    {
+                      attrs: {
+                        "md-flex-xsmall": "100",
+                        "md-flex-small": "50",
+                        "md-flex-medium": "33",
+                        "md-flex": "20"
+                      }
+                    },
                     [
                       _c(
                         "md-field",
                         [
                           _c("label", [_vm._v("备注")]),
                           _vm._v(" "),
-                          _c("md-textarea", {
+                          _c("md-input", {
                             model: {
                               value: _vm.model.main.memo,
                               callback: function($$v) {
@@ -79259,7 +79062,7 @@ var render = function() {
                           staticClass: "md-primary",
                           on: { click: _vm.onCancel }
                         },
-                        [_vm._v("Cancel")]
+                        [_vm._v("取消")]
                       ),
                       _vm._v(" "),
                       _c(
@@ -79268,7 +79071,7 @@ var render = function() {
                           staticClass: "md-primary",
                           on: { click: _vm.onConfirm }
                         },
-                        [_vm._v("Ok")]
+                        [_vm._v("确定")]
                       )
                     ],
                     1
@@ -79386,27 +79189,20 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "md-field",
-                        [
-                          _c("label", [_vm._v("角色")]),
-                          _vm._v(" "),
-                          _c("md-ref-input", {
-                            attrs: {
-                              required: "",
-                              "md-ref-id": "gmf.sys.authority.role.ref"
-                            },
-                            model: {
-                              value: _vm.model.role,
-                              callback: function($$v) {
-                                _vm.$set(_vm.model, "role", $$v)
-                              },
-                              expression: "model.role"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("md-ref-input", {
+                        attrs: {
+                          "md-label": "角色",
+                          required: "",
+                          "md-ref-id": "gmf.sys.authority.role.ref"
+                        },
+                        model: {
+                          value: _vm.model.role,
+                          callback: function($$v) {
+                            _vm.$set(_vm.model, "role", $$v)
+                          },
+                          expression: "model.role"
+                        }
+                      })
                     ],
                     1
                   )
@@ -80520,6 +80316,7 @@ var render = function() {
                       _c(
                         "md-button",
                         {
+                          staticClass: "md-primary",
                           nativeOn: {
                             click: function($event) {
                               _vm.query($event)
@@ -80808,19 +80605,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("span", { staticClass: "flex" }),
-          _vm._v(" "),
-          _c(
-            "md-part-toolbar-crumbs",
-            [
-              _c("md-part-toolbar-crumb", [_vm._v("接口")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("分类")]),
-              _vm._v(" "),
-              _c("md-part-toolbar-crumb", [_vm._v("编辑")])
-            ],
-            1
-          )
+          _c("span", { staticClass: "flex" })
         ],
         1
       ),
@@ -81125,6 +80910,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "md-part",
+    { staticClass: "md-full" },
     [
       _c(
         "md-part-toolbar",
@@ -81208,7 +80994,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-part-body",
-        { staticClass: "md-no-scroll", attrs: { direction: "row" } },
+        { staticClass: "no-padding no-margin", attrs: { direction: "row" } },
         [
           _c(
             "md-part-body-side",
@@ -81250,60 +81036,49 @@ var render = function() {
                         "md-table",
                         [
                           _c(
-                            "md-table-header",
+                            "md-table-row",
                             [
+                              _c("md-table-head", [_vm._v("阿米巴")]),
+                              _vm._v(" "),
                               _c(
-                                "md-table-row",
-                                [
-                                  _c("md-table-head", [_vm._v("阿米巴")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("实际利润")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-head",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v("目标利润")]
-                                  )
-                                ],
-                                1
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("实际利润")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-table-head",
+                                { attrs: { "md-numeric": "" } },
+                                [_vm._v("目标利润")]
                               )
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "md-table-body",
-                            _vm._l(_vm.dataDetail, function(row, index) {
-                              return _c(
-                                "md-table-row",
-                                { key: index },
-                                [
-                                  _c("md-table-cell", [
-                                    _vm._v(_vm._s(row.name))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.this_profit))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "md-table-cell",
-                                    { attrs: { "md-numeric": "" } },
-                                    [_vm._v(_vm._s(row.plan_profit))]
-                                  )
-                                ],
-                                1
-                              )
-                            })
-                          )
+                          _vm._l(_vm.dataDetail, function(row, index) {
+                            return _c(
+                              "md-table-row",
+                              { key: index },
+                              [
+                                _c("md-table-cell", [_vm._v(_vm._s(row.name))]),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.this_profit))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "md-table-cell",
+                                  { attrs: { "md-numeric": "" } },
+                                  [_vm._v(_vm._s(row.plan_profit))]
+                                )
+                              ],
+                              1
+                            )
+                          })
                         ],
-                        1
+                        2
                       )
                     ],
                     1
@@ -83982,7 +83757,11 @@ exports.default = {
     model: [String, Number, Boolean, Array],
     value: {
       type: [String, Number, Boolean],
-      default: 'on'
+      default: '1'
+    },
+    falseValue: {
+      type: [String, Number, Boolean],
+      default: '0'
     },
     name: [String, Number],
     required: Boolean,
@@ -84003,11 +83782,16 @@ exports.default = {
         return this.model.includes(this.value);
       }
 
-      if (this.isModelBoolean && this.value === 'on') {
+      if (this.isModelBoolean && this.value === '1') {
         return this.model;
       }
-
-      return this.model === this.value;
+      if (this.model === this.value) {
+        return true;
+      }
+      if (this.model && this.value && this.model.toString() == this.value.toString()) {
+        return true;
+      }
+      return false;
     },
     isModelArray: function isModelArray() {
       return Array.isArray(this.model);
@@ -84046,7 +83830,7 @@ exports.default = {
       if (!this.isSelected) {
         this.$emit('change', this.value);
       } else {
-        this.$emit('change', null);
+        this.$emit('change', this.falseValue);
       }
     },
     handleBooleanCheckbox: function handleBooleanCheckbox() {
@@ -95516,12 +95300,12 @@ var init = function init() {
       startYear: 1900,
       endYear: 2099,
       dateFormat: 'YYYY-MM-DD',
-      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      shortDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      shorterDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-      shorterMonths: ['J', 'F', 'M', 'A', 'M', 'Ju', 'Ju', 'A', 'Se', 'O', 'N', 'D']
+      days: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      shortDays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+      shorterDays: ['日', '一', '二', '三', '四', '五', '六'],
+      months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+      shortMonths: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+      shorterMonths: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
     }
   });
 
@@ -101125,6 +100909,10 @@ exports.default = options;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5d75e134\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/common/cboFileImport.vue")
+}
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
 var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/common/cboFileImport.vue")
@@ -101133,7 +100921,7 @@ var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/templa
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -103939,6 +103727,59 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-018a0033\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-018a0033\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/suite-cbo/layouts/AppSider.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\suite-cbo\\layouts\\AppSider.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-018a0033", Component.options)
+  } else {
+    hotAPI.reload("data-v-018a0033", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/vendor/suite-cbo/layouts/AppToolbar.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -104279,10 +104120,6 @@ var _AppToolbar = __webpack_require__("./resources/assets/js/vendor/suite-cbo/la
 
 var _AppToolbar2 = _interopRequireDefault(_AppToolbar);
 
-var _AppMenu = __webpack_require__("./resources/assets/js/vendor/suite-cbo/layouts/AppMenu.vue");
-
-var _AppMenu2 = _interopRequireDefault(_AppMenu);
-
 var _Dashboard = __webpack_require__("./resources/assets/js/vendor/suite-cbo/layouts/Dashboard.vue");
 
 var _Dashboard2 = _interopRequireDefault(_Dashboard);
@@ -104296,7 +104133,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function install(Vue) {
   Vue.component('App', _App2.default);
   Vue.component('AppToolbar', _AppToolbar2.default);
-  Vue.component('AppMenu', _AppMenu2.default);
   Vue.component('Dashboard', _Dashboard2.default);
   Vue.component('Entchange', _Entchange2.default);
 }
