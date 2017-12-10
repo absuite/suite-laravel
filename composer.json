@@ -36,7 +36,7 @@
             "Suite\\Cbo\\":"../suite-cbo/src/",
             "Suite\\Amiba\\":"../suite-amiba/src/",
             "Suite\\Bec\\":"../suite-bec/src/",
-            "Suite\\Mobile\\":"../suite-mobile/src/"
+            "Suite\\Docs\\":"../suite-docs/src/"
         }
     },
     "autoload-dev": {
