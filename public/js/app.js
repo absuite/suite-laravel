@@ -30819,6 +30819,7 @@ exports.default = {
     }, 2000);
     this.fetchProductData();
     this.fetchNavDatas();
+    this.fetchPostData();
   }
 };
 
@@ -76674,7 +76675,7 @@ var render = function() {
             _vm.mainPost && _vm.mainPost.id
               ? _c(
                   "md-card",
-                  { staticClass: "md-elevation-0" },
+                  { staticClass: "md-elevation-0 ql-snow" },
                   [
                     _c("md-card-header", [
                       _c("div", { staticClass: "md-title" }, [
@@ -76684,7 +76685,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("md-divider"),
                     _vm._v(" "),
-                    _c("md-card-content", [
+                    _c("md-card-content", { staticClass: "ql-editor" }, [
                       _c("div", {
                         domProps: { innerHTML: _vm._s(_vm.mainPost.content) }
                       })
