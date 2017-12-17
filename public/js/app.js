@@ -26602,6 +26602,10 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 exports.default = {
   props: {
@@ -30533,6 +30537,15 @@ var _MainHeader2 = _interopRequireDefault(_MainHeader);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67380,6 +67393,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "md-list",
+        { staticClass: "flex" },
         [
           _c(
             "md-list-item",
@@ -67514,6 +67528,20 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c("md-divider"),
+      _vm._v(" "),
+      _c(
+        "md-toolbar",
+        { staticClass: "md-transparent", attrs: { "md-elevation": "0" } },
+        [
+          _c(
+            "a",
+            { attrs: { href: "//demo.myamiba.com/docs", target: "_blank" } },
+            [_vm._v("文档")]
+          )
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -76639,10 +76667,35 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", {
-          staticClass: "main-container",
-          domProps: { innerHTML: _vm._s(_vm.mainPost.content) }
-        })
+        _c(
+          "div",
+          { staticClass: "main-container" },
+          [
+            _vm.mainPost && _vm.mainPost.id
+              ? _c(
+                  "md-card",
+                  { staticClass: "md-elevation-0" },
+                  [
+                    _c("md-card-header", [
+                      _c("div", { staticClass: "md-title" }, [
+                        _vm._v(_vm._s(_vm.mainPost.title))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("md-divider"),
+                    _vm._v(" "),
+                    _c("md-card-content", [
+                      _c("div", {
+                        domProps: { innerHTML: _vm._s(_vm.mainPost.content) }
+                      })
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("docs-post-edit", {
@@ -84171,7 +84224,7 @@ Vue.use(_suiteAmiba2.default);
 Vue.use(_suiteBec2.default);
 Vue.use(_suiteDocs2.default);
 
-_gmfSys.start.run();
+_gmfSys.start.run({ defaultRoutes: true });
 
 /***/ }),
 

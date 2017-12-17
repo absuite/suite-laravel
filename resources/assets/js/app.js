@@ -11,5 +11,4 @@ Vue.use(amiba);
 Vue.use(bec);
 Vue.use(docs);
 
-start.run();
-
+start.run({defaultRoutes:true});
