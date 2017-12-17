@@ -12970,16 +12970,31 @@ audio:not(.md-image),
     display: none !important;
 }
 }
-.md-scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  border-radius: 8px;
-}
-.md-scrollbar::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-}
 .md-scrollbar::-webkit-scrollbar-button {
   display: none;
+}
+.md-scrollbar::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 4px;
+}
+.md-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0px;
+  min-height: 28px;
+  padding: 100px 0 0;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+.md-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.md-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  overflow: visible;
+  width: 8px;
+  background-color: transparent;
 }
 
 /**
@@ -23420,14 +23435,6 @@ html.md-theme-default {
   color: rgba(0, 0, 0, 0.54);
   color: var(--md-theme-default-text-accent-on-background-variant, rgba(0, 0, 0, 0.54));
 }
-.md-scrollbar.md-theme-default::-webkit-scrollbar-corner, .md-scrollbar.md-theme-default::-webkit-scrollbar-track {
-  background: #e1e1e1;
-  background: var(--md-theme-default-scrollbar-background-on-background-variant, #e1e1e1);
-}
-.md-scrollbar.md-theme-default::-webkit-scrollbar-thumb {
-  background: #757575;
-  background: var(--md-theme-default-scrollbar-on-background-variant, #757575);
-}
 .md-list.md-theme-default .md-autocomplete-items .md-highlight-text-match {
   color: #0f9d58;
   color: var(--md-theme-default-primary-on-background, #0f9d58);
@@ -23632,6 +23639,10 @@ html.md-theme-default {
       fill: #0f9d58;
       fill: var(--md-theme-default-primary-on-background, #0f9d58);
 }
+.md-button.md-theme-default.md-primary .md-icon-image svg {
+        fill: #0f9d58;
+        fill: var(--md-theme-default-primary-on-background, #0f9d58);
+}
 .md-button.md-theme-default.md-accent {
     color: #ff5722;
     color: var(--md-theme-default-accent-on-background, #ff5722);
@@ -23643,6 +23654,10 @@ html.md-theme-default {
 .md-button.md-theme-default.md-accent .md-icon-image {
       fill: #ff5722;
       fill: var(--md-theme-default-accent-on-background, #ff5722);
+}
+.md-button.md-theme-default.md-accent .md-icon-image svg {
+        fill: #ff5722;
+        fill: var(--md-theme-default-accent-on-background, #ff5722);
 }
 .md-button.md-theme-default.md-raised[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -23670,6 +23685,10 @@ html.md-theme-default {
         fill: #fff;
         fill: var(--md-theme-default-text-primary-on-primary, #fff);
 }
+.md-button.md-theme-default.md-raised:not([disabled]).md-primary .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-default-text-primary-on-primary, #fff);
+}
 .md-button.md-theme-default.md-raised:not([disabled]).md-accent {
       color: #fff;
       color: var(--md-theme-default-text-primary-on-accent, #fff);
@@ -23683,6 +23702,10 @@ html.md-theme-default {
 .md-button.md-theme-default.md-raised:not([disabled]).md-accent .md-icon-image {
         fill: #fff;
         fill: var(--md-theme-default-text-primary-on-accent, #fff);
+}
+.md-button.md-theme-default.md-raised:not([disabled]).md-accent .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-default-text-primary-on-accent, #fff);
 }
 .md-button.md-theme-default.md-fab[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -23700,6 +23723,10 @@ html.md-theme-default {
       fill: #fff;
       fill: var(--md-theme-default-text-primary-on-accent, #fff);
 }
+.md-button.md-theme-default.md-fab:not([disabled]) .md-icon-image svg {
+        fill: #fff;
+        fill: var(--md-theme-default-text-primary-on-accent, #fff);
+}
 .md-button.md-theme-default.md-fab:not([disabled]).md-primary {
       background-color: #0f9d58;
       background-color: var(--md-theme-default-primary, #0f9d58);
@@ -23712,6 +23739,10 @@ html.md-theme-default {
         fill: #fff;
         fill: var(--md-theme-default-text-primary-on-primary, #fff);
 }
+.md-button.md-theme-default.md-fab:not([disabled]).md-primary .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-default-text-primary-on-primary, #fff);
+}
 .md-button.md-theme-default[disabled] {
     color: rgba(0, 0, 0, 0.26);
     color: var(--md-theme-default-disabled-on-background, rgba(0, 0, 0, 0.26));
@@ -23723,6 +23754,10 @@ html.md-theme-default {
 .md-button.md-theme-default[disabled] .md-icon-image {
       fill: rgba(0, 0, 0, 0.38);
       fill: var(--md-theme-default-icon-disabled-on-background, rgba(0, 0, 0, 0.38));
+}
+.md-button.md-theme-default[disabled] .md-icon-image svg {
+        fill: rgba(0, 0, 0, 0.38);
+        fill: var(--md-theme-default-icon-disabled-on-background, rgba(0, 0, 0, 0.38));
 }
 .md-card.md-theme-default {
   background-color: #fff;
@@ -25175,14 +25210,6 @@ html.md-theme-green {
   color: rgba(0, 0, 0, 0.54);
   color: var(--md-theme-green-text-accent-on-background-variant, rgba(0, 0, 0, 0.54));
 }
-.md-scrollbar.md-theme-green::-webkit-scrollbar-corner, .md-scrollbar.md-theme-green::-webkit-scrollbar-track {
-  background: #e1e1e1;
-  background: var(--md-theme-green-scrollbar-background-on-background-variant, #e1e1e1);
-}
-.md-scrollbar.md-theme-green::-webkit-scrollbar-thumb {
-  background: #757575;
-  background: var(--md-theme-green-scrollbar-on-background-variant, #757575);
-}
 .md-list.md-theme-green .md-autocomplete-items .md-highlight-text-match {
   color: #64dd17;
   color: var(--md-theme-green-primary-on-background, #64dd17);
@@ -25387,6 +25414,10 @@ html.md-theme-green {
       fill: #64dd17;
       fill: var(--md-theme-green-primary-on-background, #64dd17);
 }
+.md-button.md-theme-green.md-primary .md-icon-image svg {
+        fill: #64dd17;
+        fill: var(--md-theme-green-primary-on-background, #64dd17);
+}
 .md-button.md-theme-green.md-accent {
     color: #ff5252;
     color: var(--md-theme-green-accent-on-background, #ff5252);
@@ -25398,6 +25429,10 @@ html.md-theme-green {
 .md-button.md-theme-green.md-accent .md-icon-image {
       fill: #ff5252;
       fill: var(--md-theme-green-accent-on-background, #ff5252);
+}
+.md-button.md-theme-green.md-accent .md-icon-image svg {
+        fill: #ff5252;
+        fill: var(--md-theme-green-accent-on-background, #ff5252);
 }
 .md-button.md-theme-green.md-raised[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -25425,6 +25460,10 @@ html.md-theme-green {
         fill: rgba(0, 0, 0, 0.87);
         fill: var(--md-theme-green-text-primary-on-primary, rgba(0, 0, 0, 0.87));
 }
+.md-button.md-theme-green.md-raised:not([disabled]).md-primary .md-icon-image svg {
+          fill: rgba(0, 0, 0, 0.87);
+          fill: var(--md-theme-green-text-primary-on-primary, rgba(0, 0, 0, 0.87));
+}
 .md-button.md-theme-green.md-raised:not([disabled]).md-accent {
       color: #fff;
       color: var(--md-theme-green-text-primary-on-accent, #fff);
@@ -25438,6 +25477,10 @@ html.md-theme-green {
 .md-button.md-theme-green.md-raised:not([disabled]).md-accent .md-icon-image {
         fill: #fff;
         fill: var(--md-theme-green-text-primary-on-accent, #fff);
+}
+.md-button.md-theme-green.md-raised:not([disabled]).md-accent .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-green-text-primary-on-accent, #fff);
 }
 .md-button.md-theme-green.md-fab[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -25455,6 +25498,10 @@ html.md-theme-green {
       fill: #fff;
       fill: var(--md-theme-green-text-primary-on-accent, #fff);
 }
+.md-button.md-theme-green.md-fab:not([disabled]) .md-icon-image svg {
+        fill: #fff;
+        fill: var(--md-theme-green-text-primary-on-accent, #fff);
+}
 .md-button.md-theme-green.md-fab:not([disabled]).md-primary {
       background-color: #64dd17;
       background-color: var(--md-theme-green-primary, #64dd17);
@@ -25467,6 +25514,10 @@ html.md-theme-green {
         fill: rgba(0, 0, 0, 0.87);
         fill: var(--md-theme-green-text-primary-on-primary, rgba(0, 0, 0, 0.87));
 }
+.md-button.md-theme-green.md-fab:not([disabled]).md-primary .md-icon-image svg {
+          fill: rgba(0, 0, 0, 0.87);
+          fill: var(--md-theme-green-text-primary-on-primary, rgba(0, 0, 0, 0.87));
+}
 .md-button.md-theme-green[disabled] {
     color: rgba(0, 0, 0, 0.26);
     color: var(--md-theme-green-disabled-on-background, rgba(0, 0, 0, 0.26));
@@ -25478,6 +25529,10 @@ html.md-theme-green {
 .md-button.md-theme-green[disabled] .md-icon-image {
       fill: rgba(0, 0, 0, 0.38);
       fill: var(--md-theme-green-icon-disabled-on-background, rgba(0, 0, 0, 0.38));
+}
+.md-button.md-theme-green[disabled] .md-icon-image svg {
+        fill: rgba(0, 0, 0, 0.38);
+        fill: var(--md-theme-green-icon-disabled-on-background, rgba(0, 0, 0, 0.38));
 }
 .md-card.md-theme-green {
   background-color: #fff;
@@ -26930,14 +26985,6 @@ html.md-theme-light-teal {
   color: rgba(0, 0, 0, 0.54);
   color: var(--md-theme-light-teal-text-accent-on-background-variant, rgba(0, 0, 0, 0.54));
 }
-.md-scrollbar.md-theme-light-teal::-webkit-scrollbar-corner, .md-scrollbar.md-theme-light-teal::-webkit-scrollbar-track {
-  background: #e1e1e1;
-  background: var(--md-theme-light-teal-scrollbar-background-on-background-variant, #e1e1e1);
-}
-.md-scrollbar.md-theme-light-teal::-webkit-scrollbar-thumb {
-  background: #757575;
-  background: var(--md-theme-light-teal-scrollbar-on-background-variant, #757575);
-}
 .md-list.md-theme-light-teal .md-autocomplete-items .md-highlight-text-match {
   color: #009688;
   color: var(--md-theme-light-teal-primary-on-background, #009688);
@@ -27142,6 +27189,10 @@ html.md-theme-light-teal {
       fill: #009688;
       fill: var(--md-theme-light-teal-primary-on-background, #009688);
 }
+.md-button.md-theme-light-teal.md-primary .md-icon-image svg {
+        fill: #009688;
+        fill: var(--md-theme-light-teal-primary-on-background, #009688);
+}
 .md-button.md-theme-light-teal.md-accent {
     color: #ff5252;
     color: var(--md-theme-light-teal-accent-on-background, #ff5252);
@@ -27153,6 +27204,10 @@ html.md-theme-light-teal {
 .md-button.md-theme-light-teal.md-accent .md-icon-image {
       fill: #ff5252;
       fill: var(--md-theme-light-teal-accent-on-background, #ff5252);
+}
+.md-button.md-theme-light-teal.md-accent .md-icon-image svg {
+        fill: #ff5252;
+        fill: var(--md-theme-light-teal-accent-on-background, #ff5252);
 }
 .md-button.md-theme-light-teal.md-raised[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -27180,6 +27235,10 @@ html.md-theme-light-teal {
         fill: #fff;
         fill: var(--md-theme-light-teal-text-primary-on-primary, #fff);
 }
+.md-button.md-theme-light-teal.md-raised:not([disabled]).md-primary .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-light-teal-text-primary-on-primary, #fff);
+}
 .md-button.md-theme-light-teal.md-raised:not([disabled]).md-accent {
       color: #fff;
       color: var(--md-theme-light-teal-text-primary-on-accent, #fff);
@@ -27193,6 +27252,10 @@ html.md-theme-light-teal {
 .md-button.md-theme-light-teal.md-raised:not([disabled]).md-accent .md-icon-image {
         fill: #fff;
         fill: var(--md-theme-light-teal-text-primary-on-accent, #fff);
+}
+.md-button.md-theme-light-teal.md-raised:not([disabled]).md-accent .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-light-teal-text-primary-on-accent, #fff);
 }
 .md-button.md-theme-light-teal.md-fab[disabled] {
     background-color: rgba(0, 0, 0, 0.12);
@@ -27210,6 +27273,10 @@ html.md-theme-light-teal {
       fill: #fff;
       fill: var(--md-theme-light-teal-text-primary-on-accent, #fff);
 }
+.md-button.md-theme-light-teal.md-fab:not([disabled]) .md-icon-image svg {
+        fill: #fff;
+        fill: var(--md-theme-light-teal-text-primary-on-accent, #fff);
+}
 .md-button.md-theme-light-teal.md-fab:not([disabled]).md-primary {
       background-color: #009688;
       background-color: var(--md-theme-light-teal-primary, #009688);
@@ -27222,6 +27289,10 @@ html.md-theme-light-teal {
         fill: #fff;
         fill: var(--md-theme-light-teal-text-primary-on-primary, #fff);
 }
+.md-button.md-theme-light-teal.md-fab:not([disabled]).md-primary .md-icon-image svg {
+          fill: #fff;
+          fill: var(--md-theme-light-teal-text-primary-on-primary, #fff);
+}
 .md-button.md-theme-light-teal[disabled] {
     color: rgba(0, 0, 0, 0.26);
     color: var(--md-theme-light-teal-disabled-on-background, rgba(0, 0, 0, 0.26));
@@ -27233,6 +27304,10 @@ html.md-theme-light-teal {
 .md-button.md-theme-light-teal[disabled] .md-icon-image {
       fill: rgba(0, 0, 0, 0.38);
       fill: var(--md-theme-light-teal-icon-disabled-on-background, rgba(0, 0, 0, 0.38));
+}
+.md-button.md-theme-light-teal[disabled] .md-icon-image svg {
+        fill: rgba(0, 0, 0, 0.38);
+        fill: var(--md-theme-light-teal-icon-disabled-on-background, rgba(0, 0, 0, 0.38));
 }
 .md-card.md-theme-light-teal {
   background-color: #fff;
