@@ -7,7 +7,6 @@ use Gmf\Sys\Libs\APIResult;
 use Gmf\Sys\Libs\InputHelper;
 use Gmf\Sys\Models\Ent;
 use Illuminate\Http\Request;
-use Log;
 use Suite\Amiba\Models as AmibaModels;
 use Suite\Cbo\Models as CboModels;
 
@@ -73,7 +72,6 @@ class HomeController extends Controller {
 		$entId = $request->oauth_ent_id;
 		if (empty($entId)) {
 			$entId = session(config('gmf.ent_session_name'));
-			Log::error('get current ent id:' . $entId);
 			if ($entId && empty(Ent::find($entId))) {
 				$entId = null;
 			}
@@ -81,11 +79,11 @@ class HomeController extends Controller {
 		if (empty($entId)) {
 			$entId = config('gmf.ent.id');
 		}
-		$config->entId($entId);
-		session([config('gmf.ent_session_name') => $entId]);
-		Log::error('set current ent id:' . $entId);
-
-		$item = false;
+		if ($entId) {
+			$config->ent(Ent::find($entId));
+			session([config('gmf.ent_session_name') => $entId]);
+		}
+		$item = null;
 		$tmp = CboModels\Currency::where('ent_id', $config->entId)->where('code', 'CNY')->first();
 		if (empty($tmp)) {
 			$tmp = CboModels\Currency::where('ent_id', $config->entId)->first();
@@ -96,7 +94,7 @@ class HomeController extends Controller {
 		}
 		$config->currency($item);
 
-		$item = false;
+		$item = null;
 		$tmp = CboModels\Country::where('code', 'CHN')->first();
 
 		if ($tmp) {
@@ -105,7 +103,7 @@ class HomeController extends Controller {
 		}
 		$config->country($item);
 
-		$item = false;
+		$item = null;
 		$tmp = AmibaModels\Purpose::where('ent_id', $config->entId)->with('calendar')->where('code', 'ob01')->first();
 		if (empty($tmp)) {
 			$tmp = AmibaModels\Purpose::where('ent_id', $config->entId)->with('calendar')->first();
@@ -116,7 +114,7 @@ class HomeController extends Controller {
 		}
 		$config->purpose($item);
 
-		$item = false;
+		$item = null;
 		if (!empty($config->purpose->calendar_id)) {
 			$item = new Builder();
 			$tmp = CboModels\PeriodCalendar::where('ent_id', $config->entId)->where('id', $config->purpose->calendar_id)->first();
@@ -129,7 +127,7 @@ class HomeController extends Controller {
 		}
 		$config->calendar($item);
 
-		$item = false;
+		$item = null;
 		if (!empty($config->calendar_id)) {
 			$tmp = CboModels\PeriodAccount::where('ent_id', $config->entId)->where('code', date('Ym'))->where('calendar_id', $config->calendar_id)->first();
 		} else {

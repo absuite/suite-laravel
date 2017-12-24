@@ -11,4 +11,23 @@ Vue.use(amiba);
 Vue.use(bec);
 Vue.use(docs);
 
-start.run({defaultRoutes:true});
+const appMixin = {
+  methods: {
+    async loadConfigs() {
+      try {
+        const response = await this.$http.get('/site/configs');
+        this.$setConfigs(response.data.data);
+      } catch (err) {
+        return false;
+      }
+      return false;
+    },
+    async beforeCreated() {
+      if(window.gmfConfig){
+        this.$setConfigs(window.gmfConfig);
+      }
+      await this.loadConfigs();
+    }
+  }
+};
+start.run({defaultRoutes:true},appMixin);

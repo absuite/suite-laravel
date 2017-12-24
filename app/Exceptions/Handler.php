@@ -48,6 +48,9 @@ class Handler extends ExceptionHandler {
 		}
 		if ($request->expectsJson() || $request->is('api/*')) {
 			$msg = '';
+			if (!$msg && is_a($exception, \Illuminate\Validation\ValidationException::class)) {
+				$msg = $exception->errors();
+			}
 			if (!$msg && is_a($exception, \Symfony\Component\HttpKernel\Exception\NotFoundHttpException::class)) {
 				$msg = 'NotFound';
 			}
