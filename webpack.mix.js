@@ -25,6 +25,10 @@ mix.options({
   clearConsole: false
 });
 mix.webpackConfig({
+  output: {
+    publicPath: "/",
+    chunkFilename: 'js/chunks/[name].js'
+  },
   resolve: {
     alias: {
       'gmf': resolvePath('gmf-sys'),
@@ -38,13 +42,11 @@ mix.webpackConfig({
 });
 mix.js('resources/assets/js/app.js', 'public/js')
   .extract(['axios', 'lodash', 'vue',
-    'vue-router',
-    'uuid',
-    'highcharts',
-    'd3', 'deepmerge', 'date-fns', 'xlsx'
+    'vue-router', 'uuid', 'highcharts',
+    'd3', 'deepmerge', 'date-fns', 'xlsx', 'vuex', 'raf'
   ]);
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 
-mix.copyDirectory('resources/assets/img', 'public/img');
+mix.copyDirectory('resources/assets/images', 'public/images');
 
 mix.version();
