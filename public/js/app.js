@@ -4032,9 +4032,12 @@ exports.default = {
     uploadFile: function uploadFile(file) {
       var _this2 = this;
 
-      var options = {};
-      options.files = [file];
-      this.$http.post('sys/files', options).then(function (response) {
+      var formData = new FormData();
+      formData.append('files', file.file, file.title);
+      var config = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+      this.$http.post('sys/files', formData, config).then(function (response) {
         response.data.data.forEach(function (item) {
           _this2.files.push(item);
         });
@@ -24879,6 +24882,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
   props: {
@@ -24887,7 +24891,8 @@ exports.default = {
   },
   data: function data() {
     return {
-      ents: []
+      ents: [],
+      loading: 0
     };
   },
 
@@ -24918,8 +24923,19 @@ exports.default = {
       this.$router.replace({ name: 'module', params: { module: 'sys.ent.edit' } });
     },
     onSelectEnt: function onSelectEnt(ent) {
-      this.toggle();
-      this.$setConfigs({ ent: ent });
+      var _this2 = this;
+
+      this.loading++;
+      this.$http.post('sys/auth/entry-ent/' + ent.id).then(function (response) {
+        if (response.data.data) {
+          _this2.toggle();
+          _this2.$setConfigs({ ent: ent });
+        }
+        _this2.loading--;
+      }).catch(function (err) {
+        _this2.$toast(err);
+        _this2.loading--;
+      });
     }
   },
   created: function created() {
@@ -34126,9 +34142,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        [_c("md-button", { attrs: { href: "logout" } }, [_vm._v("退出")])],
+        [_c("md-button", { attrs: { href: "/logout" } }, [_vm._v("退出")])],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("md-loading", { attrs: { loading: _vm.loading } })
     ],
     1
   )
