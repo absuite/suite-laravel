@@ -1,5 +1,6 @@
 window.Vue = window.Vue || require('vue');
 
+
 import {start} from './vendor/gmf-sys';
 import cbo from './vendor/suite-cbo';
 import amiba from './vendor/suite-amiba';
@@ -11,23 +12,18 @@ Vue.use(amiba);
 Vue.use(bec);
 Vue.use(docs);
 
+
 const appMixin = {
   methods: {
     async loadConfigs() {
-      try {
-        const response = await this.$http.get('/site/configs');
-        this.$setConfigs(response.data.data);
-      } catch (err) {
-        return false;
-      }
-      return false;
+      return await this.$http.get('/site/configs');
     },
     async beforeCreated() {
+      this.configs.home='/app/dashboard';
       if(window.gmfConfig){
         this.$setConfigs(window.gmfConfig);
       }
-      await this.loadConfigs();
     }
   }
 };
-start.run({defaultRoutes:true},appMixin);
+start.run({},appMixin);

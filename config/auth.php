@@ -67,7 +67,7 @@ return [
 	'providers' => [
 		'users' => [
 			'driver' => 'eloquent',
-			'model' => Gmf\Ac\Models\User::class,
+			'model' => Gmf\Sys\Models\User::class,
 		],
 
 		// 'users' => [

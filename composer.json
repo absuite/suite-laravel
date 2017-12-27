@@ -31,7 +31,6 @@
         "psr-4": {
             "App\\": "app/",
             "Gmf\\Sys\\":"../../gmf/gmf-sys/src/",
-            "Gmf\\Ac\\":"../../gmf/gmf-ac/src/",
             "Gmf\\Passport\\":"../../gmf/gmf-passport/src/",
             "Suite\\Cbo\\":"../suite-cbo/src/",
             "Suite\\Amiba\\":"../suite-amiba/src/",

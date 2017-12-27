@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([18],{
 
 /***/ "./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdImage/MdImage.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -34020,136 +34020,142 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "suite-app-sider layout layout-column" },
-    [
-      _c("md-toolbar", { staticClass: "md-primary" }, [
-        _c("div", { staticClass: "md-toolbar-row" }, [
-          _c(
-            "div",
-            { staticClass: "md-toolbar-section-start" },
-            [
-              _c(
-                "md-button",
-                { staticClass: "md-icon-button md-avatar" },
-                [
-                  _c("md-avatar", [
-                    _c("img", {
-                      attrs: { src: "/assets/vendor/gmf-sys/avatar/1.jpg" }
-                    })
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("h2", { staticClass: "md-title flex" }, [
-            _vm._v(_vm._s(_vm.user.name))
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "md-toolbar-section-end" },
-            [
-              _c(
-                "md-button",
-                {
-                  staticClass: "md-icon-button",
-                  nativeOn: {
-                    click: function($event) {
-                      _vm.toggle()
-                    }
-                  }
-                },
-                [_c("md-icon", [_vm._v("arrow_forward")])],
-                1
-              )
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
+  return _vm.user
+    ? _c(
         "div",
-        { staticClass: "layout layout-column flex" },
+        { staticClass: "suite-app-sider layout layout-column" },
         [
-          _c(
-            "md-list",
-            [
-              _c("md-subheader", [_vm._v("企业")]),
-              _vm._v(" "),
-              _vm._l(_vm.ents, function(item) {
-                return _c(
-                  "md-list-item",
-                  {
-                    key: item.id,
-                    class: { "md-active": item.id == _vm.ent.id },
-                    on: {
-                      click: function($event) {
-                        _vm.onSelectEnt(item)
-                      }
-                    }
-                  },
-                  [
-                    _c("md-icon", [_vm._v("account_balance")]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "md-list-item-text" }, [
-                      _vm._v(_vm._s(item.name))
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "md-button",
-                      { staticClass: "md-icon-button md-list-action" },
-                      [_c("md-icon", [_vm._v("send")])],
-                      1
-                    )
-                  ],
-                  1
-                )
-              }),
-              _vm._v(" "),
-              _c("md-divider", { staticClass: "md-inset" }),
-              _vm._v(" "),
+          _c("md-toolbar", { staticClass: "md-primary" }, [
+            _c("div", { staticClass: "md-toolbar-row" }, [
               _c(
-                "md-list-item",
-                { on: { click: _vm.onCreateEnt } },
+                "div",
+                { staticClass: "md-toolbar-section-start" },
                 [
-                  _c("md-icon", [_vm._v("account_balance")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "md-list-item-text" }, [
-                    _vm._v("创建企业")
-                  ]),
-                  _vm._v(" "),
                   _c(
                     "md-button",
-                    { staticClass: "md-icon-button md-list-action" },
-                    [_c("md-icon", [_vm._v("add")])],
+                    { staticClass: "md-icon-button md-avatar" },
+                    [
+                      _c("md-avatar", [
+                        _c("img", {
+                          attrs: { src: "/assets/vendor/gmf-sys/avatar/1.jpg" }
+                        })
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("h2", { staticClass: "md-title flex" }, [
+                _vm._v(_vm._s(_vm.user.name))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "md-toolbar-section-end" },
+                [
+                  _c(
+                    "md-button",
+                    {
+                      staticClass: "md-icon-button",
+                      nativeOn: {
+                        click: function($event) {
+                          _vm.toggle()
+                        }
+                      }
+                    },
+                    [_c("md-icon", [_vm._v("arrow_forward")])],
                     1
                   )
                 ],
                 1
               )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "layout layout-column flex" },
+            [
+              _c(
+                "md-list",
+                [
+                  _c("md-subheader", [_vm._v("企业")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.ents, function(item) {
+                    return _c(
+                      "md-list-item",
+                      {
+                        key: item.id,
+                        class: { "md-active": item.id == _vm.ent.id },
+                        on: {
+                          click: function($event) {
+                            _vm.onSelectEnt(item)
+                          }
+                        }
+                      },
+                      [
+                        _c("md-icon", [_vm._v("account_balance")]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "md-list-item-text" }, [
+                          _vm._v(_vm._s(item.name))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "md-button",
+                          { staticClass: "md-icon-button md-list-action" },
+                          [_c("md-icon", [_vm._v("send")])],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c("md-divider", { staticClass: "md-inset" }),
+                  _vm._v(" "),
+                  _c(
+                    "md-list-item",
+                    { on: { click: _vm.onCreateEnt } },
+                    [
+                      _c("md-icon", [_vm._v("account_balance")]),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "md-list-item-text" }, [
+                        _vm._v("创建企业")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "md-button",
+                        { staticClass: "md-icon-button md-list-action" },
+                        [_c("md-icon", [_vm._v("add")])],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                2
+              )
             ],
-            2
-          )
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c("md-button", { attrs: { to: { name: "auth.logout" } } }, [
+                _vm._v("退出")
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("md-loading", { attrs: { loading: _vm.loading } })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        [_c("md-button", { attrs: { href: "/logout" } }, [_vm._v("退出")])],
-        1
-      ),
-      _vm._v(" "),
-      _c("md-loading", { attrs: { loading: _vm.loading } })
-    ],
-    1
-  )
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -42296,7 +42302,13 @@ var render = function() {
         [
           _c(
             "md-layout",
-            { attrs: { "md-flex-small": "100", "md-flex": "66" } },
+            {
+              attrs: {
+                "md-flex-sm": "100",
+                "md-flex-xs": "100",
+                "md-flex": "66"
+              }
+            },
             [
               _c(
                 "md-card",
@@ -42318,13 +42330,15 @@ var render = function() {
                     [
                       _c(
                         "md-layout",
+                        { attrs: { "md-gutter": "", "md-row": "" } },
                         [
                           _c(
                             "md-layout",
                             {
                               attrs: {
-                                "md-flex": "33",
-                                "md-flex-xsmall": "100"
+                                "md-flex-xs": "100",
+                                "md-flex-sm": "50",
+                                "md-flex": "33"
                               }
                             },
                             [_c("md-chart", { ref: "groupStructure" })],
@@ -42335,8 +42349,9 @@ var render = function() {
                             "md-layout",
                             {
                               attrs: {
-                                "md-flex": "66",
-                                "md-flex-xsmall": "100"
+                                "md-flex-xs": "100",
+                                "md-flex-sm": "50",
+                                "md-flex": "66"
                               }
                             },
                             [_c("md-chart", { ref: "groupRank" })],
@@ -42357,7 +42372,13 @@ var render = function() {
           _vm._v(" "),
           _c(
             "md-layout",
-            { attrs: { "md-flex-small": "100", "md-flex": "33" } },
+            {
+              attrs: {
+                "md-flex-sm": "100",
+                "md-flex-xs": "100",
+                "md-flex": "33"
+              }
+            },
             [
               _c(
                 "md-card",
@@ -66122,36 +66143,22 @@ var appMixin = {
   methods: {
     loadConfigs: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var response;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                _context.next = 2;
                 return this.$http.get('/site/configs');
 
+              case 2:
+                return _context.abrupt('return', _context.sent);
+
               case 3:
-                response = _context.sent;
-
-                this.$setConfigs(response.data.data);
-                _context.next = 10;
-                break;
-
-              case 7:
-                _context.prev = 7;
-                _context.t0 = _context['catch'](0);
-                return _context.abrupt('return', false);
-
-              case 10:
-                return _context.abrupt('return', false);
-
-              case 11:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 7]]);
+        }, _callee, this);
       }));
 
       function loadConfigs() {
@@ -66166,13 +66173,12 @@ var appMixin = {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                this.configs.home = '/app/dashboard';
                 if (window.gmfConfig) {
                   this.$setConfigs(window.gmfConfig);
                 }
-                _context2.next = 3;
-                return this.loadConfigs();
 
-              case 3:
+              case 2:
               case 'end':
                 return _context2.stop();
             }
@@ -66188,7 +66194,7 @@ var appMixin = {
     }()
   }
 };
-_gmfSys.start.run({ defaultRoutes: true }, appMixin);
+_gmfSys.start.run({}, appMixin);
 
 /***/ }),
 
@@ -66279,9 +66285,6 @@ var Start = function () {
       if (options.routes) {
         routes = routes.concat(options.routes);
       }
-      if (!!options.defaultRoutes) {
-        routes = routes.concat(_config2.default.defaultRoutes);
-      }
       var router = { mode: 'history', routes: routes };
 
       /*store*/
@@ -66295,8 +66298,9 @@ var Start = function () {
       var store = new _vuex2.default.Store(_store2.default);
 
       var rootData = {
+        'appName': '',
         'title': '',
-        'configs': { ent: false, user: false, token: false },
+        'configs': { home: '/', ent: false, user: false, token: false },
         'userConfig': {}
       };
       if (window.gmfConfig) {
@@ -66422,55 +66426,73 @@ var Start = function () {
             }
 
             return issueUid;
+          }(),
+          $loadConfigs: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              var res;
+              return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                  switch (_context3.prev = _context3.next) {
+                    case 0:
+                      if (!this.loadConfigs) {
+                        _context3.next = 7;
+                        break;
+                      }
+
+                      _context3.next = 3;
+                      return this.loadConfigs();
+
+                    case 3:
+                      res = _context3.sent;
+
+                      if (res && res.data) {
+                        res = res.data;
+                      }
+                      if (res && res.data) {
+                        res = res.data;
+                      }
+                      if (res) {
+                        this.$setConfigs(res);
+                      }
+
+                    case 7:
+                    case 'end':
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this);
+            }));
+
+            function $loadConfigs() {
+              return _ref3.apply(this, arguments);
+            }
+
+            return $loadConfigs;
           }()
         },
         created: function () {
-          var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
-              while (1) {
-                switch (_context3.prev = _context3.next) {
-                  case 0:
-                    if (!this.beforeCreated) {
-                      _context3.next = 3;
-                      break;
-                    }
-
-                    _context3.next = 3;
-                    return this.beforeCreated();
-
-                  case 3:
-                    _context3.next = 5;
-                    return this.loadEnums();
-
-                  case 5:
-                  case 'end':
-                    return _context3.stop();
-                }
-              }
-            }, _callee3, this);
-          }));
-
-          function created() {
-            return _ref3.apply(this, arguments);
-          }
-
-          return created;
-        }(),
-        mounted: function () {
           var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
             return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
                 switch (_context4.prev = _context4.next) {
                   case 0:
-                    if (!this.beforeMounted) {
+                    if (!this.beforeCreated) {
                       _context4.next = 3;
                       break;
                     }
 
                     _context4.next = 3;
-                    return this.beforeMounted();
+                    return this.beforeCreated();
 
                   case 3:
+                    _context4.next = 5;
+                    return this.$loadConfigs();
+
+                  case 5:
+                    _context4.next = 7;
+                    return this.loadEnums();
+
+                  case 7:
                   case 'end':
                     return _context4.stop();
                 }
@@ -66478,8 +66500,36 @@ var Start = function () {
             }, _callee4, this);
           }));
 
-          function mounted() {
+          function created() {
             return _ref4.apply(this, arguments);
+          }
+
+          return created;
+        }(),
+        mounted: function () {
+          var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    if (!this.beforeMounted) {
+                      _context5.next = 3;
+                      break;
+                    }
+
+                    _context5.next = 3;
+                    return this.beforeMounted();
+
+                  case 3:
+                  case 'end':
+                    return _context5.stop();
+                }
+              }
+            }, _callee5, this);
+          }));
+
+          function mounted() {
+            return _ref5.apply(this, arguments);
           }
 
           return mounted;
@@ -68463,7 +68513,7 @@ exports.default = install;
 function install(Vue) {
     // Vue.component(MdChart.name, MdChart);
     Vue.component('MdChart', function () {
-        return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdChart/MdChart.vue"));
+        return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdChart/MdChart.vue"));
     });
 }
 
@@ -69688,7 +69738,7 @@ exports.default = install;
 
 function install(Vue) {
   Vue.component('MdEditor', function () {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdEditor/MdEditor.vue"));
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdEditor/MdEditor.vue"));
   });
   Vue.component('MdEditorTinymce', function () {
     return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdEditor/MdEditorTinymce.vue"));
@@ -70808,10 +70858,10 @@ function install(Vue) {
     return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdGrid/mdGrid.vue"));
   });
   Vue.component('MdGridColumn', function () {
-    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdGrid/mdGridColumn.vue"));
+    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdGrid/mdGridColumn.vue"));
   });
   Vue.component('MdPagination', function () {
-    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdGrid/mdPagination.vue"));
+    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/components/MdGrid/mdPagination.vue"));
   });
 }
 
@@ -79436,6 +79486,93 @@ exports.default = function (Vue) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/vendor/gmf-sys/routes/auth.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var routes = [{
+  path: '/auth',
+  name: 'auth',
+  component: function component() {
+    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/App.vue"));
+  },
+  children: [{
+    path: 'login',
+    name: 'auth.login',
+    component: function component() {
+      return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Login.vue"));
+    }
+  }, {
+    path: 'register',
+    name: 'auth.register',
+    component: function component() {
+      return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Register.vue"));
+    }
+  }, {
+    path: 'password/find-sms/:id?',
+    name: 'auth.password.find.sms',
+    component: function component() {
+      return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue"));
+    }
+  }, {
+    path: 'password/find-mail/:id?',
+    name: 'auth.password.find.mail',
+    component: function component() {
+      return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindMail.vue"));
+    }
+  }, {
+    path: 'password/find-word/:id?',
+    name: 'auth.password.find.word',
+    component: function component() {
+      return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue"));
+    }
+  }, {
+    path: 'password/find/:id?',
+    name: 'auth.password.find',
+    component: function component() {
+      return __webpack_require__.e/* import() */(16).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFind.vue"));
+    }
+  }, {
+    path: 'password/:id?',
+    name: 'auth.password',
+    component: function component() {
+      return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Password.vue"));
+    }
+  }, {
+    path: 'chooser',
+    name: 'auth.chooser',
+    component: function component() {
+      return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Chooser.vue"));
+    }
+  }, {
+    path: 'identifier',
+    name: 'auth.identifier',
+    component: function component() {
+      return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Identifier.vue"));
+    }
+  }, {
+    path: 'remove',
+    name: 'auth.remove',
+    component: function component() {
+      return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Remove.vue"));
+    }
+  }, {
+    path: 'logout',
+    name: 'auth.logout',
+    component: function component() {
+      return __webpack_require__.e/* import() */(17).then(__webpack_require__.bind(null, "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Logout.vue"));
+    }
+  }]
+}];
+exports.default = routes;
+
+/***/ }),
+
 /***/ "./resources/assets/js/vendor/gmf-sys/store/actions.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -87801,6 +87938,18 @@ var _common = __webpack_require__("./resources/assets/js/vendor/suite-cbo/common
 
 var _common2 = _interopRequireDefault(_common);
 
+var _config = __webpack_require__("./resources/assets/js/vendor/gmf-sys/config.js");
+
+var _config2 = _interopRequireDefault(_config);
+
+var _auth = __webpack_require__("./resources/assets/js/vendor/gmf-sys/routes/auth.js");
+
+var _auth2 = _interopRequireDefault(_auth);
+
+var _cbo = __webpack_require__("./resources/assets/js/vendor/suite-cbo/routes/cbo.js");
+
+var _cbo2 = _interopRequireDefault(_cbo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var options = {
@@ -87816,6 +87965,10 @@ options.install = function (Vue) {
         console.warn('Vue Material is already installed.');
         return;
     }
+
+    _config2.default.route(_auth2.default);
+    _config2.default.route(_cbo2.default);
+
     for (var component in options) {
         var componentInstaller = options[component];
 
@@ -88470,6 +88623,123 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/suite-cbo/routes/cbo.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
+
+var _common2 = _interopRequireDefault(_common);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var wrapApp = {
+  template: '<md-wrap :name="wrap"></md-wrap>',
+  computed: {
+    wrap: function wrap() {
+      return this.$route.params.app;
+    }
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      if (!vm.$root.configs.user) {
+        next({ name: 'auth.login' });
+      }
+    });
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    if (!this.$root.configs.user) {
+      next({ name: 'auth.login' });
+    } else {
+      next();
+    }
+  },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next();
+  }
+};
+var wrapModule = {
+  template: '<md-wrap :name="wrap"></md-wrap>',
+  computed: {
+    wrap: function wrap() {
+      var app = _common2.default.snakeCase(this.$route.params.app);
+      var module = _common2.default.snakeCase(this.$route.params.module);
+      if (!this._.startsWith(module, app) && module.indexOf('-') < 0) {
+        return app + '-' + module;
+      }
+      return module;
+    }
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      if (!vm.$root.configs.user) {
+        next({ name: 'auth.login' });
+      }
+    });
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    if (!this.$root.configs.user) {
+      next({ name: 'auth.login' });
+    } else {
+      next();
+    }
+  },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next();
+  }
+};
+var wrapExtend = {
+  template: '<md-wrap :name="wrap"></md-wrap>',
+  computed: {
+    wrap: function wrap() {
+      var app = _common2.default.snakeCase(this.$route.params.app);
+      var module = _common2.default.snakeCase(this.$route.params.module);
+      if (!this._.startsWith(module, app) && module.indexOf('-') < 0) {
+        return app + '-' + module;
+      }
+      return module;
+    }
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      if (!vm.$root.configs.user) {
+        next({ name: 'auth.login' });
+      }
+    });
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    if (!this.$root.configs.user) {
+      next({ name: 'auth.login' });
+    } else {
+      next();
+    }
+  },
+  beforeRouteLeave: function beforeRouteLeave(to, from, next) {
+    next();
+  }
+};
+var defaultRoutes = [{
+  path: '/:app',
+  component: wrapApp,
+  name: 'app',
+  children: [{
+    path: ':module',
+    name: 'module',
+    component: wrapModule,
+    children: [{ path: ':id', name: 'id', component: wrapExtend }, { path: '*', component: wrapExtend }]
+  }]
+}];
+
+exports.default = defaultRoutes;
 
 /***/ }),
 

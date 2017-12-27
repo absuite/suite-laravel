@@ -17,4 +17,4 @@ Route::get('/site/configs', ['uses' => 'HomeController@getConfig']);
 
 Route::get('/app', ['uses' => 'HomeController@index']);
 Route::get('/docs', ['uses' => 'HomeController@index']);
-Route::get('/{page?}', ['uses' => 'HomeController@index'])->where('page', '^(app|docs)\/.*$');
+Route::get('/{page?}', ['uses' => 'HomeController@index'])->where('page', '^(app|docs|auth)\/.*$');

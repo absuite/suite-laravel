@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use GAuth;
 use Gmf\Sys\Builder;
 use Gmf\Sys\Libs\APIResult;
-use Gmf\Sys\Libs\InputHelper;
 use Gmf\Sys\Models\Ent;
 use GuzzleHttp;
 use Illuminate\Http\Request;
@@ -18,26 +17,16 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware('auth')->except('test', 'getConfig');
+		//$this->middleware('auth')->except('test', 'getConfig', 'login');
 		//$this->middleware(['web'])->only('getConfig');
 	}
-	public function test(Request $request) {
-		$names = [];
-		$names = InputHelper::fillEntity($names, $request, [
-			'p1' => 'Suite\Cbo\Models\Org',
-			'p2',
-			'p3' => ['type' => 'Suite\Cbo\Models\Org', 'matchs' => ['code', 'ent_id' => '${ent_id}']]],
-			['ent_id' => '123']);
-		dd($names);
-
-		$paramsStr = '{"aa":"12"}';
-		$paramsObj = false;
-
-		$paramsObj = json_decode($paramsStr);
-		foreach ($paramsObj as $pk => $pv) {
-			$paramsObj->{$pk} = $pv . "122";
+	public function login(Request $request) {
+		$user = GAuth::user();
+		$config = $this->issueConfig($request, $user);
+		if ($request->input('getconfig') == "1") {
+			return json_encode($config);
 		}
-		return json_encode($paramsObj);
+		return view('gmf::app', ['config' => $config]);
 	}
 	/**
 	 * Show the application dashboard.
