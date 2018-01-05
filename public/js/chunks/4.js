@@ -1,6 +1,6 @@
 webpackJsonp([4],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10,15 +10,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _common = __webpack_require__("./resources/assets/js/vendor/gmf-sys/core/utils/common.js");
-
-var _common2 = _interopRequireDefault(_common);
-
 var _vuelidate = __webpack_require__("./node_modules/vuelidate/lib/index.js");
 
 var _validators = __webpack_require__("./node_modules/vuelidate/lib/validators/index.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } //
 //
@@ -59,62 +53,38 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 exports.default = {
-  name: 'GmfPagesAuthPasswordFindSms',
+  name: 'GmfPagesAuthPasswordFindWord',
   props: {},
   mixins: [_vuelidate.validationMixin],
   data: function data() {
     return {
       mainDatas: {},
       loading: 0,
-      sending: false,
-      isSended: false
+      sending: false
     };
   },
 
   validations: {
     mainDatas: {
-      vcode: {
+      email: {
         required: _validators.required,
-        minLength: (0, _validators.minLength)(3),
-        maxLength: (0, _validators.maxLength)(30)
+        email: _validators.email
       }
     }
   },
   computed: {
     disabledSendBtn: function disabledSendBtn() {
-      return this.sending || this.isSended || !!this.mainDatas.vcode;
+      return this.sending || !!this.mainDatas.vcode;
     },
     disabledConfirmBtn: function disabledConfirmBtn() {
-      return this.sending || !this.isSended || !this.mainDatas.vcode;
-    },
-    tipLabel: function tipLabel() {
-      return this.$root.appName + ' 会将验证码发送到 ' + _common2.default.regMobile(this.mainDatas.mobile);
+      return this.sending || !this.mainDatas.vcode;
     }
   },
   methods: {
-    onOtherClick: function onOtherClick() {
-      this.$go({ name: 'auth.password.find.mail', params: { id: this.mainDatas.id } });
-    },
     onSendCode: function onSendCode() {
-      var _this = this;
-
-      this.sending = true;
-      this.$http.post('sys/auth/password-send-sms', this.mainDatas).then(function (response) {
-        _this.isSended = true;
-        _this.sending = false;
-        _this.$toast('验证码已发送到您的手机上，请及时查收!');
-      }).catch(function (err) {
-        _this.sending = false;
-        _this.$toast(err);
-      });
+      this.$toast('验证码已发送到您的邮件上，请及时查收!');
     },
     getValidationClass: function getValidationClass(fieldName) {
       var field = this.$v.mainDatas[fieldName];
@@ -131,20 +101,20 @@ exports.default = {
       }
     },
     submitPost: function submitPost() {
-      var _this2 = this;
+      var _this = this;
 
       this.sending = true;
       this.$http.post('sys/auth/login', this.mainDatas).then(function (response) {
-        _this2.sending = false;
-        _this2.$go('/');
+        _this.sending = false;
+        _this.$go('/');
       }).catch(function (err) {
-        _this2.sending = false;
-        _this2.$toast(err);
+        _this.sending = false;
+        _this.$toast(err);
       });
     },
     fetchData: function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var thId, response;
+        var thId, response, u;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -162,30 +132,31 @@ exports.default = {
 
               case 6:
                 response = _context.sent;
+                u = response.data.data;
 
                 this.mainDatas = response.data.data;
-                _context.next = 14;
+                _context.next = 15;
                 break;
 
-              case 10:
-                _context.prev = 10;
+              case 11:
+                _context.prev = 11;
                 _context.t0 = _context['catch'](0);
 
                 this.$toast(_context.t0);
                 this.$go({ name: 'auth.identifier' });
 
-              case 14:
-                _context.prev = 14;
+              case 15:
+                _context.prev = 15;
 
                 this.sending = false;
-                return _context.finish(14);
+                return _context.finish(15);
 
-              case 17:
+              case 18:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 10, 14, 17]]);
+        }, _callee, this, [[0, 11, 15, 18]]);
       }));
 
       function fetchData() {
@@ -222,7 +193,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4818c0ec\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a61638ae\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
@@ -230,30 +201,30 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/**\r\n * The default transition, used when the element is visible\r\n * since the beginning of the animation\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The enter transition, used when the element is not visible on the screen\r\n * since the beginning of the animation and become visible\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The leave transition, used when the element is visible on the screen\r\n * since the beginning of the animation and is removed\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The stand transition, used when the element is going to accelerate,\r\n * like movements from bottom to top\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The out transition, used when the element is going to deaccelerate,\r\n * like movements from top to bottom\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/* Transitions - Based on Angular Material */\n/**\r\n * The layout system breakpoints\r\n * ---\r\n * @access private\r\n * @type layout\r\n * @group layout\r\n */\n/**\r\n * The available gutter sizes\r\n * ---\r\n * @access private\r\n * @type layout\r\n * @group layout\r\n */\n/**\r\n * Breakpoint\r\n */\n/**\r\n * Base\r\n */\n/**\r\n * Layout Item\r\n */\n/**\r\n * Hide Element\r\n */\n.md-card-actions[data-v-4818c0ec] {\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n", ""]);
+exports.push([module.i, "/**\r\n * The default transition, used when the element is visible\r\n * since the beginning of the animation\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The enter transition, used when the element is not visible on the screen\r\n * since the beginning of the animation and become visible\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The leave transition, used when the element is visible on the screen\r\n * since the beginning of the animation and is removed\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The stand transition, used when the element is going to accelerate,\r\n * like movements from bottom to top\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The out transition, used when the element is going to deaccelerate,\r\n * like movements from top to bottom\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/* Transitions - Based on Angular Material */\n/**\r\n * The layout system breakpoints\r\n * ---\r\n * @access private\r\n * @type layout\r\n * @group layout\r\n */\n/**\r\n * The available gutter sizes\r\n * ---\r\n * @access private\r\n * @type layout\r\n * @group layout\r\n */\n/**\r\n * Breakpoint\r\n */\n/**\r\n * Base\r\n */\n/**\r\n * Layout Item\r\n */\n/**\r\n * Hide Element\r\n */\n.md-card-actions[data-v-a61638ae] {\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4818c0ec\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue":
+/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a61638ae\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4818c0ec\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a61638ae\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("1a9e253d", content, false);
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("288e4572", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4818c0ec\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./PasswordFindSms.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4818c0ec\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./PasswordFindSms.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a61638ae\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./PasswordFindWord.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a61638ae\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./PasswordFindWord.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -264,7 +235,7 @@ if(false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4818c0ec\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a61638ae\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -299,7 +270,9 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "md-list-item-text" }, [
-                _vm._v(_vm._s(_vm.mainDatas.name))
+                _c("span", [_vm._v(_vm._s(_vm.mainDatas.name))]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.mainDatas.account))])
               ]),
               _vm._v(" "),
               _c(
@@ -322,24 +295,6 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("md-card-content", [_c("p", [_vm._v(_vm._s(_vm.tipLabel))])]),
-      _vm._v(" "),
-      _c(
-        "md-card-actions",
-        [
-          _c(
-            "md-button",
-            {
-              staticClass: "md-primary md-raised",
-              attrs: { disabled: _vm.disabledSendBtn },
-              on: { click: _vm.onSendCode }
-            },
-            [_vm._v("发送验证码")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
       _c(
         "form",
         {
@@ -355,41 +310,30 @@ var render = function() {
           _c(
             "md-card-content",
             [
+              _c("p", [_vm._v("请输入您可以立即查收邮件的电子邮件地址")]),
+              _vm._v(" "),
               _c(
-                "md-layout",
+                "md-field",
+                { class: _vm.getValidationClass("email") },
                 [
-                  _c(
-                    "md-field",
-                    { class: _vm.getValidationClass("vcode") },
-                    [
-                      _c("label", [_vm._v("验证码")]),
-                      _vm._v(" "),
-                      _c("md-input", {
-                        attrs: { autocomplete: "off", disabled: _vm.sending },
-                        model: {
-                          value: _vm.mainDatas.vcode,
-                          callback: function($$v) {
-                            _vm.$set(_vm.mainDatas, "vcode", $$v)
-                          },
-                          expression: "mainDatas.vcode"
-                        }
-                      }),
-                      _vm._v(" "),
-                      !_vm.$v.mainDatas.vcode.required
-                        ? _c("span", { staticClass: "md-error" }, [
-                            _vm._v("请输入验证码")
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.$v.mainDatas.vcode.minLength ||
-                      !_vm.$v.mainDatas.vcode.maxLength
-                        ? _c("span", { staticClass: "md-error" }, [
-                            _vm._v("验证码格式不符合要求")
-                          ])
-                        : _vm._e()
-                    ],
-                    1
-                  )
+                  _c("label", [_vm._v("电子邮件地址")]),
+                  _vm._v(" "),
+                  _c("md-input", {
+                    attrs: { autocomplete: "off", disabled: _vm.sending },
+                    model: {
+                      value: _vm.mainDatas.email,
+                      callback: function($$v) {
+                        _vm.$set(_vm.mainDatas, "email", $$v)
+                      },
+                      expression: "mainDatas.email"
+                    }
+                  }),
+                  _vm._v(" "),
+                  !_vm.$v.mainDatas.email.required
+                    ? _c("span", { staticClass: "md-error" }, [
+                        _vm._v("请输入电子邮件地址")
+                      ])
+                    : _vm._e()
                 ],
                 1
               )
@@ -400,12 +344,6 @@ var render = function() {
           _c(
             "md-card-actions",
             [
-              _c(
-                "md-button",
-                { staticClass: "md-primary", on: { click: _vm.onOtherClick } },
-                [_vm._v("我没有使用手机")]
-              ),
-              _vm._v(" "),
               _c("span", { staticClass: "flex" }),
               _vm._v(" "),
               _c(
@@ -414,7 +352,7 @@ var render = function() {
                   staticClass: "md-primary md-raised",
                   attrs: { type: "submit", disabled: _vm.disabledConfirmBtn }
                 },
-                [_vm._v("验 证")]
+                [_vm._v("下一步")]
               )
             ],
             1
@@ -436,7 +374,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4818c0ec", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a61638ae", module.exports)
   }
 }
 
@@ -1825,25 +1763,25 @@ exports.default = withParams;
 
 /***/ }),
 
-/***/ "./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue":
+/***/ "./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4818c0ec\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue")
+  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a61638ae\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue")
 }
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4818c0ec\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindSms.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a61638ae\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/PasswordFindWord.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-4818c0ec"
+var __vue_scopeId__ = "data-v-a61638ae"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -1854,7 +1792,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\Pages\\Auth\\PasswordFindSms.vue"
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\Pages\\Auth\\PasswordFindWord.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -1864,9 +1802,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4818c0ec", Component.options)
+    hotAPI.createRecord("data-v-a61638ae", Component.options)
   } else {
-    hotAPI.reload("data-v-4818c0ec", Component.options)
+    hotAPI.reload("data-v-a61638ae", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

@@ -34,6 +34,7 @@
     "vuex-router-sync": "^5.0.0"
   },
   "dependencies": {
+    "chart.js": "^2.7.1",
     "d3": "^4.11.0",
     "date-fns": "^1.29.0",
     "deepmerge": "^2.0.1",
