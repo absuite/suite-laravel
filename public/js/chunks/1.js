@@ -1,1 +1,1993 @@
-webpackJsonp([1],{"+cKO":function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0}),e.maxValue=e.minValue=e.and=e.or=e.url=e.sameAs=e.requiredUnless=e.requiredIf=e.required=e.minLength=e.maxLength=e.macAddress=e.ipAddress=e.email=e.between=e.numeric=e.alphaNum=e.alpha=void 0;var a=r(n("FWhV")),i=r(n("PKmV")),u=r(n("hbkP")),o=r(n("3Ro/")),s=r(n("6rz0")),l=r(n("HSVw")),f=r(n("HM/u")),c=r(n("qHXR")),d=r(n("4ypF")),v=r(n("4oDf")),h=r(n("lEk1")),m=r(n("6+Xr")),p=r(n("L6Jx")),y=r(n("7J6f")),g=r(n("Y18q")),_=r(n("bXE/")),b=r(n("aYrh")),P=r(n("xJ3U"));e.alpha=a.default,e.alphaNum=i.default,e.numeric=u.default,e.between=o.default,e.email=s.default,e.ipAddress=l.default,e.macAddress=f.default,e.maxLength=c.default,e.minLength=d.default,e.required=v.default,e.requiredIf=h.default,e.requiredUnless=m.default,e.sameAs=p.default,e.url=y.default,e.or=g.default,e.and=_.default,e.minValue=b.default,e.maxValue=P.default},"08ct":function(t,e,n){var r=n("rCeE");"string"==typeof r&&(r=[[t.i,r,""]]),r.locals&&(t.exports=r.locals);n("rjj0")("71ac5d60",r,!0)},"139G":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"GmfPagesAuthSns",data:function(){return{sending:!1}},methods:{fetchData:function(){}},mounted:function(){this.fetchData()}}},"3Ro/":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t,e){return(0,r.withParams)({type:"between",min:t,max:e},function(n){return!(0,r.req)(n)||(!/\s/.test(n)||n instanceof Date)&&+t<=+n&&+e>=+n})}},"4oDf":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.withParams)({type:"required"},r.req)},"4ypF":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"minLength",min:t},function(e){return!(0,r.req)(e)||(0,r.len)(e)>=t})}},"5Lma":function(t,e,n){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}Object.defineProperty(e,"__esModule",{value:!0});var a=r(n("jFJc")),i=r(n("9dRT")),u=n("ESwS"),o=n("+cKO");e.default={name:"GmfPagesAuthIdentifier",components:{AuthSns:i.default},mixins:[u.validationMixin],data:function(){return{mainDatas:{},loading:0,sending:!1}},validations:{mainDatas:{account:{required:o.required,minLength:(0,o.minLength)(3),maxLength:(0,o.maxLength)(30)}}},computed:{},methods:{getValidationClass:function(t){var e=this.$v.mainDatas[t];if(e)return{"md-invalid":e.$invalid&&e.$dirty}},validateUser:function(){this.$v.$touch(),this.$v.$invalid||this.submitPost()},submitPost:function(){var t=this;this.sending=!0,this.$http.post("sys/auth/checker",this.mainDatas).then(function(e){t.sending=!1;var n=e.data.data;n&&(a.default.add(n),t.$go({name:"auth.password",params:{id:n.id}}))}).catch(function(e){t.sending=!1,t.$toast(e)})},fetchData:function(){}},created:function(){},mounted:function(){this.fetchData()}}},"6+Xr":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"requiredUnless",prop:t},function(e,n){return!!(0,r.ref)(t,this,n)||(0,r.req)(e)})}},"6rz0":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.regex)("email",/(^$|^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$)/)},"7J6f":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.regex)("url",/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/)},"9dRT":function(t,e,n){var r=n("VU/8")(n("139G"),n("bvQk"),!1,function(t){n("08ct")},"data-v-0b1adff6",null);t.exports=r.exports},Bsco:function(t,e,n){"use strict";function r(t){return null===t||void 0===t}function a(t){return null!==t&&void 0!==t}function i(t,e){return e.tag===t.tag&&e.key===t.key}function u(t){var e=t.tag;t.vm=new e({data:t.args})}function o(t,e,n){var r=void 0,i=void 0,u={};for(r=e;r<=n;++r)a(i=t[r].key)&&(u[i]=r);return u}function s(t,e,n){for(;e<=n;++e)u(t[e])}function l(t,e,n){for(;e<=n;++e){var r=t[e];a(r)&&(r.vm.$destroy(),r.vm=null)}}function f(t,e){t!==e&&(e.vm=t.vm,function(t){for(var e=Object.keys(t.args),n=0;n<e.length;n++)e.forEach(function(e){t.vm[e]=t.args[e]})}(e))}Object.defineProperty(e,"__esModule",{value:!0}),e.patchChildren=function(t,e){a(t)&&a(e)?t!==e&&function(t,e){for(var n=0,c=0,d=t.length-1,v=t[0],h=t[d],m=e.length-1,p=e[0],y=e[m],g=void 0,_=void 0,b=void 0;n<=d&&c<=m;)r(v)?v=t[++n]:r(h)?h=t[--d]:i(v,p)?(f(v,p),v=t[++n],p=e[++c]):i(h,y)?(f(h,y),h=t[--d],y=e[--m]):i(v,y)?(f(v,y),v=t[++n],y=e[--m]):i(h,p)?(f(h,p),h=t[--d],p=e[++c]):(r(g)&&(g=o(t,n,d)),r(_=a(p.key)?g[p.key]:null)?(u(p),p=e[++c]):i(b=t[_],p)?(f(b,p),t[_]=void 0,p=e[++c]):(u(p),p=e[++c]));n>d?s(e,c,m):c>m&&l(t,n,d)}(t,e):a(e)?s(e,0,e.length-1):a(t)&&l(t,0,t.length-1)},e.h=function(t,e,n){return{tag:t,key:e,args:n}}},ESwS:function(t,e,n){"use strict";function r(t){return"function"==typeof t}function a(t){return null!==t&&("object"==typeof t||r(t))}function i(t){this.dirty=t;var e=this.proxy,n=t?"$touch":"$reset";this.nestedKeys.forEach(function(t){e[t][n]()})}function u(t){t.mixin(M)}Object.defineProperty(e,"__esModule",{value:!0}),e.withParams=e.validationMixin=e.Vuelidate=void 0;var o=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t},s=n("Bsco"),l=n("JVqD"),f=function(){return null},c=function(t,e,n){return t.reduce(function(t,r){return t[n?n(r):r]=e(r),t},{})},d=function(t,e,n,r){if("function"==typeof n)return n.call(t,e,r);n=Array.isArray(n)?n:n.split(".");for(var a=0;a<n.length;a++){if(!e||"object"!=typeof e)return r;e=e[n[a]]}return void 0===e?r:e},v="__isVuelidateAsyncVm",h={$invalid:function(){var t=this,e=this.proxy;return this.nestedKeys.some(function(e){return t.refProxy(e).$invalid})||this.ruleKeys.some(function(t){return!e[t]})},$dirty:function(){var t=this;return!!this.dirty||0!==this.nestedKeys.length&&this.nestedKeys.every(function(e){return t.refProxy(e).$dirty})},$error:function(){return this.$dirty&&!this.$pending&&this.$invalid},$pending:function(){var t=this;return this.ruleKeys.some(function(e){return t.getRef(e).$pending})||this.nestedKeys.some(function(e){return t.refProxy(e).$pending})},$params:function(){var t=this,e=this.validations;return o({},c(this.nestedKeys,function(t){return e[t]&&e[t].$params||null}),c(this.ruleKeys,function(e){return t.getRef(e).$params}))}},m={$touch:function(){i.call(this,!0)},$reset:function(){i.call(this,!1)},$flattenParams:function(){var t=this.proxy,e=[];for(var n in this.$params)if(this.isNested(n)){for(var r=t[n].$flattenParams(),a=0;a<r.length;a++)r[a].path.unshift(n);e=e.concat(r)}else e.push({path:[],name:n,params:this.$params[n]});return e}},p=Object.keys(h),y=Object.keys(m),g=null,_=function(t){if(g)return g;var e=t.extend({beforeCreate:function(){this._vval=null},beforeDestroy:function(){this._vval&&(0,s.patchChildren)(this._vval)},methods:{getModel:function(){return this.lazyModel?this.lazyModel(this.prop):this.model},getModelKey:function(t){var e=this.getModel();if(e)return e[t]}},computed:{refs:function(){var t=this._vval;this._vval=this.children,(0,s.patchChildren)(t,this._vval);var e={};return this._vval.forEach(function(t){e[t.key]=t.vm}),e}}}),n=e.extend({data:function(){return{rule:null,lazyModel:null,model:null,lazyParentModel:null,rootModel:null}},methods:{runRule:function(e){var n=this.getModel();(0,l.pushParams)();var i=this.rule.call(this.rootModel,n,e),u=function(t){return a(t)&&r(t.then)}(i)?function(t,e){var n=new t({data:{p:!0,v:!1}});return e.then(function(t){n.p=!1,n.v=t},function(t){throw n.p=!1,n.v=!1,t}),n[v]=!0,n}(t,i):i,o=(0,l.popParams)();return{output:u,params:o&&o.$sub?o.$sub.length>1?o:o.$sub[0]:null}}},computed:{run:function(){return this.runRule(this.lazyParentModel())},$params:function(){return this.run.params},proxy:function(){var t=this.run.output;return t[v]?!!t.v:!!t},$pending:function(){var t=this.run.output;return!!t[v]&&t.p}}}),i=e.extend({data:function(){return{dirty:!1,validations:null,lazyModel:null,model:null,prop:null,lazyParentModel:null,rootModel:null}},methods:o({},m,{refProxy:function(t){return this.getRef(t).proxy},getRef:function(t){return this.refs[t]},isNested:function(t){return"function"!=typeof this.validations[t]}}),computed:o({},h,{nestedKeys:function(){return this.keys.filter(this.isNested)},ruleKeys:function(){var t=this;return this.keys.filter(function(e){return!t.isNested(e)})},keys:function(){return Object.keys(this.validations).filter(function(t){return"$params"!==t})},proxy:function(){var t=this,e=c(this.keys,function(e){return{enumerable:!0,configurable:!1,get:function(){return t.refProxy(e)}}}),n=c(p,function(e){return{enumerable:!0,configurable:!1,get:function(){return t[e]}}}),r=c(y,function(e){return{enumerable:!1,configurable:!1,get:function(){return t[e]}}});return Object.defineProperties({},o({},e,n,r))},children:function(){var t=this;return[].concat(this.nestedKeys.map(function(e){return b(t,e)}),this.ruleKeys.map(function(e){return P(t,e)})).filter(Boolean)}})}),u=i.extend({methods:{isNested:function(t){return void 0!==this.validations[t]()},getRef:function(t){var e=this;return{get proxy(){return e.validations[t]()||!1}}}}}),_=i.extend({computed:{keys:function(){var t=this.getModel();return a(t)?Object.keys(t):[]},tracker:function(){var t=this,e=this.validations.$trackBy;return e?function(n){return""+d(t.rootModel,t.getModelKey(n),e)}:function(t){return""+t}},eagerParentModel:function(){var t=this.lazyParentModel();return function(){return t}},children:function(){var t=this,e=this.validations,n=this.getModel(),r=o({},e);delete r.$trackBy;var a={};return this.keys.map(function(e){var u=t.tracker(e);return a.hasOwnProperty(u)?null:(a[u]=!0,(0,s.h)(i,u,{validations:r,prop:e,lazyParentModel:t.eagerParentModel,model:n[e],rootModel:t.rootModel}))}).filter(Boolean)}},methods:{isNested:function(){return!0},getRef:function(t){return this.refs[this.tracker(t)]}}}),b=function(t,e){if("$each"===e)return(0,s.h)(_,e,{validations:t.validations[e],lazyParentModel:t.lazyParentModel,prop:e,lazyModel:t.getModel,rootModel:t.rootModel});var n=t.validations[e];if(Array.isArray(n)){var r=t.rootModel,a=c(n,function(t){return function(){return d(r,r.$v,t)}},function(t){return Array.isArray(t)?t.join("."):t});return(0,s.h)(u,e,{validations:a,lazyParentModel:f,prop:e,lazyModel:f,rootModel:r})}return(0,s.h)(i,e,{validations:n,lazyParentModel:t.getModel,prop:e,lazyModel:t.getModelKey,rootModel:t.rootModel})},P=function(t,e){return(0,s.h)(n,e,{rule:t.validations[e],lazyParentModel:t.lazyParentModel,lazyModel:t.getModel,rootModel:t.rootModel})};return g={VBase:e,Validation:i}},b=null,P=function(t,e){var n=function(t){if(b)return b;for(var e=t.constructor;e.super;)e=e.super;return b=e,e}(t),r=_(n),a=r.Validation;return new(0,r.VBase)({computed:{children:function(){var n="function"==typeof e?e.call(t):e;return[(0,s.h)(a,"$v",{validations:n,lazyParentModel:f,prop:"$v",model:t,rootModel:t})]}}})},M={data:function(){var t=this.$options.validations;return t&&(this._vuelidate=P(this,t)),{}},beforeCreate:function(){var t=this,e=this.$options;e.validations&&(e.computed||(e.computed={}),e.computed.$v=function(){return t._vuelidate.refs.$v.proxy})},beforeDestroy:function(){this._vuelidate&&(this._vuelidate.$destroy(),this._vuelidate=null)}};e.Vuelidate=u,e.validationMixin=M,e.withParams=l.withParams,e.default=u},FWhV:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.regex)("alpha",/^[a-zA-Z]*$/)},"HM/u":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:":";return(0,r.withParams)({type:"macAddress"},function(e){if(!(0,r.req)(e))return!0;if("string"!=typeof e)return!1;var n="string"==typeof t&&""!==t?e.split(t):12===e.length||16===e.length?e.match(/.{2}/g):null;return null!==n&&(6===n.length||8===n.length)&&n.every(a)})};var a=function(t){return t.toLowerCase().match(/^[0-9a-f]{2}$/)}},HSVw:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.withParams)({type:"ipAddress"},function(t){if(!(0,r.req)(t))return!0;if("string"!=typeof t)return!1;var e=t.split(".");return 4===e.length&&e.every(a)});var a=function(t){if(t.length>3||0===t.length)return!1;if("0"===t[0]&&"0"!==t)return!1;if(!t.match(/^\d+$/))return!1;var e=0|+t;return e>=0&&e<=255}},JVqD:function(t,e,n){"use strict";function r(){null!==l&&s.push(l),e.target=l={}}function a(){var t=l,n=e.target=l=s.pop()||null;return n&&(Array.isArray(n.$sub)||(n.$sub=[]),n.$sub.push(t)),t}function i(t){if("object"!=typeof t||Array.isArray(t))throw new Error("params must be an object");e.target=l=o({},l,t)}function u(t){var e=t(i);return function(){r();try{for(var t=arguments.length,n=Array(t),i=0;i<t;i++)n[i]=arguments[i];return e.apply(this,n)}finally{a()}}}Object.defineProperty(e,"__esModule",{value:!0});var o=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t};e.pushParams=r,e.popParams=a,e.withParams=function(t,e){return"object"==typeof t&&void 0!==e?function(t,e){return u(function(n){return function(){n(t);for(var r=arguments.length,a=Array(r),i=0;i<r;i++)a[i]=arguments[i];return e.apply(this,a)}})}(t,e):u(t)};var s=[],l=e.target=null;e._setTarget=function(t){e.target=l=t}},L6Jx:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"sameAs",eq:t},function(e,n){return e===(0,r.ref)(t,this,n)})}},PKmV:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.regex)("alphaNum",/^[a-zA-Z0-9]*$/)},URu4:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.regex=e.ref=e.len=e.req=e.withParams=void 0;var r=function(t){return t&&t.__esModule?t:{default:t}}(n("mpcv"));e.withParams=r.default;var a=e.req=function(t){if(Array.isArray(t))return!!t.length;if(void 0===t||null===t||!1===t)return!1;if(t instanceof Date)return!isNaN(t.getTime());if("object"==typeof t){for(var e in t)return!0;return!1}return!!String(t).length};e.len=function(t){return Array.isArray(t)?t.length:"object"==typeof t?Object.keys(t).length:String(t).length},e.ref=function(t,e,n){return"function"==typeof t?t.call(e,n):n[t]},e.regex=function(t,e){return(0,r.default)({type:t},function(t){return!a(t)||e.test(t)})}},Y18q:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];return(0,r.withParams)({type:"or"},function(){for(var t=this,n=arguments.length,r=Array(n),a=0;a<n;a++)r[a]=arguments[a];return e.length>0&&e.reduce(function(e,n){return e||n.apply(t,r)},!1)})}},Y7T6:function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("md-card",[n("form",{attrs:{novalidate:""},on:{submit:function(e){e.preventDefault(),t.validateUser(e)}}},[n("md-card-header",[n("md-card-header-text",[n("div",{staticClass:"md-title"},[t._v("登录")]),t._v(" "),n("div",{staticClass:"md-body-1"},[t._v("使用您的帐号登录")])]),t._v(" "),n("md-button",{staticClass:"md-icon-button md-list-action",attrs:{to:{name:"auth.chooser"}}},[n("md-icon",{staticClass:"md-primary"},[t._v("expand_more")])],1)],1),t._v(" "),n("md-card-content",[n("md-layout",[n("md-field",{class:t.getValidationClass("account"),attrs:{"md-clearable":""}},[n("label",[t._v("电子邮件地址或电话号码")]),t._v(" "),n("md-input",{attrs:{autocomplete:"off",disabled:t.sending},model:{value:t.mainDatas.account,callback:function(e){t.$set(t.mainDatas,"account",e)},expression:"mainDatas.account"}}),t._v(" "),t.$v.mainDatas.account.required?t._e():n("span",{staticClass:"md-error"},[t._v("请输入电子邮件地址或电话号码")])],1)],1)],1),t._v(" "),n("md-card-actions",[n("router-link",{attrs:{to:{name:"auth.register"}}},[t._v("免费注册")]),t._v(" "),n("span",{staticClass:"flex"}),t._v(" "),n("md-button",{staticClass:"md-primary md-raised",attrs:{type:"submit",disabled:t.sending}},[t._v("下一步")])],1),t._v(" "),n("md-divider"),t._v(" "),n("auth-sns"),t._v(" "),t.sending?n("md-progress-bar",{attrs:{"md-mode":"indeterminate"}}):t._e()],1)])},staticRenderFns:[]}},ZETG:function(t,e,n){var r=n("VU/8")(n("5Lma"),n("Y7T6"),!1,null,null,null);t.exports=r.exports},aYrh:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"minValue",min:t},function(e){return!(0,r.req)(e)||(!/\s/.test(e)||e instanceof Date)&&+e>=+t})}},"bXE/":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(){for(var t=arguments.length,e=Array(t),n=0;n<t;n++)e[n]=arguments[n];return(0,r.withParams)({type:"and"},function(){for(var t=this,n=arguments.length,r=Array(n),a=0;a<n;a++)r[a]=arguments[a];return e.length>0&&e.reduce(function(e,n){return e&&n.apply(t,r)},!0)})}},bvQk:function(t,e){t.exports={render:function(){var t=this.$createElement,e=this._self._c||t;return e("md-card-content",{staticClass:"login-sns"},[e("div",{staticClass:"md-body-1"},[this._v("使用合作账号登录")]),this._v(" "),e("div",{staticClass:"layout-row"},[e("md-avatar",{staticClass:"md-avatar-icon"},[e("md-ripple",[e("md-icon",{attrs:{"md-src":"/assets/vendor/gmf-sys/svg/auth-qq.svg"}})],1)],1),this._v(" "),e("md-avatar",{staticClass:"md-avatar-icon"},[e("md-ripple",[e("md-icon",{attrs:{"md-src":"/assets/vendor/gmf-sys/svg/auth-weixin.svg"}})],1)],1),this._v(" "),e("md-avatar",{staticClass:"md-avatar-icon"},[e("md-ripple",[e("md-icon",{attrs:{"md-src":"/assets/vendor/gmf-sys/svg/auth-weibo.svg"}})],1)],1)],1)])},staticRenderFns:[]}},hbkP:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=(0,r.regex)("numeric",/^[0-9]*$/)},jFJc:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),a=function(){function t(){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.storageKey="gmf.sys.auth."+window.location.host}return r(t,[{key:"get",value:function(){return JSON.parse(localStorage.getItem(this.storageKey))||[]}},{key:"has",value:function(t){return!1}},{key:"remove",value:function(t){if(t){for(var e=this.get(),n=0;n<e.length;n++)e[n].id==t.id&&n;n>=0&&(e.slice(n,1),localStorage.setItem(this.storageKey,JSON.stringify(e)))}}},{key:"add",value:function(t){if(t){var e=this.get(),n=!1;e.forEach(function(e){e.id==t.id&&(n=!0)}),n||e.push(t),localStorage.setItem(this.storageKey,JSON.stringify(e))}}}]),t}();e.default=new a},lEk1:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"requiredIf",prop:t},function(e,n){return!(0,r.ref)(t,this,n)||(0,r.req)(e)})}},mpcv:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("JVqD").withParams;e.default=r},qHXR:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"maxLength",max:t},function(e){return!(0,r.req)(e)||(0,r.len)(e)<=t})}},rCeE:function(t,e,n){(t.exports=n("FZ+f")(void 0)).push([t.i,".login-sns .md-avatar-icon[data-v-0b1adff6]{margin:10px 16px 0 0}",""])},xJ3U:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=n("URu4");e.default=function(t){return(0,r.withParams)({type:"maxValue",max:t},function(e){return!(0,r.req)(e)||(!/\s/.test(e)||e instanceof Date)&&+e<=+t})}}});
+webpackJsonp([1],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Identifier.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _AuthCache = __webpack_require__("./resources/assets/js/vendor/gmf-sys/Pages/Auth/AuthCache.js");
+
+var _AuthCache2 = _interopRequireDefault(_AuthCache);
+
+var _Sns = __webpack_require__("./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue");
+
+var _Sns2 = _interopRequireDefault(_Sns);
+
+var _vuelidate = __webpack_require__("./node_modules/vuelidate/lib/index.js");
+
+var _validators = __webpack_require__("./node_modules/vuelidate/lib/validators/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'GmfPagesAuthIdentifier',
+  components: {
+    AuthSns: _Sns2.default
+  },
+  mixins: [_vuelidate.validationMixin],
+  data: function data() {
+    return {
+      mainDatas: {},
+      loading: 0,
+      sending: false
+    };
+  },
+
+  validations: {
+    mainDatas: {
+      account: {
+        required: _validators.required,
+        minLength: (0, _validators.minLength)(3),
+        maxLength: (0, _validators.maxLength)(30)
+      }
+    }
+  },
+  computed: {},
+  methods: {
+    getValidationClass: function getValidationClass(fieldName) {
+      var field = this.$v.mainDatas[fieldName];
+      if (field) {
+        return {
+          'md-invalid': field.$invalid && field.$dirty
+        };
+      }
+    },
+    validateUser: function validateUser() {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        this.submitPost();
+      }
+    },
+    submitPost: function submitPost() {
+      var _this = this;
+
+      this.sending = true;
+      this.$http.post('sys/auth/checker', this.mainDatas).then(function (response) {
+        _this.sending = false;
+        var u = response.data.data;
+        if (u) {
+          _AuthCache2.default.add(u);
+          _this.$go({ name: 'auth.password', params: { id: u.id } });
+        }
+      }).catch(function (err) {
+        _this.sending = false;
+        _this.$toast(err);
+      });
+    },
+    fetchData: function fetchData() {}
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.fetchData();
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'GmfPagesAuthSns',
+  data: function data() {
+    return {
+      sending: false
+    };
+  },
+
+  methods: {
+    fetchData: function fetchData() {}
+  },
+  mounted: function mounted() {
+    this.fetchData();
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033e953d\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "/**\r\n * The default transition, used when the element is visible\r\n * since the beginning of the animation\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The enter transition, used when the element is not visible on the screen\r\n * since the beginning of the animation and become visible\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The leave transition, used when the element is visible on the screen\r\n * since the beginning of the animation and is removed\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The stand transition, used when the element is going to accelerate,\r\n * like movements from bottom to top\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The out transition, used when the element is going to deaccelerate,\r\n * like movements from top to bottom\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/* Transitions - Based on Angular Material */\n/**\r\n * The layout system breakpoints\r\n * ---\r\n * @access private\r\n * @type layout\r\n * @group layout\r\n */\n/**\r\n * The available gutter sizes\r\n * ---\r\n * @access private\r\n * @type layout\r\n * @group layout\r\n */\n/**\r\n * Breakpoint\r\n */\n/**\r\n * Base\r\n */\n/**\r\n * Layout Item\r\n */\n/**\r\n * Hide Element\r\n */\n.login-sns .md-avatar-icon[data-v-033e953d] {\n  margin: 10px 16px 0px 0px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033e953d\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033e953d\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("33326cb6", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033e953d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Sns.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033e953d\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Sns.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-033e953d\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("md-card-content", { staticClass: "login-sns" }, [
+    _c("div", { staticClass: "md-body-1" }, [_vm._v("使用合作账号登录")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "layout-row" },
+      [
+        _c(
+          "md-avatar",
+          { staticClass: "md-avatar-icon" },
+          [
+            _c(
+              "md-ripple",
+              [
+                _c("md-icon", {
+                  attrs: { "md-src": "/assets/vendor/gmf-sys/svg/auth-qq.svg" }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-avatar",
+          { staticClass: "md-avatar-icon" },
+          [
+            _c(
+              "md-ripple",
+              [
+                _c("md-icon", {
+                  attrs: {
+                    "md-src": "/assets/vendor/gmf-sys/svg/auth-weixin.svg"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-avatar",
+          { staticClass: "md-avatar-icon" },
+          [
+            _c(
+              "md-ripple",
+              [
+                _c("md-icon", {
+                  attrs: {
+                    "md-src": "/assets/vendor/gmf-sys/svg/auth-weibo.svg"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-033e953d", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3499f618\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Identifier.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("md-card", [
+    _c(
+      "form",
+      {
+        attrs: { novalidate: "" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            _vm.validateUser($event)
+          }
+        }
+      },
+      [
+        _c(
+          "md-card-header",
+          [
+            _c("md-card-header-text", [
+              _c("div", { staticClass: "md-title" }, [_vm._v("登录")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "md-body-1" }, [
+                _vm._v("使用您的帐号登录")
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "md-button",
+              {
+                staticClass: "md-icon-button md-list-action",
+                attrs: { to: { name: "auth.chooser" } }
+              },
+              [
+                _c("md-icon", { staticClass: "md-primary" }, [
+                  _vm._v("expand_more")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-content",
+          [
+            _c(
+              "md-layout",
+              [
+                _c(
+                  "md-field",
+                  {
+                    class: _vm.getValidationClass("account"),
+                    attrs: { "md-clearable": "" }
+                  },
+                  [
+                    _c("label", [_vm._v("电子邮件地址或电话号码")]),
+                    _vm._v(" "),
+                    _c("md-input", {
+                      attrs: { autocomplete: "off", disabled: _vm.sending },
+                      model: {
+                        value: _vm.mainDatas.account,
+                        callback: function($$v) {
+                          _vm.$set(_vm.mainDatas, "account", $$v)
+                        },
+                        expression: "mainDatas.account"
+                      }
+                    }),
+                    _vm._v(" "),
+                    !_vm.$v.mainDatas.account.required
+                      ? _c("span", { staticClass: "md-error" }, [
+                          _vm._v("请输入电子邮件地址或电话号码")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-actions",
+          [
+            _c("router-link", { attrs: { to: { name: "auth.register" } } }, [
+              _vm._v("免费注册")
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "flex" }),
+            _vm._v(" "),
+            _c(
+              "md-button",
+              {
+                staticClass: "md-primary md-raised",
+                attrs: { type: "submit", disabled: _vm.sending }
+              },
+              [_vm._v("下一步")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("md-divider"),
+        _vm._v(" "),
+        _c("auth-sns"),
+        _vm._v(" "),
+        _vm.sending
+          ? _c("md-progress-bar", { attrs: { "md-mode": "indeterminate" } })
+          : _vm._e()
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3499f618", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.withParams = exports.validationMixin = exports.Vuelidate = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _vval = __webpack_require__("./node_modules/vuelidate/lib/vval.js");
+
+var _params = __webpack_require__("./node_modules/vuelidate/lib/params.js");
+
+var NUL = function NUL() {
+  return null;
+};
+
+var buildFromKeys = function buildFromKeys(keys, fn, keyFn) {
+  return keys.reduce(function (build, key) {
+    build[keyFn ? keyFn(key) : key] = fn(key);
+    return build;
+  }, {});
+};
+
+function isFunction(val) {
+  return typeof val === 'function';
+}
+
+function isObject(val) {
+  return val !== null && (typeof val === 'object' || isFunction(val));
+}
+
+function isPromise(object) {
+  return isObject(object) && isFunction(object.then);
+}
+
+var getPath = function getPath(ctx, obj, path, fallback) {
+  if (typeof path === 'function') {
+    return path.call(ctx, obj, fallback);
+  }
+
+  path = Array.isArray(path) ? path : path.split('.');
+  for (var i = 0; i < path.length; i++) {
+    if (obj && typeof obj === 'object') {
+      obj = obj[path[i]];
+    } else {
+      return fallback;
+    }
+  }
+
+  return typeof obj === 'undefined' ? fallback : obj;
+};
+
+var __isVuelidateAsyncVm = '__isVuelidateAsyncVm';
+function makePendingAsyncVm(Vue, promise) {
+  var asyncVm = new Vue({
+    data: {
+      p: true, // pending
+      v: false // value
+    }
+  });
+
+  promise.then(function (value) {
+    asyncVm.p = false;
+    asyncVm.v = value;
+  }, function (error) {
+    asyncVm.p = false;
+    asyncVm.v = false;
+    throw error;
+  });
+
+  asyncVm[__isVuelidateAsyncVm] = true;
+  return asyncVm;
+}
+
+var validationGetters = {
+  $invalid: function $invalid() {
+    var _this = this;
+
+    var proxy = this.proxy;
+    return this.nestedKeys.some(function (nested) {
+      return _this.refProxy(nested).$invalid;
+    }) || this.ruleKeys.some(function (rule) {
+      return !proxy[rule];
+    });
+  },
+  $dirty: function $dirty() {
+    var _this2 = this;
+
+    if (this.dirty) {
+      return true;
+    }
+    if (this.nestedKeys.length === 0) {
+      return false;
+    }
+
+    return this.nestedKeys.every(function (key) {
+      return _this2.refProxy(key).$dirty;
+    });
+  },
+  $error: function $error() {
+    return this.$dirty && !this.$pending && this.$invalid;
+  },
+  $pending: function $pending() {
+    var _this3 = this;
+
+    return this.ruleKeys.some(function (key) {
+      return _this3.getRef(key).$pending;
+    }) || this.nestedKeys.some(function (key) {
+      return _this3.refProxy(key).$pending;
+    });
+  },
+  $params: function $params() {
+    var _this4 = this;
+
+    var vals = this.validations;
+    return _extends({}, buildFromKeys(this.nestedKeys, function (key) {
+      return vals[key] && vals[key].$params || null;
+    }), buildFromKeys(this.ruleKeys, function (key) {
+      return _this4.getRef(key).$params;
+    }));
+  }
+};
+
+function setDirtyRecursive(newState) {
+  this.dirty = newState;
+  var proxy = this.proxy;
+  var method = newState ? '$touch' : '$reset';
+  this.nestedKeys.forEach(function (key) {
+    proxy[key][method]();
+  });
+}
+
+var validationMethods = {
+  $touch: function $touch() {
+    setDirtyRecursive.call(this, true);
+  },
+  $reset: function $reset() {
+    setDirtyRecursive.call(this, false);
+  },
+  $flattenParams: function $flattenParams() {
+    var proxy = this.proxy;
+    var params = [];
+    for (var key in this.$params) {
+      if (this.isNested(key)) {
+        var childParams = proxy[key].$flattenParams();
+        for (var j = 0; j < childParams.length; j++) {
+          childParams[j].path.unshift(key);
+        }
+        params = params.concat(childParams);
+      } else {
+        params.push({ path: [], name: key, params: this.$params[key] });
+      }
+    }
+    return params;
+  }
+};
+
+var getterNames = Object.keys(validationGetters);
+var methodNames = Object.keys(validationMethods);
+
+var _cachedComponent = null;
+var getComponent = function getComponent(Vue) {
+  if (_cachedComponent) {
+    return _cachedComponent;
+  }
+
+  var VBase = Vue.extend({
+    beforeCreate: function beforeCreate() {
+      this._vval = null;
+    },
+    beforeDestroy: function beforeDestroy() {
+      if (this._vval) {
+        (0, _vval.patchChildren)(this._vval);
+      }
+    },
+
+    methods: {
+      getModel: function getModel() {
+        return this.lazyModel ? this.lazyModel(this.prop) : this.model;
+      },
+      getModelKey: function getModelKey(key) {
+        var model = this.getModel();
+        if (model) {
+          return model[key];
+        }
+      }
+    },
+    computed: {
+      refs: function refs() {
+        var oldVval = this._vval;
+        this._vval = this.children;
+        (0, _vval.patchChildren)(oldVval, this._vval);
+        var refs = {};
+        this._vval.forEach(function (c) {
+          refs[c.key] = c.vm;
+        });
+        return refs;
+      }
+    }
+  });
+
+  var ValidationRule = VBase.extend({
+    data: function data() {
+      return {
+        rule: null,
+        lazyModel: null,
+        model: null,
+        lazyParentModel: null,
+        rootModel: null
+      };
+    },
+
+    methods: {
+      runRule: function runRule(parent) {
+        // Avoid using this.lazyParentModel to not get dependent on it.
+        // Passed as an argument for workaround
+        var model = this.getModel();
+        (0, _params.pushParams)();
+        var rawOutput = this.rule.call(this.rootModel, model, parent);
+        var output = isPromise(rawOutput) ? makePendingAsyncVm(Vue, rawOutput) : rawOutput;
+
+        var rawParams = (0, _params.popParams)();
+        var params = rawParams && rawParams.$sub ? rawParams.$sub.length > 1 ? rawParams : rawParams.$sub[0] : null;
+
+        return { output: output, params: params };
+      }
+    },
+    computed: {
+      run: function run() {
+        return this.runRule(this.lazyParentModel());
+      },
+      $params: function $params() {
+        return this.run.params;
+      },
+      proxy: function proxy() {
+        var output = this.run.output;
+        if (output[__isVuelidateAsyncVm]) {
+          return !!output.v;
+        }
+        return !!output;
+      },
+      $pending: function $pending() {
+        var output = this.run.output;
+        if (output[__isVuelidateAsyncVm]) {
+          return output.p;
+        }
+        return false;
+      }
+    }
+  });
+
+  var Validation = VBase.extend({
+    data: function data() {
+      return {
+        dirty: false,
+        validations: null,
+        lazyModel: null,
+        model: null,
+        prop: null,
+        lazyParentModel: null,
+        rootModel: null
+      };
+    },
+
+    methods: _extends({}, validationMethods, {
+      refProxy: function refProxy(key) {
+        return this.getRef(key).proxy;
+      },
+      getRef: function getRef(key) {
+        return this.refs[key];
+      },
+      isNested: function isNested(key) {
+        return typeof this.validations[key] !== 'function';
+      }
+    }),
+    computed: _extends({}, validationGetters, {
+      nestedKeys: function nestedKeys() {
+        return this.keys.filter(this.isNested);
+      },
+      ruleKeys: function ruleKeys() {
+        var _this5 = this;
+
+        return this.keys.filter(function (k) {
+          return !_this5.isNested(k);
+        });
+      },
+      keys: function keys() {
+        return Object.keys(this.validations).filter(function (k) {
+          return k !== '$params';
+        });
+      },
+      proxy: function proxy() {
+        var _this6 = this;
+
+        var keyDefs = buildFromKeys(this.keys, function (key) {
+          return {
+            enumerable: true,
+            configurable: false,
+            get: function get() {
+              return _this6.refProxy(key);
+            }
+          };
+        });
+
+        var getterDefs = buildFromKeys(getterNames, function (key) {
+          return {
+            enumerable: true,
+            configurable: false,
+            get: function get() {
+              return _this6[key];
+            }
+          };
+        });
+
+        var methodDefs = buildFromKeys(methodNames, function (key) {
+          return {
+            enumerable: false,
+            configurable: false,
+            get: function get() {
+              return _this6[key];
+            }
+          };
+        });
+
+        return Object.defineProperties({}, _extends({}, keyDefs, getterDefs, methodDefs));
+      },
+      children: function children() {
+        var _this7 = this;
+
+        return [].concat(this.nestedKeys.map(function (key) {
+          return renderNested(_this7, key);
+        }), this.ruleKeys.map(function (key) {
+          return renderRule(_this7, key);
+        })).filter(Boolean);
+      }
+    })
+  });
+
+  var GroupValidation = Validation.extend({
+    methods: {
+      isNested: function isNested(key) {
+        return typeof this.validations[key]() !== 'undefined';
+      },
+      getRef: function getRef(key) {
+        var vm = this;
+        return {
+          get proxy() {
+            // default to invalid
+            return vm.validations[key]() || false;
+          }
+        };
+      }
+    }
+  });
+
+  var EachValidation = Validation.extend({
+    computed: {
+      keys: function keys() {
+        var model = this.getModel();
+        if (isObject(model)) {
+          return Object.keys(model);
+        } else {
+          return [];
+        }
+      },
+      tracker: function tracker() {
+        var _this8 = this;
+
+        var trackBy = this.validations.$trackBy;
+        return trackBy ? function (key) {
+          return '' + getPath(_this8.rootModel, _this8.getModelKey(key), trackBy);
+        } : function (x) {
+          return '' + x;
+        };
+      },
+      eagerParentModel: function eagerParentModel() {
+        var parent = this.lazyParentModel();
+        return function () {
+          return parent;
+        };
+      },
+      children: function children() {
+        var _this9 = this;
+
+        var def = this.validations;
+        var model = this.getModel();
+
+        var validations = _extends({}, def);
+        delete validations['$trackBy'];
+
+        var usedTracks = {};
+
+        return this.keys.map(function (key) {
+          var track = _this9.tracker(key);
+          if (usedTracks.hasOwnProperty(track)) {
+            return null;
+          }
+          usedTracks[track] = true;
+          return (0, _vval.h)(Validation, track, {
+            validations: validations,
+            prop: key,
+            lazyParentModel: _this9.eagerParentModel,
+            model: model[key],
+            rootModel: _this9.rootModel
+          });
+        }).filter(Boolean);
+      }
+    },
+    methods: {
+      isNested: function isNested() {
+        return true;
+      },
+      getRef: function getRef(key) {
+        return this.refs[this.tracker(key)];
+      }
+    }
+  });
+
+  var renderNested = function renderNested(vm, key) {
+    if (key === '$each') {
+      return (0, _vval.h)(EachValidation, key, {
+        validations: vm.validations[key],
+        lazyParentModel: vm.lazyParentModel,
+        prop: key,
+        lazyModel: vm.getModel,
+        rootModel: vm.rootModel
+      });
+    }
+    var validations = vm.validations[key];
+    if (Array.isArray(validations)) {
+      var root = vm.rootModel;
+      var refVals = buildFromKeys(validations, function (path) {
+        return function () {
+          return getPath(root, root.$v, path);
+        };
+      }, function (v) {
+        return Array.isArray(v) ? v.join('.') : v;
+      });
+      return (0, _vval.h)(GroupValidation, key, {
+        validations: refVals,
+        lazyParentModel: NUL,
+        prop: key,
+        lazyModel: NUL,
+        rootModel: root
+      });
+    }
+    return (0, _vval.h)(Validation, key, {
+      validations: validations,
+      lazyParentModel: vm.getModel,
+      prop: key,
+      lazyModel: vm.getModelKey,
+      rootModel: vm.rootModel
+    });
+  };
+
+  var renderRule = function renderRule(vm, key) {
+    return (0, _vval.h)(ValidationRule, key, {
+      rule: vm.validations[key],
+      lazyParentModel: vm.lazyParentModel,
+      lazyModel: vm.getModel,
+      rootModel: vm.rootModel
+    });
+  };
+
+  _cachedComponent = { VBase: VBase, Validation: Validation };
+  return _cachedComponent;
+};
+
+var _cachedVue = null;
+function getVue(rootVm) {
+  if (_cachedVue) return _cachedVue;
+  var Vue = rootVm.constructor;
+  /* istanbul ignore next */
+  while (Vue.super) {
+    Vue = Vue.super;
+  }_cachedVue = Vue;
+  return Vue;
+}
+
+var validateModel = function validateModel(model, validations) {
+  var Vue = getVue(model);
+
+  var _getComponent = getComponent(Vue),
+      Validation = _getComponent.Validation,
+      VBase = _getComponent.VBase;
+
+  var root = new VBase({
+    computed: {
+      children: function children() {
+        var vals = typeof validations === 'function' ? validations.call(model) : validations;
+
+        return [(0, _vval.h)(Validation, '$v', {
+          validations: vals,
+          lazyParentModel: NUL,
+          prop: '$v',
+          model: model,
+          rootModel: model
+        })];
+      }
+    }
+  });
+  return root;
+};
+
+var validationMixin = {
+  data: function data() {
+    var vals = this.$options.validations;
+    if (vals) {
+      this._vuelidate = validateModel(this, vals);
+    }
+    return {};
+  },
+  beforeCreate: function beforeCreate() {
+    var _this10 = this;
+
+    var options = this.$options;
+    var vals = options.validations;
+    if (!vals) return;
+    if (!options.computed) options.computed = {};
+    options.computed.$v = function () {
+      return _this10._vuelidate.refs.$v.proxy;
+    };
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this._vuelidate) {
+      this._vuelidate.$destroy();
+      this._vuelidate = null;
+    }
+  }
+};
+
+function Vuelidate(Vue) {
+  Vue.mixin(validationMixin);
+}
+
+exports.Vuelidate = Vuelidate;
+exports.validationMixin = validationMixin;
+exports.withParams = _params.withParams;
+exports.default = Vuelidate;
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/params.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.pushParams = pushParams;
+exports.popParams = popParams;
+exports.withParams = withParams;
+
+var stack = [];
+
+// exported for tests
+var target = exports.target = null;
+var _setTarget = exports._setTarget = function _setTarget(x) {
+  exports.target = target = x;
+};
+
+function pushParams() {
+  if (target !== null) {
+    stack.push(target);
+  }
+  exports.target = target = {};
+}
+
+function popParams() {
+  var lastTarget = target;
+  var newTarget = exports.target = target = stack.pop() || null;
+  if (newTarget) {
+    if (!Array.isArray(newTarget.$sub)) {
+      newTarget.$sub = [];
+    }
+    newTarget.$sub.push(lastTarget);
+  }
+  return lastTarget;
+}
+
+function addParams(params) {
+  if (typeof params === 'object' && !Array.isArray(params)) {
+    exports.target = target = _extends({}, target, params);
+  } else {
+    throw new Error('params must be an object');
+  }
+}
+
+function withParamsDirect(params, validator) {
+  return withParamsClosure(function (add) {
+    return function () {
+      add(params);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return validator.apply(this, args);
+    };
+  });
+}
+
+function withParamsClosure(closure) {
+  var validator = closure(addParams);
+  return function () {
+    pushParams();
+    try {
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return validator.apply(this, args);
+    } finally {
+      popParams();
+    }
+  };
+}
+
+function withParams(paramsOrClosure, maybeValidator) {
+  if (typeof paramsOrClosure === 'object' && maybeValidator !== undefined) {
+    return withParamsDirect(paramsOrClosure, maybeValidator);
+  }
+  return withParamsClosure(paramsOrClosure);
+}
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/alpha.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = (0, _common.regex)('alpha', /^[a-zA-Z]*$/);
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/alphaNum.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = (0, _common.regex)('alphaNum', /^[a-zA-Z0-9]*$/);
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/and.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function () {
+  for (var _len = arguments.length, validators = Array(_len), _key = 0; _key < _len; _key++) {
+    validators[_key] = arguments[_key];
+  }
+
+  return (0, _common.withParams)({ type: 'and' }, function () {
+    var _this = this;
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    return validators.length > 0 && validators.reduce(function (valid, fn) {
+      return valid && fn.apply(_this, args);
+    }, true);
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/between.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (min, max) {
+  return (0, _common.withParams)({ type: 'between', min: min, max: max }, function (value) {
+    return !(0, _common.req)(value) || (!/\s/.test(value) || value instanceof Date) && +min <= +value && +max >= +value;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/common.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.regex = exports.ref = exports.len = exports.req = exports.withParams = undefined;
+
+var _withParams = __webpack_require__("./node_modules/vuelidate/lib/withParams.js");
+
+var _withParams2 = _interopRequireDefault(_withParams);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.withParams = _withParams2.default;
+
+// "required" core, used in almost every validator to allow empty values
+
+var req = exports.req = function req(value) {
+  if (Array.isArray(value)) return !!value.length;
+  if (value === undefined || value === null || value === false) {
+    return false;
+  }
+
+  if (value instanceof Date) {
+    // invalid date won't pass
+    return !isNaN(value.getTime());
+  }
+
+  if (typeof value === 'object') {
+    for (var _ in value) {
+      return true;
+    }return false;
+  }
+
+  return !!String(value).length;
+};
+
+// get length in type-agnostic way
+var len = exports.len = function len(value) {
+  if (Array.isArray(value)) return value.length;
+  if (typeof value === 'object') {
+    return Object.keys(value).length;
+  }
+  return String(value).length;
+};
+
+// resolve referenced value
+var ref = exports.ref = function ref(reference, vm, parentVm) {
+  return typeof reference === 'function' ? reference.call(vm, parentVm) : parentVm[reference];
+};
+
+// regex based validator template
+var regex = exports.regex = function regex(type, expr) {
+  return (0, _withParams2.default)({ type: type }, function (value) {
+    return !req(value) || expr.test(value);
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/email.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+var emailRegex = /(^$|^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$)/;
+
+exports.default = (0, _common.regex)('email', emailRegex);
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.maxValue = exports.minValue = exports.and = exports.or = exports.url = exports.sameAs = exports.requiredUnless = exports.requiredIf = exports.required = exports.minLength = exports.maxLength = exports.macAddress = exports.ipAddress = exports.email = exports.between = exports.numeric = exports.alphaNum = exports.alpha = undefined;
+
+var _alpha = __webpack_require__("./node_modules/vuelidate/lib/validators/alpha.js");
+
+var _alpha2 = _interopRequireDefault(_alpha);
+
+var _alphaNum = __webpack_require__("./node_modules/vuelidate/lib/validators/alphaNum.js");
+
+var _alphaNum2 = _interopRequireDefault(_alphaNum);
+
+var _numeric = __webpack_require__("./node_modules/vuelidate/lib/validators/numeric.js");
+
+var _numeric2 = _interopRequireDefault(_numeric);
+
+var _between = __webpack_require__("./node_modules/vuelidate/lib/validators/between.js");
+
+var _between2 = _interopRequireDefault(_between);
+
+var _email = __webpack_require__("./node_modules/vuelidate/lib/validators/email.js");
+
+var _email2 = _interopRequireDefault(_email);
+
+var _ipAddress = __webpack_require__("./node_modules/vuelidate/lib/validators/ipAddress.js");
+
+var _ipAddress2 = _interopRequireDefault(_ipAddress);
+
+var _macAddress = __webpack_require__("./node_modules/vuelidate/lib/validators/macAddress.js");
+
+var _macAddress2 = _interopRequireDefault(_macAddress);
+
+var _maxLength = __webpack_require__("./node_modules/vuelidate/lib/validators/maxLength.js");
+
+var _maxLength2 = _interopRequireDefault(_maxLength);
+
+var _minLength = __webpack_require__("./node_modules/vuelidate/lib/validators/minLength.js");
+
+var _minLength2 = _interopRequireDefault(_minLength);
+
+var _required = __webpack_require__("./node_modules/vuelidate/lib/validators/required.js");
+
+var _required2 = _interopRequireDefault(_required);
+
+var _requiredIf = __webpack_require__("./node_modules/vuelidate/lib/validators/requiredIf.js");
+
+var _requiredIf2 = _interopRequireDefault(_requiredIf);
+
+var _requiredUnless = __webpack_require__("./node_modules/vuelidate/lib/validators/requiredUnless.js");
+
+var _requiredUnless2 = _interopRequireDefault(_requiredUnless);
+
+var _sameAs = __webpack_require__("./node_modules/vuelidate/lib/validators/sameAs.js");
+
+var _sameAs2 = _interopRequireDefault(_sameAs);
+
+var _url = __webpack_require__("./node_modules/vuelidate/lib/validators/url.js");
+
+var _url2 = _interopRequireDefault(_url);
+
+var _or = __webpack_require__("./node_modules/vuelidate/lib/validators/or.js");
+
+var _or2 = _interopRequireDefault(_or);
+
+var _and = __webpack_require__("./node_modules/vuelidate/lib/validators/and.js");
+
+var _and2 = _interopRequireDefault(_and);
+
+var _minValue = __webpack_require__("./node_modules/vuelidate/lib/validators/minValue.js");
+
+var _minValue2 = _interopRequireDefault(_minValue);
+
+var _maxValue = __webpack_require__("./node_modules/vuelidate/lib/validators/maxValue.js");
+
+var _maxValue2 = _interopRequireDefault(_maxValue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.alpha = _alpha2.default;
+exports.alphaNum = _alphaNum2.default;
+exports.numeric = _numeric2.default;
+exports.between = _between2.default;
+exports.email = _email2.default;
+exports.ipAddress = _ipAddress2.default;
+exports.macAddress = _macAddress2.default;
+exports.maxLength = _maxLength2.default;
+exports.minLength = _minLength2.default;
+exports.required = _required2.default;
+exports.requiredIf = _requiredIf2.default;
+exports.requiredUnless = _requiredUnless2.default;
+exports.sameAs = _sameAs2.default;
+exports.url = _url2.default;
+exports.or = _or2.default;
+exports.and = _and2.default;
+exports.minValue = _minValue2.default;
+exports.maxValue = _maxValue2.default;
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/ipAddress.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = (0, _common.withParams)({ type: 'ipAddress' }, function (value) {
+  if (!(0, _common.req)(value)) {
+    return true;
+  }
+
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  var nibbles = value.split('.');
+  return nibbles.length === 4 && nibbles.every(nibbleValid);
+});
+
+
+var nibbleValid = function nibbleValid(nibble) {
+  if (nibble.length > 3 || nibble.length === 0) {
+    return false;
+  }
+
+  if (nibble[0] === '0' && nibble !== '0') {
+    return false;
+  }
+
+  if (!nibble.match(/^\d+$/)) {
+    return false;
+  }
+
+  var numeric = +nibble | 0;
+  return numeric >= 0 && numeric <= 255;
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/macAddress.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function () {
+  var separator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ':';
+  return (0, _common.withParams)({ type: 'macAddress' }, function (value) {
+    if (!(0, _common.req)(value)) {
+      return true;
+    }
+
+    if (typeof value !== 'string') {
+      return false;
+    }
+
+    var parts = typeof separator === 'string' && separator !== '' ? value.split(separator) : value.length === 12 || value.length === 16 ? value.match(/.{2}/g) : null;
+
+    return parts !== null && (parts.length === 6 || parts.length === 8) && parts.every(hexValid);
+  });
+};
+
+var hexValid = function hexValid(hex) {
+  return hex.toLowerCase().match(/^[0-9a-f]{2}$/);
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/maxLength.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (length) {
+  return (0, _common.withParams)({ type: 'maxLength', max: length }, function (value) {
+    return !(0, _common.req)(value) || (0, _common.len)(value) <= length;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/maxValue.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (max) {
+  return (0, _common.withParams)({ type: 'maxValue', max: max }, function (value) {
+    return !(0, _common.req)(value) || (!/\s/.test(value) || value instanceof Date) && +value <= +max;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/minLength.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (length) {
+  return (0, _common.withParams)({ type: 'minLength', min: length }, function (value) {
+    return !(0, _common.req)(value) || (0, _common.len)(value) >= length;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/minValue.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (min) {
+  return (0, _common.withParams)({ type: 'minValue', min: min }, function (value) {
+    return !(0, _common.req)(value) || (!/\s/.test(value) || value instanceof Date) && +value >= +min;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/numeric.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = (0, _common.regex)('numeric', /^[0-9]*$/);
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/or.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function () {
+  for (var _len = arguments.length, validators = Array(_len), _key = 0; _key < _len; _key++) {
+    validators[_key] = arguments[_key];
+  }
+
+  return (0, _common.withParams)({ type: 'or' }, function () {
+    var _this = this;
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    return validators.length > 0 && validators.reduce(function (valid, fn) {
+      return valid || fn.apply(_this, args);
+    }, false);
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/required.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = (0, _common.withParams)({ type: 'required' }, _common.req);
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/requiredIf.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (prop) {
+  return (0, _common.withParams)({ type: 'requiredIf', prop: prop }, function (value, parentVm) {
+    return (0, _common.ref)(prop, this, parentVm) ? (0, _common.req)(value) : true;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/requiredUnless.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (prop) {
+  return (0, _common.withParams)({ type: 'requiredUnless', prop: prop }, function (value, parentVm) {
+    return !(0, _common.ref)(prop, this, parentVm) ? (0, _common.req)(value) : true;
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/sameAs.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+exports.default = function (equalTo) {
+  return (0, _common.withParams)({ type: 'sameAs', eq: equalTo }, function (value, parentVm) {
+    return value === (0, _common.ref)(equalTo, this, parentVm);
+  });
+};
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/validators/url.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _common = __webpack_require__("./node_modules/vuelidate/lib/validators/common.js");
+
+var urlRegex = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/;
+
+exports.default = (0, _common.regex)('url', urlRegex);
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/vval.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.patchChildren = patchChildren;
+exports.h = h;
+// a minimial single-layer implementation
+// of virtual-validation patching,
+// based on Vue's snabbdom clone
+
+function isUndef(v) {
+  return v === null || v === undefined;
+}
+
+function isDef(v) {
+  return v !== null && v !== undefined;
+}
+
+function sameVval(oldVval, vval) {
+  return vval.tag === oldVval.tag && vval.key === oldVval.key;
+}
+
+function createVm(vval) {
+  var Vm = vval.tag;
+  vval.vm = new Vm({ data: vval.args });
+}
+
+function updateVval(vval) {
+  var keys = Object.keys(vval.args);
+  for (var i = 0; i < keys.length; i++) {
+    keys.forEach(function (k) {
+      vval.vm[k] = vval.args[k];
+    });
+  }
+}
+
+function createKeyToOldIdx(children, beginIdx, endIdx) {
+  var i = void 0,
+      key = void 0;
+  var map = {};
+  for (i = beginIdx; i <= endIdx; ++i) {
+    key = children[i].key;
+    if (isDef(key)) map[key] = i;
+  }
+  return map;
+}
+
+function updateChildren(oldCh, newCh) {
+  var oldStartIdx = 0;
+  var newStartIdx = 0;
+  var oldEndIdx = oldCh.length - 1;
+  var oldStartVval = oldCh[0];
+  var oldEndVval = oldCh[oldEndIdx];
+  var newEndIdx = newCh.length - 1;
+  var newStartVval = newCh[0];
+  var newEndVval = newCh[newEndIdx];
+  var oldKeyToIdx = void 0,
+      idxInOld = void 0,
+      elmToMove = void 0;
+
+  while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+    if (isUndef(oldStartVval)) {
+      oldStartVval = oldCh[++oldStartIdx]; // Vval has been moved left
+    } else if (isUndef(oldEndVval)) {
+      oldEndVval = oldCh[--oldEndIdx];
+    } else if (sameVval(oldStartVval, newStartVval)) {
+      patchVval(oldStartVval, newStartVval);
+      oldStartVval = oldCh[++oldStartIdx];
+      newStartVval = newCh[++newStartIdx];
+    } else if (sameVval(oldEndVval, newEndVval)) {
+      patchVval(oldEndVval, newEndVval);
+      oldEndVval = oldCh[--oldEndIdx];
+      newEndVval = newCh[--newEndIdx];
+    } else if (sameVval(oldStartVval, newEndVval)) {
+      // Vval moved right
+      patchVval(oldStartVval, newEndVval);
+      oldStartVval = oldCh[++oldStartIdx];
+      newEndVval = newCh[--newEndIdx];
+    } else if (sameVval(oldEndVval, newStartVval)) {
+      // Vval moved left
+      patchVval(oldEndVval, newStartVval);
+      oldEndVval = oldCh[--oldEndIdx];
+      newStartVval = newCh[++newStartIdx];
+    } else {
+      if (isUndef(oldKeyToIdx)) oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx);
+      idxInOld = isDef(newStartVval.key) ? oldKeyToIdx[newStartVval.key] : null;
+      if (isUndef(idxInOld)) {
+        // New element
+        createVm(newStartVval);
+        newStartVval = newCh[++newStartIdx];
+      } else {
+        elmToMove = oldCh[idxInOld];
+        if (sameVval(elmToMove, newStartVval)) {
+          patchVval(elmToMove, newStartVval);
+          oldCh[idxInOld] = undefined;
+          newStartVval = newCh[++newStartIdx];
+        } else {
+          // same key but different element. treat as new element
+          createVm(newStartVval);
+          newStartVval = newCh[++newStartIdx];
+        }
+      }
+    }
+  }
+  if (oldStartIdx > oldEndIdx) {
+    addVvals(newCh, newStartIdx, newEndIdx);
+  } else if (newStartIdx > newEndIdx) {
+    removeVvals(oldCh, oldStartIdx, oldEndIdx);
+  }
+}
+
+function addVvals(vvals, startIdx, endIdx) {
+  for (; startIdx <= endIdx; ++startIdx) {
+    createVm(vvals[startIdx]);
+  }
+}
+
+function removeVvals(vvals, startIdx, endIdx) {
+  for (; startIdx <= endIdx; ++startIdx) {
+    var ch = vvals[startIdx];
+    if (isDef(ch)) {
+      ch.vm.$destroy();
+      ch.vm = null;
+    }
+  }
+}
+
+function patchVval(oldVval, vval) {
+  if (oldVval === vval) {
+    return;
+  }
+  vval.vm = oldVval.vm;
+  updateVval(vval);
+}
+
+function patchChildren(oldCh, ch) {
+  if (isDef(oldCh) && isDef(ch)) {
+    if (oldCh !== ch) updateChildren(oldCh, ch);
+  } else if (isDef(ch)) {
+    addVvals(ch, 0, ch.length - 1);
+  } else if (isDef(oldCh)) {
+    removeVvals(oldCh, 0, oldCh.length - 1);
+  }
+}
+
+function h(tag, key, args) {
+  return { tag: tag, key: key, args: args };
+}
+
+/***/ }),
+
+/***/ "./node_modules/vuelidate/lib/withParams.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* istanbul ignore next */
+var withParams =  false ? require('./withParamsBrowser').withParams : __webpack_require__("./node_modules/vuelidate/lib/params.js").withParams;
+
+exports.default = withParams;
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/Pages/Auth/AuthCache.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AuthCache = function () {
+  function AuthCache() {
+    _classCallCheck(this, AuthCache);
+
+    this.storageKey = "gmf.sys.auth." + window.location.host;
+  }
+
+  _createClass(AuthCache, [{
+    key: "get",
+    value: function get() {
+      return JSON.parse(localStorage.getItem(this.storageKey)) || [];
+    }
+  }, {
+    key: "has",
+    value: function has(user) {
+      return false;
+    }
+  }, {
+    key: "remove",
+    value: function remove(user) {
+      if (!user) return;
+      var users = this.get();
+      var ind = -1;
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].id == user.id) {
+          ind = i;
+        }
+      }
+      if (i >= 0) {
+        users.slice(i, 1);
+        localStorage.setItem(this.storageKey, JSON.stringify(users));
+      }
+    }
+  }, {
+    key: "add",
+    value: function add(user) {
+      if (!user) return;
+      var users = this.get();
+      var isExists = false;
+      users.forEach(function (item) {
+        if (item.id == user.id) {
+          isExists = true;
+        }
+      });
+      if (!isExists) {
+        users.push(user);
+      }
+      localStorage.setItem(this.storageKey, JSON.stringify(users));
+    }
+  }]);
+
+  return AuthCache;
+}();
+
+exports.default = new AuthCache();
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Identifier.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Identifier.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3499f618\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Identifier.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\Pages\\Auth\\Identifier.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3499f618", Component.options)
+  } else {
+    hotAPI.reload("data-v-3499f618", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-033e953d\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-033e953d\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/Pages/Auth/Sns.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-033e953d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\Pages\\Auth\\Sns.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-033e953d", Component.options)
+  } else {
+    hotAPI.reload("data-v-033e953d", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
