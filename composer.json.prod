@@ -1,5 +1,5 @@
 {
-    "name": "absuite/suite-prod",
+    "name": "absuite/suite-laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "suite","amb"],
     "license": "MIT",
