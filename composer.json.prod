@@ -1,5 +1,5 @@
 {
-    "name": "absuite/suite-laravel",
+    "name": "absuite/suite-prod",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "suite","amb"],
     "license": "MIT",
@@ -15,12 +15,10 @@
         "predis/predis": "^1.1",
         "maatwebsite/excel": "~2.1.0",
         "ggoop/gmf-sys": "~1.2",
-        "ggoop/gmf-ac": "~1.2",
         "ggoop/gmf-passport": "~1.2",
         "absuite/suite-cbo": "~1.2",
         "absuite/suite-amiba": "~1.2",
         "absuite/suite-bec": "~1.2",
-        "absuite/suite-mobile": "~1.2",
         "simplesoftwareio/simple-qrcode": "^1.5",
         "symfony/psr-http-message-bridge": "~1.0",
         "zendframework/zend-diactoros": "~1.0"
@@ -45,6 +43,12 @@
         }
     },
     "scripts": {
+        "gmf-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "php artisan key:generate",
+            "php artisan storage:link",
+            "php artisan passport:keys"
+        ],
         "post-root-package-install": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
