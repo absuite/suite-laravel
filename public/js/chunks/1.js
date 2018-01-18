@@ -80,7 +80,12 @@ exports.default = {
       }
     }
   },
-  computed: {},
+  computed: {
+    canRegister: function canRegister() {
+      if (!this.$root.configs.auth || !this.$root.configs.auth.register) return false;
+      return this.$root.configs.auth.register;
+    }
+  },
   methods: {
     getValidationClass: function getValidationClass(fieldName) {
       var field = this.$v.mainDatas[fieldName];
@@ -162,6 +167,12 @@ exports.default = {
     };
   },
 
+  computed: {
+    canSns: function canSns() {
+      if (!this.$root.configs.auth || !this.$root.configs.auth.sns) return false;
+      return this.$root.configs.auth.sns;
+    }
+  },
   methods: {
     fetchData: function fetchData() {}
   },
@@ -221,71 +232,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("md-card-content", { staticClass: "login-sns" }, [
-    _c("div", { staticClass: "md-body-1" }, [_vm._v("使用合作账号登录")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "layout-row" },
-      [
-        _c(
-          "md-avatar",
-          { staticClass: "md-avatar-icon" },
-          [
-            _c(
-              "md-ripple",
-              [
-                _c("md-icon", {
-                  attrs: { "md-src": "/assets/vendor/gmf-sys/svg/auth-qq.svg" }
-                })
-              ],
-              1
-            )
-          ],
-          1
-        ),
+  return _vm.canSns
+    ? _c("md-card-content", { staticClass: "login-sns" }, [
+        _c("div", { staticClass: "md-body-1" }, [_vm._v("使用合作账号登录")]),
         _vm._v(" "),
         _c(
-          "md-avatar",
-          { staticClass: "md-avatar-icon" },
+          "div",
+          { staticClass: "layout-row" },
           [
             _c(
-              "md-ripple",
+              "md-avatar",
+              { staticClass: "md-avatar-icon" },
               [
-                _c("md-icon", {
-                  attrs: {
-                    "md-src": "/assets/vendor/gmf-sys/svg/auth-weixin.svg"
-                  }
-                })
+                _c(
+                  "md-ripple",
+                  [
+                    _c("md-icon", {
+                      attrs: {
+                        "md-src": "/assets/vendor/gmf-sys/svg/auth-qq.svg"
+                      }
+                    })
+                  ],
+                  1
+                )
               ],
               1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "md-avatar",
-          { staticClass: "md-avatar-icon" },
-          [
+            ),
+            _vm._v(" "),
             _c(
-              "md-ripple",
+              "md-avatar",
+              { staticClass: "md-avatar-icon" },
               [
-                _c("md-icon", {
-                  attrs: {
-                    "md-src": "/assets/vendor/gmf-sys/svg/auth-weibo.svg"
-                  }
-                })
+                _c(
+                  "md-ripple",
+                  [
+                    _c("md-icon", {
+                      attrs: {
+                        "md-src": "/assets/vendor/gmf-sys/svg/auth-weixin.svg"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "md-avatar",
+              { staticClass: "md-avatar-icon" },
+              [
+                _c(
+                  "md-ripple",
+                  [
+                    _c("md-icon", {
+                      attrs: {
+                        "md-src": "/assets/vendor/gmf-sys/svg/auth-weibo.svg"
+                      }
+                    })
+                  ],
+                  1
+                )
               ],
               1
             )
           ],
           1
         )
-      ],
-      1
-    )
-  ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -391,9 +406,13 @@ var render = function() {
         _c(
           "md-card-actions",
           [
-            _c("router-link", { attrs: { to: { name: "auth.register" } } }, [
-              _vm._v("免费注册")
-            ]),
+            _vm.canRegister
+              ? _c(
+                  "router-link",
+                  { attrs: { to: { name: "auth.register" } } },
+                  [_vm._v("免费注册")]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("span", { staticClass: "flex" }),
             _vm._v(" "),
@@ -1859,7 +1878,7 @@ var AuthCache = function () {
         }
       }
       if (i >= 0) {
-        users.slice(i, 1);
+        users = users.splice(i, 1);
         localStorage.setItem(this.storageKey, JSON.stringify(users));
       }
     }

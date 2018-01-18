@@ -73,7 +73,7 @@ class HomeController extends Controller {
 
 	private function issueConfig(Request $request, $user) {
 		$config = new Builder();
-		$config->auth(['theme' => 'blue', 'register' => true, 'sns' => true, 'route' => '/auth/login']);
+		$config->auth(['theme' => 'blue', 'register' => false, 'sns' => false, 'route' => '/auth/login']);
 		$entId = GAuth::entId();
 		if (empty($entId)) {
 			$entId = session(GAuth::SESSION_ENT_KEY());

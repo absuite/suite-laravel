@@ -109,7 +109,7 @@ var AuthCache = function () {
         }
       }
       if (i >= 0) {
-        users.slice(i, 1);
+        users = users.splice(i, 1);
         localStorage.setItem(this.storageKey, JSON.stringify(users));
       }
     }

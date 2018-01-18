@@ -4210,7 +4210,14 @@ exports.default = {
       }
     }
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    if (_common2.default.isArray(this.value)) {
+      this.files = this.value;
+    } else {
+      this.files = [];
+      this.value && this.files.push(this.value);
+    }
+  },
   beforeDestroy: function beforeDestroy() {}
 };
 
@@ -70887,11 +70894,13 @@ var appMixin = {
               case 0:
                 this.configs.home = '/app/dashboard';
                 this.configs.loadEnum = true;
+                this.configs.auth.register = false;
+                this.configs.auth.sns = false;
                 if (window.gmfConfig) {
                   this.$setConfigs(window.gmfConfig);
                 }
 
-              case 3:
+              case 5:
               case 'end':
                 return _context2.stop();
             }
@@ -74585,6 +74594,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var base = {
   min_height: 500,
+  max_height: 800,
   branding: false,
   // statusbar: false,
   skin: "lightgray",
@@ -74594,6 +74604,7 @@ var base = {
   language: 'zh_CN',
   templates: "/api/sys/editor/templates",
   toolbar_items_size: false,
+  body_class: 'md-editor-content-body',
   plugins: ["advlist colorpicker imagetools template anchor paste textcolor", "autolink directionality insertdatetime textpattern", "autoresize legacyoutput toc autosave link save visualblocks fullscreen lists", "visualchars charmap media code hr tabfocus", "image noneditable table"],
   content_css: ['/css/app.css'],
   block_formats: "Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;",
@@ -74604,18 +74615,18 @@ var base = {
   }
 };
 var full = _.assignIn({}, base, {
-  toolbar1: "bold italic blockquote hr numlist bullist table link image media | alignleft aligncenter alignright | formatselect styleselect  forecolor backcolor | template code removeformat"
+  toolbar1: "bold italic blockquote hr numlist bullist outdent indent table link image media | alignleft aligncenter alignright | formatselect styleselect  forecolor backcolor | template code removeformat"
 });
 
 var simple = _.assignIn({}, base, {
   menubar: false,
-  toolbar1: "bold italic blockquote hr numlist bullist table link image media | formatselect styleselect  forecolor backcolor | template code removeformat"
+  toolbar1: "bold italic blockquote hr numlist bullist outdent indent table link image media | formatselect styleselect  forecolor backcolor | template code removeformat"
 });
 
 var small = _.assignIn({}, base, {
   menubar: false,
   statusbar: false,
-  toolbar1: "bold italic blockquote hr numlist bullist table link image | formatselect styleselect | template removeformat"
+  toolbar1: "bold italic blockquote hr numlist bullist outdent indent table link image | formatselect styleselect | template removeformat"
 });
 exports.default = { small: small, simple: simple, full: full };
 
