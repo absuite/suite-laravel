@@ -19,7 +19,7 @@
         "absuite/suite-cbo": "~1.2",
         "absuite/suite-amiba": "~1.2",
         "absuite/suite-bec": "~1.2",
-        "absuite/suite-docs": "~1.*",
+        "absuite/suite-docs": "~1.0",
         "simplesoftwareio/simple-qrcode": "^1.5",
         "symfony/psr-http-message-bridge": "~1.0",
         "zendframework/zend-diactoros": "~1.0"
