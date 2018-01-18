@@ -15089,9 +15089,75 @@ button:focus {
   transition-property: opacity, margin-top;
   will-change: opacity, margin-top;
 }
-
+/**
+ * The default transition, used when the element is visible
+ * since the beginning of the animation
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The enter transition, used when the element is not visible on the screen
+ * since the beginning of the animation and become visible
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The leave transition, used when the element is visible on the screen
+ * since the beginning of the animation and is removed
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The stand transition, used when the element is going to accelerate,
+ * like movements from bottom to top
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/**
+ * The out transition, used when the element is going to deaccelerate,
+ * like movements from top to bottom
+ * ---
+ * @access private
+ * @type transition
+ * @group transition
+ */
+/* Transitions - Based on Angular Material */
+/**
+ * The layout system breakpoints
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * The available gutter sizes
+ * ---
+ * @access private
+ * @type layout
+ * @group layout
+ */
+/**
+ * Breakpoint
+ */
+/**
+ * Base
+ */
+/**
+ * Layout Item
+ */
+/**
+ * Hide Element
+ */
 .md-card-actions {
-  padding: 8px;
+  padding: 8px 16px;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -15120,6 +15186,12 @@ button:focus {
 }
 .md-card-actions .md-button + .md-button {
       margin-left: 4px;
+}
+@media (max-width: 944px) {
+.md-card-actions {
+      padding-left: 8px;
+      padding-right: 8px;
+}
 }
 /**
  * The default transition, used when the element is visible
@@ -17799,8 +17871,17 @@ body > .md-overlay, .md-overlay.md-fixed {
 }
 
 .md-file-upload {
-  background: #f7f8f9;
   color: #808080;
+  position: relative;
+  z-index: 2;
+}
+.md-file-upload .md-file-upload-progress {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 4;
 }
 .md-file-upload .md-picker {
     cursor: pointer;
@@ -17817,7 +17898,8 @@ body > .md-overlay, .md-overlay.md-fixed {
     margin: 4px;
     padding: 4px;
 }
-.md-file-upload .md-files-item img, .md-file-upload .md-files-item .md-image {
+.md-file-upload .md-files-item img,
+    .md-file-upload .md-files-item .md-image {
       width: auto;
       height: auto;
       max-width: 100%;
@@ -22266,6 +22348,13 @@ tbody .md-table-row td {
   min-width: 100%;
   max-width: 100%;
 }
+.md-editor .tinymce-mobile-fullscreen-maximized.tinymce-mobile-edit-mode .tinymce-mobile-editor-socket {
+    overflow: hidden !important;
+    bottom: 0px !important;
+}
+[data-ephox-mobile-fullscreen-style] {
+  bottom: 0px;
+}
 
 @charset "UTF-8";
 /**
@@ -23333,33 +23422,33 @@ html.md-theme-default {
     color: rgba(0, 0, 0, 0.38);
     color: var(--md-theme-default-text-hint-on-background, rgba(0, 0, 0, 0.38));
 }
-.md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box {
     background-color: rgba(255, 255, 255, 0.12);
     background-color: var(--md-theme-default-background, rgba(255, 255, 255, 0.12));
 }
-.md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box label,
-    .md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box input {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box label,
+    .md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box input {
       color: #fff;
       color: var(--md-theme-default-text-primary-on-primary, #fff);
       -webkit-text-fill-color: #fff;
       -webkit-text-fill-color: var(--md-theme-default-text-primary-on-primary, #fff);
 }
-.md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box svg {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box svg {
       fill: #fff;
       fill: var(--md-theme-default-text-primary-on-primary, #fff);
 }
-.md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused {
       background-color: #fff;
       background-color: var(--md-theme-default-background, #fff);
 }
-.md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused label,
-      .md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused input {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused label,
+      .md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused input {
         color: rgba(0, 0, 0, 0.38);
         color: var(--md-theme-default-text-hint-on-background, rgba(0, 0, 0, 0.38));
         -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
         -webkit-text-fill-color: var(--md-theme-default-text-hint-on-background, rgba(0, 0, 0, 0.38));
 }
-.md-toolbar .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused svg {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-default.md-autocomplete-box.md-focused svg {
         fill: rgba(0, 0, 0, 0.38);
         fill: var(--md-theme-default-text-hint-on-background, rgba(0, 0, 0, 0.38));
 }
@@ -25110,33 +25199,33 @@ html.md-theme-dark {
     color: rgba(255, 255, 255, 0.5);
     color: var(--md-theme-dark-text-hint-on-background, rgba(255, 255, 255, 0.5));
 }
-.md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box {
     background-color: rgba(66, 66, 66, 0.12);
     background-color: var(--md-theme-dark-background, rgba(66, 66, 66, 0.12));
 }
-.md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box label,
-    .md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box input {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box label,
+    .md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box input {
       color: #fff;
       color: var(--md-theme-dark-text-primary-on-primary, #fff);
       -webkit-text-fill-color: #fff;
       -webkit-text-fill-color: var(--md-theme-dark-text-primary-on-primary, #fff);
 }
-.md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box svg {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box svg {
       fill: #fff;
       fill: var(--md-theme-dark-text-primary-on-primary, #fff);
 }
-.md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused {
       background-color: #424242;
       background-color: var(--md-theme-dark-background, #424242);
 }
-.md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused label,
-      .md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused input {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused label,
+      .md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused input {
         color: rgba(255, 255, 255, 0.5);
         color: var(--md-theme-dark-text-hint-on-background, rgba(255, 255, 255, 0.5));
         -webkit-text-fill-color: rgba(255, 255, 255, 0.5);
         -webkit-text-fill-color: var(--md-theme-dark-text-hint-on-background, rgba(255, 255, 255, 0.5));
 }
-.md-toolbar .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused svg {
+.md-toolbar:not(.md-transparent) .md-autocomplete.md-theme-dark.md-autocomplete-box.md-focused svg {
         fill: rgba(255, 255, 255, 0.5);
         fill: var(--md-theme-dark-text-hint-on-background, rgba(255, 255, 255, 0.5));
 }

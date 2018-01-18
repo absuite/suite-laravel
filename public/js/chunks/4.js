@@ -131,10 +131,10 @@ exports.default = {
       var _this2 = this;
 
       this.sending = true;
-      var options = { id: this.mainDatas.id, account: this.mainDatas.account, type: 'verify-mail', token: this.mainDatas.token };
-      this.$http.post('sys/auth/vcode-checker', options).then(function (response) {
+      var options = { id: this.mainDatas.id, account: this.mainDatas.account, token: this.mainDatas.token };
+      this.$http.post('sys/auth/verify-mail', options).then(function (response) {
         _this2.sending = false;
-        _this2.$go({ name: 'auth.reset', params: { id: _this2.mainDatas.id, token: _this2.mainDatas.token } });
+        _this2.$go(_this2.$root.configs.home);
       }).catch(function (err) {
         _this2.sending = false;
         _this2.$toast(err);

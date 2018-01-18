@@ -1418,8 +1418,10 @@ exports.default = {
   watch: {
     expand: function expand(_expand) {
       if (!_expand) {
+        this.$emit('md-closed');
         this.marginTop = this.$el.children[0].offsetHeight;
       } else {
+        this.$emit('md-opened');
         this.marginTop = 0;
       }
     }
@@ -3217,7 +3219,7 @@ exports.default = {
     value: { default: '' },
     mdMode: {
       type: String,
-      //simple,full
+      //simple,full,mobile,small
       default: 'simple'
     },
     placeholder: String,
@@ -3537,11 +3539,12 @@ exports.default = {
   },
   data: function data() {
     return {
-      searchTerm: null,
+      searchTerm: this.value,
       timeout: 0,
       loading: false
     };
   },
+
   computed: {
     isBoxLayout: function isBoxLayout() {
       return true;
@@ -3552,7 +3555,11 @@ exports.default = {
       }
     }
   },
-  watch: {},
+  watch: {
+    value: function value(val) {
+      this.searchTerm = val;
+    }
+  },
   methods: {
     onInput: function onInput() {
       this.debounceUpdate();
@@ -4069,16 +4076,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
 
 exports.default = {
   name: 'MdFileUpload',
   props: {
     value: [String, Object, Array],
+    mdIcon: {
+      type: String,
+      default: 'local_see'
+    },
     id: String,
     name: String,
     disabled: Boolean,
@@ -4098,6 +4104,7 @@ exports.default = {
   },
   data: function data() {
     return {
+      loading: 0,
       files: []
     };
   },
@@ -4124,7 +4131,7 @@ exports.default = {
       return file && file.type && file.type.indexOf('image/') == 0;
     },
     openPicker: function openPicker() {
-      if (!this.disabled) {
+      if (!this.disabled && this.loading == 0) {
         this.resetFile();
         this.$refs.fileInput.click();
       }
@@ -4137,16 +4144,15 @@ exports.default = {
       var _this = this;
 
       if (!file) return;
+      if (this.mdUpload) {
+        this.uploadFile(file);
+        return;
+      }
       if (file.type && file.type.indexOf('image/') == 0) {
         (0, _compressImage2.default)(file.file, { maxSize: this.maxSize }).then(function (data) {
           file.data = data.base64;
-
-          if (_this.mdUpload) {
-            _this.uploadFile(file);
-          } else {
-            _this.files.push(file);
-            _this.setInputValue();
-          }
+          _this.files.push(file);
+          _this.setInputValue();
         }, function (e) {
           console.log(e);
         });
@@ -4154,12 +4160,8 @@ exports.default = {
         var reader = new window.FileReader();
         reader.onload = function (e) {
           file.data = e.target.result;
-          if (_this.mdUpload) {
-            _this.uploadFile(file);
-          } else {
-            _this.files.push(file);
-            _this.setInputValue();
-          }
+          _this.files.push(file);
+          _this.setInputValue();
         };
         reader.readAsDataURL(file.file);
       }
@@ -4172,13 +4174,16 @@ exports.default = {
       var config = {
         headers: { 'Content-Type': 'multipart/form-data' }
       };
+      this.loading++;
       this.$http.post('sys/files', formData, config).then(function (response) {
         response.data.data.forEach(function (item) {
           _this2.files.push(item);
         });
         _this2.setInputValue();
+        _this2.loading--;
       }).catch(function (err) {
         _this2.$toast(err);
+        _this2.loading--;
       });
     },
     resetFile: function resetFile() {
@@ -6994,6 +6999,30 @@ exports.default = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconDelete.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'MdIconDelete'
+};
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7090,6 +7119,30 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
   name: 'MdIconMenu'
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconMore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'MdIconMore'
 };
 
 /***/ }),
@@ -38233,6 +38286,56 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-019764de\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconDelete.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0, false, true)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("md-icon", { staticClass: "md-icon-image" }, [
+      _c(
+        "svg",
+        {
+          attrs: {
+            height: "24",
+            viewBox: "0 0 24 24",
+            width: "24",
+            xmlns: "http://www.w3.org/2000/svg"
+          }
+        },
+        [
+          _c("path", {
+            attrs: {
+              d:
+                "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+            }
+          }),
+          _vm._v(" "),
+          _c("path", { attrs: { d: "M0 0h24v24H0z", fill: "none" } })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-019764de", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-01ebacce\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconQuote.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -40442,6 +40545,56 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0ccc1ffe", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0e7b0048\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconMore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0, false, true)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("md-icon", { staticClass: "md-icon-image" }, [
+      _c(
+        "svg",
+        {
+          attrs: {
+            height: "24",
+            viewBox: "0 0 24 24",
+            width: "24",
+            xmlns: "http://www.w3.org/2000/svg"
+          }
+        },
+        [
+          _c("path", { attrs: { d: "M0 0h24v24H0z", fill: "none" } }),
+          _vm._v(" "),
+          _c("path", {
+            attrs: {
+              d:
+                "M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            }
+          })
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0e7b0048", module.exports)
   }
 }
 
@@ -54522,29 +54675,31 @@ var render = function() {
               : _vm.isImage(file) && file.data
                 ? _c("md-image", { attrs: { "md-src": file.data } })
                 : _c("div", { staticClass: "file" }, [
-                    _vm._v("\n       " + _vm._s(file.title) + "\n     ")
+                    _vm._v("\n      " + _vm._s(file.title) + "\n    ")
                   ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "md-delete" },
-              [
-                _c(
-                  "md-button",
-                  {
-                    staticClass: "md-icon-button md-accent md-raised",
-                    nativeOn: {
-                      click: function($event) {
-                        _vm.onItemDelete(ind)
-                      }
-                    }
-                  },
-                  [_c("md-icon", [_vm._v("delete")])],
+            !_vm.disabled
+              ? _c(
+                  "div",
+                  { staticClass: "md-delete" },
+                  [
+                    _c(
+                      "md-button",
+                      {
+                        staticClass: "md-icon-button md-accent md-raised",
+                        nativeOn: {
+                          click: function($event) {
+                            _vm.onItemDelete(ind)
+                          }
+                        }
+                      },
+                      [_c("md-icon", [_vm._v("delete")])],
+                      1
+                    )
+                  ],
                   1
                 )
-              ],
-              1
-            )
+              : _vm._e()
           ],
           1
         )
@@ -54566,7 +54721,9 @@ var render = function() {
           on: { click: _vm.openPicker }
         },
         [
-          _c("md-icon", [_vm._v("local_see")]),
+          !_vm.disabled
+            ? _c("md-icon", [_vm._v(_vm._s(_vm.mdIcon))])
+            : _vm._e(),
           _vm._v(" "),
           _vm.placeholder
             ? _c("p", [_vm._v(_vm._s(_vm.placeholder))])
@@ -54574,6 +54731,19 @@ var render = function() {
         ],
         1
       ),
+      _vm._v(" "),
+      _vm.loading > 0
+        ? _c(
+            "div",
+            { staticClass: "md-file-upload-progress" },
+            [
+              _c("md-progress-spinner", {
+                attrs: { "md-mode": "indeterminate" }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("input", {
         ref: "fileInput",
@@ -70953,7 +71123,7 @@ var Start = function () {
             return _enumCache2.default.getEnumName(type, item);
           },
           issueUid: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(node, num) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
               var response;
               return regeneratorRuntime.wrap(function _callee2$(_context2) {
                 while (1) {
@@ -70961,7 +71131,7 @@ var Start = function () {
                     case 0:
                       _context2.prev = 0;
                       _context2.next = 3;
-                      return this.$http.get('sys/uid', { params: { node: node, num: num } });
+                      return this.$http.get('sys/datas/uid');
 
                     case 3:
                       response = _context2.sent;
@@ -70983,29 +71153,66 @@ var Start = function () {
               }, _callee2, this, [[0, 7]]);
             }));
 
-            function issueUid(_x, _x2) {
+            function issueUid() {
               return _ref2.apply(this, arguments);
             }
 
             return issueUid;
           }(),
-          $loadConfigs: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-              var res;
+          issueSn: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(node, num) {
+              var response;
               return regeneratorRuntime.wrap(function _callee3$(_context3) {
                 while (1) {
                   switch (_context3.prev = _context3.next) {
                     case 0:
+                      _context3.prev = 0;
+                      _context3.next = 3;
+                      return this.$http.get('sys/datas/sn', { params: { node: node, num: num } });
+
+                    case 3:
+                      response = _context3.sent;
+                      return _context3.abrupt('return', response.data.data);
+
+                    case 7:
+                      _context3.prev = 7;
+                      _context3.t0 = _context3['catch'](0);
+                      return _context3.abrupt('return', false);
+
+                    case 10:
+                      return _context3.abrupt('return', false);
+
+                    case 11:
+                    case 'end':
+                      return _context3.stop();
+                  }
+                }
+              }, _callee3, this, [[0, 7]]);
+            }));
+
+            function issueSn(_x, _x2) {
+              return _ref3.apply(this, arguments);
+            }
+
+            return issueSn;
+          }(),
+          $loadConfigs: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+              var res;
+              return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                while (1) {
+                  switch (_context4.prev = _context4.next) {
+                    case 0:
                       if (!this.loadConfigs) {
-                        _context3.next = 7;
+                        _context4.next = 7;
                         break;
                       }
 
-                      _context3.next = 3;
+                      _context4.next = 3;
                       return this.loadConfigs();
 
                     case 3:
-                      res = _context3.sent;
+                      res = _context4.sent;
 
                       if (res && res.data) {
                         res = res.data;
@@ -71019,75 +71226,47 @@ var Start = function () {
 
                     case 7:
                     case 'end':
-                      return _context3.stop();
+                      return _context4.stop();
                   }
                 }
-              }, _callee3, this);
+              }, _callee4, this);
             }));
 
             function $loadConfigs() {
-              return _ref3.apply(this, arguments);
+              return _ref4.apply(this, arguments);
             }
 
             return $loadConfigs;
           }()
         },
         created: function () {
-          var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
-              while (1) {
-                switch (_context4.prev = _context4.next) {
-                  case 0:
-                    if (!this.beforeCreated) {
-                      _context4.next = 3;
-                      break;
-                    }
-
-                    _context4.next = 3;
-                    return this.beforeCreated();
-
-                  case 3:
-                    _context4.next = 5;
-                    return this.$loadConfigs();
-
-                  case 5:
-                    if (!this.configs.loadEnum) {
-                      _context4.next = 8;
-                      break;
-                    }
-
-                    _context4.next = 8;
-                    return this.loadEnums();
-
-                  case 8:
-                  case 'end':
-                    return _context4.stop();
-                }
-              }
-            }, _callee4, this);
-          }));
-
-          function created() {
-            return _ref4.apply(this, arguments);
-          }
-
-          return created;
-        }(),
-        mounted: function () {
           var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
             return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
                 switch (_context5.prev = _context5.next) {
                   case 0:
-                    if (!this.beforeMounted) {
+                    if (!this.beforeCreated) {
                       _context5.next = 3;
                       break;
                     }
 
                     _context5.next = 3;
-                    return this.beforeMounted();
+                    return this.beforeCreated();
 
                   case 3:
+                    _context5.next = 5;
+                    return this.$loadConfigs();
+
+                  case 5:
+                    if (!this.configs.loadEnum) {
+                      _context5.next = 8;
+                      break;
+                    }
+
+                    _context5.next = 8;
+                    return this.loadEnums();
+
+                  case 8:
                   case 'end':
                     return _context5.stop();
                 }
@@ -71095,8 +71274,36 @@ var Start = function () {
             }, _callee5, this);
           }));
 
-          function mounted() {
+          function created() {
             return _ref5.apply(this, arguments);
+          }
+
+          return created;
+        }(),
+        mounted: function () {
+          var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              while (1) {
+                switch (_context6.prev = _context6.next) {
+                  case 0:
+                    if (!this.beforeMounted) {
+                      _context6.next = 3;
+                      break;
+                    }
+
+                    _context6.next = 3;
+                    return this.beforeMounted();
+
+                  case 3:
+                  case 'end':
+                    return _context6.stop();
+                }
+              }
+            }, _callee6, this);
+          }));
+
+          function mounted() {
+            return _ref6.apply(this, arguments);
           }
 
           return mounted;
@@ -74377,7 +74584,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var base = {
-  height: 500,
+  min_height: 500,
   branding: false,
   // statusbar: false,
   skin: "lightgray",
@@ -74390,7 +74597,11 @@ var base = {
   plugins: ["advlist colorpicker imagetools template anchor paste textcolor", "autolink directionality insertdatetime textpattern", "autoresize legacyoutput toc autosave link save visualblocks fullscreen lists", "visualchars charmap media code hr tabfocus", "image noneditable table"],
   content_css: ['/css/app.css'],
   block_formats: "Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;",
-  style_formats: [{ title: 'Body 1', selector: 'p,span,div', inline: 'span', classes: 'md-body-1' }, { title: 'Body 2', selector: 'p,span,div', inline: 'span', classes: 'md-body-2' }, { title: 'Caption', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: "md-caption" }, { title: 'Title', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: "md-title" }, { title: 'Headline', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-headline' }, { title: 'Display 1', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-display-1' }, { title: 'Display 2', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-display-2' }, { title: 'Primary', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-primary md-theme-default' }, { title: 'Accent', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-accent md-theme-default' }, { title: 'Chip', inline: 'span', classes: 'md-chip md-theme-default' }]
+  style_formats: [{ title: 'Body 1', selector: 'p,span,div', inline: 'span', classes: 'md-body-1' }, { title: 'Body 2', selector: 'p,span,div', inline: 'span', classes: 'md-body-2' }, { title: 'Caption', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: "md-caption" }, { title: 'Title', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: "md-title" }, { title: 'Headline', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-headline' }, { title: 'Display 1', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-display-1' }, { title: 'Display 2', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-display-2' }, { title: 'Primary', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-primary md-theme-default' }, { title: 'Accent', selector: 'p,h1,h2,h3,h4,h5,h6,span,div,ol,li', inline: 'span', classes: 'md-accent md-theme-default' }, { title: 'Chip', inline: 'span', classes: 'md-chip md-theme-default' }],
+  mobile: {
+    theme: 'mobile',
+    toolbar: ['undo', 'bold', 'italic', 'bullist', 'image', 'removeformat']
+  }
 };
 var full = _.assignIn({}, base, {
   toolbar1: "bold italic blockquote hr numlist bullist table link image media | alignleft aligncenter alignright | formatselect styleselect  forecolor backcolor | template code removeformat"
@@ -76992,6 +77203,14 @@ var _MdIconBack = __webpack_require__("./resources/assets/js/vendor/gmf-sys/comp
 
 var _MdIconBack2 = _interopRequireDefault(_MdIconBack);
 
+var _MdIconMore = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconMore.vue");
+
+var _MdIconMore2 = _interopRequireDefault(_MdIconMore);
+
+var _MdIconDelete = __webpack_require__("./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconDelete.vue");
+
+var _MdIconDelete2 = _interopRequireDefault(_MdIconDelete);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (Vue) {
@@ -77010,6 +77229,8 @@ exports.default = function (Vue) {
   Vue.component(_MdIconSave2.default.name, _MdIconSave2.default);
   Vue.component(_MdIconSetting2.default.name, _MdIconSetting2.default);
   Vue.component(_MdIconBack2.default.name, _MdIconBack2.default);
+  Vue.component(_MdIconMore2.default.name, _MdIconMore2.default);
+  Vue.component(_MdIconDelete2.default.name, _MdIconDelete2.default);
 };
 
 /***/ }),
@@ -77210,6 +77431,55 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconDelete.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconDelete.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-019764de\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconDelete.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\components\\MdIcon\\parts\\MdIconDelete.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-019764de", Component.options)
+  } else {
+    hotAPI.reload("data-v-019764de", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconEdit.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -77395,6 +77665,55 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-10ea755c", Component.options)
   } else {
     hotAPI.reload("data-v-10ea755c", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconMore.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconMore.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-0e7b0048\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/vendor/gmf-sys/components/MdIcon/parts/MdIconMore.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\components\\MdIcon\\parts\\MdIconMore.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0e7b0048", Component.options)
+  } else {
+    hotAPI.reload("data-v-0e7b0048", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
