@@ -22,8 +22,6 @@ const appMixin = {
     async beforeCreated() {
       this.configs.home = '/app/dashboard';
       this.configs.loadEnum = true;
-      this.configs.auth.register=false;
-      this.configs.auth.sns=false;
       if (window.gmfConfig) {
         this.$setConfigs(window.gmfConfig);
       }
