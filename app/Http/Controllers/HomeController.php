@@ -108,7 +108,7 @@ class HomeController extends Controller {
 		$config->country($item);
 
 		$item = null;
-		$tmp = AmibaModels\Purpose::where('ent_id', $entId)->with('calendar')->where('code', 'ob01')->first();
+		$tmp = AmibaModels\Purpose::where('ent_id', $entId)->with('calendar')->orderBy('updated_at', 'desc')->orderBy('code')->first();
 		if (empty($tmp)) {
 			$tmp = AmibaModels\Purpose::where('ent_id', $entId)->with('calendar')->first();
 		}
