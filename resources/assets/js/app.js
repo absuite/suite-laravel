@@ -6,7 +6,7 @@ import cbo from './vendor/suite-cbo';
 import amiba from './vendor/suite-amiba';
 import bec from './vendor/suite-bec';
 import docs from './vendor/suite-docs';
-
+import http from 'gmf/core/utils/http';
 Vue.use(docs);
 Vue.use(cbo);
 Vue.use(amiba);
@@ -28,4 +28,11 @@ const appMixin = {
     }
   }
 };
-start.run({}, appMixin);
+
+var promise = new Promise(function(resolve, reject) {
+  http.get('/site/configs').then(res => {
+    window.gmfConfig = res.data.data;
+    resolve();
+  });
+});
+start.run({promise}, appMixin);
