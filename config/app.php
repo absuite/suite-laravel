@@ -188,7 +188,6 @@ return [
 		Ggoop/Gmf
 		 */
 		Gmf\Sys\ServiceProvider::class,
-		Gmf\Passport\ServiceProvider::class,
 		Suite\Cbo\ServiceProvider::class,
 		Suite\Amiba\ServiceProvider::class,
 		Suite\Bec\ServiceProvider::class,

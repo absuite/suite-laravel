@@ -32,17 +32,12 @@ mix.webpackConfig({
   resolve: {
     alias: {
       'gmf': resolvePath('gmf-sys'),
-      'vue-material': resolvePath('gmf-sys'),
-      'theme': resolvePath('gmf-sys/theme'),
-      'base': resolvePath('gmf-sys/base'),
-      'core': resolvePath('gmf-sys/core'),
-      'components': resolvePath('gmf-sys/components')
+      'cbo': resolvePath('suite-cbo')
     }
   },
 });
 mix.js('resources/assets/js/app.js', 'public/js')
-  .extract(['axios', 'lodash', 'vue',
-    'vue-router', 'uuid', 'highcharts',
+  .extract(['axios', 'lodash', 'vue', 'vue-router', 'highcharts',
     'd3', 'deepmerge', 'date-fns', 'xlsx', 'vuex', 'raf'
   ]);
 mix.sass('resources/assets/sass/app.scss', 'public/css');

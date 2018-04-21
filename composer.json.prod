@@ -15,7 +15,6 @@
         "predis/predis": "^1.1",
         "maatwebsite/excel": "~2.1.0",
         "ggoop/gmf-sys": "~1.2",
-        "ggoop/gmf-passport": "~1.2",
         "absuite/suite-cbo": "~1.2",
         "absuite/suite-amiba": "~1.2",
         "absuite/suite-bec": "~1.2",

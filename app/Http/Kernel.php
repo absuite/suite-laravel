@@ -33,7 +33,7 @@ class Kernel extends HttpKernel {
 			\Illuminate\View\Middleware\ShareErrorsFromSession::class,
 			//\App\Http\Middleware\VerifyCsrfToken::class,
 			\Illuminate\Routing\Middleware\SubstituteBindings::class,
-			\Gmf\Passport\Http\Middleware\CreateFreshApiToken::class,
+			\Gmf\Sys\Http\Middleware\CreateFreshApiToken::class,
 			'visitor',
 		],
 
@@ -59,7 +59,7 @@ class Kernel extends HttpKernel {
 		'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		'visitor' => \Gmf\Sys\Http\Middleware\VisitorMiddleware::class,
-		'client_credentials' => \Gmf\Passport\Http\Middleware\CheckClientCredentials::class,
+		'client_credentials' => \Gmf\Sys\Http\Middleware\CheckClientCredentials::class,
 		'lns_check' => \Gmf\Sys\Http\Middleware\LnsCheck::class,
 	];
 }
