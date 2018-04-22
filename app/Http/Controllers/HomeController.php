@@ -91,7 +91,7 @@ class HomeController extends Controller {
 				$entId = false;
 			}
 			if (!$entId) {
-				$entId = SysModels\EntUser::where('user_id', $user->id)->orderBy('is_default', 'desc')->orderBy('created_at', 'desc')->value('ent_id');
+				$entId = SysModels\EntUser::where('user_id', GAuth::id())->orderBy('is_default', 'desc')->orderBy('created_at', 'desc')->value('ent_id');
 			}
 		}
 		if (empty($entId)) {
