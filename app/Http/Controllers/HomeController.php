@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use GAuth;
 use Gmf\Sys\Builder;
 use Gmf\Sys\Libs\APIResult;
+use Gmf\Sys\Models as SysModels;
 use Gmf\Sys\Models\Ent;
 use GuzzleHttp;
 use Illuminate\Http\Request;
@@ -49,19 +50,27 @@ class HomeController extends Controller {
 	private function issueToken(Request $request) {
 		$user = GAuth::user();
 		if (empty($user)) {
-			$params = [
-				"grant_type" => "client_credentials",
-				"client_id" => config('gmf.client.id'),
-				"client_secret" => config('gmf.client.secret'),
-			];
-
-			$client = new GuzzleHttp\Client(['base_uri' => $request->root()]);
-			$res = $client->post('oauth/token', ['json' => $params]);
-			$body = (String) $res->getBody();
-			if ($body) {
-				$body = json_decode($body);
+			$pk = config('gmf.client.id') . config('gmf.client.secret');
+			$pv = SysModels\Profile::getValue($pk);
+			if ($pv) {
+				$pv = json_decode($pv);
 			}
-			return $body;
+			if (empty($pv)) {
+				$params = [
+					"grant_type" => "client_credentials",
+					"client_id" => config('gmf.client.id'),
+					"client_secret" => config('gmf.client.secret'),
+				];
+
+				$client = new GuzzleHttp\Client(['base_uri' => $request->root()]);
+				$res = $client->post('oauth/token', ['json' => $params]);
+				$body = (String) $res->getBody();
+				if ($body) {
+					$pv = json_decode($body);
+				}
+				SysModels\Profile::setValue($pk, json_encode($pv));
+			}
+			return $pv;
 		}
 		$token = false;
 		$token = $user->createToken($user->type);
