@@ -85,9 +85,13 @@ class HomeController extends Controller {
 		$config->auth(['theme' => 'blue', 'register' => false, 'sns' => false, 'route' => '/auth/login']);
 		$entId = GAuth::entId();
 		if (empty($entId)) {
-			$entId = session(GAuth::SESSION_ENT_KEY());
-			if ($entId && empty(Ent::find($entId))) {
-				$entId = null;
+			$entId = session(config('gmf.ent_session_name'));
+			$ent = SysModels\Ent::find($entId);
+			if (empty($ent)) {
+				$entId = false;
+			}
+			if (!$entId) {
+				$entId = SysModels\EntUser::where('user_id', $user->id)->orderBy('is_default', 'desc')->orderBy('created_at', 'desc')->value('ent_id');
 			}
 		}
 		if (empty($entId)) {
