@@ -24,6 +24,7 @@ class HomeController extends Controller {
 	public function demo(Request $request) {
 		if (env('DEMO_ENT_ID') && env('DEMO_USER_ID')) {
 			$user = SysModels\User::where('id', env('DEMO_USER_ID'))->first();
+			session([config('gmf.ent_session_name') => env('DEMO_ENT_ID')]);
 			if ($user) {
 				Auth::login($user);
 			}
