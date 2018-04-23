@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 use GAuth;
 use Gmf\Sys\Builder;
 use Gmf\Sys\Libs\APIResult;
@@ -18,29 +19,22 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		//$this->middleware('auth')->except('test', 'getConfig', 'login');
-		//$this->middleware(['web'])->only('getConfig');
+		//$this->middleware('auth')->except('test', 'getConfig', 'demo');
 	}
-	public function login(Request $request) {
-		$user = GAuth::user();
-		$config = $this->issueConfig($request, $user);
-		if ($request->input('getconfig') == "1") {
-			return json_encode($config);
+	public function demo(Request $request) {
+		if (env('DEMO_ENT_ID') && env('DEMO_USER_ID')) {
+			$user = SysModels\User::where('id', env('DEMO_USER_ID'))->first();
+			if ($user) {
+				Auth::login($user);
+			}
 		}
-		return view('gmf::app', ['config' => $config]);
+		return $this->index($request);
 	}
-	/**
-	 * Show the application dashboard.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+	public function home(Request $request) {
+		return view('gmf::app');
+	}
 	public function index(Request $request) {
-		$user = GAuth::user();
-		$config = $this->issueConfig($request, $user);
-		if ($request->input('getconfig') == "1") {
-			return json_encode($config);
-		}
-		return view('gmf::app', ['config' => $config]);
+		return redirect(config('gmf.auth_redirect'));
 	}
 	public function getConfig(Request $request) {
 		$user = GAuth::user();
@@ -167,7 +161,5 @@ class HomeController extends Controller {
 		$config->token($token);
 		return $config;
 	}
-	public function home(Request $request) {
-		return redirect(config('gmf.auth_redirect'));
-	}
+
 }
