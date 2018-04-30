@@ -24,7 +24,7 @@ class HomeController extends Controller {
 	public function demo(Request $request) {
 		if (env('DEMO_ENT_ID') && env('DEMO_USER_ID')) {
 			$user = SysModels\User::where('id', env('DEMO_USER_ID'))->first();
-			session([config('gmf.ent_session_name') => env('DEMO_ENT_ID')]);
+			session([config('gmf.ent.session') => env('DEMO_ENT_ID')]);
 			if ($user) {
 				Auth::login($user);
 			}
@@ -35,7 +35,7 @@ class HomeController extends Controller {
 		return view('gmf::app');
 	}
 	public function index(Request $request) {
-		return redirect(config('gmf.auth_redirect'));
+		return redirect(config('gmf.auth.redirect'));
 	}
 	public function getConfig(Request $request) {
 		$user = GAuth::user();
@@ -80,7 +80,7 @@ class HomeController extends Controller {
 		$config->auth(['theme' => 'blue', 'register' => false, 'sns' => false, 'route' => '/auth/login']);
 		$entId = GAuth::entId();
 		if (empty($entId) && $user) {
-			$entId = session(config('gmf.ent_session_name'));
+			$entId = session(config('gmf.ent.session'));
 			$ent = SysModels\Ent::find($entId);
 			if (empty($ent)) {
 				$entId = false;

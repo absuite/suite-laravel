@@ -244,7 +244,9 @@ return [
 		'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
-		'GAuth' => Gmf\Sys\GAuthFacade::class,
+		'GAuth' => Gmf\Sys\Facades\GAuth::class,
+		'Packager' => Gmf\Sys\Facades\Packager::class,
+		'Uuid' => Gmf\Sys\Facades\Uuid::class,
 	],
 
 ];
