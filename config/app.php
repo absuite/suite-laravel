@@ -192,6 +192,8 @@ return [
 		Suite\Amiba\ServiceProvider::class,
 		Suite\Bec\ServiceProvider::class,
 		Suite\Docs\ServiceProvider::class,
+
+		/*DummyProviderPlaced*/
 	],
 
 	/*
@@ -247,6 +249,8 @@ return [
 		'GAuth' => Gmf\Sys\Facades\GAuth::class,
 		'Packager' => Gmf\Sys\Facades\Packager::class,
 		'Uuid' => Gmf\Sys\Facades\Uuid::class,
+
+		/*DummyFacadePlaced*/
 	],
 
 ];
