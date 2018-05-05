@@ -29,6 +29,7 @@ return [
 		    | so make sure you have the driver for your particular database of
 		    | choice installed on your machine before you begin development.
 		    |
+		    sqlsrv,sqlite,mysql,pgsql
 	*/
 
 	'connections' => [
@@ -76,6 +77,16 @@ return [
 			'prefix' => '',
 			'schema' => 'public',
 			'sslmode' => 'prefer',
+		],
+		'dti' => [
+			'driver' => env('DTI_DB_DRIVER', 'sqlsrv'),
+			'host' => env('DTI_DB_HOST', 'localhost'),
+			'port' => env('DTI_DB_PORT', '1433'),
+			'database' => env('DTI_DB_DATABASE', 'forge'),
+			'username' => env('DTI_DB_USERNAME', 'forge'),
+			'password' => env('DTI_DB_PASSWORD', ''),
+			'charset' => 'utf8',
+			'prefix' => '',
 		],
 
 	],
