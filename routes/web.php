@@ -13,7 +13,7 @@
 
 Route::get('/', ['uses' => 'HomeController@index']);
 Route::any('/test', ['uses' => 'HomeController@test']);
-Route::any('/demo', ['uses' => 'HomeController@demo']);
+// Route::any('/demo', ['uses' => 'HomeController@demo']);
 Route::get('/site/configs', ['uses' => 'HomeController@getConfig']);
 
 Route::get('/app', ['uses' => 'HomeController@index']);
