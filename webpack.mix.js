@@ -37,9 +37,7 @@ mix.webpackConfig({
   },
 });
 mix.js('resources/assets/js/app.js', 'public/js')
-  .extract(['axios', 'lodash', 'vue', 'vue-router', 'highcharts',
-    'd3', 'deepmerge', 'date-fns', 'xlsx', 'vuex', 'raf'
-  ]);
+  .extract(['axios', 'lodash', 'vue', 'vue-router', 'highcharts','deepmerge', 'date-fns', 'xlsx', 'vuex', 'raf']);
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.version();

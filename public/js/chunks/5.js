@@ -1,1 +1,698 @@
-webpackJsonp([5],{"2IEo":function(t,n,e){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.default={name:"GmfPagesAuthSns",props:{title:{type:String,default:"使用合作账号登录"},type:{type:String,default:"login"}},data:function(){return{sending:!1}},computed:{canSns:function(){return!(!this.$root.configs.auth||!this.$root.configs.auth.sns)&&this.$root.configs.auth.sns},snsQQ:function(){return!!this.canSns&&this.makeUrl(this.$root.configs.auth.sns.qq)},snsWeixin:function(){return!!this.canSns&&this.makeUrl(this.$root.configs.auth.sns.weixin)},snsWeibo:function(){return!!this.canSns&&this.makeUrl(this.$root.configs.auth.sns.weibo)}},methods:{fetchData:function(){},makeUrl:function(t){var n=!1;return t&&this.type?n=t.indexOf("?")>0?t+"&type="+this.type:t+"?type="+this.type:t&&(n=t),n&&this.$route.query.continue&&(n=n.indexOf("?")>0?n+"&continue="+this.$route.query.continue:n+"?continue="+this.$route.query.continue),n}},mounted:function(){this.fetchData()}}},"5q6g":function(t,n,e){(t.exports=e("UTlt")(!1)).push([t.i,".login-sns[data-v-5d705ed4]{text-align:center}.login-sns .md-icon-button[data-v-5d705ed4]{margin:20px 36px 0 0;min-width:auto;box-shadow:none;width:50px;height:50px}.login-sns .md-icon-button .md-icon[data-v-5d705ed4]{transition:all .345s;width:30px;height:30px;font-size:30px}.login-sns .md-icon-button:hover .md-icon[data-v-5d705ed4]{transform:scale(1.3)}",""])},"E+Q+":function(t,n){t.exports={render:function(){var t=this,n=t.$createElement,e=t._self._c||n;return t.canSns?e("md-card-content",{staticClass:"login-sns"},[e("div",{staticClass:"md-subheading"},[t._v(t._s(t.title))]),t._v(" "),e("div",{staticClass:"layout-row layout-align-center-center"},[t.snsQQ?e("md-button",{staticClass:"md-icon-button md-raised md-primary",attrs:{href:t.snsQQ}},[e("md-icon",{attrs:{"md-src":"/assets/vendor/gmf-sys/svg/auth-qq.svg"}})],1):t._e(),t._v(" "),t.snsWeixin?e("md-button",{staticClass:"md-icon-button md-raised md-primary",attrs:{href:t.snsWeixin}},[e("md-icon",{attrs:{"md-src":"/assets/vendor/gmf-sys/svg/auth-weixin.svg"}})],1):t._e(),t._v(" "),t.snsWeibo?e("md-button",{staticClass:"md-icon-button md-raised md-primary",attrs:{href:t.snsWeibo}},[e("md-icon",{attrs:{"md-src":"/assets/vendor/gmf-sys/svg/auth-weibo.svg"}})],1):t._e()],1)]):t._e()},staticRenderFns:[]}},STpj:function(t,n,e){var s=e("5q6g");"string"==typeof s&&(s=[[t.i,s,""]]),s.locals&&(t.exports=s.locals);e("FIqI")("6a759087",s,!0,{})},"c+VL":function(t,n){t.exports={render:function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("md-card",[e("form",{attrs:{novalidate:""},on:{submit:function(n){return n.preventDefault(),t.validateUser(n)}}},[e("md-card-header",[e("md-card-header-text",[e("div",{staticClass:"md-title"},[t._v("账号关联")]),t._v(" "),e("div",{staticClass:"md-body-1"},[t._v("添加更多账号")])]),t._v(" "),e("md-button",{staticClass:"md-icon-button md-list-action",attrs:{to:{name:"auth.account.dashboard",query:t.routeQuery}}},[e("md-icon",{staticClass:"md-primary"},[t._v("expand_more")])],1)],1),t._v(" "),e("md-card-content",[e("md-layout",[e("md-field",{class:t.getValidationClass("account"),attrs:{"md-clearable":""}},[e("label",[t._v("电子邮件地址或电话号码")]),t._v(" "),e("md-input",{attrs:{autocomplete:"off",disabled:t.sending},model:{value:t.mainDatas.account,callback:function(n){t.$set(t.mainDatas,"account",n)},expression:"mainDatas.account"}}),t._v(" "),t.$v.mainDatas.account.required?t._e():e("span",{staticClass:"md-error"},[t._v("请输入电子邮件地址或电话号码")])],1),t._v(" "),e("md-field",{class:t.getValidationClass("password")},[e("label",[t._v("输入您的密码")]),t._v(" "),e("md-input",{attrs:{autocomplete:"off",type:"password",disabled:t.sending},model:{value:t.mainDatas.password,callback:function(n){t.$set(t.mainDatas,"password",n)},expression:"mainDatas.password"}}),t._v(" "),t.$v.mainDatas.password.required?t._e():e("span",{staticClass:"md-error"},[t._v("请输入密码")])],1)],1)],1),t._v(" "),e("md-card-actions",[e("router-link",{attrs:{to:{name:"auth.account.dashboard"}}},[t._v("查看关联账号")]),t._v(" "),e("span",{staticClass:"flex"}),t._v(" "),e("md-button",{staticClass:"md-primary md-raised",attrs:{type:"submit",disabled:t.sending}},[t._v("关联账号")])],1),t._v(" "),e("md-divider"),t._v(" "),e("auth-sns",{attrs:{title:"绑定合作账号",type:"join"}}),t._v(" "),t.sending?e("md-progress-bar",{attrs:{"md-mode":"indeterminate"}}):t._e()],1)])},staticRenderFns:[]}},crl2:function(t,n,e){"use strict";Object.defineProperty(n,"__esModule",{value:!0});o(e("jajg"));var s=o(e("dQ4b")),a=e("GbOV"),i=e("rIWJ");function o(t){return t&&t.__esModule?t:{default:t}}n.default={name:"GmfPagesAuthAccountJoin",components:{AuthSns:s.default},mixins:[a.validationMixin],data:function(){return{mainDatas:{},loading:0,sending:!1}},validations:{mainDatas:{account:{required:i.required,minLength:(0,i.minLength)(3),maxLength:(0,i.maxLength)(30)},password:{required:i.required,minLength:(0,i.minLength)(3),maxLength:(0,i.maxLength)(30)}}},computed:{routeQuery:function(){var t={};return this.$route.query&&this.$route.query.continue&&(t.continue=this.$route.query.continue),t}},beforeRouteEnter:function(t,n,e){e(function(t){t.fetchData()})},beforeRouteUpdate:function(t,n,e){this.fetchData(),e()},methods:{getValidationClass:function(t){var n=this.$v.mainDatas[t];if(n)return{"md-invalid":n.$invalid&&n.$dirty}},validateUser:function(){this.$v.$touch(),this.$v.$invalid||this.submitPost()},submitPost:function(){var t=this;this.sending=!0,this.$http.post("sys/auth/joins",this.mainDatas).then(function(n){t.sending=!1,t.$go(t.$route.query.continue?t.$route.query.continue:{name:"auth.account.dashboard"})}).catch(function(n){t.sending=!1,t.$toast(n)})},fetchData:function(){}}}},dQ4b:function(t,n,e){var s=e("Z0/y")(e("2IEo"),e("E+Q+"),!1,function(t){e("STpj")},"data-v-5d705ed4",null);t.exports=s.exports},jajg:function(t,n,e){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var s=function(){function t(t,n){for(var e=0;e<n.length;e++){var s=n[e];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(t,s.key,s)}}return function(n,e,s){return e&&t(n.prototype,e),s&&t(n,s),n}}();var a=function(){function t(){!function(t,n){if(!(t instanceof n))throw new TypeError("Cannot call a class as a function")}(this,t),this.storageKey="gmf.sys.auth."+window.location.host}return s(t,[{key:"get",value:function(){return JSON.parse(localStorage.getItem(this.storageKey))||[]}},{key:"has",value:function(t){return!1}},{key:"remove",value:function(t){if(t){for(var n=this.get(),e=0;e<n.length;e++)if(n[e].id==t.id){e;break}e>=0&&(n.splice(e,1),localStorage.removeItem(this.storageKey),localStorage.setItem(this.storageKey,JSON.stringify(n)))}}},{key:"add",value:function(t){if(t){var n=this.get(),e=!1;n.forEach(function(n){n.id==t.id&&(e=!0)}),e||n.push(t),localStorage.removeItem(this.storageKey),localStorage.setItem(this.storageKey,JSON.stringify(n))}}}]),t}();n.default=new a},swtB:function(t,n,e){var s=e("Z0/y")(e("crl2"),e("c+VL"),!1,null,null,null);t.exports=s.exports}});
+webpackJsonp([5],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/AccountJoin.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _AuthCache = __webpack_require__("./resources/assets/js/vendor/gmf-sys/pages/Auth/AuthCache.js");
+
+var _AuthCache2 = _interopRequireDefault(_AuthCache);
+
+var _Sns = __webpack_require__("./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue");
+
+var _Sns2 = _interopRequireDefault(_Sns);
+
+var _vuelidate = __webpack_require__("./node_modules/vuelidate/lib/index.js");
+
+var _validators = __webpack_require__("./node_modules/vuelidate/lib/validators/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'GmfPagesAuthAccountJoin',
+  components: {
+    AuthSns: _Sns2.default
+  },
+  mixins: [_vuelidate.validationMixin],
+  data: function data() {
+    return {
+      mainDatas: {},
+      loading: 0,
+      sending: false
+    };
+  },
+
+  validations: {
+    mainDatas: {
+      account: {
+        required: _validators.required,
+        minLength: (0, _validators.minLength)(3),
+        maxLength: (0, _validators.maxLength)(30)
+      },
+      password: {
+        required: _validators.required,
+        minLength: (0, _validators.minLength)(3),
+        maxLength: (0, _validators.maxLength)(30)
+      }
+    }
+  },
+  computed: {
+    routeQuery: function routeQuery() {
+      var q = {};
+      if (this.$route.query && this.$route.query.continue) q.continue = this.$route.query.continue;
+      return q;
+    }
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    next(function (vm) {
+      vm.fetchData();
+    });
+  },
+  beforeRouteUpdate: function beforeRouteUpdate(to, from, next) {
+    this.fetchData();
+    next();
+  },
+
+  methods: {
+    getValidationClass: function getValidationClass(fieldName) {
+      var field = this.$v.mainDatas[fieldName];
+      if (field) {
+        return {
+          'md-invalid': field.$invalid && field.$dirty
+        };
+      }
+    },
+    validateUser: function validateUser() {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        this.submitPost();
+      }
+    },
+    submitPost: function submitPost() {
+      var _this = this;
+
+      this.sending = true;
+      this.$http.post('sys/auth/joins', this.mainDatas).then(function (response) {
+        _this.sending = false;
+        _this.$go(_this.$route.query.continue ? _this.$route.query.continue : { name: 'auth.account.dashboard' });
+      }).catch(function (err) {
+        _this.sending = false;
+        _this.$toast(err);
+      });
+    },
+    fetchData: function fetchData() {}
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'GmfPagesAuthSns',
+  props: {
+    title: {
+      type: String,
+      default: '使用合作账号登录'
+    },
+    type: {
+      type: String,
+      default: 'login'
+    }
+  },
+  data: function data() {
+    return {
+      sending: false
+    };
+  },
+
+  computed: {
+    canSns: function canSns() {
+      if (!this.$root.configs.auth || !this.$root.configs.auth.sns) return false;
+      return this.$root.configs.auth.sns;
+    },
+    snsQQ: function snsQQ() {
+      if (!this.canSns) return false;
+      return this.makeUrl(this.$root.configs.auth.sns.qq);
+    },
+    snsWeixin: function snsWeixin() {
+      if (!this.canSns) return false;
+      return this.makeUrl(this.$root.configs.auth.sns.weixin);
+    },
+    snsWeibo: function snsWeibo() {
+      if (!this.canSns) return false;
+      return this.makeUrl(this.$root.configs.auth.sns.weibo);
+    }
+  },
+  methods: {
+    fetchData: function fetchData() {},
+    makeUrl: function makeUrl(old) {
+      var url = false;
+      if (old && this.type) {
+        url = old.indexOf('?') > 0 ? old + '&type=' + this.type : old + '?type=' + this.type;
+      } else if (old) {
+        url = old;
+      }
+      if (url && this.$route.query.continue) {
+        url = url.indexOf('?') > 0 ? url + '&continue=' + this.$route.query.continue : url + '?continue=' + this.$route.query.continue;
+      }
+      return url;
+    }
+  },
+  mounted: function mounted() {
+    this.fetchData();
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d50a4dc6\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "/**\r\n * The default transition, used when the element is visible\r\n * since the beginning of the animation\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The enter transition, used when the element is not visible on the screen\r\n * since the beginning of the animation and become visible\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The leave transition, used when the element is visible on the screen\r\n * since the beginning of the animation and is removed\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The stand transition, used when the element is going to accelerate,\r\n * like movements from bottom to top\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/**\r\n * The out transition, used when the element is going to deaccelerate,\r\n * like movements from top to bottom\r\n * ---\r\n * @access private\r\n * @type transition\r\n * @group transition\r\n */\n/* Transitions - Based on Angular Material */\n/**\r\n * Breakpoint\r\n */\n/**\r\n * Base\r\n */\n/**\r\n * Layout Item\r\n */\n/**\r\n * Hide Element\r\n */\n.login-sns[data-v-d50a4dc6] {\n  text-align: center;\n}\n.login-sns .md-icon-button[data-v-d50a4dc6] {\n    margin: 20px 36px 0px 0px;\n    min-width: auto;\n    box-shadow: none;\n    width: 50px;\n    height: 50px;\n}\n.login-sns .md-icon-button .md-icon[data-v-d50a4dc6] {\n      transition: all .345s;\n      width: 30px;\n      height: 30px;\n      font-size: 30px;\n}\n.login-sns .md-icon-button:hover .md-icon[data-v-d50a4dc6] {\n      transform: scale(1.3);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d50a4dc6\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d50a4dc6\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("e8e9ba5c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d50a4dc6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Sns.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d50a4dc6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Sns.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6c9fe41c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/AccountJoin.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("md-card", [
+    _c(
+      "form",
+      {
+        attrs: { novalidate: "" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.validateUser($event)
+          }
+        }
+      },
+      [
+        _c(
+          "md-card-header",
+          [
+            _c("md-card-header-text", [
+              _c("div", { staticClass: "md-title" }, [_vm._v("账号关联")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "md-body-1" }, [_vm._v("添加更多账号")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "md-button",
+              {
+                staticClass: "md-icon-button md-list-action",
+                attrs: {
+                  to: { name: "auth.account.dashboard", query: _vm.routeQuery }
+                }
+              },
+              [
+                _c("md-icon", { staticClass: "md-primary" }, [
+                  _vm._v("expand_more")
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-content",
+          [
+            _c(
+              "md-layout",
+              [
+                _c(
+                  "md-field",
+                  {
+                    class: _vm.getValidationClass("account"),
+                    attrs: { "md-clearable": "" }
+                  },
+                  [
+                    _c("label", [_vm._v("电子邮件地址或电话号码")]),
+                    _vm._v(" "),
+                    _c("md-input", {
+                      attrs: { autocomplete: "off", disabled: _vm.sending },
+                      model: {
+                        value: _vm.mainDatas.account,
+                        callback: function($$v) {
+                          _vm.$set(_vm.mainDatas, "account", $$v)
+                        },
+                        expression: "mainDatas.account"
+                      }
+                    }),
+                    _vm._v(" "),
+                    !_vm.$v.mainDatas.account.required
+                      ? _c("span", { staticClass: "md-error" }, [
+                          _vm._v("请输入电子邮件地址或电话号码")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "md-field",
+                  { class: _vm.getValidationClass("password") },
+                  [
+                    _c("label", [_vm._v("输入您的密码")]),
+                    _vm._v(" "),
+                    _c("md-input", {
+                      attrs: {
+                        autocomplete: "off",
+                        type: "password",
+                        disabled: _vm.sending
+                      },
+                      model: {
+                        value: _vm.mainDatas.password,
+                        callback: function($$v) {
+                          _vm.$set(_vm.mainDatas, "password", $$v)
+                        },
+                        expression: "mainDatas.password"
+                      }
+                    }),
+                    _vm._v(" "),
+                    !_vm.$v.mainDatas.password.required
+                      ? _c("span", { staticClass: "md-error" }, [
+                          _vm._v("请输入密码")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-actions",
+          [
+            _c(
+              "router-link",
+              { attrs: { to: { name: "auth.account.dashboard" } } },
+              [_vm._v("查看关联账号")]
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "flex" }),
+            _vm._v(" "),
+            _c(
+              "md-button",
+              {
+                staticClass: "md-primary md-raised",
+                attrs: { type: "submit", disabled: _vm.sending }
+              },
+              [_vm._v("关联账号")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("md-divider"),
+        _vm._v(" "),
+        _c("auth-sns", { attrs: { title: "绑定合作账号", type: "join" } }),
+        _vm._v(" "),
+        _vm.sending
+          ? _c("md-progress-bar", { attrs: { "md-mode": "indeterminate" } })
+          : _vm._e()
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6c9fe41c", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d50a4dc6\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.canSns
+    ? _c("md-card-content", { staticClass: "login-sns" }, [
+        _c("div", { staticClass: "md-subheading" }, [
+          _vm._v(_vm._s(_vm.title))
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "layout-row layout-align-center-center" },
+          [
+            _vm.snsQQ
+              ? _c(
+                  "md-button",
+                  {
+                    staticClass: "md-icon-button md-raised md-primary",
+                    attrs: { href: _vm.snsQQ }
+                  },
+                  [
+                    _c("md-icon", {
+                      attrs: {
+                        "md-src": "/assets/vendor/gmf-sys/svg/auth-qq.svg"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.snsWeixin
+              ? _c(
+                  "md-button",
+                  {
+                    staticClass: "md-icon-button md-raised md-primary",
+                    attrs: { href: _vm.snsWeixin }
+                  },
+                  [
+                    _c("md-icon", {
+                      attrs: {
+                        "md-src": "/assets/vendor/gmf-sys/svg/auth-weixin.svg"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.snsWeibo
+              ? _c(
+                  "md-button",
+                  {
+                    staticClass: "md-icon-button md-raised md-primary",
+                    attrs: { href: _vm.snsWeibo }
+                  },
+                  [
+                    _c("md-icon", {
+                      attrs: {
+                        "md-src": "/assets/vendor/gmf-sys/svg/auth-weibo.svg"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
+          ],
+          1
+        )
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d50a4dc6", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/pages/Auth/AccountJoin.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/AccountJoin.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6c9fe41c\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/AccountJoin.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\pages\\Auth\\AccountJoin.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6c9fe41c", Component.options)
+  } else {
+    hotAPI.reload("data-v-6c9fe41c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/pages/Auth/AuthCache.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AuthCache = function () {
+  function AuthCache() {
+    _classCallCheck(this, AuthCache);
+
+    this.storageKey = "gmf.sys.auth." + window.location.host;
+  }
+
+  _createClass(AuthCache, [{
+    key: "get",
+    value: function get() {
+      return JSON.parse(localStorage.getItem(this.storageKey)) || [];
+    }
+  }, {
+    key: "has",
+    value: function has(user) {
+      return false;
+    }
+  }, {
+    key: "remove",
+    value: function remove(user) {
+      if (!user) return;
+      var users = this.get();
+      var ind = -1;
+      for (var i = 0; i < users.length; i++) {
+        if (users[i].id == user.id) {
+          ind = i;
+          break;
+        }
+      }
+      if (i >= 0) {
+        users.splice(i, 1);
+        localStorage.removeItem(this.storageKey);
+        localStorage.setItem(this.storageKey, JSON.stringify(users));
+      }
+    }
+  }, {
+    key: "add",
+    value: function add(user) {
+      if (!user) return;
+      var users = this.get();
+      var isExists = false;
+      users.forEach(function (item) {
+        if (item.id == user.id) {
+          isExists = true;
+        }
+      });
+      if (!isExists) {
+        users.push(user);
+      }
+      localStorage.removeItem(this.storageKey);
+      localStorage.setItem(this.storageKey, JSON.stringify(users));
+    }
+  }]);
+
+  return AuthCache;
+}();
+
+exports.default = new AuthCache();
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d50a4dc6\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-d50a4dc6\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/pages/Auth/Sns.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-d50a4dc6"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\pages\\Auth\\Sns.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d50a4dc6", Component.options)
+  } else {
+    hotAPI.reload("data-v-d50a4dc6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
