@@ -6,7 +6,7 @@ use GAuth;
 use Gmf\Sys\Builder;
 use Gmf\Sys\Libs\APIResult;
 use Gmf\Sys\Models as SysModels;
-use Gmf\Sys\Models\Ent;
+use Gmf\Sys\Models\Ent\Ent;
 use GuzzleHttp;
 use Illuminate\Http\Request;
 use Suite\Amiba\Models as AmibaModels;
@@ -81,12 +81,12 @@ class HomeController extends Controller {
 		$entId = GAuth::entId();
 		if (empty($entId) && $user) {
 			$entId = session(config('gmf.ent.session'));
-			$ent = SysModels\Ent::find($entId);
+			$ent = SysModels\Ent\Ent::find($entId);
 			if (empty($ent)) {
 				$entId = false;
 			}
 			if (!$entId) {
-				$entId = SysModels\EntUser::where('user_id', $user->id)->orderBy('is_default', 'desc')->orderBy('created_at', 'desc')->value('ent_id');
+				$entId = SysModels\Ent\EntUser::where('user_id', $user->id)->orderBy('is_default', 'desc')->orderBy('created_at', 'desc')->value('ent_id');
 			}
 			if (empty($entId)) {
 				$entId = config('gmf.ent.id');
