@@ -23,7 +23,7 @@
     "date-fns": "^1.29.0",
     "deepmerge": "^2.0.1",
     "fuzzysearch": "^1.0.3",
-    "highcharts": "^5.0.14",
+    "highcharts": "^6.1.1",
     "highlight.js": "^9.12.0",
     "is-firefox": "^1.0.3",
     "is-promise": "^2.1.0",
@@ -46,6 +46,7 @@
     "xlsx": "^0.11.16"
   },
   "dependencies": {
+    
     "screenfull": "^3.3.2",
     "vue": "^2.5.13",
     "vue-ga": "^1.0.0",

@@ -1,1 +1,297 @@
-webpackJsonp([9],{Aldi:function(t,a){t.exports={render:function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("md-table",{staticClass:"main-table",attrs:{"md-card":"","md-fixed-header":""},scopedSlots:t._u([{key:"md-table-row",fn:function(a){var s=a.item;return e("md-table-row",{},[e("md-table-cell",{attrs:{"md-label":"名称"}},[e("span",[t._v(t._s(s.name))]),t._v(" "),"entity"==t.mainDatas.type&&s.field_name&&s.name!=s.field_name?e("span",[t._v("\n        ("+t._s(s.field_name)+")\n      ")]):t._e(),t._v(" "),s.collection?e("span",[t._v("\n        :[]\n      ")]):t._e()]),t._v(" "),e("md-table-cell",{attrs:{"md-label":"类型"}},[s.type&&"entity"==s.type.type?e("a",{on:{click:function(a){t.goItem(s)}}},[t._v(t._s(s.type.name))]):s.type&&"enum"==s.type.type?e("a",{on:{click:function(a){t.goItem(s)}}},[t._v(t._s(s.type.name))]):e("span",[t._v(t._s(s.type.name))])]),t._v(" "),e("md-table-cell",{attrs:{"md-label":"显示名称"}},[t._v(t._s(s.comment))])],1)}}]),model:{value:t.mainDatas.fields,callback:function(a){t.$set(t.mainDatas,"fields",a)},expression:"mainDatas.fields"}},[e("md-table-toolbar",{staticClass:"md-dense"},[e("div",{staticClass:"md-toolbar-row class-title"},[e("md-chip",{staticClass:"md-primary hide-xs"},[t._v(t._s(t.mainDatas.type_name))]),t._v(" "),e("span",{staticClass:"md-chip"},[t._v(t._s(t.mainDatas.comment))]),t._v(" "),t.mainDatas.table_name?e("span",{staticClass:"md-chip"},[t._v("表名: "+t._s(t.mainDatas.table_name))]):t._e()],1)]),t._v(" "),e("md-table-empty-state",{attrs:{"md-label":"没有元数据信息"}})],1)},staticRenderFns:[]}},HRe1:function(t,a,e){"use strict";Object.defineProperty(a,"__esModule",{value:!0}),a.default={data:function(){return{mainDatas:{fields:[]}}},watch:{$route:function(){this.fetchData()}},methods:{goItem:function(t){t&&t.type&&t.type.id&&this.$go({name:"md.show",params:{id:t.type.id}})},fetchData:function(){var t=this;this.$http.get("sys/entities/"+this.$route.params.id,{params:{}}).then(function(a){t.mainDatas=a.data.data}).catch(function(a){t.$toast(a)})}},mounted:function(){this.fetchData()}}},"PF/s":function(t,a,e){var s=e("VU/8")(e("HRe1"),e("Aldi"),!1,function(t){e("sFGT")},"data-v-cb87a3cc",null);t.exports=s.exports},VvMr:function(t,a,e){(t.exports=e("FZ+f")(!1)).push([t.i,".main-table[data-v-cb87a3cc]{height:100%;width:1000px;max-width:100%;margin:0 auto}",""])},sFGT:function(t,a,e){var s=e("VvMr");"string"==typeof s&&(s=[[t.i,s,""]]),s.locals&&(t.exports=s.locals);e("rjj0")("be95ae14",s,!0,{})}});
+webpackJsonp([9],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  data: function data() {
+    return {
+      mainDatas: { fields: [] }
+    };
+  },
+
+  watch: {
+    '$route': function $route() {
+      this.fetchData();
+    }
+  },
+  methods: {
+    goItem: function goItem(item) {
+      if (item && item.type && item.type.id) {
+        this.$go({ name: 'md.show', params: { id: item.type.id } });
+      }
+    },
+    fetchData: function fetchData() {
+      var _this = this;
+
+      var options = {};
+      this.$http.get('sys/entities/' + this.$route.params.id, { params: options }).then(function (response) {
+        _this.mainDatas = response.data.data;
+      }).catch(function (err) {
+        _this.$toast(err);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.fetchData();
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68d2f459\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.main-table[data-v-68d2f459] {\n  height: 100%;\n  width: 1000px;\n  max-width: 100%;\n  margin: 0 auto;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68d2f459\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68d2f459\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("0a520e38", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68d2f459\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Show.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68d2f459\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/sass-loader/lib/loader.js!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Show.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68d2f459\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "md-table",
+    {
+      staticClass: "main-table",
+      attrs: { "md-card": "", "md-fixed-header": "" },
+      scopedSlots: _vm._u([
+        {
+          key: "md-table-row",
+          fn: function(ref) {
+            var item = ref.item
+            return _c(
+              "md-table-row",
+              {},
+              [
+                _c("md-table-cell", { attrs: { "md-label": "名称" } }, [
+                  _c("span", [_vm._v(_vm._s(item.name))]),
+                  _vm._v(" "),
+                  _vm.mainDatas.type == "entity" &&
+                  item.field_name &&
+                  item.name != item.field_name
+                    ? _c("span", [
+                        _vm._v(
+                          "\n        (" + _vm._s(item.field_name) + ")\n      "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  item.collection
+                    ? _c("span", [_vm._v("\n        :[]\n      ")])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("md-table-cell", { attrs: { "md-label": "类型" } }, [
+                  item.type && item.type.type == "entity"
+                    ? _c(
+                        "a",
+                        {
+                          on: {
+                            click: function($event) {
+                              _vm.goItem(item)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(item.type.name))]
+                      )
+                    : item.type && item.type.type == "enum"
+                      ? _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                _vm.goItem(item)
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(item.type.name))]
+                        )
+                      : _c("span", [_vm._v(_vm._s(item.type.name))])
+                ]),
+                _vm._v(" "),
+                _c("md-table-cell", { attrs: { "md-label": "显示名称" } }, [
+                  _vm._v(_vm._s(item.comment))
+                ])
+              ],
+              1
+            )
+          }
+        }
+      ]),
+      model: {
+        value: _vm.mainDatas.fields,
+        callback: function($$v) {
+          _vm.$set(_vm.mainDatas, "fields", $$v)
+        },
+        expression: "mainDatas.fields"
+      }
+    },
+    [
+      _c("md-table-toolbar", { staticClass: "md-dense" }, [
+        _c(
+          "div",
+          { staticClass: "md-toolbar-row class-title" },
+          [
+            _c("md-chip", { staticClass: "md-primary hide-xs" }, [
+              _vm._v(_vm._s(_vm.mainDatas.type_name))
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "md-chip" }, [
+              _vm._v(_vm._s(_vm.mainDatas.comment))
+            ]),
+            _vm._v(" "),
+            _vm.mainDatas.table_name
+              ? _c("span", { staticClass: "md-chip" }, [
+                  _vm._v("表名: " + _vm._s(_vm.mainDatas.table_name))
+                ])
+              : _vm._e()
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("md-table-empty-state", { attrs: { "md-label": "没有元数据信息" } })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68d2f459", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/extract-text-webpack-plugin/dist/loader.js?{\"id\":1,\"omit\":1,\"remove\":true}!./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68d2f459\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}],\"es2015\",\"stage-3\",[\"env\",{\"modules\":false,\"useBuiltIns\":false}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"syntax-dynamic-import\"],\"ignore\":[\"dist/*.js\",\"public/*.js\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-68d2f459\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/vendor/gmf-sys/pages/Md/Show.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-68d2f459"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\pages\\Md\\Show.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68d2f459", Component.options)
+  } else {
+    hotAPI.reload("data-v-68d2f459", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
