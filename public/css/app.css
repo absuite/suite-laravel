@@ -11549,7 +11549,6 @@ to {
   height: 22px;
   border-radius: 50%;
   color: #fff;
-  pointer-events: none;
   z-index: 11;
 }
 .md-list-item-content .md-badge {
@@ -23599,6 +23598,11 @@ html.md-theme-default {
     background-color: #0f9d58;
     background-color: var(--md-theme-default-primary, #0f9d58);
 }
+.md-badge.md-theme-default.md-warn {
+    color: #fff;
+    color: var(--md-theme-default-text-primary-on-warn, #fff);
+    background-color: var(--md-theme-default-warn, );
+}
 
 /**
  * The complete material palette
@@ -25452,6 +25456,11 @@ html.md-theme-dark {
     color: var(--md-theme-dark-text-primary-on-primary, #fff);
     background-color: #404E67;
     background-color: var(--md-theme-dark-primary, #404E67);
+}
+.md-badge.md-theme-dark.md-warn {
+    color: #fff;
+    color: var(--md-theme-dark-text-primary-on-warn, #fff);
+    background-color: var(--md-theme-dark-warn, );
 }
 body {
   height: 100%;
