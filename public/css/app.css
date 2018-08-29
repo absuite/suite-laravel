@@ -18023,6 +18023,14 @@ to {
   opacity: 0;
   color: rgba(0, 0, 0, 0.38);
 }
+.md-table.md-dense .md-table-head-container {
+  height: 38px;
+  padding: 6px 0;
+}
+.md-table.md-dense .md-table-head-label {
+  padding-right: 16px;
+  padding-left: 8px;
+}
 /**
  * The default transition, used when the element is visible
  * since the beginning of the animation
@@ -18318,6 +18326,15 @@ tbody .md-table-row td {
 }
 .md-table-cell-container {
   padding: 6px 32px 6px 24px;
+}
+.md-table.md-dense .md-table-cell {
+  height: 36px;
+}
+.md-table.md-dense .md-table-cell .md-table-cell-container {
+    padding: 8px;
+}
+.md-table.md-dense .md-table-cell:last-child .md-table-cell-container {
+    padding-right: 0px;
 }
 /**
  * The default transition, used when the element is visible
@@ -20092,6 +20109,9 @@ tbody .md-table-row td {
   -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.md-picker.md-toolbar-position-bottom .md-picker__toolbar {
+  order: 1;
 }
 
 .md-flexbox {
