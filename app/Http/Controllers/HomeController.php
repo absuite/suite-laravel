@@ -52,17 +52,11 @@ class HomeController extends Controller {
       }
       if (empty($pv)) {
         $params = [
-          "grant_type" => "client_credentials",
+          "type" => "client_credentials",
           "client_id" => config('gmf.client.id'),
           "client_secret" => config('gmf.client.secret'),
         ];
-
-        $client = new GuzzleHttp\Client(['base_uri' => $request->root()]);
-        $res = $client->post('oauth/token', ['json' => $params]);
-        $body = (String) $res->getBody();
-        if ($body) {
-          $pv = json_decode($body);
-        }
+        $pv = app('Gmf\Sys\Bp\Auth\Token')->issueClientToken($params);
         SysModels\Profile::setValue($pk, json_encode($pv));
       }
       return $pv;

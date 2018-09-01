@@ -6,17 +6,12 @@ import routesMd from 'gmf/routes/md';
 import cbo from './vendor/suite-cbo';
 import amiba from './vendor/suite-amiba';
 import bec from './vendor/suite-bec';
-import docs from './vendor/suite-docs';
 import http from 'gmf/core/utils/http';
 import routesCbo from './vendor/suite-cbo/routes/cbo';
 
 
 gapp.use(component);
 
-
-
-
-gapp.use(docs);
 gapp.use(cbo);
 gapp.use(amiba);
 gapp.use(bec);
