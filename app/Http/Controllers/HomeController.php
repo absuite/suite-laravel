@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 use Auth;
 use GAuth;
 use Gmf\Sys\Builder;
+use Gmf\Sys\Http\Resources\User as ResUser;
 use Gmf\Sys\Libs\APIResult;
 use Gmf\Sys\Models as SysModels;
 use Gmf\Sys\Models\Ent\Ent;
-use GuzzleHttp;
 use Illuminate\Http\Request;
 use Suite\Amiba\Models as AmibaModels;
 use Suite\Cbo\Models as CboModels;
@@ -77,7 +77,10 @@ class HomeController extends Controller {
 
     $config->date(date('Y-m-d'));
 
-    $config->user($user);
+    if ($user && $user->account == config('gmf.admin.account')) {
+      $config->isSysUser(true);
+    }
+    $config->user(new ResUser($user));
 
     if (stripos($_SERVER['HTTP_USER_AGENT'], "android") != false || stripos($_SERVER['HTTP_USER_AGENT'], "ios") != false || stripos($_SERVER['HTTP_USER_AGENT'], "wp") != false) {
       $config->is_mobile(true);
@@ -85,7 +88,6 @@ class HomeController extends Controller {
     $token = $this->issueToken($request);
     $config->token($token);
 
-    
     $entId = GAuth::entId();
     if (empty($entId) && $user) {
       $entId = session(config('gmf.ent.session'));
@@ -157,7 +159,6 @@ class HomeController extends Controller {
     }
     $config->period($item);
 
-   
     return $config;
   }
 
