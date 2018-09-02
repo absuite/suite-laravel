@@ -76,7 +76,7 @@ class HomeController extends Controller {
     $config->home(config('gmf.auth.redirect'));
 
     $config->date(date('Y-m-d'));
-
+    $config->loadEnums(true);
     if ($user && $user->account == config('gmf.admin.account')) {
       $config->isSysUser(true);
     }
