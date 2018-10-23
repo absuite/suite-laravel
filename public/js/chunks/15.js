@@ -1,1 +1,394 @@
-webpackJsonp([15],{2148:function(t,a,e){var n=e(0)(e(2178),e(2179),!1,null,null,null);t.exports=n.exports},2178:function(t,a,e){"use strict";Object.defineProperty(a,"__esModule",{value:!0});var n=e(50),s=e(51);a.default={name:"GmfPagesAuthRegister",props:{},mixins:[n.validationMixin],data:function(){return{mainDatas:{},loading:0,sending:!1}},validations:{mainDatas:{name:{required:s.required},account:{required:s.required,minLength:(0,s.minLength)(3),maxLength:(0,s.maxLength)(30)},password:{required:s.required,minLength:(0,s.minLength)(3),maxLength:(0,s.maxLength)(30)}}},computed:{routeQuery:function(){var t={};return this.$route.query&&this.$route.query.continue&&(t.continue=this.$route.query.continue),t},appName:function(){return this.$root.appName?" "+this.$root.appName+" ":""}},methods:{getValidationClass:function(t){var a=this.$v.mainDatas[t];if(a)return{"md-invalid":a.$invalid&&a.$dirty}},validateForm:function(){if(this.$v.$touch(),!this.$v.$invalid){if(!/^1[358][0123456789]\d{8}$/.test(this.mainDatas.account)&&!/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(this.mainDatas.account))return alert("账号需要是电子邮件或者手机号!"),!1;this.submitPost()}},submitPost:function(){var t=this;this.sending=!0,this.$http.post("sys/auth/register",this.mainDatas).then(function(a){t.sending=!1,t.$go(t.$route.query.continue?t.$route.query.continue:{name:"app.users.show",params:{id:"0"}})}).catch(function(a){t.sending=!1,t.$toast(a)})},fetchData:function(){}},created:function(){},mounted:function(){this.fetchData()}}},2179:function(t,a){t.exports={render:function(){var t=this,a=t.$createElement,e=t._self._c||a;return e("md-card",[e("form",{attrs:{novalidate:""},on:{submit:function(a){return a.preventDefault(),t.validateForm(a)}}},[e("md-card-header",[e("md-card-header-text",[e("div",{staticClass:"md-title"},[t._v("创建新的"+t._s(t.appName)+"帐号")])])],1),t._v(" "),e("md-card-content",[e("md-layout",[e("md-field",{class:t.getValidationClass("name"),attrs:{"md-clearable":""}},[e("label",[t._v("输入您的真实姓名")]),t._v(" "),e("md-input",{attrs:{autocomplete:"off",disabled:t.sending},model:{value:t.mainDatas.name,callback:function(a){t.$set(t.mainDatas,"name",a)},expression:"mainDatas.name"}}),t._v(" "),t.$v.mainDatas.name.required?t._e():e("span",{staticClass:"md-error"},[t._v("姓名")])],1)],1),t._v(" "),e("md-layout",[e("md-field",{class:t.getValidationClass("account"),attrs:{"md-clearable":""}},[e("label",[t._v("账号")]),t._v(" "),e("md-input",{attrs:{autocomplete:"off",disabled:t.sending},model:{value:t.mainDatas.account,callback:function(a){t.$set(t.mainDatas,"account",a)},expression:"mainDatas.account"}}),t._v(" "),e("span",{staticClass:"md-helper-text"},[t._v("输入电子邮件地址或者手机号。")]),t._v(" "),t.$v.mainDatas.account.required?t._e():e("span",{staticClass:"md-error"},[t._v("请输入输入电子邮件地址或者手机号。!")])],1)],1),t._v(" "),e("md-layout",[e("md-field",{class:t.getValidationClass("password")},[e("label",[t._v("密码")]),t._v(" "),e("md-input",{attrs:{autocomplete:"off",type:"password",disabled:t.sending},model:{value:t.mainDatas.password,callback:function(a){t.$set(t.mainDatas,"password",a)},expression:"mainDatas.password"}}),t._v(" "),t.$v.mainDatas.password.required?t._e():e("span",{staticClass:"md-error"},[t._v("请输入密码")]),t._v(" "),e("span",{staticClass:"md-helper-text"},[t._v("请至少使用 6 个字符。请勿使用您用于登录其他网站的密码或容易被猜到的密码")])],1)],1)],1),t._v(" "),e("md-card-actions",[e("md-button",{staticClass:"md-primary md-raised",attrs:{type:"submit",disabled:t.sending}},[t._v("注册")])],1),t._v(" "),e("md-card-actions",{staticClass:"login-memo"},[e("router-link",{attrs:{to:{name:"auth.login",query:t.routeQuery}}},[t._v("我有帐号，直接登录")])],1),t._v(" "),t.sending?e("md-progress-bar",{attrs:{"md-mode":"indeterminate"}}):t._e()],1)])},staticRenderFns:[]}}});
+webpackJsonp([15],{
+
+/***/ 2148:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(2178)
+/* template */
+var __vue_template__ = __webpack_require__(2179)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\vendor\\gmf-sys\\pages\\Auth\\Register.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-524d12ce", Component.options)
+  } else {
+    hotAPI.reload("data-v-524d12ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 2178:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vuelidate = __webpack_require__(50);
+
+var _validators = __webpack_require__(51);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  name: 'GmfPagesAuthRegister',
+  props: {},
+  mixins: [_vuelidate.validationMixin],
+  data: function data() {
+    return {
+      mainDatas: {},
+      loading: 0,
+      sending: false
+    };
+  },
+
+  validations: {
+    mainDatas: {
+      name: {
+        required: _validators.required
+      },
+      account: {
+        required: _validators.required,
+        minLength: (0, _validators.minLength)(3),
+        maxLength: (0, _validators.maxLength)(30)
+      },
+      password: {
+        required: _validators.required,
+        minLength: (0, _validators.minLength)(3),
+        maxLength: (0, _validators.maxLength)(30)
+      }
+    }
+  },
+  computed: {
+    routeQuery: function routeQuery() {
+      var q = {};
+      if (this.$route.query && this.$route.query.continue) q.continue = this.$route.query.continue;
+      return q;
+    },
+    appName: function appName() {
+      return this.$root.appName ? " " + this.$root.appName + " " : "";
+    }
+  },
+  methods: {
+    getValidationClass: function getValidationClass(fieldName) {
+      var field = this.$v.mainDatas[fieldName];
+      if (field) {
+        return {
+          'md-invalid': field.$invalid && field.$dirty
+        };
+      }
+    },
+    validateForm: function validateForm() {
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+
+        var m = /^1[358][0123456789]\d{8}$/;
+        var e = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        if (!m.test(this.mainDatas.account) && !e.test(this.mainDatas.account)) {
+          alert('账号需要是电子邮件或者手机号!');
+          return false;
+        }
+        this.submitPost();
+      }
+    },
+    submitPost: function submitPost() {
+      var _this = this;
+
+      this.sending = true;
+      this.$http.post('sys/auth/register', this.mainDatas).then(function (response) {
+        _this.sending = false;
+        _this.$go(_this.$route.query.continue ? _this.$route.query.continue : { name: 'app.users.show', params: { id: '0' } });
+      }).catch(function (err) {
+        _this.sending = false;
+        _this.$toast(err);
+      });
+    },
+    fetchData: function fetchData() {}
+  },
+  created: function created() {},
+  mounted: function mounted() {
+    this.fetchData();
+  }
+};
+
+/***/ }),
+
+/***/ 2179:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("md-card", [
+    _c(
+      "form",
+      {
+        attrs: { novalidate: "" },
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.validateForm($event)
+          }
+        }
+      },
+      [
+        _c(
+          "md-card-header",
+          [
+            _c("md-card-header-text", [
+              _c("div", { staticClass: "md-title" }, [
+                _vm._v("创建新的" + _vm._s(_vm.appName) + "帐号")
+              ])
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-content",
+          [
+            _c(
+              "md-layout",
+              [
+                _c(
+                  "md-field",
+                  {
+                    class: _vm.getValidationClass("name"),
+                    attrs: { "md-clearable": "" }
+                  },
+                  [
+                    _c("label", [_vm._v("输入您的真实姓名")]),
+                    _vm._v(" "),
+                    _c("md-input", {
+                      attrs: { autocomplete: "off", disabled: _vm.sending },
+                      model: {
+                        value: _vm.mainDatas.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.mainDatas, "name", $$v)
+                        },
+                        expression: "mainDatas.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    !_vm.$v.mainDatas.name.required
+                      ? _c("span", { staticClass: "md-error" }, [
+                          _vm._v("姓名")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "md-layout",
+              [
+                _c(
+                  "md-field",
+                  {
+                    class: _vm.getValidationClass("account"),
+                    attrs: { "md-clearable": "" }
+                  },
+                  [
+                    _c("label", [_vm._v("账号")]),
+                    _vm._v(" "),
+                    _c("md-input", {
+                      attrs: { autocomplete: "off", disabled: _vm.sending },
+                      model: {
+                        value: _vm.mainDatas.account,
+                        callback: function($$v) {
+                          _vm.$set(_vm.mainDatas, "account", $$v)
+                        },
+                        expression: "mainDatas.account"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "md-helper-text" }, [
+                      _vm._v("输入电子邮件地址或者手机号。")
+                    ]),
+                    _vm._v(" "),
+                    !_vm.$v.mainDatas.account.required
+                      ? _c("span", { staticClass: "md-error" }, [
+                          _vm._v("请输入输入电子邮件地址或者手机号。!")
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "md-layout",
+              [
+                _c(
+                  "md-field",
+                  { class: _vm.getValidationClass("password") },
+                  [
+                    _c("label", [_vm._v("密码")]),
+                    _vm._v(" "),
+                    _c("md-input", {
+                      attrs: {
+                        autocomplete: "off",
+                        type: "password",
+                        disabled: _vm.sending
+                      },
+                      model: {
+                        value: _vm.mainDatas.password,
+                        callback: function($$v) {
+                          _vm.$set(_vm.mainDatas, "password", $$v)
+                        },
+                        expression: "mainDatas.password"
+                      }
+                    }),
+                    _vm._v(" "),
+                    !_vm.$v.mainDatas.password.required
+                      ? _c("span", { staticClass: "md-error" }, [
+                          _vm._v("请输入密码")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "md-helper-text" }, [
+                      _vm._v(
+                        "请至少使用 6 个字符。请勿使用您用于登录其他网站的密码或容易被猜到的密码"
+                      )
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-actions",
+          [
+            _c(
+              "md-button",
+              {
+                staticClass: "md-primary md-raised",
+                attrs: { type: "submit", disabled: _vm.sending }
+              },
+              [_vm._v("注册")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "md-card-actions",
+          { staticClass: "login-memo" },
+          [
+            _c(
+              "router-link",
+              { attrs: { to: { name: "auth.login", query: _vm.routeQuery } } },
+              [_vm._v("我有帐号，直接登录")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.sending
+          ? _c("md-progress-bar", { attrs: { "md-mode": "indeterminate" } })
+          : _vm._e()
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-524d12ce", module.exports)
+  }
+}
+
+/***/ })
+
+});
