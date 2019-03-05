@@ -27,7 +27,7 @@ mix.options({
 mix.webpackConfig({
   output: {
     publicPath: "/",
-    chunkFilename: 'js/chunks/[name].js'
+    chunkFilename: 'js/chunks/[name].[chunkhash].js'
   },
   resolve: {
     alias: {
